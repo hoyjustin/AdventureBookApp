@@ -5,16 +5,16 @@ public class RemoteStories {
 
 	/**
 	 * @uml.property   name="eSClient"
-	 * @uml.associationEnd   inverse="remoteDatabase:com.example.adventurebook.Controller"
+	 * @uml.associationEnd   inverse="remoteDatabase:com.example.adventurebook.SController"
 	 */
-	private Controller esClient;
+	private SController esClient;
 
 	/**
 	 * Getter of the property <tt>eSClient</tt>
 	 * @return  Returns the esClient.
 	 * @uml.property  name="eSClient"
 	 */
-	public Controller getESClient() {
+	public SController getESClient() {
 		return esClient;
 	}
 
@@ -23,7 +23,7 @@ public class RemoteStories {
 	 * @param eSClient  The esClient to set.
 	 * @uml.property  name="eSClient"
 	 */
-	public void setESClient(Controller esClient) {
+	public void setESClient(SController esClient) {
 		this.esClient = esClient;
 	}
 

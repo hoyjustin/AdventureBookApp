@@ -1,7 +1,7 @@
 package com.example.adventurebook;
 
 
-public class Controller {
+public class SController {
 
 	/**
 	 * @uml.property   name="onlineLibrary"
@@ -76,30 +76,6 @@ public class Controller {
 	}
 
 	/**
-	 * @uml.property  name="storyModel"
-	 * @uml.associationEnd  inverse="controller:com.example.adventurebook.StoryModel"
-	 */
-	private StoryModel storyModel;
-
-	/**
-	 * Getter of the property <tt>storyModel</tt>
-	 * @return  Returns the storyModel.
-	 * @uml.property  name="storyModel"
-	 */
-	public StoryModel getStoryModel() {
-		return storyModel;
-	}
-
-	/**
-	 * Setter of the property <tt>storyModel</tt>
-	 * @param storyModel  The storyModel to set.
-	 * @uml.property  name="storyModel"
-	 */
-	public void setStoryModel(StoryModel storyModel) {
-		this.storyModel = storyModel;
-	}
-
-	/**
 	 * @uml.property  name="offlineLibraryActivity"
 	 * @uml.associationEnd  inverse="controller:com.example.adventurebook.OfflineLibraryActivity"
 	 */
@@ -121,7 +97,7 @@ public class Controller {
 	 */
 	public void setOfflineLibraryActivity(
 			OfflineLibraryActivity offlineLibraryActivity) {
-		this.offlineLibraryActivity = offlineLibraryActivity;
-	}
+				this.offlineLibraryActivity = offlineLibraryActivity;
+			}
 
 }

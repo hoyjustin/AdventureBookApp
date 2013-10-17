@@ -3,7 +3,7 @@ package com.example.adventurebook;
 import java.util.Collection;
 
 
-public class Video {
+public class Video implements Media{
 
 	/** 
 	 * @uml.property name="storyFragment"

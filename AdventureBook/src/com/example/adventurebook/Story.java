@@ -3,7 +3,7 @@ package com.example.adventurebook;
 import java.util.Collection;
 
 
-public class Story {
+public class Story extends Model{
 
 	/** 
 	 * @uml.property name="onlineLibrary"
@@ -75,30 +75,6 @@ public class Story {
 	 */
 	public void setOfflineLibrary(OfflineLibrary offlineLibrary) {
 		this.offlineLibrary = offlineLibrary;
-	}
-
-	/**
-	 * @uml.property  name="storyModel"
-	 * @uml.associationEnd  inverse="story:com.example.adventurebook.StoryModel"
-	 */
-	private StoryModel storyModel;
-
-	/**
-	 * Getter of the property <tt>storyModel</tt>
-	 * @return  Returns the storyModel.
-	 * @uml.property  name="storyModel"
-	 */
-	public StoryModel getStoryModel() {
-		return storyModel;
-	}
-
-	/**
-	 * Setter of the property <tt>storyModel</tt>
-	 * @param storyModel  The storyModel to set.
-	 * @uml.property  name="storyModel"
-	 */
-	public void setStoryModel(StoryModel storyModel) {
-		this.storyModel = storyModel;
 	}
 
 }

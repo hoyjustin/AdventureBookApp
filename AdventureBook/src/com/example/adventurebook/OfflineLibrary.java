@@ -1,22 +1,23 @@
 package com.example.adventurebook;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 
-public class OfflineLibrary extends Model<V>{
+public class OfflineLibrary extends Model implements Serializable{
 
 	/**
-	 * @uml.property  name="controller"
-	 * @uml.associationEnd  inverse="offlineLibrary:com.example.adventurebook.Controller"
+	 * @uml.property   name="controller"
+	 * @uml.associationEnd   inverse="offlineLibrary:com.example.adventurebook.SController"
 	 */
-	private Controller controller;
+	private SController controller;
 
 	/**
 	 * Getter of the property <tt>controller</tt>
 	 * @return  Returns the controller.
 	 * @uml.property  name="controller"
 	 */
-	public Controller getController() {
+	public SController getController() {
 		return controller;
 	}
 
@@ -25,13 +26,13 @@ public class OfflineLibrary extends Model<V>{
 	 * @param controller  The controller to set.
 	 * @uml.property  name="controller"
 	 */
-	public void setController(Controller controller) {
+	public void setController(SController controller) {
 		this.controller = controller;
 	}
 
-	/** 
-	 * @uml.property name="story"
-	 * @uml.associationEnd multiplicity="(0 -1)" aggregation="shared" inverse="offlineLibrary:com.example.adventurebook.Story"
+	/**
+	 * @uml.property   name="story"
+	 * @uml.associationEnd   multiplicity="(0 -1)" aggregation="shared" inverse="offlineLibrary:com.example.adventurebook.Story"
 	 */
 	private Collection<Story> story;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="uml" size="1585,1318" id="com.example.adventurebook" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D3130303020416476656E74757265426F6F6B2F6A6A686F79">
-  <children xsi:type="editmodel:ClassEditModel" name="AdventureBookMainActivity" location="917,50" size="243,29" id="com.example.adventurebook/AdventureBookMainActivity" runTimeClassModel="">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="uml" size="1517,1318" id="com.example.adventurebook" metadata="uml2-1.0" initialized="true" tag="1000" key="32303037303533312D3130303020416476656E74757265426F6F6B2F6A6A686F79">
+  <children xsi:type="editmodel:ClassEditModel" name="OfflineLibraryActivity" location="917,50" size="194,29" id="com.example.adventurebook/OfflineLibraryActivity" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
@@ -42,11 +42,11 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.10/@sourceConnections.5 //@children.15/@sourceConnections.2" name="OnlineLibrary" location="448,457" size="138,29" id="com.example.adventurebook/OnlineLibrary" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.0 //@children.10/@sourceConnections.4 //@children.14/@sourceConnections.2" name="OnlineLibrary" location="448,457" size="138,29" id="com.example.adventurebook/OnlineLibrary" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Story@story+com.example.adventurebook/OnlineLibrary@onlineLibrary" source="//@children.7" target="//@children.15" targetEnd="//@children.7/@sourceConnections.0/@children.2" label="//@children.7/@sourceConnections.0/@children.0" sourceEnd="//@children.7/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Story@story+com.example.adventurebook/OnlineLibrary@onlineLibrary" source="//@children.7" target="//@children.14" targetEnd="//@children.7/@sourceConnections.0/@children.2" label="//@children.7/@sourceConnections.0/@children.0" sourceEnd="//@children.7/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" name="onlineLibrary" location="138,24" id="com.example.adventurebook/Story@story+com.example.adventurebook/OnlineLibrary@onlineLibrary|com.example.adventurebook/OnlineLibrary#onlineLibrary" attachSource="true" multiplicityLabel="//@children.7/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.7/@sourceConnections.0/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + onlineLibrary" location="593,461" size="79,13" anchorKind="FirstPart"/>
@@ -57,317 +57,289 @@
         <children xsi:type="editmodel:LabelEditModel" name="*" location="362,684" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OnlineLibrary-Soyatec::Import->com.example.adventurebook/Controller" source="//@children.7" target="//@children.10" targetEnd="//@children.7/@sourceConnections.1/@children.2" label="//@children.7/@sourceConnections.1/@children.0" sourceEnd="//@children.7/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OnlineLibrary-Soyatec::Import->com.example.adventurebook/SController" source="//@children.7" target="//@children.10" targetEnd="//@children.7/@sourceConnections.1/@children.2" label="//@children.7/@sourceConnections.1/@children.0" sourceEnd="//@children.7/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="15,29" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="36,29"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="97,67"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OnlineLibrary-Soyatec::Import->com.example.adventurebook/Story" source="//@children.7" target="//@children.15" targetEnd="//@children.7/@sourceConnections.2/@children.2" label="//@children.7/@sourceConnections.2/@children.0" sourceEnd="//@children.7/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OnlineLibrary-Soyatec::Import->com.example.adventurebook/Story" source="//@children.7" target="//@children.14" targetEnd="//@children.7/@sourceConnections.2/@children.2" label="//@children.7/@sourceConnections.2/@children.0" sourceEnd="//@children.7/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="35,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="33,0"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.1 //@children.12/@sourceConnections.2" name="Video" location="551,1027" size="83,29" id="com.example.adventurebook/Video" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.1 //@children.11/@sourceConnections.2" name="Video" location="551,1027" size="83,29" id="com.example.adventurebook/Video" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Video-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.8" target="//@children.12" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Video-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.8" target="//@children.11" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="83,5" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="150,14"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.3 //@children.10/@sourceConnections.7" name="RemoteStories" location="59,74" size="150,29" id="com.example.adventurebook/RemoteStories" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.3 //@children.10/@sourceConnections.6" name="RemoteStories" location="59,74" size="150,29" id="com.example.adventurebook/RemoteStories" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/RemoteStories-Soyatec::Import->com.example.adventurebook/Controller" source="//@children.9" target="//@children.10" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/RemoteStories-Soyatec::Import->com.example.adventurebook/SController" source="//@children.9" target="//@children.10" targetEnd="//@children.9/@sourceConnections.0/@children.2" label="//@children.9/@sourceConnections.0/@children.0" sourceEnd="//@children.9/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="135,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,20"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.1 //@children.18/@sourceConnections.1 //@children.14/@sourceConnections.1 //@children.9/@sourceConnections.0 //@children.11/@sourceConnections.0" name="Controller" location="246,254" size="114,29" id="com.example.adventurebook/Controller" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.1 //@children.17/@sourceConnections.1 //@children.13/@sourceConnections.1 //@children.9/@sourceConnections.0" name="Controller" location="246,254" size="175,67" id="com.example.adventurebook/SController" runTimeClassModel="setOfflineLibraryActivity">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="152,18">
+      <children xsi:type="editmodel:MethodEditModel" name="setOfflineLibraryActivity" id="com.example.adventurebook/SController#setOfflineLibraryActivity"/>
+    </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Controller@eSClient+com.example.adventurebook/OnlineLibrary@onlineLibrary" source="//@children.10" target="//@children.7" targetEnd="//@children.10/@sourceConnections.0/@children.2" label="//@children.10/@sourceConnections.0/@children.0" sourceEnd="//@children.10/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/SController@eSClient+com.example.adventurebook/OnlineLibrary@onlineLibrary" source="//@children.10" target="//@children.7" targetEnd="//@children.10/@sourceConnections.0/@children.2" label="//@children.10/@sourceConnections.0/@children.0" sourceEnd="//@children.10/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="eSClient" location="104,29" id="com.example.adventurebook/Controller@eSClient+com.example.adventurebook/OnlineLibrary@onlineLibrary|com.example.adventurebook/Controller#eSClient" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - eSClient" location="292,290" size="51,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="357,290" size="18,13" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="eSClient" location="165,67" id="com.example.adventurebook/SController@eSClient+com.example.adventurebook/OnlineLibrary@onlineLibrary|com.example.adventurebook/SController#eSClient" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - eSClient" location="353,328" size="51,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="418,328" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="onlineLibrary" location="0,10" id="com.example.adventurebook/Controller@eSClient+com.example.adventurebook/OnlineLibrary@onlineLibrary|com.example.adventurebook/OnlineLibrary#onlineLibrary" multiplicityLabel="//@children.10/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.2/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="onlineLibrary" location="0,10" id="com.example.adventurebook/SController@eSClient+com.example.adventurebook/OnlineLibrary@onlineLibrary|com.example.adventurebook/OnlineLibrary#onlineLibrary" multiplicityLabel="//@children.10/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.2/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + onlineLibrary" location="362,474" size="79,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="423,447" size="18,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/OfflineLibrary@offlineLibrary" source="//@children.10" target="//@children.18" targetEnd="//@children.10/@sourceConnections.1/@children.2" label="//@children.10/@sourceConnections.1/@children.0" sourceEnd="//@children.10/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/SController@controller+com.example.adventurebook/OfflineLibrary@offlineLibrary" source="//@children.10" target="//@children.17" targetEnd="//@children.10/@sourceConnections.1/@children.2" label="//@children.10/@sourceConnections.1/@children.0" sourceEnd="//@children.10/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="controller" location="14,29" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/Controller#controller" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - controller" location="267,290" size="58,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="235,290" size="18,13" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="controller" location="30,67" id="com.example.adventurebook/SController@controller+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/SController#controller" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - controller" location="283,328" size="58,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="251,328" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="offlineLibrary" location="0,5" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/OfflineLibrary#offlineLibrary" multiplicityLabel="//@children.10/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.2/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="offlineLibrary" location="0,5" id="com.example.adventurebook/SController@controller+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/OfflineLibrary#offlineLibrary" multiplicityLabel="//@children.10/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.2/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + offlineLibrary" location="-14,574" size="80,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="48,547" size="18,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/StoryModel@storyModel" source="//@children.10" target="//@children.14" targetEnd="//@children.10/@sourceConnections.2/@children.2" label="//@children.10/@sourceConnections.2/@children.0" sourceEnd="//@children.10/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/SController@controller+com.example.adventurebook/StoryModel@storyModel" source="//@children.10" target="//@children.13" targetEnd="//@children.10/@sourceConnections.2/@children.2" label="//@children.10/@sourceConnections.2/@children.0" sourceEnd="//@children.10/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="controller" location="64,29" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/StoryModel@storyModel|com.example.adventurebook/Controller#controller" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - controller" location="317,290" size="58,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="285,290" size="18,13" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="controller" location="76,67" id="com.example.adventurebook/SController@controller+com.example.adventurebook/StoryModel@storyModel|com.example.adventurebook/SController#controller" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - controller" location="329,328" size="58,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="297,328" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="storyModel" location="49,0" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/StoryModel@storyModel|com.example.adventurebook/StoryModel#storyModel" multiplicityLabel="//@children.10/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + storyModel" location="317,447" size="69,13" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="285,447" size="18,13" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="storyModel" location="61,0" id="com.example.adventurebook/SController@controller+com.example.adventurebook/StoryModel@storyModel|com.example.adventurebook/StoryModel#storyModel" multiplicityLabel="//@children.10/@sourceConnections.2/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.2/@children.2/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + storyModel" location="329,447" size="69,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="297,447" size="18,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Controller@eSClient+com.example.adventurebook/RemoteStories@remoteDatabase" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.3/@children.2" label="//@children.10/@sourceConnections.3/@children.0" sourceEnd="//@children.10/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/SController@eSClient+com.example.adventurebook/RemoteStories@remoteDatabase" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.3/@children.2" label="//@children.10/@sourceConnections.3/@children.0" sourceEnd="//@children.10/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="eSClient" location="10,0" id="com.example.adventurebook/Controller@eSClient+com.example.adventurebook/RemoteStories@remoteDatabase|com.example.adventurebook/Controller#eSClient" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.3/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="eSClient" location="10,0" id="com.example.adventurebook/SController@eSClient+com.example.adventurebook/RemoteStories@remoteDatabase|com.example.adventurebook/SController#eSClient" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.3/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - eSClient" location="263,234" size="51,13" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="231,234" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="remoteDatabase" location="150,19" id="com.example.adventurebook/Controller@eSClient+com.example.adventurebook/RemoteStories@remoteDatabase|com.example.adventurebook/RemoteStories#remoteDatabase" multiplicityLabel="//@children.10/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.3/@children.2/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="remoteDatabase" location="150,19" id="com.example.adventurebook/SController@eSClient+com.example.adventurebook/RemoteStories@remoteDatabase|com.example.adventurebook/RemoteStories#remoteDatabase" multiplicityLabel="//@children.10/@sourceConnections.3/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.3/@children.2/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + remoteDatabase" location="216,73" size="97,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="216,100" size="18,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Controller-Soyatec::Import->com.example.adventurebook/OfflineLibraryActivity" source="//@children.10" target="//@children.11" targetEnd="//@children.10/@sourceConnections.4/@children.2" label="//@children.10/@sourceConnections.4/@children.0" sourceEnd="//@children.10/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/SController-Soyatec::Import->com.example.adventurebook/OnlineLibrary" source="//@children.10" target="//@children.7" targetEnd="//@children.10/@sourceConnections.4/@children.2" label="//@children.10/@sourceConnections.4/@children.0" sourceEnd="//@children.10/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="73,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="48,85"/>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Controller-Soyatec::Import->com.example.adventurebook/OnlineLibrary" source="//@children.10" target="//@children.7" targetEnd="//@children.10/@sourceConnections.5/@children.2" label="//@children.10/@sourceConnections.5/@children.0" sourceEnd="//@children.10/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="114,14" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="175,52" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="15,0"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Controller-Soyatec::Import->com.example.adventurebook/StoryModel" source="//@children.10" target="//@children.14" targetEnd="//@children.10/@sourceConnections.6/@children.2" label="//@children.10/@sourceConnections.6/@children.0" sourceEnd="//@children.10/@sourceConnections.6/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/SController-Soyatec::Import->com.example.adventurebook/StoryModel" source="//@children.10" target="//@children.13" targetEnd="//@children.10/@sourceConnections.5/@children.2" label="//@children.10/@sourceConnections.5/@children.0" sourceEnd="//@children.10/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="114,14" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="151,67" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="124,15"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Controller-Soyatec::Import->com.example.adventurebook/RemoteStories" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.7/@children.2" label="//@children.10/@sourceConnections.7/@children.0" sourceEnd="//@children.10/@sourceConnections.7/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/SController-Soyatec::Import->com.example.adventurebook/RemoteStories" source="//@children.10" target="//@children.9" targetEnd="//@children.10/@sourceConnections.6/@children.2" label="//@children.10/@sourceConnections.6/@children.0" sourceEnd="//@children.10/@sourceConnections.6/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="78,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="135,0"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Controller-Soyatec::Import->com.example.adventurebook/OfflineLibrary" source="//@children.10" target="//@children.18" targetEnd="//@children.10/@sourceConnections.8/@children.2" label="//@children.10/@sourceConnections.8/@children.0" sourceEnd="//@children.10/@sourceConnections.8/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/SController-Soyatec::Import->com.example.adventurebook/OfflineLibrary" source="//@children.10" target="//@children.17" targetEnd="//@children.10/@sourceConnections.7/@children.2" label="//@children.10/@sourceConnections.7/@children.0" sourceEnd="//@children.10/@sourceConnections.7/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="69,29" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,67" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="140,15"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/OfflineLibraryActivity@offlineLibraryActivity" source="//@children.10" target="//@children.11" targetEnd="//@children.10/@sourceConnections.9/@children.2" label="//@children.10/@sourceConnections.9/@children.0" sourceEnd="//@children.10/@sourceConnections.9/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="controller" location="63,0" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/OfflineLibraryActivity@offlineLibraryActivity|com.example.adventurebook/Controller#controller" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.9/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.9/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - controller" location="244,234" size="58,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="316,234" size="18,13" anchorKind="FirstPart"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="offlineLibraryActivity" location="38,85" id="com.example.adventurebook/Controller@controller+com.example.adventurebook/OfflineLibraryActivity@offlineLibraryActivity|com.example.adventurebook/OfflineLibraryActivity#offlineLibraryActivity" multiplicityLabel="//@children.10/@sourceConnections.9/@children.2/@children.1" roleLabel="//@children.10/@sourceConnections.9/@children.2/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + offlineLibraryActivity" location="453,142" size="119,13" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="421,142" size="18,13" anchorKind="LastPart"/>
-      </children>
-    </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.4 //@children.10/@sourceConnections.9" name="OfflineLibraryActivity" location="408,50" size="194,85" id="com.example.adventurebook/OfflineLibraryActivity" runTimeClassModel="onCreateOptionsMenu(Landroid.view.Menu;),populateListView()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="140,36">
-      <children xsi:type="editmodel:MethodEditModel" name="onCreateOptionsMenu" id="com.example.adventurebook/OfflineLibraryActivity#onCreateOptionsMenu(Landroid.view.Menu;)"/>
-      <children xsi:type="editmodel:MethodEditModel" name="populateListView" id="com.example.adventurebook/OfflineLibraryActivity#populateListView()"/>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OfflineLibraryActivity-Soyatec::Import->com.example.adventurebook/Controller" source="//@children.11" target="//@children.10" targetEnd="//@children.11/@sourceConnections.0/@children.2" label="//@children.11/@sourceConnections.0/@children.0" sourceEnd="//@children.11/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="68,85" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="93,0"/>
-    </sourceConnections>
-    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.15/@sourceConnections.0 //@children.15/@sourceConnections.1 //@children.16/@sourceConnections.0 //@children.16/@sourceConnections.1 //@children.13/@sourceConnections.0 //@children.8/@sourceConnections.0" name="StoryFragment" location="293,941" size="150,29" id="com.example.adventurebook/StoryFragment" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0 //@children.14/@sourceConnections.1 //@children.15/@sourceConnections.0 //@children.15/@sourceConnections.1 //@children.12/@sourceConnections.0 //@children.8/@sourceConnections.0" name="StoryFragment" location="293,941" size="150,29" id="com.example.adventurebook/StoryFragment" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Sound@sound" source="//@children.12" target="//@children.13" targetEnd="//@children.12/@sourceConnections.0/@children.2" label="//@children.12/@sourceConnections.0/@children.0" sourceEnd="//@children.12/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Sound@sound" source="//@children.11" target="//@children.12" targetEnd="//@children.11/@sourceConnections.0/@children.2" label="//@children.11/@sourceConnections.0/@children.0" sourceEnd="//@children.11/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="61,29" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Sound@sound|com.example.adventurebook/StoryFragment#storyFragment" attachSource="true" multiplicityLabel="//@children.12/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.12/@sourceConnections.0/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="61,29" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Sound@sound|com.example.adventurebook/StoryFragment#storyFragment" attachSource="true" multiplicityLabel="//@children.11/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.0/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - storyFragment" location="361,977" size="82,13" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="342,977" size="5,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="sound" location="43,0" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Sound@sound|com.example.adventurebook/Sound#sound" multiplicityLabel="//@children.12/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.12/@sourceConnections.0/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="sound" location="43,0" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Sound@sound|com.example.adventurebook/Sound#sound" multiplicityLabel="//@children.11/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.11/@sourceConnections.0/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + sound" location="361,1170" size="43,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="342,1170" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Video@video" source="//@children.12" target="//@children.8" targetEnd="//@children.12/@sourceConnections.1/@children.2" label="//@children.12/@sourceConnections.1/@children.0" sourceEnd="//@children.12/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Video@video" source="//@children.11" target="//@children.8" targetEnd="//@children.11/@sourceConnections.1/@children.2" label="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="140,29" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Video@video|com.example.adventurebook/StoryFragment#storyFragment" attachSource="true" multiplicityLabel="//@children.12/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.12/@sourceConnections.1/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="140,29" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Video@video|com.example.adventurebook/StoryFragment#storyFragment" attachSource="true" multiplicityLabel="//@children.11/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.1/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - storyFragment" location="344,977" size="82,13" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="440,977" size="5,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="video" location="0,10" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Video@video|com.example.adventurebook/Video#video" multiplicityLabel="//@children.12/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.12/@sourceConnections.1/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="video" location="0,10" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Video@video|com.example.adventurebook/Video#video" multiplicityLabel="//@children.11/@sourceConnections.1/@children.2/@children.1" roleLabel="//@children.11/@sourceConnections.1/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + video" location="503,1044" size="41,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="539,1017" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Video" source="//@children.12" target="//@children.8" targetEnd="//@children.12/@sourceConnections.2/@children.2" label="//@children.12/@sourceConnections.2/@children.0" sourceEnd="//@children.12/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Video" source="//@children.11" target="//@children.8" targetEnd="//@children.11/@sourceConnections.2/@children.2" label="//@children.11/@sourceConnections.2/@children.0" sourceEnd="//@children.11/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="0,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="41,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="15,29"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Sound" source="//@children.12" target="//@children.13" targetEnd="//@children.12/@sourceConnections.3/@children.2" label="//@children.12/@sourceConnections.3/@children.0" sourceEnd="//@children.12/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Sound" source="//@children.11" target="//@children.12" targetEnd="//@children.11/@sourceConnections.3/@children.2" label="//@children.11/@sourceConnections.3/@children.0" sourceEnd="//@children.11/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="0,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="39,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="21,0"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Photo" source="//@children.12" target="//@children.16" targetEnd="//@children.12/@sourceConnections.4/@children.2" label="//@children.12/@sourceConnections.4/@children.0" sourceEnd="//@children.12/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Photo" source="//@children.11" target="//@children.15" targetEnd="//@children.11/@sourceConnections.4/@children.2" label="//@children.11/@sourceConnections.4/@children.0" sourceEnd="//@children.11/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="41,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="74,0"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Story" source="//@children.12" target="//@children.15" targetEnd="//@children.12/@sourceConnections.5/@children.2" label="//@children.12/@sourceConnections.5/@children.0" sourceEnd="//@children.12/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment-Soyatec::Import->com.example.adventurebook/Story" source="//@children.11" target="//@children.14" targetEnd="//@children.11/@sourceConnections.5/@children.2" label="//@children.11/@sourceConnections.5/@children.0" sourceEnd="//@children.11/@sourceConnections.5/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="150,15" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="80,14"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="30,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="48,29"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.0 //@children.12/@sourceConnections.3" name="Sound" location="311,1190" size="87,29" id="com.example.adventurebook/Sound" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.0 //@children.11/@sourceConnections.3" name="Sound" location="311,1190" size="87,29" id="com.example.adventurebook/Sound" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Sound-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.13" target="//@children.12" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Sound-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.12" target="//@children.11" targetEnd="//@children.12/@sourceConnections.0/@children.2" label="//@children.12/@sourceConnections.0/@children.0" sourceEnd="//@children.12/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="87,15" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="150,24"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.2 //@children.10/@sourceConnections.6 //@children.15/@sourceConnections.3" name="StoryModel" location="261,467" size="124,29" id="com.example.adventurebook/StoryModel" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.2 //@children.10/@sourceConnections.5 //@children.14/@sourceConnections.3" name="StoryModel" location="261,467" size="124,29" id="com.example.adventurebook/StoryModel" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryModel@storyModel+com.example.adventurebook/Story@story" source="//@children.14" target="//@children.15" targetEnd="//@children.14/@sourceConnections.0/@children.2" label="//@children.14/@sourceConnections.0/@children.0" sourceEnd="//@children.14/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryModel@storyModel+com.example.adventurebook/Story@story" source="//@children.13" target="//@children.14" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="storyModel" location="124,24" id="com.example.adventurebook/StoryModel@storyModel+com.example.adventurebook/Story@story|com.example.adventurebook/StoryModel#storyModel" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="storyModel" location="124,24" id="com.example.adventurebook/StoryModel@storyModel+com.example.adventurebook/Story@story|com.example.adventurebook/StoryModel#storyModel" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - storyModel" location="392,471" size="65,13" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="392,498" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="story" location="80,25" id="com.example.adventurebook/StoryModel@storyModel+com.example.adventurebook/Story@story|com.example.adventurebook/Story#story" multiplicityLabel="//@children.14/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.2/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="story" location="80,25" id="com.example.adventurebook/StoryModel@storyModel+com.example.adventurebook/Story@story|com.example.adventurebook/Story#story" multiplicityLabel="//@children.13/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.2/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + story" location="362,711" size="39,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="362,684" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryModel-Soyatec::Import->com.example.adventurebook/Controller" source="//@children.14" target="//@children.10" targetEnd="//@children.14/@sourceConnections.1/@children.2" label="//@children.14/@sourceConnections.1/@children.0" sourceEnd="//@children.14/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryModel-Soyatec::Import->com.example.adventurebook/SController" source="//@children.13" target="//@children.10" targetEnd="//@children.13/@sourceConnections.1/@children.2" label="//@children.13/@sourceConnections.1/@children.0" sourceEnd="//@children.13/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="14,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="29,29"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="26,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="41,67"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryModel-Soyatec::Import->com.example.adventurebook/Story" source="//@children.14" target="//@children.15" targetEnd="//@children.14/@sourceConnections.2/@children.2" label="//@children.14/@sourceConnections.2/@children.0" sourceEnd="//@children.14/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/StoryModel-Soyatec::Import->com.example.adventurebook/Story" source="//@children.13" target="//@children.14" targetEnd="//@children.13/@sourceConnections.2/@children.2" label="//@children.13/@sourceConnections.2/@children.0" sourceEnd="//@children.13/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="33,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="19,0"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.7/@sourceConnections.2 //@children.18/@sourceConnections.0 //@children.18/@sourceConnections.2 //@children.14/@sourceConnections.0 //@children.14/@sourceConnections.2 //@children.12/@sourceConnections.5" name="Story" location="275,679" size="80,29" id="com.example.adventurebook/Story" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.7/@sourceConnections.2 //@children.17/@sourceConnections.0 //@children.17/@sourceConnections.2 //@children.13/@sourceConnections.0 //@children.13/@sourceConnections.2 //@children.11/@sourceConnections.5" name="Story" location="275,679" size="80,29" id="com.example.adventurebook/Story" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Story@story+com.example.adventurebook/StoryFragment@storyFragment" source="//@children.15" target="//@children.12" targetEnd="//@children.15/@sourceConnections.0/@children.2" label="//@children.15/@sourceConnections.0/@children.0" sourceEnd="//@children.15/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Story@story+com.example.adventurebook/StoryFragment@storyFragment" source="//@children.14" target="//@children.11" targetEnd="//@children.14/@sourceConnections.0/@children.2" label="//@children.14/@sourceConnections.0/@children.0" sourceEnd="//@children.14/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="story" location="48,29" id="com.example.adventurebook/Story@story+com.example.adventurebook/StoryFragment@storyFragment|com.example.adventurebook/Story#story" attachSource="true" multiplicityLabel="//@children.15/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.15/@sourceConnections.0/@children.1/@children.0" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" - story" location="330,715" size="35,13" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="298,715" size="18,13" anchorKind="FirstPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="story" location="0,24" id="com.example.adventurebook/Story@story+com.example.adventurebook/StoryFragment@storyFragment|com.example.adventurebook/Story#story" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - story" location="233,683" size="35,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="250,710" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="30,0" id="com.example.adventurebook/Story@story+com.example.adventurebook/StoryFragment@storyFragment|com.example.adventurebook/StoryFragment#storyFragment" multiplicityLabel="//@children.15/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.15/@sourceConnections.0/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name=" + storyFragment" location="330,921" size="86,13" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="311,921" size="5,13" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="0,5" id="com.example.adventurebook/Story@story+com.example.adventurebook/StoryFragment@storyFragment|com.example.adventurebook/StoryFragment#storyFragment" multiplicityLabel="//@children.14/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" + storyFragment" location="200,953" size="86,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="281,926" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.15" target="//@children.12" targetEnd="//@children.15/@sourceConnections.1/@children.2" label="//@children.15/@sourceConnections.1/@children.0" sourceEnd="//@children.15/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.14" target="//@children.11" targetEnd="//@children.14/@sourceConnections.1/@children.2" label="//@children.14/@sourceConnections.1/@children.0" sourceEnd="//@children.14/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="13,29" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="8,0"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,29" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="150,15"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/OnlineLibrary" source="//@children.15" target="//@children.7" targetEnd="//@children.15/@sourceConnections.2/@children.2" label="//@children.15/@sourceConnections.2/@children.0" sourceEnd="//@children.15/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/OnlineLibrary" source="//@children.14" target="//@children.7" targetEnd="//@children.14/@sourceConnections.2/@children.2" label="//@children.14/@sourceConnections.2/@children.0" sourceEnd="//@children.14/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="53,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="55,29"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/StoryModel" source="//@children.15" target="//@children.14" targetEnd="//@children.15/@sourceConnections.3/@children.2" label="//@children.15/@sourceConnections.3/@children.0" sourceEnd="//@children.15/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/StoryModel" source="//@children.14" target="//@children.13" targetEnd="//@children.14/@sourceConnections.3/@children.2" label="//@children.14/@sourceConnections.3/@children.0" sourceEnd="//@children.14/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="39,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="53,29"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/OfflineLibrary" source="//@children.15" target="//@children.18" targetEnd="//@children.15/@sourceConnections.4/@children.2" label="//@children.15/@sourceConnections.4/@children.0" sourceEnd="//@children.15/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Story-Soyatec::Import->com.example.adventurebook/OfflineLibrary" source="//@children.14" target="//@children.17" targetEnd="//@children.14/@sourceConnections.4/@children.2" label="//@children.14/@sourceConnections.4/@children.0" sourceEnd="//@children.14/@sourceConnections.4/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="80,5" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="140,14"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.4" name="Photo" location="50,1062" size="85,29" id="com.example.adventurebook/Photo" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.4" name="Photo" location="50,1062" size="85,29" id="com.example.adventurebook/Photo" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Photo@photo" source="//@children.16" target="//@children.12" targetEnd="//@children.16/@sourceConnections.0/@children.2" label="//@children.16/@sourceConnections.0/@children.0" sourceEnd="//@children.16/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Photo@photo" source="//@children.15" target="//@children.11" targetEnd="//@children.15/@sourceConnections.0/@children.2" label="//@children.15/@sourceConnections.0/@children.0" sourceEnd="//@children.15/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="photo" location="15,0" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Photo@photo|com.example.adventurebook/Photo#photo" attachSource="true" multiplicityLabel="//@children.16/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.16/@sourceConnections.0/@children.1/@children.0" aggregationKind="Aggregration" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="photo" location="15,0" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Photo@photo|com.example.adventurebook/Photo#photo" attachSource="true" multiplicityLabel="//@children.15/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.15/@sourceConnections.0/@children.1/@children.0" aggregationKind="Aggregration" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + photo" location="16,1042" size="42,13" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="72,1042" size="5,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="19,29" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Photo@photo|com.example.adventurebook/StoryFragment#storyFragment" multiplicityLabel="//@children.16/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.16/@sourceConnections.0/@children.2/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="storyFragment" location="19,29" id="com.example.adventurebook/StoryFragment@storyFragment+com.example.adventurebook/Photo@photo|com.example.adventurebook/StoryFragment#storyFragment" multiplicityLabel="//@children.15/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.15/@sourceConnections.0/@children.2/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - storyFragment" location="319,977" size="82,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="300,977" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Photo-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.16" target="//@children.12" targetEnd="//@children.16/@sourceConnections.1/@children.2" label="//@children.16/@sourceConnections.1/@children.0" sourceEnd="//@children.16/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
-      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/Photo-Soyatec::Import->com.example.adventurebook/StoryFragment" source="//@children.15" target="//@children.11" targetEnd="//@children.15/@sourceConnections.1/@children.2" label="//@children.15/@sourceConnections.1/@children.0" sourceEnd="//@children.15/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="85,15" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="61,29"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.18/@sourceConnections.3" name="Model" location="81,483" size="123,29" id="com.example.adventurebook/Model" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.3" name="Model" location="81,483" size="123,29" id="com.example.adventurebook/Model" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.1 //@children.10/@sourceConnections.8 //@children.15/@sourceConnections.4" name="OfflineLibrary" location="73,562" size="140,29" id="com.example.adventurebook/OfflineLibrary" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.10/@sourceConnections.1 //@children.10/@sourceConnections.7 //@children.14/@sourceConnections.4" name="OfflineLibrary" location="73,562" size="140,29" id="com.example.adventurebook/OfflineLibrary" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Story@story+com.example.adventurebook/OfflineLibrary@offlineLibrary" source="//@children.18" target="//@children.15" targetEnd="//@children.18/@sourceConnections.0/@children.2" label="//@children.18/@sourceConnections.0/@children.0" sourceEnd="//@children.18/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="com.example.adventurebook/Story@story+com.example.adventurebook/OfflineLibrary@offlineLibrary" source="//@children.17" target="//@children.14" targetEnd="//@children.17/@sourceConnections.0/@children.2" label="//@children.17/@sourceConnections.0/@children.0" sourceEnd="//@children.17/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="offlineLibrary" location="130,29" id="com.example.adventurebook/Story@story+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/OfflineLibrary#offlineLibrary" attachSource="true" multiplicityLabel="//@children.18/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.18/@sourceConnections.0/@children.1/@children.0" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="offlineLibrary" location="130,29" id="com.example.adventurebook/Story@story+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/OfflineLibrary#offlineLibrary" attachSource="true" multiplicityLabel="//@children.17/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.17/@sourceConnections.0/@children.1/@children.0" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" + offlineLibrary" location="116,598" size="80,13" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="210,598" size="18,13" anchorKind="FirstPart"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="story" location="0,10" id="com.example.adventurebook/Story@story+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/Story#story" multiplicityLabel="//@children.18/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.18/@sourceConnections.0/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="story" location="0,10" id="com.example.adventurebook/Story@story+com.example.adventurebook/OfflineLibrary@offlineLibrary|com.example.adventurebook/Story#story" multiplicityLabel="//@children.17/@sourceConnections.0/@children.2/@children.1" roleLabel="//@children.17/@sourceConnections.0/@children.2/@children.0" aggregationKind="Aggregration" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name=" - story" location="233,696" size="35,13" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="*" location="263,669" size="5,13" anchorKind="LastPart"/>
       </children>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OfflineLibrary-Soyatec::Import->com.example.adventurebook/Controller" source="//@children.18" target="//@children.10" targetEnd="//@children.18/@sourceConnections.1/@children.2" label="//@children.18/@sourceConnections.1/@children.0" sourceEnd="//@children.18/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OfflineLibrary-Soyatec::Import->com.example.adventurebook/SController" source="//@children.17" target="//@children.10" targetEnd="//@children.17/@sourceConnections.1/@children.2" label="//@children.17/@sourceConnections.1/@children.0" sourceEnd="//@children.17/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="77,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="49,29"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="65,67"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OfflineLibrary-Soyatec::Import->com.example.adventurebook/Story" source="//@children.18" target="//@children.15" targetEnd="//@children.18/@sourceConnections.2/@children.2" label="//@children.18/@sourceConnections.2/@children.0" sourceEnd="//@children.18/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/OfflineLibrary-Soyatec::Import->com.example.adventurebook/Story" source="//@children.17" target="//@children.14" targetEnd="//@children.17/@sourceConnections.2/@children.2" label="//@children.17/@sourceConnections.2/@children.0" sourceEnd="//@children.17/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="33,29" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="15,29"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.example.adventurebook/Model&lt;-com.example.adventurebook/OfflineLibrary" source="//@children.18" target="//@children.17" targetEnd="//@children.18/@sourceConnections.3/@children.1" sourceEnd="//@children.18/@sourceConnections.3/@children.0" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.example.adventurebook/Model&lt;-com.example.adventurebook/OfflineLibrary" source="//@children.17" target="//@children.16" targetEnd="//@children.17/@sourceConnections.3/@children.1" sourceEnd="//@children.17/@sourceConnections.3/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="69,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="61,29"/>
     </sourceConnections>
@@ -377,18 +349,18 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/LocalDBHelper-Standard::Derive->com.example.adventurebook/SQLLiteOpenHelper" source="//@children.19" target="//@children.20" targetEnd="//@children.19/@sourceConnections.0/@children.2" label="//@children.19/@sourceConnections.0/@children.0" sourceEnd="//@children.19/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.example.adventurebook/LocalDBHelper-Standard::Derive->com.example.adventurebook/SQLLiteOpenHelper" source="//@children.18" target="//@children.19" targetEnd="//@children.18/@sourceConnections.0/@children.2" label="//@children.18/@sourceConnections.0/@children.0" sourceEnd="//@children.18/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
       <children xsi:type="editmodel:WireLabelEditModel" name="«Derive»" size="45,13" anchorKind="MiddlePart"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="74,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="91,29"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.example.adventurebook/SQLLiteOpenHelper&lt;-com.example.adventurebook/LocalDBHelper" source="//@children.19" target="//@children.20" targetEnd="//@children.19/@sourceConnections.1/@children.1" sourceEnd="//@children.19/@sourceConnections.1/@children.0" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="com.example.adventurebook/SQLLiteOpenHelper&lt;-com.example.adventurebook/LocalDBHelper" source="//@children.18" target="//@children.19" targetEnd="//@children.18/@sourceConnections.1/@children.1" sourceEnd="//@children.18/@sourceConnections.1/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="54,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="71,29"/>
     </sourceConnections>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.19/@sourceConnections.0 //@children.19/@sourceConnections.1" name="SQLLiteOpenHelper" location="684,50" size="183,29" id="com.example.adventurebook/SQLLiteOpenHelper" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.18/@sourceConnections.0 //@children.18/@sourceConnections.1" name="SQLLiteOpenHelper" location="684,50" size="183,29" id="com.example.adventurebook/SQLLiteOpenHelper" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>

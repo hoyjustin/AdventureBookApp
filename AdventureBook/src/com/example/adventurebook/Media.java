@@ -1,6 +1,6 @@
 package com.example.adventurebook;
 
 
-public class OnlineLibraryActivity {
+public interface Media {
 
 }
