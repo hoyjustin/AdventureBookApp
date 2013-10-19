@@ -3,7 +3,7 @@ package com.example.adventurebook;
 import java.util.Collection;
 
 
-public class StoryFragment {
+public class StoryFragment extends Model<V>{
 
 	/** 
 	 * @uml.property name="video"

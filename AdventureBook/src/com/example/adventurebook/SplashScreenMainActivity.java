@@ -1,6 +1,6 @@
 package com.example.adventurebook;
 
 
-public class ListStoryActivity {
+public class SplashScreenMainActivity {
 
 }

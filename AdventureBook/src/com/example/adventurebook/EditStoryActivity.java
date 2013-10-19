@@ -1,11 +1,11 @@
 package com.example.adventurebook;
 
 
-public class ViewPageActivity {
+public class EditStoryActivity {
 
 	/**
 	 * @uml.property  name="sController"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="viewPageActivity:com.example.adventurebook.SController"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="editStoryActivity:com.example.adventurebook.SController"
 	 */
 	private SController sController = new com.example.adventurebook.SController();
 
@@ -27,13 +27,13 @@ public class ViewPageActivity {
 		this.sController = sController;
 	}
 
-	/** 
-	 * @uml.property name="sController1"
-	 * @uml.associationEnd multiplicity="(1 1)" inverse="viewPageActivity1:com.example.adventurebook.SController"
+	/**
+	 * @uml.property  name="sController1"
+	 * @uml.associationEnd  multiplicity="(1 1)" inverse="editStoryActivity1:com.example.adventurebook.SController"
 	 */
 	private SController sController1 = new com.example.adventurebook.SController();
 
-	/** 
+	/**
 	 * Getter of the property <tt>sController1</tt>
 	 * @return  Returns the sController1.
 	 * @uml.property  name="sController1"
@@ -42,7 +42,7 @@ public class ViewPageActivity {
 		return sController1;
 	}
 
-	/** 
+	/**
 	 * Setter of the property <tt>sController1</tt>
 	 * @param sController1  The sController1 to set.
 	 * @uml.property  name="sController1"

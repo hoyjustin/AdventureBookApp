@@ -3,20 +3,20 @@ package com.example.adventurebook;
 import java.util.Collection;
 
 
-public class Story extends Model{
+public class Story extends Model<V>{
 
-	/** 
-	 * @uml.property name="onlineLibrary"
-	 * @uml.associationEnd inverse="story:com.example.adventurebook.OnlineLibrary"
+	/**
+	 * @uml.property   name="onlineLibrary"
+	 * @uml.associationEnd   inverse="story:com.example.adventurebook.StoryLibrary"
 	 */
-	private OnlineLibrary onlineLibrary;
+	private StoryLibrary onlineLibrary;
 
 	/** 
 	 * Getter of the property <tt>onlineLibrary</tt>
 	 * @return  Returns the onlineLibrary.
 	 * @uml.property  name="onlineLibrary"
 	 */
-	public OnlineLibrary getOnlineLibrary() {
+	public StoryLibrary getOnlineLibrary() {
 		return onlineLibrary;
 	}
 
@@ -25,7 +25,7 @@ public class Story extends Model{
 	 * @param onlineLibrary  The onlineLibrary to set.
 	 * @uml.property  name="onlineLibrary"
 	 */
-	public void setOnlineLibrary(OnlineLibrary onlineLibrary) {
+	public void setOnlineLibrary(StoryLibrary onlineLibrary) {
 		this.onlineLibrary = onlineLibrary;
 	}
 
@@ -53,28 +53,28 @@ public class Story extends Model{
 		this.storyFragment = storyFragment;
 	}
 
-	/** 
-	 * @uml.property name="offlineLibrary"
-	 * @uml.associationEnd inverse="story:com.example.adventurebook.OfflineLibrary"
+	/**
+	 * @uml.property  name="sController"
+	 * @uml.associationEnd  inverse="story:com.example.adventurebook.SController"
 	 */
-	private OfflineLibrary offlineLibrary;
+	private SController sController;
 
-	/** 
-	 * Getter of the property <tt>offlineLibrary</tt>
-	 * @return  Returns the offlineLibrary.
-	 * @uml.property  name="offlineLibrary"
+	/**
+	 * Getter of the property <tt>sController</tt>
+	 * @return  Returns the sController.
+	 * @uml.property  name="sController"
 	 */
-	public OfflineLibrary getOfflineLibrary() {
-		return offlineLibrary;
+	public SController getSController() {
+		return sController;
 	}
 
-	/** 
-	 * Setter of the property <tt>offlineLibrary</tt>
-	 * @param offlineLibrary  The offlineLibrary to set.
-	 * @uml.property  name="offlineLibrary"
+	/**
+	 * Setter of the property <tt>sController</tt>
+	 * @param sController  The sController to set.
+	 * @uml.property  name="sController"
 	 */
-	public void setOfflineLibrary(OfflineLibrary offlineLibrary) {
-		this.offlineLibrary = offlineLibrary;
+	public void setSController(SController sController) {
+		this.sController = sController;
 	}
 
 }
