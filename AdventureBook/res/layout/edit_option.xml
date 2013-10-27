@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Creator: Minhal Syed
+<!--
+Creator: Minhal Syed
 How to add a border Tutorial:
-http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android-textview  -->
+http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android-textview
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,12 +29,32 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
         android:padding="10dp" >
     </EditText>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current GotoPage:" />
+
+        <TextView
+            android:id="@+id/GotoPageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="None" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Goto Page"
-        android:paddingTop="10dp"  />
+        android:paddingTop="10dp"
+        android:text="Select Goto Page" />
 
     <ListView
         android:id="@+id/list_of_goto_pages"
@@ -51,7 +74,8 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
             android:id="@+id/SaveOptionBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save Option" />
+            android:text="Save Option"
+            android:onClick="SaveOption" />
     </LinearLayout>
 
 </LinearLayout>
