@@ -347,7 +347,7 @@ public class SController {
 	 * @uml.property  name="storyLibrary"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="sController:com.example.adventurebook.StoryLibrary"
 	 */
-	private StoryLibrary storyLibrary = 1;
+	private StoryLibrary storyLibrary = null;
 
 	/**
 	 * Getter of the property <tt>storyLibrary</tt>

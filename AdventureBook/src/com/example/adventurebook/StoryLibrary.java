@@ -3,7 +3,7 @@ package com.example.adventurebook;
 import java.util.Collection;
 
 
-public class StoryLibrary extends Model<V>{
+public class StoryLibrary extends Model{
 
 	/**
 	 * @uml.property   name="eSClient"

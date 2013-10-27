@@ -3,7 +3,7 @@ package com.example.adventurebook;
 import java.util.Collection;
 
 
-public class Story extends Model<V>{
+public class Story extends Model{
 
 	/**
 	 * @uml.property   name="onlineLibrary"
