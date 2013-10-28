@@ -1,4 +1,5 @@
 package ca.ualberta.c301.adventurebook;
+//Creator Minhal
 
 public class dummy_story_class {
 	//This class was just created for testing the onlineStoryActivity.
