@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title">Title</string>
     <string name="story_description">Story Description</string>
+    <string name="current_annotations">Current Annotations</string>
 
 </resources>

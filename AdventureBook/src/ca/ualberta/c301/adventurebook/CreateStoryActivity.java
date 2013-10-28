@@ -17,22 +17,54 @@
 
 package ca.ualberta.c301.adventurebook;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.adventurebook.R;
 
 
 public class CreateStoryActivity extends Activity{
 	
+	private EditText mStoryTitle;
+	private EditText mStoryDescription;
+	private TextView mDate;
+	private Button mButtonCreateStory;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.create_story);
-
+		
+		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
+		String storyTitle = mStoryTitle.getText().toString();
+		
+		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
+		String storyDescription = mStoryDescription.getText().toString();
+		
+		setDate();
+		
 	}
 
+	/**
+	 * Sets the story creation date
+	 */
+	@SuppressLint("SimpleDateFormat")
+	private void setDate() {
+		mDate = (TextView) findViewById(R.id.dateText);
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+		String formattedDate = df.format(c.getTime());
+		mDate.setText("Date: " + formattedDate);
+	}
 	
 //
 //	/**
