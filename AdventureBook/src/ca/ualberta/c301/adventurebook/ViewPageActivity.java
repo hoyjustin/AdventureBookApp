@@ -1,12 +1,43 @@
 package ca.ualberta.c301.adventurebook;
 
 
-public class ViewPageActivity {
+//Creator Zhao Zhang
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.EditText;
+
+import com.example.adventurebook.R;
+
+public class ViewPageActivity extends Activity{
 
 	/**
 	 * @uml.property  name="sController"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="viewPageActivity:com.example.adventurebook.SController"
 	 */
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.viewpage);
+		super.onCreate(savedInstanceState);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		if(item.getItemId() == android.R.id.home){
+			finish();
+		}
+		
+		return false;
+	}
+	
+	public void onBackPressed(){
+		finish();
+	}
+	
 	private SController sController = new ca.ualberta.c301.adventurebook.SController();
 
 	/**
