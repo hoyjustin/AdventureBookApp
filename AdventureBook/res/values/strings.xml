@@ -7,5 +7,7 @@
     <string name="title">Title</string>
     <string name="story_description">Story Description</string>
     <string name="current_annotations">Current Annotations</string>
+    <string name="media_title">Upload Media</string>
+    <string name="action_muted">muted</string>
 
 </resources>
