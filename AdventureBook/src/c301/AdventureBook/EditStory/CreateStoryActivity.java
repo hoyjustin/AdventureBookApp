@@ -15,20 +15,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook.EditStory;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import android.annotation.SuppressLint;
+import com.example.adventurebook.R;
+
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.example.adventurebook.R;
 
 
 public class CreateStoryActivity extends Activity{
@@ -54,10 +54,13 @@ public class CreateStoryActivity extends Activity{
 		
 	}
 
+
+	
+
 	/**
 	 * Sets the story creation date
 	 */
-	@SuppressLint("SimpleDateFormat")
+
 	private void setDate() {
 		mDate = (TextView) findViewById(R.id.dateText);
 		Calendar c = Calendar.getInstance();

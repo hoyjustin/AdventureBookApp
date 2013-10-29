@@ -1,4 +1,4 @@
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook;
 
 
 public class OnlineLibrary {

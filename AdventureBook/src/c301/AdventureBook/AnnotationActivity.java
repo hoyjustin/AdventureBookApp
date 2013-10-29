@@ -1,4 +1,4 @@
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook;
 
 
 public class AnnotationActivity {
@@ -7,7 +7,7 @@ public class AnnotationActivity {
 	 * @uml.property  name="sController"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="annotationActivity:com.example.adventurebook.SController"
 	 */
-	private SController sController = new ca.ualberta.c301.adventurebook.SController();
+	private SController sController = new c301.AdventureBook.SController();
 
 	/**
 	 * Getter of the property <tt>sController</tt>

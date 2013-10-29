@@ -1,4 +1,4 @@
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook;
 
 
 public class EditStoryActivity {
@@ -7,7 +7,7 @@ public class EditStoryActivity {
 	 * @uml.property  name="sController"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="editStoryActivity:com.example.adventurebook.SController"
 	 */
-	private SController sController = new ca.ualberta.c301.adventurebook.SController();
+	private SController sController = new c301.AdventureBook.SController();
 
 	/**
 	 * Getter of the property <tt>sController</tt>
@@ -31,7 +31,7 @@ public class EditStoryActivity {
 	 * @uml.property  name="sController1"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="editStoryActivity1:com.example.adventurebook.SController"
 	 */
-	private SController sController1 = new ca.ualberta.c301.adventurebook.SController();
+	private SController sController1 = new c301.AdventureBook.SController();
 
 	/**
 	 * Getter of the property <tt>sController1</tt>

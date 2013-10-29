@@ -1,4 +1,4 @@
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook;
 
 import java.util.Collection;
 
@@ -82,7 +82,7 @@ public class SController {
 	 * @uml.property name="onlineLibraryActivity"
 	 * @uml.associationEnd multiplicity="(1 1)" aggregation="shared" inverse="sController:com.example.adventurebook.OnlineLibraryActivity"
 	 */
-	private OnlineLibraryActivity onlineLibraryActivity = new ca.ualberta.c301.adventurebook.OnlineLibraryActivity();
+	private OnlineLibraryActivity onlineLibraryActivity = new c301.AdventureBook.OnlineLibraryActivity();
 
 	/** 
 	 * Getter of the property <tt>onlineLibraryActivity</tt>
@@ -107,7 +107,7 @@ public class SController {
 	 * @uml.property  name="createStoryActivity"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="sController:com.example.adventurebook.CreateStoryActivity"
 	 */
-	private CreateStoryActivity createStoryActivity = new ca.ualberta.c301.adventurebook.CreateStoryActivity();
+	private CreateStoryActivity createStoryActivity = new c301.AdventureBook.CreateStoryActivity();
 
 	/**
 	 * Getter of the property <tt>createStoryActivity</tt>
@@ -131,7 +131,7 @@ public class SController {
 	 * @uml.property name="createStoryActivity1"
 	 * @uml.associationEnd multiplicity="(1 1)" aggregation="shared" inverse="sController1:com.example.adventurebook.CreateStoryActivity"
 	 */
-	private CreateStoryActivity createStoryActivity1 = new ca.ualberta.c301.adventurebook.CreateStoryActivity();
+	private CreateStoryActivity createStoryActivity1 = new c301.AdventureBook.CreateStoryActivity();
 
 	/** 
 	 * Getter of the property <tt>createStoryActivity1</tt>
@@ -155,7 +155,7 @@ public class SController {
 	 * @uml.property  name="editStoryActivity"
 	 * @uml.associationEnd  multiplicity="(1 1)" inverse="sController:com.example.adventurebook.EditStoryActivity"
 	 */
-	private EditStoryActivity editStoryActivity = new ca.ualberta.c301.adventurebook.EditStoryActivity();
+	private EditStoryActivity editStoryActivity = new c301.AdventureBook.EditStoryActivity();
 
 	/**
 	 * Getter of the property <tt>editStoryActivity</tt>
@@ -179,7 +179,7 @@ public class SController {
 	 * @uml.property  name="viewPageActivity"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="sController:com.example.adventurebook.ViewPageActivity"
 	 */
-	private ViewPageActivity viewPageActivity = new ca.ualberta.c301.adventurebook.ViewPageActivity();
+	private ViewPageActivity viewPageActivity = new c301.AdventureBook.ViewPageActivity();
 
 	/**
 	 * Getter of the property <tt>viewPageActivity</tt>
@@ -203,7 +203,7 @@ public class SController {
 	 * @uml.property name="viewPageActivity1"
 	 * @uml.associationEnd multiplicity="(1 1)" aggregation="shared" inverse="sController1:com.example.adventurebook.ViewPageActivity"
 	 */
-	private ViewPageActivity viewPageActivity1 = new ca.ualberta.c301.adventurebook.ViewPageActivity();
+	private ViewPageActivity viewPageActivity1 = new c301.AdventureBook.ViewPageActivity();
 
 	/** 
 	 * Getter of the property <tt>viewPageActivity1</tt>
@@ -251,7 +251,7 @@ public class SController {
 	 * @uml.property  name="editStoryActivity1"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="sController1:com.example.adventurebook.EditStoryActivity"
 	 */
-	private EditStoryActivity editStoryActivity1 = new ca.ualberta.c301.adventurebook.EditStoryActivity();
+	private EditStoryActivity editStoryActivity1 = new c301.AdventureBook.EditStoryActivity();
 
 	/**
 	 * Getter of the property <tt>editStoryActivity1</tt>
@@ -275,7 +275,7 @@ public class SController {
 	 * @uml.property  name="editOptionActivity"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="sController:com.example.adventurebook.EditOptionActivity"
 	 */
-	private EditOptionActivity editOptionActivity = new ca.ualberta.c301.adventurebook.EditOptionActivity();
+	private EditOptionActivity editOptionActivity = new c301.AdventureBook.EditOptionActivity();
 
 	/**
 	 * Getter of the property <tt>editOptionActivity</tt>
@@ -299,7 +299,7 @@ public class SController {
 	 * @uml.property  name="takePhotoActivity"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="sController:com.example.adventurebook.TakePhotoActivity"
 	 */
-	private TakePhotoActivity takePhotoActivity = new ca.ualberta.c301.adventurebook.TakePhotoActivity();
+	private TakePhotoActivity takePhotoActivity = new c301.AdventureBook.TakePhotoActivity();
 
 	/**
 	 * Getter of the property <tt>takePhotoActivity</tt>
@@ -323,7 +323,7 @@ public class SController {
 	 * @uml.property  name="annotationActivity"
 	 * @uml.associationEnd  multiplicity="(1 1)" aggregation="shared" inverse="sController:com.example.adventurebook.AnnotationActivity"
 	 */
-	private AnnotationActivity annotationActivity = new ca.ualberta.c301.adventurebook.AnnotationActivity();
+	private AnnotationActivity annotationActivity = new c301.AdventureBook.AnnotationActivity();
 
 	/**
 	 * Getter of the property <tt>annotationActivity</tt>
