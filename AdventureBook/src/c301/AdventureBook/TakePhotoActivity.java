@@ -30,6 +30,7 @@ public class TakePhotoActivity extends Activity{
 		
 		Button uploadFromPhone = (Button)findViewById(R.id.fromPhoneButton);
 		Button uploadFromWebCam = (Button)findViewById(R.id.fromWebCamButton);
+		Button uploadConfirm = (Button)findViewById(R.id.confirmButton);
 		uploadFromPhone.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -49,7 +50,15 @@ public class TakePhotoActivity extends Activity{
 				
 			}
 		});
-		
+		uploadConfirm.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 			
 	}
@@ -78,8 +87,9 @@ public class TakePhotoActivity extends Activity{
 				test.setImageBitmap(photo);
 				
 				try{
-					//FileOutputStream out = new FileOutputStream(getExternalStorageDirectory() + "filename");
-					//photo.compress(Bitmap.CompressFormat.JPEG, 90, out);
+					String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/name.jpg";
+					FileOutputStream out = new FileOutputStream(imageFilePath);
+					photo.compress(Bitmap.CompressFormat.JPEG, 90, out);
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
