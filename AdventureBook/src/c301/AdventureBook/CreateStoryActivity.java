@@ -23,20 +23,19 @@ import java.util.Calendar;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.view.View;
 
 import com.example.adventurebook.R;
 
 
-public class CreateStoryActivity extends Activity{
+public class CreateStoryActivity extends Activity {
 	
 	private EditText mStoryTitle;
 	private EditText mStoryDescription;
 	private TextView mDate;
-	private Button mButtonCreateStory;
+	//private Button mButtonCreateStory;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,6 @@ public class CreateStoryActivity extends Activity{
 		String storyDescription = mStoryDescription.getText().toString();
 		
 		setDate();
-		
 	}
 
 	/**
@@ -64,6 +62,10 @@ public class CreateStoryActivity extends Activity{
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
 		String formattedDate = df.format(c.getTime());
 		mDate.setText("Date: " + formattedDate);
+	}
+	
+	public void onClickBtn(View v) {
+		
 	}
 	
 }

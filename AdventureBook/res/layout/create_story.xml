@@ -148,6 +148,7 @@
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Create Story!!!" />
+        android:text="Create Story!!!"
+        android:onClick="onClickBtn" />
 
 </LinearLayout>
