@@ -20,23 +20,31 @@ package c301.AdventureBook;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+
+import c301.AdventureBook.Models.Story;
+
 import com.example.adventurebook.R;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 
 public class CreateStoryActivity extends Activity{
+	private static final int ACTIVITY_EDIT_STORY=0;
 	
 	private EditText mStoryTitle;
 	private EditText mStoryDescription;
 	private TextView mDate;
 	private Button mButtonCreateStory;
+	
+	private Story someStory;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +58,15 @@ public class CreateStoryActivity extends Activity{
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
 		String storyDescription = mStoryDescription.getText().toString();
 		
-		setDate();
+		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 		
+		setDate();
+	
+		createStoryButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				createStory();
+			}
+		});
 	}
 
 	/**
@@ -66,5 +81,14 @@ public class CreateStoryActivity extends Activity{
 		mDate.setText("Date: " + formattedDate);
 	}
 	
+	private void createStory() {
+		someStory = new Story("sadsad", "asdsad", "2132133", 1);
+		
+        Intent i = new Intent(this, EditStoryActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("someStory", someStory);
+        i.putExtras(bundle);
+        startActivityForResult(i, ACTIVITY_EDIT_STORY);
+	}
 	
 }

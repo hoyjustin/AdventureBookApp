@@ -10,7 +10,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.example.adventurebook.R;
@@ -29,22 +28,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 
-public class EditStoryActivity extends Activity implements OnMenuItemClickListener{
-    private static final int DELETE_ID = Menu.FIRST + 1;
+public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
+
+	private static final int DELETE_ID = Menu.FIRST + 1;
 	
 	private static final String FILENAME = "file.sav";
     private final static int ONE = 1;
@@ -70,35 +64,33 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
       
 		createPage = (Button) findViewById(R.id.create_new_page);
 		returnLocalLib = (Button) findViewById(R.id.return_local_lib);
-        
-		someStory = loadFromFile();
 		
 		popupMenu = new PopupMenu(this, findViewById(R.id.expList));
 		popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Delete Page");
 		popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Edit Page");
 		popupMenu.setOnMenuItemClickListener(this);
 		
-		if(someStory == null){
-		someStory = new Story("asd", "bob", "123123", 1);
-		tempData(); 
-		}
+	    someStory = (Story) getIntent().getSerializableExtra("someStory");
 		
         txtView.setText("Title: " + someStory.getTitle() + "\n" +
         		"Author: " + someStory.getAuthor() + "\n" +
         		"Date: " + someStory.getDate() + "\n");
 		
-        fillData();
+        //fillData();
         
         createPage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createPage();
+				saveStory();
 			
 			}
 		});
         
         returnLocalLib.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				saveStory();
+				
+		        Intent i = new Intent(EditStoryActivity.this, OfflineLibraryActivity.class);
+		        startActivity(i);
 			}
 		});
         
