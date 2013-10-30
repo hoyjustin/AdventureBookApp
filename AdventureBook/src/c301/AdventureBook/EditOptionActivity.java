@@ -1,6 +1,6 @@
 /*
  * Creator: Minhal Syed*/
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook;
 
 import java.util.ArrayList;
 

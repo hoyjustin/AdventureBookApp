@@ -10,5 +10,14 @@
     <string name="add_annotation">Add an Annotation</string>
     <string name="media_title">Upload Media</string>
     <string name="action_muted">muted</string>
+    
+	<!--     Justin -->
+    <string name="title_activity_main">MainActivity</string>
+    
+    <string name="create_new_page">Create New Page</string>
+    <string name="return_local_lib">Return to Local Library</string>
+
+    <string name=" menu_edit">Edit Page</string>
+    <string name=" menu_delete">Delete Page</string>
 
 </resources>

@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ca.ualberta.c301.adventurebook;
+package c301.AdventureBook;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -65,30 +65,5 @@ public class CreateStoryActivity extends Activity{
 		String formattedDate = df.format(c.getTime());
 		mDate.setText("Date: " + formattedDate);
 	}
-	
-//
-//	/**
-//	 * @uml.property  name="sController"
-//	 * @uml.associationEnd  multiplicity="(1 1)" inverse="createStoryActivity:com.example.adventurebook.SController"
-//	 */
-//	private SController sController = new ca.ualberta.c301.adventurebook.SController();
-//
-//	/**
-//	 * Getter of the property <tt>sController</tt>
-//	 * @return  Returns the sController.
-//	 * @uml.property  name="sController"
-//	 */
-//	public SController getSController() {
-//		return sController;
-//	}
-//
-//	/**
-//	 * Setter of the property <tt>sController</tt>
-//	 * @param sController  The sController to set.
-//	 * @uml.property  name="sController"
-//	 */
-//	public void setSController(SController sController) {
-//		this.sController = sController;
-//	}
 	
 }
