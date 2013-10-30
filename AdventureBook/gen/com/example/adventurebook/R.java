@@ -23,15 +23,16 @@ public final class R {
     public static final class drawable {
         public static final int border=0x7f020000;
         public static final int bug=0x7f020001;
-        public static final int down=0x7f020002;
-        public static final int fish=0x7f020003;
-        public static final int heart=0x7f020004;
-        public static final int help=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int ic_volume_muted=0x7f020007;
-        public static final int lightning=0x7f020008;
-        public static final int star=0x7f020009;
-        public static final int up=0x7f02000a;
+        public static final int cover=0x7f020002;
+        public static final int down=0x7f020003;
+        public static final int fish=0x7f020004;
+        public static final int heart=0x7f020005;
+        public static final int help=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_volume_muted=0x7f020008;
+        public static final int lightning=0x7f020009;
+        public static final int star=0x7f02000a;
+        public static final int up=0x7f02000b;
     }
     public static final class id {
         public static final int GotoPageTV=0x7f080017;
@@ -108,9 +109,10 @@ public final class R {
         public static final int online_library=0x7f030009;
         public static final int online_story_list_row=0x7f03000a;
         public static final int popup_menu=0x7f03000b;
-        public static final int upload_media=0x7f03000c;
-        public static final int view_page_lin=0x7f03000d;
-        public static final int viewpage=0x7f03000e;
+        public static final int splash_screen=0x7f03000c;
+        public static final int upload_media=0x7f03000d;
+        public static final int view_page_lin=0x7f03000e;
+        public static final int viewpage=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f070000;
