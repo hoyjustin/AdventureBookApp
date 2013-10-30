@@ -48,7 +48,7 @@
             android:background="#00000000"
             android:ems="10"
             android:hint="A New Story"
-            android:padding="10dp"
+            android:padding="3dp"
             android:singleLine="true" >
 
             <requestFocus />
@@ -95,41 +95,8 @@
             android:ems="10"
             android:hint="Some Description... Blah, Blah, Blah"
             android:inputType="textMultiLine"
-            android:padding="10dp" />
+            android:padding="3dp" />
     </ScrollView>
-
-    <!--
-    <RelativeLayout 
-        android:layout_width="match_parent"
-   	 	android:layout_height="wrap_content"
-   	 	android:layout_marginTop="10dp"
-   	 	android:layout_marginBottom="10dp"
-   	 	android:layout_marginLeft="70dp"
-   	 	android:layout_marginRight="70dp" >
-
-        <TextView
-	        android:id="@+id/authorText"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_horizontal"
-	        android:background="@drawable/border"
-	        android:paddingLeft="10dp"
-	        android:paddingRight="10dp"
-	        android:layout_margin="3dp"
-	        android:text="Author: " />
-        <TextView
-	        android:id="@+id/dateText"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_horizontal"
-	        android:layout_below="@+id/authorText"
-	        android:background="@drawable/border"
-	        android:paddingLeft="10dp"
-	        android:paddingRight="10dp"
-	        android:layout_margin="3dp"
-	        android:text="Date: " />
-    </RelativeLayout>
-    -->
 
     <LinearLayout
         android:layout_width="match_parent"
