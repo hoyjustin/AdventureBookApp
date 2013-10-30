@@ -90,26 +90,7 @@ public class EditStoryActivity extends Activity {
 			}
 		});
         
-        lstView.setOnGroupExpandListener(new OnGroupExpandListener()
-        {  
-			@Override
-			public void onGroupExpand(int position) {
-				Page startPage= (Page)adpt.getGroup(position);
-
-	             popupMenu = new PopupMenu(this, findViewById(R.id.anchor));
-
-	             popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Item 1");
-
-	             popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Item 2");
-
-	             popupMenu.getMenu().add(Menu.NONE, THREE, Menu.NONE, "Item 3");
-
-	             popupMenu.setOnMenuItemClickListener(this);
-
-	             findViewById(R.id.anchor).setOnClickListener(this);
-				
-			}
-        });
+      
         
         /*
         lstView.setOnChildClickListener(new OnChildClickListener() {
