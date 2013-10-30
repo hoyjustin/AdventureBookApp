@@ -4,23 +4,48 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.adventurebook.R;
+
 
 public class Story implements Serializable{
 	//This class was just created for testing the onlineStoryActivity.
 	
-	String title;
-	String author;
-	String date;
+	private String title;
+	private String description;
+	private String author;
+	private String date;
 	int imageIcon;
 	public List<Page> pages = new ArrayList<Page>();
 	
-	public Story(String title, String author, String date, int imageIcon){
+	public Story(String title, 	String description, String author, String date, int imageIcon){
 		this.title = title;
+		this.description = description;
 		this.author = author;
 		this.date = date;
-		this.imageIcon = imageIcon;
+		this.imageIcon = R.drawable.fish;
 	}
 	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @param pages the pages to set
+	 */
+	public void setPages(List<Page> pages) {
+		this.pages = pages;
+	}
+
 	public String getDate() {
 		return date;
 	}

@@ -31,16 +31,19 @@ public class OfflineLibraryActivity extends Activity{
 
 	private static final String FILENAME = "file.sav";
 
-	ArrayList<Story> dummyStories;
+	ArrayList<Story> offlineStoryLibrary;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		dummyStories = new ArrayList<Story>();
+		offlineStoryLibrary = new ArrayList<Story>();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.online_library);
-		createFakeData();
+
+		Story someStory = loadFromFile();
+		offlineStoryLibrary.add(someStory);
+		
 		populateListView();
 	}
 	/*
@@ -50,20 +53,6 @@ public class OfflineLibraryActivity extends Activity{
 			
 	
 	}*/
-	
-	private void createFakeData() {
-		// TODO Auto-generated method stub
-		
-		Story someStory = loadFromFile();
-		if ( someStory == null)
-		{
-			dummyStories.add(new Story("story1","author1","date1",R.drawable.fish));
-			dummyStories.add(new Story("story2","author2","date2",R.drawable.help));
-			
-		}else{
-		dummyStories.add(someStory);
-		}
-	}
 
 	private Story loadFromFile() {
 
@@ -98,7 +87,7 @@ public class OfflineLibraryActivity extends Activity{
 	private class CustomAdapter extends ArrayAdapter<Story>{
 
 		public CustomAdapter() {
-			super(OfflineLibraryActivity.this, R.layout.online_story_list_row, dummyStories);
+			super(OfflineLibraryActivity.this, R.layout.online_story_list_row, offlineStoryLibrary);
 			// TODO Auto-generated constructor stub
 		}
 		
@@ -113,7 +102,7 @@ public class OfflineLibraryActivity extends Activity{
 				itemView = getLayoutInflater().inflate(R.layout.online_story_list_row, parent, false);
 			}
 			
-			Story currentStory = dummyStories.get(position);
+			Story currentStory = offlineStoryLibrary.get(position);
 			
 			// Fill the view
 			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyImageView);

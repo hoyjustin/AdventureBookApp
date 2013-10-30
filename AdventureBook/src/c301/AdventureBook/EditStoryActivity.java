@@ -71,8 +71,10 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		popupMenu.setOnMenuItemClickListener(this);
 		
 	    someStory = (Story) getIntent().getSerializableExtra("someStory");
+		saveStory();
 		
         txtView.setText("Title: " + someStory.getTitle() + "\n" +
+        		"Description: " + someStory.getDescription() + "\n" +
         		"Author: " + someStory.getAuthor() + "\n" +
         		"Date: " + someStory.getDate() + "\n");
 		

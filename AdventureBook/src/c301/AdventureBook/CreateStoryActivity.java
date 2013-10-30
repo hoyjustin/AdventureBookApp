@@ -45,6 +45,10 @@ public class CreateStoryActivity extends Activity{
 	private Button mButtonCreateStory;
 	
 	private Story someStory;
+	String storyTitle;
+	String storyDescription;
+	String formattedDate;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +57,8 @@ public class CreateStoryActivity extends Activity{
 		setContentView(R.layout.create_story);
 		
 		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
-		String storyTitle = mStoryTitle.getText().toString();
-		
+
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
-		String storyDescription = mStoryDescription.getText().toString();
 		
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 		
@@ -77,18 +79,24 @@ public class CreateStoryActivity extends Activity{
 		mDate = (TextView) findViewById(R.id.dateText);
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-		String formattedDate = df.format(c.getTime());
+		formattedDate = df.format(c.getTime());
 		mDate.setText("Date: " + formattedDate);
 	}
 	
 	private void createStory() {
-		someStory = new Story("sadsad", "asdsad", "2132133", 1);
+		getUserText();
+		someStory = new Story(storyTitle, storyDescription, "someauthor", formattedDate, 0);
 		
         Intent i = new Intent(this, EditStoryActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("someStory", someStory);
         i.putExtras(bundle);
         startActivityForResult(i, ACTIVITY_EDIT_STORY);
+	}
+	private void getUserText() {
+		
+		storyTitle = mStoryTitle.getText().toString();
+		storyDescription = mStoryDescription.getText().toString();
 	}
 	
 }
