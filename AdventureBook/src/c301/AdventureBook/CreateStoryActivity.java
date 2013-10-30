@@ -20,22 +20,23 @@ package c301.AdventureBook;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.view.View;
-
 import com.example.adventurebook.R;
 
 
-public class CreateStoryActivity extends Activity {
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.Editable;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+
+public class CreateStoryActivity extends Activity{
 	
 	private EditText mStoryTitle;
 	private EditText mStoryDescription;
 	private TextView mDate;
-	//private Button mButtonCreateStory;
+	private Button mButtonCreateStory;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +51,13 @@ public class CreateStoryActivity extends Activity {
 		String storyDescription = mStoryDescription.getText().toString();
 		
 		setDate();
+		
 	}
 
 	/**
 	 * Sets the story creation date
 	 */
-	@SuppressLint("SimpleDateFormat")
+
 	private void setDate() {
 		mDate = (TextView) findViewById(R.id.dateText);
 		Calendar c = Calendar.getInstance();
@@ -64,8 +66,5 @@ public class CreateStoryActivity extends Activity {
 		mDate.setText("Date: " + formattedDate);
 	}
 	
-	public void onClickBtn(View v) {
-		
-	}
 	
 }

@@ -1,4 +1,4 @@
-package c301.AdventureBook.EditStory;
+package c301.AdventureBook;
 
 import java.util.List;
 
