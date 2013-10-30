@@ -18,6 +18,7 @@ import com.example.adventurebook.R;
 
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.Story;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -40,7 +41,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 
-public class EditStory extends Activity {
+public class EditStoryActivity extends Activity {
     private static final int DELETE_ID = Menu.FIRST + 1;
 	
 	private static final String FILENAME = "file.sav";
@@ -95,6 +96,18 @@ public class EditStory extends Activity {
 			public void onGroupExpand(int position) {
 				Page startPage= (Page)adpt.getGroup(position);
 
+	             popupMenu = new PopupMenu(this, findViewById(R.id.anchor));
+
+	             popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Item 1");
+
+	             popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Item 2");
+
+	             popupMenu.getMenu().add(Menu.NONE, THREE, Menu.NONE, "Item 3");
+
+	             popupMenu.setOnMenuItemClickListener(this);
+
+	             findViewById(R.id.anchor).setOnClickListener(this);
+				
 			}
         });
         

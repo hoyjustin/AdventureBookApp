@@ -37,18 +37,19 @@ public final class R {
         public static final int GotoPageTV=0x7f08000f;
         public static final int SaveOptionBtn=0x7f080011;
         public static final int Stories=0x7f080018;
-        public static final int action_muted=0x7f080032;
-        public static final int action_settings=0x7f080031;
-        public static final int addAnnotationButton=0x7f080030;
-        public static final int addStoryDescription=0x7f08002e;
+        public static final int action_muted=0x7f080034;
+        public static final int action_settings=0x7f080033;
+        public static final int addAnnotationButton=0x7f080032;
+        public static final int addStoryDescription=0x7f080030;
+        public static final int anchor=0x7f080025;
         public static final int annotationAuthor=0x7f080002;
         public static final int authorTV=0x7f080024;
         public static final int authorText=0x7f08000a;
-        public static final int button1=0x7f08002a;
-        public static final int button2=0x7f08002b;
-        public static final int button3=0x7f08002c;
-        public static final int button4=0x7f08002d;
-        public static final int confirmButton=0x7f080028;
+        public static final int button1=0x7f08002c;
+        public static final int button2=0x7f08002d;
+        public static final int button3=0x7f08002e;
+        public static final int button4=0x7f08002f;
+        public static final int confirmButton=0x7f08002a;
         public static final int createNewStoryBtn=0x7f08001a;
         public static final int createStoryButton=0x7f08000c;
         public static final int create_new_page=0x7f080014;
@@ -59,13 +60,13 @@ public final class R {
         public static final int editStoryTitle=0x7f080006;
         public static final int editText1=0x7f08000d;
         public static final int expList=0x7f080013;
-        public static final int fromPhoneButton=0x7f080026;
-        public static final int fromWebCamButton=0x7f080027;
-        public static final int gallery1=0x7f080029;
+        public static final int fromPhoneButton=0x7f080028;
+        public static final int fromWebCamButton=0x7f080029;
+        public static final int gallery1=0x7f08002b;
         public static final int horizontalScrollView1=0x7f080001;
         public static final int imageView1=0x7f080003;
         public static final int list_of_goto_pages=0x7f080010;
-        public static final int list_options=0x7f08002f;
+        public static final int list_options=0x7f080031;
         public static final int myStorylistView=0x7f080019;
         public static final int onlineLibraryBtn=0x7f08001b;
         public static final int online_library_listView=0x7f08001c;
@@ -73,6 +74,7 @@ public final class R {
         public static final int return_local_lib=0x7f080015;
         public static final int scrollView1=0x7f080005;
         public static final int scrollView2=0x7f080008;
+        public static final int selection=0x7f080026;
         public static final int storyDescription=0x7f080007;
         public static final int storyImageView=0x7f08001f;
         public static final int storyView=0x7f080012;
@@ -83,7 +85,7 @@ public final class R {
         public static final int title=0x7f080004;
         public static final int txtEndPage=0x7f080017;
         public static final int txtFirstPage=0x7f080016;
-        public static final int upload_media_title=0x7f080025;
+        public static final int upload_media_title=0x7f080027;
         public static final int viewStoryBtn=0x7f080021;
     }
     public static final class layout {
@@ -98,9 +100,10 @@ public final class R {
         public static final int my_local_stories=0x7f030008;
         public static final int online_library=0x7f030009;
         public static final int online_story_list_row=0x7f03000a;
-        public static final int upload_media=0x7f03000b;
-        public static final int view_page_lin=0x7f03000c;
-        public static final int viewpage=0x7f03000d;
+        public static final int popup_menu=0x7f03000b;
+        public static final int upload_media=0x7f03000c;
+        public static final int view_page_lin=0x7f03000d;
+        public static final int viewpage=0x7f03000e;
     }
     public static final class menu {
         public static final int main=0x7f070000;

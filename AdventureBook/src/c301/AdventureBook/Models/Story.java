@@ -1,10 +1,9 @@
-package c301.AdventureBook.EditStory;
+package c301.AdventureBook.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import c301.AdventureBook.Models.Page;
 
 public class Story implements Serializable{
 	//This class was just created for testing the onlineStoryActivity.
