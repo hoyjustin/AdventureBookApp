@@ -39,11 +39,10 @@ import android.widget.TextView;
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
-	
 	private static final String FILENAME = "file.sav";
+	private static final String FILENAME2 = "file2.sav";
     private final static int ONE = 1;
     private final static int TWO = 2;
-    private final static int THREE = 3;
 	
 	private ExpandableListAdapter adpt;
 	private ExpandableListView lstView;
@@ -53,6 +52,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	private PopupMenu popupMenu;
 	
 	private Story someStory;
+	//private Story someStory2;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,12 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		popupMenu.setOnMenuItemClickListener(this);
 		
 	    someStory = (Story) getIntent().getSerializableExtra("someStory");
+	    
+	    //creating 2nd story test dummy
+	    //someStory2 = new Story("storyTitle", "storyDescription", "someauthor2", "formattedDate", 0);
+	    
 		saveStory();
+		//saveStory2();
 		
         txtView.setText("Title: " + someStory.getTitle() + "\n" +
         		"Description: " + someStory.getDescription() + "\n" +
@@ -274,5 +279,23 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 			e.printStackTrace();
 		}
 	}
+	/*
+	private void saveStory2() {
+		try {
+			FileOutputStream fos = openFileOutput(FILENAME2,
+					0);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(someStory2);
+				Log.d("save", "Success");
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	*/
 	
 }

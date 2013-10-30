@@ -1,7 +1,9 @@
 package c301.AdventureBook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -29,57 +31,62 @@ import android.widget.TextView;
 
 public class OfflineLibraryActivity extends Activity{
 
-	private static final String FILENAME = "file.sav";
-
 	ArrayList<Story> offlineStoryLibrary;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		offlineStoryLibrary = new ArrayList<Story>();
+		loadAllFiles();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.online_library);
 
-		Story someStory = loadFromFile();
-		offlineStoryLibrary.add(someStory);
-		
 		populateListView();
 	}
 	/*
 	private void createFakeData() {
 		//Dummy Data:
-		
-			
-	
+
+
+
 	}*/
 
-	private Story loadFromFile() {
+	private void loadAllFiles() {
 
-		Story someStory = null;
-		try {
-			FileInputStream fis = openFileInput(FILENAME);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			while (true) {
-				someStory = (Story) ois.readObject();
-				Log.d("load", "Success");
+		String[] files = getApplicationContext().fileList();
+
+		Log.d("length", String.valueOf(files.length));
+		for (int i=0;i < files.length;i++) {
+			// do something with the file
+			if (files[i].toLowerCase().contains(".sav")){
+				try {
+					FileInputStream fis = openFileInput(files[i]);
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					while (true) {
+						Story someStory = (Story) ois.readObject();
+						offlineStoryLibrary.add(someStory);
+						Log.d("loaded", someStory.getTitle());
+					}
+
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		return someStory;
+
+		return;
 	}
 
 	private void populateListView(){
-		
+
 		ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
 		ArrayAdapter<Story> adapter = new CustomAdapter();
 		onlineLV.setAdapter(adapter);
@@ -90,33 +97,33 @@ public class OfflineLibraryActivity extends Activity{
 			super(OfflineLibraryActivity.this, R.layout.online_story_list_row, offlineStoryLibrary);
 			// TODO Auto-generated constructor stub
 		}
-		
+
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			//Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
-			
+
 			// Make sure we have a view to work with (may have been given null)
-			
+
 			View itemView = convertView;
 			if (itemView == null) {
 				itemView = getLayoutInflater().inflate(R.layout.online_story_list_row, parent, false);
 			}
-			
+
 			Story currentStory = offlineStoryLibrary.get(position);
-			
+
 			// Fill the view
 			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyImageView);
 			imageView.setImageResource(currentStory.getImageIcon());
-			
+
 			TextView authorText = (TextView) itemView.findViewById(R.id.authorTV);
 			authorText.setText(currentStory.getAuthor());
 
 			TextView dateText = (TextView) itemView.findViewById(R.id.dateCreatedTv);
 			dateText.setText(currentStory.getDate());
-			
+
 			return itemView;
 		}
 	}
 
-	
+
 }
