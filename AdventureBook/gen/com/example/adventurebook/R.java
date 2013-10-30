@@ -37,21 +37,21 @@ public final class R {
         public static final int GotoPageTV=0x7f080017;
         public static final int SaveOptionBtn=0x7f080019;
         public static final int Stories=0x7f080020;
-        public static final int action_muted=0x7f08003a;
-        public static final int action_settings=0x7f080039;
-        public static final int addAnnotationButton=0x7f080038;
-        public static final int addStoryDescription=0x7f080036;
+        public static final int action_muted=0x7f08003b;
+        public static final int action_settings=0x7f08003a;
+        public static final int addAnnotationButton=0x7f080039;
+        public static final int addStoryDescription=0x7f080037;
         public static final int anchor=0x7f08002b;
         public static final int annotationAuthor=0x7f080003;
         public static final int annotationButtonReturnToPage=0x7f08000d;
         public static final int annotationComment=0x7f080005;
         public static final int authorTV=0x7f08002a;
         public static final int authorText=0x7f080013;
-        public static final int button1=0x7f080032;
-        public static final int button2=0x7f080033;
-        public static final int button3=0x7f080034;
-        public static final int button4=0x7f080035;
-        public static final int confirmButton=0x7f080030;
+        public static final int button1=0x7f080033;
+        public static final int button2=0x7f080034;
+        public static final int button3=0x7f080035;
+        public static final int button4=0x7f080036;
+        public static final int confirmButton=0x7f080031;
         public static final int createNewStoryBtn=0x7f080022;
         public static final int createStoryButton=0x7f080015;
         public static final int create_new_page=0x7f08001c;
@@ -65,14 +65,14 @@ public final class R {
         public static final int editTextAnnotationAuthor=0x7f080009;
         public static final int editTextAnnotationComment=0x7f08000b;
         public static final int expList=0x7f08001b;
-        public static final int fromPhoneButton=0x7f08002e;
-        public static final int fromWebCamButton=0x7f08002f;
-        public static final int gallery1=0x7f080031;
+        public static final int fromPhoneButton=0x7f08002f;
+        public static final int fromWebCamButton=0x7f080030;
+        public static final int gallery1=0x7f080032;
         public static final int horizontalScrollView1=0x7f080001;
         public static final int imageButtonAnnotationAttachImage=0x7f08000c;
         public static final int imageView1=0x7f080004;
         public static final int list_of_goto_pages=0x7f080018;
-        public static final int list_options=0x7f080037;
+        public static final int list_options=0x7f080038;
         public static final int myStorylistView=0x7f080021;
         public static final int onlineLibraryBtn=0x7f080023;
         public static final int online_library_listView=0x7f080024;
@@ -92,6 +92,7 @@ public final class R {
         public static final int txtEndPage=0x7f08001f;
         public static final int txtFirstPage=0x7f08001e;
         public static final int upload_media_title=0x7f08002d;
+        public static final int upload_photo_view=0x7f08002e;
         public static final int viewStoryBtn=0x7f080027;
     }
     public static final class layout {

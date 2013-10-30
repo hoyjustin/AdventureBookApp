@@ -1,6 +1,8 @@
 package c301.AdventureBook;
 //Creator: Zhao Zhang
 
+import java.io.FileOutputStream;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,11 +14,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.os.Environment;
 
 import com.example.adventurebook.R;
 public class TakePhotoActivity extends Activity{
 	//int REQUEST_CODE = 0;
 	private static final int SELECT_PHOTO = 100;
+	private static final int TAKE_PHOTO = 101;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -38,6 +43,8 @@ public class TakePhotoActivity extends Activity{
 		uploadFromWebCam.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(cameraIntent, TAKE_PHOTO);
 				// TODO Auto-generated method stub
 				
 			}
@@ -60,7 +67,22 @@ public class TakePhotoActivity extends Activity{
 				int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 				String filePath = cursor.getString(columnIndex);
 				cursor.close();
-				Bitmap yourSelcetedImage = BitmapFactory.decodeFile(filePath);
+				Bitmap yourSelcetedImage = BitmapFactory.decodeFile(filePath);	
+				ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+			    test.setImageBitmap(yourSelcetedImage);
+			}
+		case TAKE_PHOTO:
+			if(resultCode == RESULT_OK);{
+				Bitmap photo = (Bitmap) imageReturnIntent.getExtras().get("imageReturnIntent");
+				ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+				test.setImageBitmap(photo);
+				
+				try{
+					//FileOutputStream out = new FileOutputStream(getExternalStorageDirectory() + "filename");
+					//photo.compress(Bitmap.CompressFormat.JPEG, 90, out);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				
 			}
 			

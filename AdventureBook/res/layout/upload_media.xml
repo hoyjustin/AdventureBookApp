@@ -17,7 +17,7 @@
         android:layout_marginTop="10dp" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/upload_photo_view"
         android:layout_width="245dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
