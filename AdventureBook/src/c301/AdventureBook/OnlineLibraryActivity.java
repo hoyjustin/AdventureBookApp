@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 
+import c301.AdventureBook.Models.Story;
+
 import com.example.adventurebook.R;
 
 import android.app.Activity;
@@ -22,7 +24,7 @@ import android.widget.TextView;
 
 public class OnlineLibraryActivity extends Activity{
 
-	ArrayList<dummy_story_class> dummyStories;
+	ArrayList<Story> dummyStories;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +38,17 @@ public class OnlineLibraryActivity extends Activity{
 	private void createFakeData() {
 		//Dummy Data:
 		
-		dummyStories = new ArrayList<dummy_story_class>();
-		dummyStories.add(new dummy_story_class("story1","author1","date1",R.drawable.fish));
-		dummyStories.add(new dummy_story_class("story2","author2","date2",R.drawable.help));	
+		dummyStories = new ArrayList<Story>();
+		dummyStories.add(new Story("story1","author1","date1",R.drawable.fish));
+		dummyStories.add(new Story("story2","author2","date2",R.drawable.help));	
 	}
 	private void populateListView(){
 		
 		ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
-		ArrayAdapter<dummy_story_class> adapter = new CustomAdapter();
+		ArrayAdapter<Story> adapter = new CustomAdapter();
 		onlineLV.setAdapter(adapter);
 	}
-	private class CustomAdapter extends ArrayAdapter<dummy_story_class>{
+	private class CustomAdapter extends ArrayAdapter<Story>{
 
 		public CustomAdapter() {
 			super(OnlineLibraryActivity.this, R.layout.online_story_list_row, dummyStories);
@@ -64,7 +66,7 @@ public class OnlineLibraryActivity extends Activity{
 				itemView = getLayoutInflater().inflate(R.layout.online_story_list_row, parent, false);
 			}
 			
-			dummy_story_class currentStory = dummyStories.get(position);
+			Story currentStory = dummyStories.get(position);
 			
 			// Fill the view
 			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyImageView);
@@ -77,7 +79,7 @@ public class OnlineLibraryActivity extends Activity{
 			dateText.setText(currentStory.getDate());
 			
 			return itemView;
-		}	
+		}
 	}
 
 	

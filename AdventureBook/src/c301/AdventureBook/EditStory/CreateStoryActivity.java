@@ -54,9 +54,6 @@ public class CreateStoryActivity extends Activity{
 		
 	}
 
-
-	
-
 	/**
 	 * Sets the story creation date
 	 */
