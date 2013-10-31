@@ -19,15 +19,22 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
         android:textSize="15dp" >
     </TextView>
 
-    <EditText
-        android:id="@+id/editText1"
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/border"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:padding="10dp" >
-    </EditText>
+        android:padding="3dp" >
+
+        <EditText
+	        android:id="@+id/editText1"
+	        android:layout_width="match_parent"     
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="textMultiLine"
+	        android:background="#00000000" >
+    	</EditText>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -74,6 +81,7 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
             android:id="@+id/SaveOptionBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Save Option"
             android:onClick="SaveOption" />
     </LinearLayout>
