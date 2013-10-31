@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import c301.AdventureBook.Models.Annotations;
 
 import com.example.adventurebook.R;
-
 
 
 public class AnnotationActivity extends Activity {
