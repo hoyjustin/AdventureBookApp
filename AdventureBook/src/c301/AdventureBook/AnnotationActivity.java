@@ -1,4 +1,4 @@
-package com.example.projectpart3;
+package c301.AdventureBook;
 
 import android.app.Activity;
 import android.content.Intent;
