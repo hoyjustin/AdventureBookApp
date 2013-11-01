@@ -2,27 +2,29 @@
  * Creator: Minhal Syed*/
 package c301.AdventureBook;
 
-import java.util.ArrayList;
-
-import com.example.adventurebook.R;
-
 import android.app.Activity;
-
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.adventurebook.R;
 
 public class EditOptionActivity extends Activity {
 
 	ArrayAdapter<String> adapter;
 	ListView pageListView;
 	TextView gotoPageTV;
+	private EditText mOptionDescription;
+	private Button mSaveButton;
+	private Button mCancelButton;
 	
 	// For now: we can just add Dummy Pages
 	String[] pages = { "Page1", "Page2", "Page3", "Page4", "Page5",
@@ -35,6 +37,8 @@ public class EditOptionActivity extends Activity {
 		setContentView(R.layout.edit_option);
 		populateListView();
 		registerForClicks();
+		
+		mOptionDescription = (EditText) findViewById(R.id.editOptionDescription);
 	}
 
 	@Override
@@ -70,8 +74,19 @@ public class EditOptionActivity extends Activity {
 		});
 	}
 	
-	public void SaveOption(View v){
-		//TODO This method will be called when the SaveOption button is Clicked.
+	/**
+	 * Method handler when "Save Option" button is clicked
+	 */
+	private void onClickSaveOption(View v){
+		//TODO: save the option
+		finish();
+	}
+	
+	/**
+	 * Method handler when "Cancel" button is pressed
+	 */
+	private void onClickCancel(View v) {
+		finish();
 	}
 
 }
