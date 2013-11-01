@@ -1,3 +1,5 @@
+//Creator: Justin Hoy
+
 package c301.AdventureBook.Models;
 
 import java.io.Serializable;

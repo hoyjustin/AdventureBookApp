@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="c301.AdventureBook.EditOptionActivity"
+            android:name="c301.AdventureBook.CreateStoryActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
@@ -24,10 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="c301.AdventureBook.CreateStoryActivity"></activity>
+        <activity android:name="c301.AdventureBook.EditOptionActivity"></activity>
         <activity android:name="c301.AdventureBook.EditStoryActivity"></activity>
         <activity android:name="c301.AdventureBook.OfflineLibraryActivity"></activity>
         <activity android:name="c301.AdventureBook.TakePhotoActivity"></activity>
+        <activity android:name="c301.AdventureBook.EditPageActivity"></activity>
+        <activity android:name="c301.AdventureBook.SplashScreenMainActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
