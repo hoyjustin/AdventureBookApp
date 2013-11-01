@@ -1,78 +1,64 @@
+//Creator: Justin Hoy
+
 package c301.AdventureBook;
-//Creator: Zhao Zhang
 
-import android.os.Bundle;
-
-
-
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-
+import java.io.Serializable;
 import com.example.adventurebook.R;
 
-public class EditPageActivity extends Activity {
-	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
-	ImageView image;
-	String show_path;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
-		
+
+public class EditPageActivity extends Activity implements Serializable{
+
+
+	private EditText editText;
+	private Button createOption;
+	private Button savePage;
+	private CoverFlow coverFlow;
+	ImageAdapter coverImageAdapter;
+
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.edit_page);
-		image = (ImageView) findViewById(R.id.edit_page_image);
-		EditText et = (EditText) findViewById(R.id.addPageDescription);
-		image.setOnClickListener(new OnClickListener() {		
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-			    Intent intent = new Intent(getApplicationContext(), TakePhotoActivity.class);
-			    startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
-			}
-		});
-		Button saveMyPage = (Button) findViewById(R.id.savePageButton);
-		saveMyPage.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				saveAndFinish();
-				
-			}
-		});
-		
+		setContentView(com.example.adventurebook.R.layout.edit_page);
 
-	}
-	private void saveAndFinish() {
-		EditText et = (EditText) findViewById(R.id.addPageDescription);
-		String noteText = et.getText().toString();
-		Intent intent = new Intent();		
-		intent.putExtra("path", show_path);
-		intent.putExtra("text", noteText);
-		setResult(RESULT_OK, intent);
-		finish();
+		editText = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
+		createOption = (Button) findViewById(R.id.new_option);
+		savePage = (Button) findViewById(R.id.save_page);
+
+		coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
+		coverFlow.setAdapter(new ImageAdapter(this));
+		coverImageAdapter =  new ImageAdapter(this);
+
+		//coverImageAdapter.createReflectedImages();
+
+		coverFlow.setAdapter(coverImageAdapter);
+
+		coverFlow.setSpacing(25);
+		coverFlow.setSelection(2, true);
+		coverFlow.setAnimationDuration(1000);
+
 		
+		createOption.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent i = new Intent(EditPageActivity.this, EditOptionActivity.class);
+				startActivity(i);
+			}
+		});
+
+		savePage.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				finish();
+			}
+		});
 	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK){
-			show_path = data.getStringExtra("path");
-			image.setImageBitmap(BitmapFactory.decodeFile(show_path));
-			
-		}
-	}
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		finish();
-	}
+
 
 }

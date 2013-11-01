@@ -11,13 +11,21 @@
     <string name="media_title">Upload Media</string>
     <string name="action_muted">muted</string>
     
-	<!--     Justin -->
+<!-- Justin/Edit Story -->
     <string name="title_activity_main">MainActivity</string>
-    
     <string name="create_new_page">Create New Page</string>
     <string name="return_local_lib">Return to Local Library</string>
-
     <string name=" menu_edit">Edit Page</string>
     <string name=" menu_delete">Delete Page</string>
-
+    <string name="title_activity_edit_page">EditPageActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="delete_page_confirm">Do you really want to delete the page?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    
+   <!-- Justin/Edit Page -->
+   <string name="save_page_button">Save Page</string>
+   <string name="insert_page_des">Insert Page Text</string>
+   <string name="add_option">Add a New Option</string>
 </resources>

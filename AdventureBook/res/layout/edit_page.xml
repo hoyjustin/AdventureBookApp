@@ -1,72 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) <2013>  <Zhao Zhang>
- 
--->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="#FFFFFF"
+    tools:context=".EditPageActivity" >
 
-    <ImageView
-        android:id="@+id/edit_page_image"
-        android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="0.1"
-        android:background="@drawable/border"
-        android:src="@drawable/ic_launcher" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="Insert Page Text Here"
-        android:textSize="15dp" >
-    </TextView>
+    <!--
+         The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc.
+    -->
 
-    <ScrollView
-        android:id="@+id/scroll_edit_Page_View"
+    <!--
+         This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows.
+    -->
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="0.27"
-        android:background="@drawable/border" >
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
 
-        <EditText
-            android:id="@+id/addPageDescription"
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:padding="10dp" />
-    
-    </ScrollView>
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent" >
+        </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_options"
-        android:layout_width="280dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/border" >
-    </ListView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="506dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/savePageButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Save Page" />
+            <c301.AdventureBook.CoverFlow
+                android:id="@+id/gallery1"
+                android:layout_width="363dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:background="#000000" />
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/pageDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/insert_page_des"
+                    android:textSize="15sp" />
+
+                <ScrollView
+                    android:id="@+id/editStoryBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="83dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/border" >
+
+                    <EditText
+                        android:id="@+id/editStoryDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#00000000"
+                        android:ems="10"
+                        android:hint="Some Text...Blah Blah Blah"
+                        android:inputType="textMultiLine"
+                        android:padding="3dp" />
+                </ScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.77"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/new_option"
+                    android:layout_width="348dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/add_option" />
+
+                <ScrollView
+                    android:id="@+id/scrollView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/save_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/black_overlay"
+                android:text="@string/save_page_button" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

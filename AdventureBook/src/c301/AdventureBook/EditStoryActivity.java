@@ -21,6 +21,8 @@ import c301.AdventureBook.Models.Story;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -66,8 +68,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		returnLocalLib = (Button) findViewById(R.id.return_local_lib);
 		
 		popupMenu = new PopupMenu(this, findViewById(R.id.expList));
-		popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Delete Page");
-		popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Edit Page");
+		popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Edit Page");
+		popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Delete Page");
 		popupMenu.setOnMenuItemClickListener(this);
 		
 	    someStory = (Story) getIntent().getSerializableExtra("someStory");
@@ -107,6 +109,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 			public void onGroupExpand(int position) {
 				Page mainPage= (Page)adpt.getGroup(position);
 		        popupMenu.show();
+		        
 
 			}
         });
@@ -126,15 +129,41 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         */
     }
 
+    
+    
     @Override
     public boolean onMenuItemClick(MenuItem item) {
            TextView tv = (TextView) findViewById(R.id.storyView);
            switch (item.getItemId()) {
            case ONE:
                   tv.setText("ONE");
+                  Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
+                  startActivity(i);
                   break;
            case TWO:
                   tv.setText("TWO");
+                  
+               // 1. Instantiate an AlertDialog.Builder with its constructor
+                  AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryActivity.this);
+
+               // Add the buttons
+                  builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int id) {
+                                 // User clicked OK button
+                             }
+                         });
+                  builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int id) {
+                                 // User cancelled the dialog
+                             }
+                         });
+
+                  // 2. Chain together various setter methods to set the dialog characteristics
+                  builder.setMessage(R.string.delete_page_confirm);
+
+                  // 3. Get the AlertDialog from create()
+                  AlertDialog dialog = builder.create();
+                  dialog.show();
                   break;
            }
            return false;

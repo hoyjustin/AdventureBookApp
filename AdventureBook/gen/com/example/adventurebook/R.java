@@ -9,6 +9,17 @@ package com.example.adventurebook;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarButtonStyle=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int buttonBarStyle=0x7f010000;
+    }
+    public static final class color {
+        public static final int black_overlay=0x7f040000;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -17,8 +28,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int border=0x7f020000;
@@ -35,114 +46,119 @@ public final class R {
         public static final int up=0x7f02000b;
     }
     public static final class id {
-        public static final int GotoPageTV=0x7f080018;
-        public static final int SaveOptionBtn=0x7f08001a;
-        public static final int Stories=0x7f080026;
-        public static final int action_muted=0x7f080041;
-        public static final int action_settings=0x7f080040;
-        public static final int addAnnotationButton=0x7f08003f;
-        public static final int addPageDescription=0x7f08001d;
-        public static final int addStoryDescription=0x7f08003e;
-        public static final int anchor=0x7f080031;
-        public static final int annotationAuthor=0x7f080003;
-        public static final int annotationButtonReturnToPage=0x7f08000e;
-        public static final int annotationComment=0x7f080005;
-        public static final int authorTV=0x7f080030;
-        public static final int authorText=0x7f080014;
-        public static final int button1=0x7f08003a;
-        public static final int button2=0x7f08003b;
-        public static final int button3=0x7f08003c;
-        public static final int button4=0x7f08003d;
-        public static final int confirmButton=0x7f080037;
-        public static final int createNewStoryBtn=0x7f080028;
-        public static final int createStoryButton=0x7f080016;
-        public static final int create_new_page=0x7f080022;
-        public static final int dateCreatedTv=0x7f08002f;
-        public static final int dateText=0x7f080015;
-        public static final int downloadStoryBtn=0x7f08002e;
-        public static final int editStoryBox=0x7f080012;
-        public static final int editStoryDescription=0x7f080013;
-        public static final int editStoryTitle=0x7f080010;
-        public static final int editText1=0x7f080017;
-        public static final int editTextAnnotationAuthor=0x7f080009;
-        public static final int editTextAnnotationComment=0x7f08000b;
-        public static final int edit_page_image=0x7f08001b;
-        public static final int editpath=0x7f080038;
-        public static final int expList=0x7f080021;
-        public static final int fromPhoneButton=0x7f080035;
-        public static final int fromWebCamButton=0x7f080036;
-        public static final int gallery1=0x7f080039;
-        public static final int horizontalScrollView1=0x7f080001;
-        public static final int imageButtonAnnotationAttachImage=0x7f08000c;
-        public static final int imageView1=0x7f080004;
-        public static final int list_of_goto_pages=0x7f080019;
-        public static final int list_options=0x7f08001e;
-        public static final int myStorylistView=0x7f080027;
-        public static final int onlineLibraryBtn=0x7f080029;
-        public static final int online_library_listView=0x7f08002a;
-        public static final int returnToLocalLibraryBtn=0x7f08002b;
-        public static final int return_local_lib=0x7f080023;
-        public static final int savePageButton=0x7f08001f;
-        public static final int scrollView1=0x7f080002;
-        public static final int scrollView2=0x7f08000a;
-        public static final int scroll_edit_Page_View=0x7f08001c;
-        public static final int selection=0x7f080032;
-        public static final int storyDescription=0x7f080011;
-        public static final int storyImageView=0x7f08002c;
-        public static final int storyView=0x7f080020;
-        public static final int submit=0x7f08000d;
-        public static final int textView1=0x7f080000;
-        public static final int textView2=0x7f080006;
-        public static final int textView3=0x7f080007;
-        public static final int textView4=0x7f080008;
-        public static final int title=0x7f08000f;
-        public static final int txtEndPage=0x7f080025;
-        public static final int txtFirstPage=0x7f080024;
-        public static final int upload_media_title=0x7f080033;
-        public static final int upload_photo_view=0x7f080034;
-        public static final int viewStoryBtn=0x7f08002d;
+        public static final int GotoPageTV=0x7f090017;
+        public static final int SaveOptionBtn=0x7f090019;
+        public static final int Stories=0x7f090024;
+        public static final int action_muted=0x7f09003d;
+        public static final int action_settings=0x7f09003c;
+        public static final int addAnnotationButton=0x7f09003b;
+        public static final int addStoryDescription=0x7f090039;
+        public static final int anchor=0x7f09002f;
+        public static final int annotationAuthor=0x7f090003;
+        public static final int annotationButtonReturnToPage=0x7f09000d;
+        public static final int annotationComment=0x7f090005;
+        public static final int authorTV=0x7f09002e;
+        public static final int authorText=0x7f090013;
+        public static final int button2=0x7f090036;
+        public static final int button3=0x7f090037;
+        public static final int button4=0x7f090038;
+        public static final int confirmButton=0x7f090035;
+        public static final int createNewStoryBtn=0x7f090026;
+        public static final int createStoryButton=0x7f090015;
+        public static final int create_new_page=0x7f090020;
+        public static final int dateCreatedTv=0x7f09002d;
+        public static final int dateText=0x7f090014;
+        public static final int downloadStoryBtn=0x7f09002c;
+        public static final int editStoryBox=0x7f090011;
+        public static final int editStoryDescription=0x7f090012;
+        public static final int editStoryTitle=0x7f09000f;
+        public static final int editText1=0x7f090016;
+        public static final int editTextAnnotationAuthor=0x7f090009;
+        public static final int editTextAnnotationComment=0x7f09000b;
+        public static final int expList=0x7f09001f;
+        public static final int fromPhoneButton=0x7f090033;
+        public static final int fromWebCamButton=0x7f090034;
+        public static final int fullscreen_content_controls=0x7f09001a;
+        public static final int gallery1=0x7f09001b;
+        public static final int horizontalScrollView1=0x7f090001;
+        public static final int imageButtonAnnotationAttachImage=0x7f09000c;
+        public static final int imageView1=0x7f090004;
+        public static final int list_of_goto_pages=0x7f090018;
+        public static final int list_options=0x7f09003a;
+        public static final int myStorylistView=0x7f090025;
+        public static final int new_option=0x7f09001c;
+        public static final int onlineLibraryBtn=0x7f090027;
+        public static final int online_library_listView=0x7f090028;
+        public static final int pageDescription=0x7f090010;
+        public static final int returnToLocalLibraryBtn=0x7f090029;
+        public static final int return_local_lib=0x7f090021;
+        public static final int save_page=0x7f09001d;
+        public static final int scrollView1=0x7f090002;
+        public static final int scrollView2=0x7f09000a;
+        public static final int selection=0x7f090030;
+        public static final int storyImageView=0x7f09002a;
+        public static final int storyView=0x7f09001e;
+        public static final int textView1=0x7f090000;
+        public static final int textView2=0x7f090006;
+        public static final int textView3=0x7f090007;
+        public static final int textView4=0x7f090008;
+        public static final int title=0x7f09000e;
+        public static final int txtEndPage=0x7f090023;
+        public static final int txtFirstPage=0x7f090022;
+        public static final int upload_media_title=0x7f090031;
+        public static final int upload_photo_view=0x7f090032;
+        public static final int viewStoryBtn=0x7f09002b;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int annotations=0x7f030001;
-        public static final int cover=0x7f030002;
-        public static final int create_story=0x7f030003;
-        public static final int edit_option=0x7f030004;
-        public static final int edit_page=0x7f030005;
-        public static final int edit_story=0x7f030006;
-        public static final int group_item=0x7f030007;
-        public static final int list_item=0x7f030008;
-        public static final int list_row=0x7f030009;
-        public static final int my_local_stories=0x7f03000a;
-        public static final int online_library=0x7f03000b;
-        public static final int online_story_list_row=0x7f03000c;
-        public static final int popup_menu=0x7f03000d;
-        public static final int splash_screen=0x7f03000e;
-        public static final int upload_media=0x7f03000f;
-        public static final int view_page_lin=0x7f030010;
-        public static final int viewpage=0x7f030011;
+        public static final int create_story=0x7f030002;
+        public static final int edit_option=0x7f030003;
+        public static final int edit_page=0x7f030004;
+        public static final int edit_story=0x7f030005;
+        public static final int group_item=0x7f030006;
+        public static final int list_item=0x7f030007;
+        public static final int list_row=0x7f030008;
+        public static final int my_local_stories=0x7f030009;
+        public static final int online_library=0x7f03000a;
+        public static final int online_story_list_row=0x7f03000b;
+        public static final int popup_menu=0x7f03000c;
+        public static final int upload_media=0x7f03000d;
+        public static final int view_page_lin=0x7f03000e;
+        public static final int viewpage=0x7f03000f;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
-        public static final int view_page_action=0x7f070001;
+        public static final int main=0x7f080000;
+        public static final int view_page_action=0x7f080001;
     }
     public static final class string {
-        public static final int  menu_delete=0x7f05000d;
-        public static final int  menu_edit=0x7f05000c;
-        public static final int action_muted=0x7f050008;
-        public static final int action_settings=0x7f050001;
-        public static final int add_annotation=0x7f050006;
-        public static final int app_name=0x7f050000;
-        public static final int create_new_page=0x7f05000a;
-        public static final int current_annotations=0x7f050005;
-        public static final int hello_world=0x7f050002;
-        public static final int media_title=0x7f050007;
-        public static final int return_local_lib=0x7f05000b;
-        public static final int story_description=0x7f050004;
-        public static final int title=0x7f050003;
-        /**      Justin 
+        public static final int  menu_delete=0x7f06000d;
+        public static final int  menu_edit=0x7f06000c;
+        public static final int action_muted=0x7f060008;
+        public static final int action_settings=0x7f060001;
+        public static final int add_annotation=0x7f060006;
+        public static final int add_option=0x7f060016;
+        public static final int app_name=0x7f060000;
+        public static final int cancel=0x7f060013;
+        public static final int create_new_page=0x7f06000a;
+        public static final int current_annotations=0x7f060005;
+        public static final int delete_page_confirm=0x7f060011;
+        public static final int dummy_button=0x7f06000f;
+        public static final int dummy_content=0x7f060010;
+        public static final int hello_world=0x7f060002;
+        public static final int insert_page_des=0x7f060015;
+        public static final int media_title=0x7f060007;
+        public static final int ok=0x7f060012;
+        public static final int return_local_lib=0x7f06000b;
+        /**  Justin/Edit Page 
          */
-        public static final int title_activity_main=0x7f050009;
+        public static final int save_page_button=0x7f060014;
+        public static final int story_description=0x7f060004;
+        public static final int title=0x7f060003;
+        public static final int title_activity_edit_page=0x7f06000e;
+        /**  Justin/Edit Story 
+         */
+        public static final int title_activity_main=0x7f060009;
     }
     public static final class style {
         /** 
@@ -166,10 +182,56 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
+        public static final int ButtonBar=0x7f070003;
+        public static final int ButtonBarButton=0x7f070004;
+        public static final int FullscreenActionBarStyle=0x7f070005;
+        public static final int FullscreenTheme=0x7f070002;
     }
+    public static final class styleable {
+        /** 
+         Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels.
+    
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle com.example.adventurebook:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle com.example.adventurebook:buttonBarStyle}</code></td><td></td></tr>
+           </table>
+           @see #ButtonBarContainerTheme_buttonBarButtonStyle
+           @see #ButtonBarContainerTheme_buttonBarStyle
+         */
+        public static final int[] ButtonBarContainerTheme = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.adventurebook.R.attr#buttonBarButtonStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.example.adventurebook:buttonBarButtonStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.example.adventurebook.R.attr#buttonBarStyle}
+          attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.example.adventurebook:buttonBarStyle
+        */
+        public static final int ButtonBarContainerTheme_buttonBarStyle = 0;
+    };
 }
