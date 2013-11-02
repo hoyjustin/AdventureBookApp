@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -26,6 +27,7 @@ import com.example.adventurebook.R;
 public class OfflineLibraryActivity extends Activity{
 
 	ArrayList<Story> offlineStoryLibrary;
+	String title = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,8 @@ public class OfflineLibraryActivity extends Activity{
 
 
 	private void populateListView(){
-
+		//Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
+		
 		ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		ArrayAdapter<Story> adapter = new CustomAdapter();
 		offlineLV.setAdapter(adapter);
@@ -100,6 +103,10 @@ public class OfflineLibraryActivity extends Activity{
 		menu.add("Publish Online");
 		menu.add("Edit Story");
 		menu.add("Delete Story");
+		
+		View thisItem = v;
+		TextView titleText = (TextView) v.findViewById(R.id.titleTV);
+		this.title = (String) titleText.getText();
 	}
 	
 	@Override
@@ -109,13 +116,18 @@ public class OfflineLibraryActivity extends Activity{
 		
 		if (item.getTitle() == "Publish Online"){
 			//Do Publish Online Function
+			Toast.makeText(this, "Publish " + this.title, Toast.LENGTH_LONG).show();
 		}
 		
 		else if (item.getTitle() == "Edit Story"){
 			//Do Edit Story Function
+			Toast.makeText(this, "Edit " + this.title, Toast.LENGTH_LONG).show();
+
 		}
 		else if (item.getTitle() == "Delete Story"){	
 			//Do Delete Story Function
+			Toast.makeText(this, "Delete " + this.title, Toast.LENGTH_LONG).show();
+
 		}
 		return true;
 	}
