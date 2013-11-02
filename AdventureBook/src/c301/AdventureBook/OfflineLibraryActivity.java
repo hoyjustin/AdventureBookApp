@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,20 @@ public class OfflineLibraryActivity extends Activity {
 		registerForContextMenu(offlineLV);
 	}
 
+	/**
+	 * Create options menu in action bar
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.library_options_menu, menu);
+
+	    return true;
+	}
+	
+	/**
+	 * Create long click menu
+	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
