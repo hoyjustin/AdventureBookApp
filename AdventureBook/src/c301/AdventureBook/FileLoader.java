@@ -76,22 +76,64 @@ public class FileLoader {
 		return allStories;
 	}
 	
-	
-	public void saveStory(String FILENAME, Story saveStory) {
-		try {
-			FileOutputStream fos = activityContext.openFileOutput(FILENAME,
-					0);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(saveStory);
-				Log.d("Success Save", saveStory.getTitle());
-			fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	//return false if no save was made
+	public boolean saveStory(Story saveStory, boolean overwrite) {
+		
+		String FILENAME = saveStory.getTitle() + "-" + saveStory.getAuthor() + ".sav";
+		
+		if(checkFileExists(FILENAME) == false){
+			try {
+				FileOutputStream fos = activityContext.openFileOutput(FILENAME,
+						0);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+					oos.writeObject(saveStory);
+					Log.d("Success Save", saveStory.getTitle());
+				fos.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
 		}
+		else{
+			if(overwrite == true){
+				try {
+					FileOutputStream fos = activityContext.openFileOutput(FILENAME,
+							0);
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+						oos.writeObject(saveStory);
+						Log.d("Success Save", saveStory.getTitle());
+					fos.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	// Check if file with name FILENAME already exists in the app directory
+	public boolean checkFileExists(String FILENAME) {
+		
+		String[] files = activityContext.getApplicationContext().fileList();
+		
+		for (int i = 0; i < files.length; i++) {
+			// check if file exists
+			if (files[i].toLowerCase().contains(".sav")) {
+				if(files[i].toLowerCase().equals(FILENAME)){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 }

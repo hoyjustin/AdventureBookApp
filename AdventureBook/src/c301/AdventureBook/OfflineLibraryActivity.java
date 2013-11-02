@@ -82,18 +82,16 @@ public class OfflineLibraryActivity extends Activity {
 		super.onContextItemSelected(item);
 
 		if (item.getTitle() == "Publish Online") {
-			Intent intent = new Intent(OfflineLibraryActivity.this, EditOptionActivity.class);
-			startActivity(intent);
-		}
-		
-		else if (item.getTitle() == "Publish Online") {
-			// Do Publish Online Function
+			// Do Publish Story Function
 			Toast.makeText(this, "Publish " + this.title, Toast.LENGTH_LONG)
-					.show();
+			.show();
 		}
-
 		else if (item.getTitle() == "Edit Story") {
+			
 	        Intent i = new Intent(OfflineLibraryActivity.this, EditStoryActivity.class);
+	        Bundle bundle = new Bundle();
+	        bundle.putSerializable("editStory", offlineStoryLibrary.get(1));
+	        i.putExtras(bundle);
 	        startActivity(i);
 			Toast.makeText(this, "Edit " + this.title, Toast.LENGTH_LONG)
 					.show();
