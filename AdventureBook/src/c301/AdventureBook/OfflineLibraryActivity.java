@@ -24,7 +24,7 @@ import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
-public class OfflineLibraryActivity extends Activity{
+public class OfflineLibraryActivity extends Activity {
 
 	ArrayList<Story> offlineStoryLibrary;
 	String title = "";
@@ -41,15 +41,14 @@ public class OfflineLibraryActivity extends Activity{
 		populateListView();
 	}
 
-
 	private void loadAllFiles() {
 
 		String[] files = getApplicationContext().fileList();
 
 		Log.d("length", String.valueOf(files.length));
-		for (int i=0;i < files.length;i++) {
+		for (int i = 0; i < files.length; i++) {
 			// do something with the file
-			if (files[i].toLowerCase().contains(".sav")){
+			if (files[i].toLowerCase().contains(".sav")) {
 				try {
 					FileInputStream fis = openFileInput(files[i]);
 					ObjectInputStream ois = new ObjectInputStream(fis);
@@ -74,27 +73,26 @@ public class OfflineLibraryActivity extends Activity{
 
 		return;
 	}
-	
-	public void launchNewStoryActivity(View v){
+
+	public void launchNewStoryActivity(View v) {
 		Intent i = new Intent(this, CreateStoryActivity.class);
 		startActivity(i);
 	}
-	
-	public void launchOnlineLibraryActivity(View v){
+
+	public void launchOnlineLibraryActivity(View v) {
 		Intent i = new Intent(this, OnlineLibraryActivity.class);
-		//startActivity(i);
+		// startActivity(i);
 	}
 
+	private void populateListView() {
+		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
-	private void populateListView(){
-		//Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
-		
 		ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		ArrayAdapter<Story> adapter = new CustomAdapter();
 		offlineLV.setAdapter(adapter);
-		registerForContextMenu(offlineLV);		
+		registerForContextMenu(offlineLV);
 	}
-	
+
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -103,67 +101,77 @@ public class OfflineLibraryActivity extends Activity{
 		menu.add("Publish Online");
 		menu.add("Edit Story");
 		menu.add("Delete Story");
-		
+
 		View thisItem = v;
 		TextView titleText = (TextView) v.findViewById(R.id.titleTV);
 		this.title = (String) titleText.getText();
 	}
-	
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		super.onContextItemSelected(item);
-		
-		if (item.getTitle() == "Publish Online"){
-			//Do Publish Online Function
-			Toast.makeText(this, "Publish " + this.title, Toast.LENGTH_LONG).show();
-		}
-		
-		else if (item.getTitle() == "Edit Story"){
-			//Do Edit Story Function
-			Toast.makeText(this, "Edit " + this.title, Toast.LENGTH_LONG).show();
 
+		if (item.getTitle() == "Publish Online") {
+			Intent intent = new Intent(OfflineLibraryActivity.this, EditOptionActivity.class);
+			startActivity(intent);
 		}
-		else if (item.getTitle() == "Delete Story"){	
-			//Do Delete Story Function
-			Toast.makeText(this, "Delete " + this.title, Toast.LENGTH_LONG).show();
+		
+		else if (item.getTitle() == "Publish Online") {
+			// Do Publish Online Function
+			Toast.makeText(this, "Publish " + this.title, Toast.LENGTH_LONG)
+					.show();
+		}
+
+		else if (item.getTitle() == "Edit Story") {
+			// Do Edit Story Function
+			Toast.makeText(this, "Edit " + this.title, Toast.LENGTH_LONG)
+					.show();
+		} 
+		else if (item.getTitle() == "Delete Story") {
+			// Do Delete Story Function
+			Toast.makeText(this, "Delete " + this.title, Toast.LENGTH_LONG)
+					.show();
 
 		}
 		return true;
 	}
-	
-	
-	
-	private class CustomAdapter extends ArrayAdapter<Story>{
+
+	private class CustomAdapter extends ArrayAdapter<Story> {
 
 		public CustomAdapter() {
-			super(OfflineLibraryActivity.this, R.layout.offline_library_row, offlineStoryLibrary);
+			super(OfflineLibraryActivity.this, R.layout.offline_library_row,
+					offlineStoryLibrary);
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			//Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
+			// Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
 
 			// Make sure we have a view to work with (may have been given null)
 
 			View itemView = convertView;
 			if (itemView == null) {
-				itemView = getLayoutInflater().inflate(R.layout.offline_library_row, parent, false);
+				itemView = getLayoutInflater().inflate(
+						R.layout.offline_library_row, parent, false);
 			}
 
 			Story currentStory = offlineStoryLibrary.get(position);
 
 			// Fill the view
-			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyThumbnailView);
+			ImageView imageView = (ImageView) itemView
+					.findViewById(R.id.storyThumbnailView);
 			imageView.setImageResource(currentStory.getImageIcon());
-			
+
 			TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 			titleText.setText(currentStory.getTitle());
 
-			TextView authorText = (TextView) itemView.findViewById(R.id.authorTV);
+			TextView authorText = (TextView) itemView
+					.findViewById(R.id.authorTV);
 			authorText.setText(currentStory.getAuthor());
 
-			TextView dateText = (TextView) itemView.findViewById(R.id.dateCreatedTV);
+			TextView dateText = (TextView) itemView
+					.findViewById(R.id.dateCreatedTV);
 			dateText.setText(currentStory.getDate());
 
 			return itemView;

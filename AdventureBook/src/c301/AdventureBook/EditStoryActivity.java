@@ -150,7 +150,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
            switch (item.getItemId()) {
            case ONE:
                   tv.setText("ONE");
-                  Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
+                  Intent i = new Intent(EditStoryActivity.this, ViewPageActivity.class);
                   startActivity(i);
                   break;
            case TWO:
