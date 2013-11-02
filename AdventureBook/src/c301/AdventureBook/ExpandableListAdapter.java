@@ -18,11 +18,6 @@ package c301.AdventureBook;
 
 import java.util.List;
 
-import com.example.adventurebook.R;
-
-import c301.AdventureBook.Models.Option;
-import c301.AdventureBook.Models.Page;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +25,10 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import c301.AdventureBook.Models.Option;
+import c301.AdventureBook.Models.Page;
+
+import com.example.adventurebook.R;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 

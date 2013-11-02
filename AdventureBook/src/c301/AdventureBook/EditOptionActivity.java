@@ -1,16 +1,15 @@
 /*
- * Creator: Minhal Syed*/
+ * Creator: Minhal Syed, Terence Yin Kiu Leung*/
 package c301.AdventureBook;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,12 +18,10 @@ import com.example.adventurebook.R;
 
 public class EditOptionActivity extends Activity {
 
+	final static String EXTRA_MESSAGE = "option_description";
 	ArrayAdapter<String> adapter;
 	ListView pageListView;
 	TextView gotoPageTV;
-	private EditText mOptionDescription;
-	private Button mSaveButton;
-	private Button mCancelButton;
 	
 	// For now: we can just add Dummy Pages
 	String[] pages = { "Page1", "Page2", "Page3", "Page4", "Page5",
@@ -38,7 +35,6 @@ public class EditOptionActivity extends Activity {
 		populateListView();
 		registerForClicks();
 		
-		mOptionDescription = (EditText) findViewById(R.id.editOptionDescription);
 	}
 
 	@Override
@@ -75,17 +71,26 @@ public class EditOptionActivity extends Activity {
 	}
 	
 	/**
-	 * Method handler when "Save Option" button is clicked
+	 * Method handler when "Save Option" button is clicked.
+	 * Saves the option data and returns user to the edit page activity.
 	 */
-	private void onClickSaveOption(View v){
+	@SuppressWarnings("unused")
+	public void onClickSaveOption(View v){
 		//TODO: save the option
+		Intent data = new Intent();
+		EditText editOptionDescription = (EditText) findViewById(R.id.editOptionDescription);
+		String optionDescription = editOptionDescription.getText().toString();
+		data.putExtra(EXTRA_MESSAGE, optionDescription);
+		setResult(RESULT_OK, data);
 		finish();
 	}
 	
 	/**
-	 * Method handler when "Cancel" button is pressed
+	 * Method handler when "Cancel" button is pressed.
+	 * Returns user to the edit page activity.
 	 */
-	private void onClickCancel(View v) {
+	@SuppressWarnings("unused")
+	public void onClickCancel(View v) {
 		finish();
 	}
 

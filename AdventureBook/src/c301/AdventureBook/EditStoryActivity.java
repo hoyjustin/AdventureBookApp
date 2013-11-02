@@ -27,30 +27,28 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.adventurebook.R;
-
-
-import c301.AdventureBook.Models.Option;
-import c301.AdventureBook.Models.Page;
-import c301.AdventureBook.Models.Story;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
+import c301.AdventureBook.Models.Option;
+import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.Story;
+
+import com.example.adventurebook.R;
 
 
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{

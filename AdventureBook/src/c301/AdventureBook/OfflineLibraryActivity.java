@@ -1,33 +1,23 @@
 package c301.AdventureBook;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-
-
-import c301.AdventureBook.Models.Story;
-
-import com.example.adventurebook.R;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import c301.AdventureBook.Models.Story;
+
+import com.example.adventurebook.R;
 
 public class OfflineLibraryActivity extends Activity{
 

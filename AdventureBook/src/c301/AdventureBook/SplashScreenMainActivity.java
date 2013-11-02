@@ -30,7 +30,7 @@ public class SplashScreenMainActivity extends Activity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                // Start your app main activity
+                // Start OfflineLibraryActivity
                 Intent i = new Intent(SplashScreenMainActivity.this, OfflineLibraryActivity.class);
                 startActivity(i);
  

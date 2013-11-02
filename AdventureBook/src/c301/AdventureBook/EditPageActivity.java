@@ -30,10 +30,10 @@ import android.widget.EditText;
 
 public class EditPageActivity extends Activity implements Serializable{
 
-
-	private EditText editText;
-	private Button createOption;
-	private Button savePage;
+	private static final int EDIT_OPTION = 0;
+	private EditText editStoryDescription;
+	private Button mButtonCreateOption;
+	private Button mButtonSavePage;
 	private CoverFlow coverFlow;
 	ImageAdapter coverImageAdapter;
 
@@ -44,9 +44,9 @@ public class EditPageActivity extends Activity implements Serializable{
 		super.onCreate(savedInstanceState);
 		setContentView(com.example.adventurebook.R.layout.edit_page);
 
-		editText = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
-		createOption = (Button) findViewById(R.id.new_option);
-		savePage = (Button) findViewById(R.id.save_page);
+		editStoryDescription = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
+		mButtonCreateOption = (Button) findViewById(R.id.new_option);
+		mButtonSavePage = (Button) findViewById(R.id.save_page);
 
 		coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
 		coverFlow.setAdapter(new ImageAdapter(this));
@@ -61,19 +61,34 @@ public class EditPageActivity extends Activity implements Serializable{
 		coverFlow.setAnimationDuration(1000);
 
 		
-		createOption.setOnClickListener(new View.OnClickListener() {
+		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				Intent i = new Intent(EditPageActivity.this, EditOptionActivity.class);
-				startActivity(i);
+				Intent intent = new Intent(EditPageActivity.this, EditOptionActivity.class);
+				startActivityForResult(intent, EDIT_OPTION);
 			}
 		});
 
-		savePage.setOnClickListener(new View.OnClickListener() {
+		mButtonSavePage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				finish();
 			}
 		});
 	}
+
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == EDIT_OPTION) {
+			if (resultCode == RESULT_OK) {
+				// Retrieve the option description that the user entered in EditOptionActivity
+				// after they click SaveOption
+				String optionDescription = data.getExtras().getString("option_description");
+				editStoryDescription.setText(optionDescription);
+			}
+		}
+	}
+	
 
 
 }
