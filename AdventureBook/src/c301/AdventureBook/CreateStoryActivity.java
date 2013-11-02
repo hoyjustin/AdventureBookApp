@@ -107,10 +107,22 @@ public class CreateStoryActivity extends Activity{
 
             // Add the buttons
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                       public void onClick(DialogInterface dialog, int id) {
-                           // User clicked OK button
-                       }
-                   });
+            	 public void onClick(DialogInterface dialog, int id) {
+            			FileLoader fLoader2 = new FileLoader(CreateStoryActivity.this);
+            			fLoader2.saveStory(someStory, true);
+               			Toast.makeText(CreateStoryActivity.this, "Story Created: " + storyTitle, Toast.LENGTH_LONG).show();
+            			Intent i = new Intent(CreateStoryActivity.this, EditStoryActivity.class);
+            			Bundle bundle = new Bundle();
+            			bundle.putSerializable("someStory", someStory);
+            			i.putExtras(bundle);
+            			startActivityForResult(i, ACTIVITY_EDIT_STORY);
+                }
+            });
+            builder.setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked Cancel button
+                }
+            });
 
             // 2. Chain together various setter methods to set the dialog characteristics
             builder.setMessage(R.string.alert_story_exists);
