@@ -42,7 +42,7 @@ public class OnlineLibraryActivity extends Activity{
 	private class CustomAdapter extends ArrayAdapter<Story>{
 
 		public CustomAdapter() {
-			super(OnlineLibraryActivity.this, R.layout.online_story_list_row, offlineStoryLibrary);
+			super(OnlineLibraryActivity.this, R.layout.complex_story_list_row, offlineStoryLibrary);
 			// TODO Auto-generated constructor stub
 		}
 		
@@ -54,7 +54,7 @@ public class OnlineLibraryActivity extends Activity{
 			
 			View itemView = convertView;
 			if (itemView == null) {
-				itemView = getLayoutInflater().inflate(R.layout.online_story_list_row, parent, false);
+				itemView = getLayoutInflater().inflate(R.layout.complex_story_list_row, parent, false);
 			}
 			
 			Story currentStory = offlineStoryLibrary.get(position);

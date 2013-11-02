@@ -7,8 +7,12 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -30,17 +34,11 @@ public class OfflineLibraryActivity extends Activity{
 		loadAllFiles();
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.online_library);
+		setContentView(R.layout.offline_library);
 
 		populateListView();
 	}
-	/*
-	private void createFakeData() {
-		//Dummy Data:
 
-
-
-	}*/
 
 	private void loadAllFiles() {
 
@@ -74,18 +72,60 @@ public class OfflineLibraryActivity extends Activity{
 
 		return;
 	}
+	
+	public void launchNewStoryActivity(View v){
+		Intent i = new Intent(this, CreateStoryActivity.class);
+		startActivity(i);
+	}
+	
+	public void launchOnlineLibraryActivity(View v){
+		Intent i = new Intent(this, OnlineLibraryActivity.class);
+		//startActivity(i);
+	}
+
 
 	private void populateListView(){
 
-		ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
+		ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		ArrayAdapter<Story> adapter = new CustomAdapter();
-		onlineLV.setAdapter(adapter);
+		offlineLV.setAdapter(adapter);
+		registerForContextMenu(offlineLV);		
 	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.add("Publish Online");
+		menu.add("Edit Story");
+		menu.add("Delete Story");
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		super.onContextItemSelected(item);
+		
+		if (item.getTitle() == "Publish Online"){
+			//Do Publish Online Function
+		}
+		
+		else if (item.getTitle() == "Edit Story"){
+			//Do Edit Story Function
+		}
+		else if (item.getTitle() == "Delete Story"){	
+			//Do Delete Story Function
+		}
+		return true;
+	}
+	
+	
+	
 	private class CustomAdapter extends ArrayAdapter<Story>{
 
 		public CustomAdapter() {
-			super(OfflineLibraryActivity.this, R.layout.online_story_list_row, offlineStoryLibrary);
-			// TODO Auto-generated constructor stub
+			super(OfflineLibraryActivity.this, R.layout.offline_library_row, offlineStoryLibrary);
 		}
 
 		@Override
@@ -96,24 +136,25 @@ public class OfflineLibraryActivity extends Activity{
 
 			View itemView = convertView;
 			if (itemView == null) {
-				itemView = getLayoutInflater().inflate(R.layout.online_story_list_row, parent, false);
+				itemView = getLayoutInflater().inflate(R.layout.offline_library_row, parent, false);
 			}
 
 			Story currentStory = offlineStoryLibrary.get(position);
 
 			// Fill the view
-			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyImageView);
+			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyThumbnailView);
 			imageView.setImageResource(currentStory.getImageIcon());
+			
+			TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
+			titleText.setText(currentStory.getTitle());
 
 			TextView authorText = (TextView) itemView.findViewById(R.id.authorTV);
 			authorText.setText(currentStory.getAuthor());
 
-			TextView dateText = (TextView) itemView.findViewById(R.id.dateCreatedTv);
+			TextView dateText = (TextView) itemView.findViewById(R.id.dateCreatedTV);
 			dateText.setText(currentStory.getDate());
 
 			return itemView;
 		}
 	}
-
-	//New line added.
 }
