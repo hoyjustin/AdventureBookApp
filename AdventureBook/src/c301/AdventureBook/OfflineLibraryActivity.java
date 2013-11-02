@@ -33,45 +33,14 @@ public class OfflineLibraryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		offlineStoryLibrary = new ArrayList<Story>();
-		loadAllFiles();
+		
+		FileLoader fLoader = new FileLoader(this);
+		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
 
 		populateListView();
-	}
-
-	private void loadAllFiles() {
-
-		String[] files = getApplicationContext().fileList();
-
-		Log.d("length", String.valueOf(files.length));
-		for (int i = 0; i < files.length; i++) {
-			// do something with the file
-			if (files[i].toLowerCase().contains(".sav")) {
-				try {
-					FileInputStream fis = openFileInput(files[i]);
-					ObjectInputStream ois = new ObjectInputStream(fis);
-					while (true) {
-						Story someStory = (Story) ois.readObject();
-						offlineStoryLibrary.add(someStory);
-						Log.d("loaded", someStory.getTitle());
-					}
-
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return;
 	}
 
 	public void launchNewStoryActivity(View v) {
@@ -124,7 +93,8 @@ public class OfflineLibraryActivity extends Activity {
 		}
 
 		else if (item.getTitle() == "Edit Story") {
-			// Do Edit Story Function
+	        Intent i = new Intent(OfflineLibraryActivity.this, EditStoryActivity.class);
+	        startActivity(i);
 			Toast.makeText(this, "Edit " + this.title, Toast.LENGTH_LONG)
 					.show();
 		} 

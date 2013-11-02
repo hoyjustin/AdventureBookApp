@@ -54,8 +54,6 @@ import com.example.adventurebook.R;
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
-	private static final String FILENAME = "file.sav";
-	private static final String FILENAME2 = "file2.sav";
     private final static int ONE = 1;
     private final static int TWO = 2;
 	
@@ -86,12 +84,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		popupMenu.setOnMenuItemClickListener(this);
 		
 	    someStory = (Story) getIntent().getSerializableExtra("someStory");
-	    
-	    //creating 2nd story test dummy
-	    //someStory2 = new Story("storyTitle", "storyDescription", "someauthor2", "formattedDate", 0);
-	    
-		saveStory();
-		//saveStory2();
 		
         txtView.setText("Title: " + someStory.getTitle() + "\n" +
         		"Description: " + someStory.getDescription() + "\n" +
@@ -150,7 +142,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
            switch (item.getItemId()) {
            case ONE:
                   tv.setText("ONE");
-                  Intent i = new Intent(EditStoryActivity.this, ViewPageActivity.class);
+                  Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
                   startActivity(i);
                   break;
            case TWO:
@@ -280,64 +272,5 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         }
         return super.onContextItemSelected(item);
     }
-
-    
-	private Story loadFromFile() {
-
-		try {
-			FileInputStream fis = openFileInput(FILENAME);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			while (true) {
-				someStory = (Story) ois.readObject();
-				Log.d("load", "Success");
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return someStory;
-	}
-    
-	private void saveStory() {
-		try {
-			FileOutputStream fos = openFileOutput(FILENAME,
-					0);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(someStory);
-				Log.d("save", "Success");
-			fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	/*
-	private void saveStory2() {
-		try {
-			FileOutputStream fos = openFileOutput(FILENAME2,
-					0);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(someStory2);
-				Log.d("save", "Success");
-			fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
 	
 }

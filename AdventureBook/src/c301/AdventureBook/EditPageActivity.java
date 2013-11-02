@@ -28,7 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class ViewPageActivity extends Activity implements Serializable{
+public class EditPageActivity extends Activity implements Serializable{
  
 	private static final int EDIT_OPTION = 0;
 	private EditText editStoryDescription;
@@ -42,7 +42,7 @@ public class ViewPageActivity extends Activity implements Serializable{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(com.example.adventurebook.R.layout.view_page);
+		setContentView(com.example.adventurebook.R.layout.edit_page);
 
 		editStoryDescription = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
@@ -63,7 +63,7 @@ public class ViewPageActivity extends Activity implements Serializable{
 		
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				Intent intent = new Intent(ViewPageActivity.this, EditOptionActivity.class);
+				Intent intent = new Intent(EditPageActivity.this, EditOptionActivity.class);
 				startActivityForResult(intent, EDIT_OPTION);
 			}
 		});

@@ -86,7 +86,7 @@ public class CreateStoryActivity extends Activity{
 	private void createStory() {
 		getUserText();
 		someStory = new Story(storyTitle, storyDescription, "someauthor", formattedDate, 0);
-		
+		saveStory();
         Intent i = new Intent(this, EditStoryActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("someStory", someStory);
