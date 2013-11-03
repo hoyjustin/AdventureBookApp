@@ -90,7 +90,7 @@ public class TakePhotoActivity extends Activity{
 		Intent intent = new Intent();		
 		intent.putExtra("path", show_path);
 		setResult(RESULT_OK, intent);
-		//finish();
+		finish();
 		
 	}
 	@Override
