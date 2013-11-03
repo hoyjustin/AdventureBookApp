@@ -20,7 +20,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -35,13 +37,14 @@ import com.example.adventurebook.R;
 public class OfflineLibraryActivity extends Activity {
 
 	ArrayList<Story> offlineStoryLibrary;
-	String title = "";
+	// String title = "";
+	ArrayAdapter<Story> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		offlineStoryLibrary = new ArrayList<Story>();
-		
+
 		FileLoader fLoader = new FileLoader(this);
 		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 
@@ -65,22 +68,25 @@ public class OfflineLibraryActivity extends Activity {
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
-		ArrayAdapter<Story> adapter = new CustomAdapter();
+		adapter = new CustomAdapter();
 		offlineLV.setAdapter(adapter);
 		registerForContextMenu(offlineLV);
-		
-		
-		// tutorial used = http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
-		
-		offlineLV.setOnItemClickListener(new OnItemClickListener() {
-	        public void onItemClick(AdapterView<?> parent, View view,
-	                int position, long id) {
 
-	       Story str=(Story) offlineLV.getItemAtPosition(position);
-	       Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
-	       }
-	    });
-		
+		// tutorial used =
+		// http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
+		// When Clicked on the list item, we can return a story.
+		offlineLV.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				// This is the story object that is returned when a list item is
+				// clicked.
+				Story str = (Story) offlineLV.getItemAtPosition(position);
+				Toast.makeText(getBaseContext(), str.getTitle(),
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
 	}
 
 	/**
@@ -88,20 +94,19 @@ public class OfflineLibraryActivity extends Activity {
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.library_options_menu, menu);
-	    
-	 // Associate searchable configuration with the SearchView
-	    SearchManager searchManager =
-	           (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	    SearchView searchView =
-	            (SearchView) menu.findItem(R.id.search).getActionView();
-	    searchView.setSearchableInfo(
-	            searchManager.getSearchableInfo(getComponentName()));
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.library_options_menu, menu);
 
-	    return true;
+		// Associate searchable configuration with the SearchView
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		SearchView searchView = (SearchView) menu.findItem(R.id.search)
+				.getActionView();
+		searchView.setSearchableInfo(searchManager
+				.getSearchableInfo(getComponentName()));
+
+		return true;
 	}
-	
+
 	/**
 	 * Create long click menu
 	 */
@@ -115,34 +120,51 @@ public class OfflineLibraryActivity extends Activity {
 		menu.add("Delete Story");
 
 		View thisItem = v;
-		TextView titleText = (TextView) v.findViewById(R.id.titleTV);
-		this.title = (String) titleText.getText();
+		// TextView titleText = (TextView) v.findViewById(R.id.titleTV);
+		// this.title = (String) titleText.getText();
+
+		// I am trying to see if I can get the story object directly, rather
+		// than reloading it.
+		// tutorial from:
+		// http://stackoverflow.com/questions/2321332/detecting-which-selected-item-in-a-listview-spawned-the-contextmenu-android
+
+		// Get the info on which item was selected
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+
+		// Retrieve the item that was clicked on
+		Object item = adapter.getItem(info.position);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		super.onContextItemSelected(item);
+		// super.onContextItemSelected(item);
+
+		// Here's how you can get the correct item in onContextItemSelected()
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+
+		// Get the Story that is clicked on the listView.
+		Story storyClicked = adapter.getItem(info.position);
 
 		if (item.getTitle() == "Publish Online") {
 			// Do Publish Story Function
-			Toast.makeText(this, "Publish " + this.title, Toast.LENGTH_LONG)
-			.show();
-		}
-		else if (item.getTitle() == "Edit Story") {
-			
-	        Intent i = new Intent(OfflineLibraryActivity.this, EditStoryActivity.class);
-	        Bundle bundle = new Bundle();
-	        bundle.putSerializable("editStory", offlineStoryLibrary.get(1));
-	        i.putExtras(bundle);
-	        startActivity(i);
-			Toast.makeText(this, "Edit " + this.title, Toast.LENGTH_LONG)
-					.show();
-		} 
-		else if (item.getTitle() == "Delete Story") {
+			Toast.makeText(this, "Publish " + storyClicked.getTitle(),
+					Toast.LENGTH_LONG).show();
+		} else if (item.getTitle() == "Edit Story") {
+
+			Intent i = new Intent(OfflineLibraryActivity.this,
+					EditStoryActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("editStory", storyClicked);
+			i.putExtras(bundle);
+			startActivity(i);
+			// Toast.makeText(this, "Edit " + storyClicked.getTitle(),
+			// Toast.LENGTH_LONG)
+			// .show();
+		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
-			Toast.makeText(this, "Delete " + this.title, Toast.LENGTH_LONG)
-					.show();
+			Toast.makeText(this, "Delete " + storyClicked.getTitle(),
+					Toast.LENGTH_LONG).show();
 
 		}
 		return true;
@@ -172,8 +194,9 @@ public class OfflineLibraryActivity extends Activity {
 			// Fill the view
 			ImageView imageView = (ImageView) itemView
 					.findViewById(R.id.storyThumbnailView);
-			
-			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory.getImagePath()));
+
+			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
+					.getImagePath()));
 
 			TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 			titleText.setText(currentStory.getTitle());
