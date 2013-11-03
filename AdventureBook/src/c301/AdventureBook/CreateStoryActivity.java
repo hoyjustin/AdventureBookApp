@@ -57,7 +57,7 @@ public class CreateStoryActivity extends Activity{
 	String storyDescription;
 	String formattedDate;
 	ImageView image;
-	String show_path = "";
+	String show_path;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

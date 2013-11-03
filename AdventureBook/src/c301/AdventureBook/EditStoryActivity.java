@@ -90,7 +90,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         		"Author: " + someStory.getAuthor() + "\n" +
         		"Date: " + someStory.getDate() + "\n");
 		
-        //fillData();
+        fillData();
         
         createPage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {

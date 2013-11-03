@@ -35,19 +35,15 @@ import c301.AdventureBook.Models.Story;
 import com.example.adventurebook.R;
 
 public class OfflineLibraryActivity extends Activity {
-	private static final int ACTIVITY_EDIT_STORY=0;
+	private static final int ACTIVITY_EDIT_STORY = 0;
 
 	ArrayList<Story> offlineStoryLibrary;
-	// String title = "";
 	ArrayAdapter<Story> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		offlineStoryLibrary = new ArrayList<Story>();
-
-		FileLoader fLoader = new FileLoader(this);
-		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
@@ -66,6 +62,10 @@ public class OfflineLibraryActivity extends Activity {
 	}
 
 	private void populateListView() {
+
+		FileLoader fLoader = new FileLoader(this);
+		offlineStoryLibrary = fLoader.loadAllStoryFiles();
+
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
@@ -163,9 +163,13 @@ public class OfflineLibraryActivity extends Activity {
 			// .show();
 		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
-			Toast.makeText(this, "Delete " + storyClicked.getTitle(),
-					Toast.LENGTH_LONG).show();
+			FileLoader fLoader = new FileLoader(this);
 
+			fLoader.deleteStory(storyClicked);
+
+			populateListView();
+			
+			Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 		}
 		return true;
 	}

@@ -22,6 +22,7 @@ public class FileLoader {
 	}
 	
 	
+	
 	public Story loadFromFile(String FILENAME) {
 		try {
 			FileInputStream fis = activityContext.openFileInput(FILENAME);
@@ -76,6 +77,11 @@ public class FileLoader {
 		return allStories;
 	}
 	
+	public void deleteStory(Story story){
+		String FILENAME = story.getTitle() + "-" + story.getAuthor() + ".sav";
+		activityContext.deleteFile(FILENAME);
+	}
+
 	//return false if no save was made
 	public boolean saveStory(Story saveStory, boolean overwrite) {
 		
