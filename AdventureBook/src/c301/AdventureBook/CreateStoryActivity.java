@@ -57,7 +57,8 @@ public class CreateStoryActivity extends Activity{
 	String storyDescription;
 	String formattedDate;
 	ImageView image;
-	String show_path;
+	String show_path = "";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -104,7 +105,7 @@ public class CreateStoryActivity extends Activity{
 	
 	private void createStory() {
 		getUserText();
-		someStory = new Story(storyTitle, storyDescription, storyAuthor, formattedDate, 0);
+		someStory = new Story(storyTitle, storyDescription, storyAuthor, formattedDate, show_path);
 		FileLoader fLoader = new FileLoader(this);
 		
 		boolean saveSuccess = fLoader.saveStory(someStory, false);

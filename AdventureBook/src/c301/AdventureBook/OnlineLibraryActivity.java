@@ -3,6 +3,7 @@ package c301.AdventureBook;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,8 @@ public class OnlineLibraryActivity extends Activity{
 			
 			// Fill the view
 			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyImageView);
-			imageView.setImageResource(currentStory.getImageIcon());
+			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory.getImagePath()));
+
 			
 			TextView authorText = (TextView) itemView.findViewById(R.id.authorTV);
 			authorText.setText(currentStory.getAuthor());

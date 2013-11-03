@@ -14,15 +14,15 @@ public class Story implements Serializable{
 	private String description;
 	private String author;
 	private String date;
-	int imageIcon;
+	private String imagePath;
 	public List<Page> pages = new ArrayList<Page>();
 	
-	public Story(String title, 	String description, String author, String date, int imageIcon){
+	public Story(String title, 	String description, String author, String date, String imagePath){
 		this.title = title;
 		this.description = description;
 		this.author = author;
 		this.date = date;
-		this.imageIcon = R.drawable.fish;
+		this.imagePath = imagePath;//R.drawable.fish;
 	}
 	
 	/**
@@ -66,11 +66,15 @@ public class Story implements Serializable{
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public int getImageIcon() {
-		return imageIcon;
+
+
+
+	public String getImagePath() {
+		return imagePath;
 	}
-	public void setImageIcon(int imageIcon) {
-		this.imageIcon = imageIcon;
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public List<Page> getPages() {

@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -171,7 +172,8 @@ public class OfflineLibraryActivity extends Activity {
 			// Fill the view
 			ImageView imageView = (ImageView) itemView
 					.findViewById(R.id.storyThumbnailView);
-			imageView.setImageResource(currentStory.getImageIcon());
+			
+			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory.getImagePath()));
 
 			TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 			titleText.setText(currentStory.getTitle());
