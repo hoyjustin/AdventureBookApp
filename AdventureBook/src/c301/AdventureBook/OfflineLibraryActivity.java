@@ -168,7 +168,7 @@ public class OfflineLibraryActivity extends Activity {
 			fLoader.deleteStory(storyClicked);
 
 			populateListView();
-			
+
 			Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 		}
 		return true;
@@ -199,9 +199,12 @@ public class OfflineLibraryActivity extends Activity {
 			ImageView imageView = (ImageView) itemView
 					.findViewById(R.id.storyThumbnailView);
 
-			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
-					.getImagePath()));
-
+			if (currentStory.getImagePath() == null) {
+				imageView.setImageResource(R.drawable.default_image);
+			} else {
+				imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
+						.getImagePath()));
+			}
 			TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 			titleText.setText(currentStory.getTitle());
 

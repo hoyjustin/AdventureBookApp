@@ -58,7 +58,6 @@ public class CreateStoryActivity extends Activity{
 	String formattedDate;
 	ImageView image;
 	String show_path;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -163,7 +162,9 @@ public class CreateStoryActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK){
+			
 			show_path = data.getStringExtra("path");
+			
 			image.setImageBitmap(BitmapFactory.decodeFile(show_path));
 			
 		}
