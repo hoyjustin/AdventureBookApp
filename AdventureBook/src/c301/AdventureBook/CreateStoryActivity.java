@@ -30,18 +30,21 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class CreateStoryActivity extends Activity{
 	private static final int ACTIVITY_EDIT_STORY=0;
-	
+	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
 	private EditText mStoryTitle;
 	private EditText mStoryAuthor;
 	private EditText mStoryDescription;
@@ -53,13 +56,15 @@ public class CreateStoryActivity extends Activity{
 	String storyAuthor;
 	String storyDescription;
 	String formattedDate;
-	
-	
+	ImageView image;
+	String show_path;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.create_story);
+		
+		image = (ImageView) findViewById(R.id.imageView1);
 		
 		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
 
@@ -70,7 +75,14 @@ public class CreateStoryActivity extends Activity{
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 		
 		setDate();
-	
+		image.setOnClickListener(new OnClickListener() {		
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			    Intent intent = new Intent(getApplicationContext(), TakePhotoActivity.class);
+			    startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
+			}
+		});
 		createStoryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createStory();
@@ -144,5 +156,14 @@ public class CreateStoryActivity extends Activity{
 		storyAuthor = mStoryAuthor.getText().toString();
 		storyDescription = mStoryDescription.getText().toString();
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK){
+			show_path = data.getStringExtra("path");
+			image.setImageBitmap(BitmapFactory.decodeFile(show_path));
+			
+		}
+	}
 }
