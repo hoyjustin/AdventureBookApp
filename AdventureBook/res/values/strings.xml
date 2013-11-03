@@ -16,7 +16,7 @@
     
     
 <!-- Create Story -->
-    <string name="alert_story_exists">Story with the same title and author already exists!</string>
+    <string name="alert_story_exists">Story with the same title and author already exists! Do you want to overwrite the existing story?</string>
     
 <!-- Justin/Edit Story -->
     <string name="title_activity_main">MainActivity</string>
