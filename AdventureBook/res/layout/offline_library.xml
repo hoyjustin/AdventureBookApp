@@ -38,15 +38,17 @@
             android:id="@+id/createNewStoryBtn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Create New Story"
-            android:onClick="launchNewStoryActivity" />
+            android:text="Add Story"
+            android:onClick="launchNewStoryActivity"
+            style="?android:attr/buttonStyleSmall" />
 
         <Button
             android:id="@+id/goToOnlineLibraryBtn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="View Online Library"
-            android:onClick="launchOnlineLibraryActivity" />
+            android:text="Online Library"
+            android:onClick="launchOnlineLibraryActivity"
+            style="?android:attr/buttonStyleSmall" />
     </LinearLayout>
 
 </LinearLayout>
