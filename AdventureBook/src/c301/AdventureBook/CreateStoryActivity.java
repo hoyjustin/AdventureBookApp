@@ -43,12 +43,14 @@ public class CreateStoryActivity extends Activity{
 	private static final int ACTIVITY_EDIT_STORY=0;
 	
 	private EditText mStoryTitle;
+	private EditText mStoryAuthor;
 	private EditText mStoryDescription;
 	private TextView mDate;
 	private Button mButtonCreateStory;
 	
 	private Story someStory;
 	String storyTitle;
+	String storyAuthor;
 	String storyDescription;
 	String formattedDate;
 	
@@ -62,6 +64,8 @@ public class CreateStoryActivity extends Activity{
 		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
 
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
+		
+		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 		
@@ -88,7 +92,7 @@ public class CreateStoryActivity extends Activity{
 	
 	private void createStory() {
 		getUserText();
-		someStory = new Story(storyTitle, storyDescription, "someauthor", formattedDate, 0);
+		someStory = new Story(storyTitle, storyDescription, storyAuthor, formattedDate, 0);
 		FileLoader fLoader = new FileLoader(this);
 		
 		boolean saveSuccess = fLoader.saveStory(someStory, false);
@@ -137,6 +141,7 @@ public class CreateStoryActivity extends Activity{
 	private void getUserText() {
 		
 		storyTitle = mStoryTitle.getText().toString();
+		storyAuthor = mStoryAuthor.getText().toString();
 		storyDescription = mStoryDescription.getText().toString();
 	}
 	

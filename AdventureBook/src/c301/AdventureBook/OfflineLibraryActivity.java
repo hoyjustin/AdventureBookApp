@@ -19,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -61,10 +63,23 @@ public class OfflineLibraryActivity extends Activity {
 	private void populateListView() {
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
-		ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
+		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		ArrayAdapter<Story> adapter = new CustomAdapter();
 		offlineLV.setAdapter(adapter);
 		registerForContextMenu(offlineLV);
+		
+		
+		// tutorial used = http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
+		
+		offlineLV.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View view,
+	                int position, long id) {
+
+	       Story str=(Story) offlineLV.getItemAtPosition(position);
+	       Toast.makeText(getBaseContext(),str.getTitle(),Toast.LENGTH_SHORT).show();
+	       }
+	    });
+		
 	}
 
 	/**

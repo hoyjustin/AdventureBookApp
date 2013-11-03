@@ -109,7 +109,7 @@
 
         <!-- Author box -->
 
-        <TextView
+        <EditText
             android:id="@+id/authorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:background="@drawable/border"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Author: " />
+            android:hint="Author: " />
 
         <!-- Date box -->
 
