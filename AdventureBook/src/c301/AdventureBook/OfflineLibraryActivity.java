@@ -35,6 +35,7 @@ import c301.AdventureBook.Models.Story;
 import com.example.adventurebook.R;
 
 public class OfflineLibraryActivity extends Activity {
+	private static final int ACTIVITY_EDIT_STORY=0;
 
 	ArrayList<Story> offlineStoryLibrary;
 	// String title = "";
@@ -152,12 +153,11 @@ public class OfflineLibraryActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 		} else if (item.getTitle() == "Edit Story") {
 
-			Intent i = new Intent(OfflineLibraryActivity.this,
-					EditStoryActivity.class);
+			Intent i = new Intent(this, EditStoryActivity.class);
 			Bundle bundle = new Bundle();
-			bundle.putSerializable("editStory", storyClicked);
+			bundle.putSerializable("someStory", storyClicked);
 			i.putExtras(bundle);
-			startActivity(i);
+			startActivityForResult(i, ACTIVITY_EDIT_STORY);
 			// Toast.makeText(this, "Edit " + storyClicked.getTitle(),
 			// Toast.LENGTH_LONG)
 			// .show();
