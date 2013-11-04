@@ -17,12 +17,6 @@
 
 package c301.AdventureBook;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +26,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,73 +45,76 @@ import com.example.adventurebook.R;
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
-    private final static int ONE = 1;
-    private final static int TWO = 2;
-	
+	private final static int ONE = 1;
+	private final static int TWO = 2;
+
 	private ExpandableListAdapter adpt;
 	private ExpandableListView lstView;
-	private TextView txtView;
+	private TextView storyView;
+	private TextView pageView;
 	private Button createPage;
 	private Button returnLocalLib;
 	private PopupMenu popupMenu;
-	
+
 	private Story someStory;
-	//private Story someStory2;
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(com.example.adventurebook.R.layout.edit_story);
-        
-        txtView = (TextView)findViewById(com.example.adventurebook.R.id.storyView);
-        lstView = (ExpandableListView)findViewById(R.id.expList);
-      
+	private Page somePage;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(com.example.adventurebook.R.layout.edit_story);
+
+		storyView = (TextView)findViewById(com.example.adventurebook.R.id.storyView);
+		pageView = (TextView)findViewById(com.example.adventurebook.R.id.pageView);
+		lstView = (ExpandableListView)findViewById(R.id.expList);
+
 		createPage = (Button) findViewById(R.id.create_new_page);
 		returnLocalLib = (Button) findViewById(R.id.return_local_lib);
-		
+
 		popupMenu = new PopupMenu(this, findViewById(R.id.expList));
 		popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Edit Page");
 		popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Delete Page");
 		popupMenu.setOnMenuItemClickListener(this);
-		
-	    someStory = (Story) getIntent().getSerializableExtra("someStory");
-		
-        txtView.setText("Title: " + someStory.getTitle() + "\n" +
-        		"Description: " + someStory.getDescription() + "\n" +
-        		"Author: " + someStory.getAuthor() + "\n" +
-        		"Date: " + someStory.getDate() + "\n");
-		
-        fillData();
-        
-        createPage.setOnClickListener(new View.OnClickListener() {
+
+		someStory = (Story) getIntent().getSerializableExtra("someStory");
+
+		storyView.setText("Title: " + someStory.getTitle() + "\n" +
+				"Description: " + someStory.getDescription() + "\n" +
+				"Author: " + someStory.getAuthor() + "\n" +
+				"Date: " + someStory.getDate() + "\n");
+
+		fillData();
+
+		createPage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createPage();
-				FileLoader fLoader = new FileLoader(EditStoryActivity.this);
-				fLoader.saveStory(someStory, true);		
+				fillData();
 			}
 		});
-        
-        returnLocalLib.setOnClickListener(new View.OnClickListener() {
+
+		returnLocalLib.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				
-		        Intent i = new Intent(EditStoryActivity.this, OfflineLibraryActivity.class);
-		        startActivity(i);
+
+				Intent i = new Intent(EditStoryActivity.this, OfflineLibraryActivity.class);
+				startActivity(i);
 			}
 		});
-        
-        lstView.setOnGroupExpandListener(new OnGroupExpandListener()
-        {  
+
+		lstView.setOnGroupExpandListener(new OnGroupExpandListener()
+		{  
 			@Override
 			public void onGroupExpand(int position) {
-				Page mainPage= (Page)adpt.getGroup(position);
-		        popupMenu.show();
-		        
+				somePage = (Page)adpt.getGroup(position);
+				pageView.setText("Page: " + somePage.getTitle() + "\n" +
+						somePage.getTextContent());
+				popupMenu.show();
+
 
 			}
-        });
-        
-        
-        /*
+		});
+
+
+		/*
         lstView.setOnChildClickListener(new OnChildClickListener() {
             public boolean onChildClick(ExpandableListView parent, View v,
                     int groupPosition, int childPosition, long id) {
@@ -131,129 +125,85 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
             }
         });
-        */
-    }
-
-    
-    
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-           TextView tv = (TextView) findViewById(R.id.storyView);
-           switch (item.getItemId()) {
-           case ONE:
-                  tv.setText("ONE");
-                  Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
-                  startActivity(i);
-                  break;
-           case TWO:
-                  tv.setText("TWO");
-                  
-               // 1. Instantiate an AlertDialog.Builder with its constructor
-                  AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryActivity.this);
-
-               // Add the buttons
-                  builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                             public void onClick(DialogInterface dialog, int id) {
-                                 // User clicked OK button
-                             }
-                         });
-                  builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                             public void onClick(DialogInterface dialog, int id) {
-                                 // User cancelled the dialog
-                             }
-                         });
-
-                  // 2. Chain together various setter methods to set the dialog characteristics
-                  builder.setMessage(R.string.delete_page_confirm);
-
-                  // 3. Get the AlertDialog from create()
-                  AlertDialog dialog = builder.create();
-                  dialog.show();
-                  break;
-           }
-           return false;
-
-    }
-    
-    private void fillData() {
-	//load model here
-	List<Page> storyPages = someStory.getPages();
-    
-    adpt = new ExpandableListAdapter(this, lstView, storyPages);
-    
-    lstView.setAdapter(adpt);
+		 */
 	}
 
-	//fill story with temp data
-	private void tempData(){
-    	  	
-    	List<Option> lstdm = new ArrayList<Option>();
-    	Option dm1 = new Option();
 
-    	//Page 1
-    	Page model = new Page();
-    	model.setTitle("PAGE 1");
-    	model.setOptions(lstdm);
-    	
-    	dm1 = new Option();
-    	dm1.setGoToPage("Page 2");
-    	lstdm.add(dm1);
-    	
-    	dm1 = new Option();
-    	dm1.setGoToPage("Page 3");
-    	lstdm.add(dm1);
-    	
-    	someStory.addPage(model);
- 
 
-    	//Page 2  	
-    	model = new Page();
-    	model.setTitle("PAGE 2");
-    	
-    	lstdm = new ArrayList<Option>();
-    	
-    	dm1 = new Option();
-    	dm1.setGoToPage("Page 3");
-    	lstdm.add(dm1);
-    	
-    	model.setOptions(lstdm);
-    	someStory.addPage(model);
-    	
-    	//Page 3
-    	model = new Page();
-    	model.setTitle("PAGE 3");
-    	
-    	lstdm = new ArrayList<Option>();
-    	
-    	dm1 = new Option();
-    	dm1.setGoToPage("END");
-    	lstdm.add(dm1);
-    	
-    	model.setOptions(lstdm);
-    	someStory.addPage(model);
-    	    	    	    	  
-    }
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+		switch (item.getItemId()) {
+		case ONE:
+			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
+			startActivity(i);
+			break;
+		case TWO:
 
-    private void createPage() {
-    	List<Option> lstdm = new ArrayList<Option>();
-    	Option dm1 = new Option();
-    	
-    	//New Page
-    	Page model = new Page();
-    	model.setTitle("NEW PAGE");
-    	lstdm = new ArrayList<Option>();
-    	
-    	dm1 = new Option();
-    	dm1.setGoToPage("END");
-    	lstdm.add(dm1);
-    	
-    	model.setOptions(lstdm);
-    	someStory.addPage(model);
-    	
-        fillData();
-    	
-    }
-    
+			// 1. Instantiate an AlertDialog.Builder with its constructor
+			AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryActivity.this);
+
+			// Add buttons
+			builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					// User clicked OK button
+					deletePage();
+					fillData();
+				}
+			});
+			builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					// User cancelled the dialog
+				}
+			});
+
+			// 2. Chain together various setter methods to set the dialog characteristics
+			builder.setMessage(R.string.delete_page_confirm);
+
+			// 3. Get the AlertDialog from create()
+			AlertDialog dialog = builder.create();
+			dialog.show();
+			break;
+		}
+		return false;
+
+	}
+
+	private void fillData() {
+		//load model here
+		List<Page> storyPages = someStory.getPages();
+
+		adpt = new ExpandableListAdapter(this, lstView, storyPages);
+
+		lstView.setAdapter(adpt);
+	}
+
+	private void createPage() {
+		List<Option> lstdm = new ArrayList<Option>();
+		Option dm1 = new Option();
+
+		//New Page
+		Page model = new Page("NEW PAGE", "");
+		lstdm = new ArrayList<Option>();
+
+		dm1 = new Option();
+		dm1.setGoToPage("END");
+		lstdm.add(dm1);
+
+		model.setOptions(lstdm);
+		someStory.addPage(model);
+
+		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
+		fLoader.saveStory(someStory, true);	
+
+	}
+
+	private void deletePage() {
+		someStory.deletePage(somePage);
+		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
+		fLoader.saveStory(someStory, true);		
+	}
+
+	/* Do we want a context menu instead?
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenuInfo menuInfo) {
@@ -272,5 +222,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         }
         return super.onContextItemSelected(item);
     }
-	
+	 */
+
 }
