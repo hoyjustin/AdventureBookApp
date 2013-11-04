@@ -87,7 +87,8 @@ public class FileLoader {
 		activityContext.deleteFile(FILENAME);
 	}
 
-	//return false if no save was made
+	//set overwrite to true(for editing purposes), where the existing file in the storage is overwritten if it already exists
+	//return false if no save was made, otherwise true
 	public boolean saveStory(Story saveStory, boolean overwrite) {
 		
 		String FILENAME = saveStory.getTitle() + "-" + saveStory.getAuthor() + ".sav";
