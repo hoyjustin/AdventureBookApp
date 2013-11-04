@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Creator Minhal -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Local Library"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/offline_library_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/createNewStoryBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Add Story"
+            android:onClick="launchNewStoryActivity"
+            style="?android:attr/buttonStyleSmall" />
+
+        <Button
+            android:id="@+id/goToOnlineLibraryBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Online Library"
+            android:onClick="launchOnlineLibraryActivity"
+            style="?android:attr/buttonStyleSmall" />
+    </LinearLayout>
+
+</LinearLayout>

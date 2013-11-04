@@ -1,0 +1,4 @@
+To reset your local master to match the remote master
+
+git fetch origin
+git reset --hard origin/master
