@@ -46,13 +46,18 @@ public class FileLoader {
 	}
     
 	public ArrayList<Story> loadAllStoryFiles() {
+		return loadStoryFileWithKeyword(".sav");
+	}
+	
+	
+	public ArrayList<Story> loadStoryFileWithKeyword(String KeyWord){
 		ArrayList<Story> allStories = new ArrayList<Story>();
 		String[] files = activityContext.getApplicationContext().fileList();
 
 		Log.d("length", String.valueOf(files.length));
 		for (int i = 0; i < files.length; i++) {
 			// do something with the file
-			if (files[i].toLowerCase().contains(".sav")) {
+			if (files[i].toLowerCase().contains(KeyWord)) {
 				try {
 					FileInputStream fis = activityContext.openFileInput(files[i]);
 					ObjectInputStream ois = new ObjectInputStream(fis);
@@ -75,10 +80,10 @@ public class FileLoader {
 			}
 		}
 		return allStories;
-	}
-	
+		
+	}	
 	public void deleteStory(Story story){
-		String FILENAME = story.getTitle() + "-" + story.getAuthor() + ".sav";
+		String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
 		activityContext.deleteFile(FILENAME);
 	}
 

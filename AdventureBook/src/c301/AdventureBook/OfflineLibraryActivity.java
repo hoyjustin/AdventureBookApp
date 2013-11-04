@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) <2013>  <Minhal Syed>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
 package c301.AdventureBook;
 
 import java.io.FileInputStream;
@@ -25,6 +43,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -38,16 +58,30 @@ public class OfflineLibraryActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY = 0;
 
 	ArrayList<Story> offlineStoryLibrary;
+
 	ArrayAdapter<Story> adapter;
+	FileLoader fLoader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+				
+		
 		offlineStoryLibrary = new ArrayList<Story>();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
 
+		fLoader = new FileLoader(this);
+		offlineStoryLibrary = fLoader.loadAllStoryFiles();
+		
+		populateListView();
+	}
+	
+	protected void onResume(){
+		super.onResume();
+		offlineStoryLibrary = fLoader.loadAllStoryFiles();
+		
 		populateListView();
 	}
 
@@ -63,8 +97,6 @@ public class OfflineLibraryActivity extends Activity {
 
 	private void populateListView() {
 
-		FileLoader fLoader = new FileLoader(this);
-		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
@@ -100,10 +132,29 @@ public class OfflineLibraryActivity extends Activity {
 
 		// Associate searchable configuration with the SearchView
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		SearchView searchView = (SearchView) menu.findItem(R.id.search)
+		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
 				.getActionView();
-		searchView.setSearchableInfo(searchManager
-				.getSearchableInfo(getComponentName()));
+
+		final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				// Do something
+
+				String keyword = searchView.getQuery().toString().toLowerCase();
+		        offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
+
+		        populateListView();
+				return true;
+			}
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				// Do something
+				return true;
+			}
+		};
+
+		searchView.setOnQueryTextListener(queryTextListener);
 
 		return true;
 	}
@@ -163,7 +214,6 @@ public class OfflineLibraryActivity extends Activity {
 			// .show();
 		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
-			FileLoader fLoader = new FileLoader(this);
 
 			fLoader.deleteStory(storyClicked);
 
