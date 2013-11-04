@@ -138,4 +138,9 @@ public class Story implements Serializable{
 		this.pages = pages;
 	}
 
+	public void deletePage(Page somePage) {
+		this.pages.remove(somePage);
+	}
+	
+
 }
