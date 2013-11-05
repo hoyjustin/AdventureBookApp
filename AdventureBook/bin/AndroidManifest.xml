@@ -30,7 +30,7 @@
         <activity android:name="c301.AdventureBook.EditPageActivity"></activity>
         <activity android:name="c301.AdventureBook.TakePhotoActivity"></activity>
         <activity android:name="c301.AdventureBook.SplashScreenMainActivity"></activity>
-        <activity android:name="c301.AdventureBook.coverimage"></activity>
+     
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
