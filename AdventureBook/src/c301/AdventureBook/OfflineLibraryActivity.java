@@ -45,7 +45,6 @@ import android.widget.Toast;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
-import com.example.adventurebook.ViewStoryAcivity;
 
 
 /**
