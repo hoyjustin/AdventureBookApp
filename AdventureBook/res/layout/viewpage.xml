@@ -31,15 +31,23 @@
         android:layout_weight="0.27"
         android:background="@drawable/border" >
 
+        <!-- 
         <EditText
-            android:id="@+id/addStoryDescription"
+            android:id="@+id/addPageDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:ems="10"
             android:inputType="textMultiLine"
             android:padding="10dp" />
-    
+    -->
+
+        <TextView
+            android:id="@+id/pageDescriptionTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="page descripion goes here" />
+
     </ScrollView>
 
     <ListView

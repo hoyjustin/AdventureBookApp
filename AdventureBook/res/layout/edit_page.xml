@@ -49,7 +49,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/pageDescription"
+                    android:id="@+id/insertPageDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -58,7 +58,7 @@
                     android:textSize="15sp" />
 
                 <ScrollView
-                    android:id="@+id/editStoryBox"
+                    android:id="@+id/editPageBox"
                     android:layout_width="match_parent"
                     android:layout_height="83dp"
                     android:layout_marginBottom="10dp"
@@ -67,7 +67,7 @@
                     android:background="@drawable/border" >
 
                     <EditText
-                        android:id="@+id/editStoryDescription"
+                        android:id="@+id/editPageDescription"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00000000"

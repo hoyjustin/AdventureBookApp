@@ -48,7 +48,7 @@ public class Story implements Serializable{
 	 * @param description description of the Story.
 	 * @param author author of the Story.
 	 * @param date date on which the Story was first created.
-	 * @param imagePath path of the thumnail picture of the Story.
+	 * @param imagePath path of the thumbnail picture of the Story.
 	 */
 	public Story(String title, 	String description, String author, String date, String imagePath){
 		this.title = title;

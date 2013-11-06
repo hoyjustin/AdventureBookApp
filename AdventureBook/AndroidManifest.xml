@@ -3,13 +3,16 @@
     package="com.example.adventurebook"
     android:versionCode="1"
     android:versionName="1.0" >
+
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,15 +24,32 @@
             android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="c301.AdventureBook.CreateStoryActivity"></activity>
-        <activity android:name="c301.AdventureBook.EditOptionActivity"></activity>
-        <activity android:name="c301.AdventureBook.EditStoryActivity"></activity>
-        <activity android:name="c301.AdventureBook.EditPageActivity"></activity>
-        <activity android:name="c301.AdventureBook.TakePhotoActivity"></activity>
-        <activity android:name="c301.AdventureBook.SplashScreenMainActivity"></activity>
+        <activity android:name="c301.AdventureBook.CreateStoryActivity" >
+        </activity>
+        <activity android:name="c301.AdventureBook.EditOptionActivity" >
+        </activity>
+        <activity android:name="c301.AdventureBook.EditStoryActivity" >
+        </activity>
+        <activity android:name="c301.AdventureBook.EditPageActivity" >
+        </activity>
+        <activity android:name="c301.AdventureBook.TakePhotoActivity" >
+        </activity>
+        <activity android:name="c301.AdventureBook.SplashScreenMainActivity" >
+        </activity>
+        <activity
+            android:name="com.example.adventurebook.ViewStoryAcivity"
+            android:label="@string/title_activity_view_story_acivity" >
+        </activity>
+        <activity
+            android:name="c301.AdventureBook.ViewPageActivity"
+            android:label="@string/title_activity_view_story" >
+        </activity>
     </application>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>

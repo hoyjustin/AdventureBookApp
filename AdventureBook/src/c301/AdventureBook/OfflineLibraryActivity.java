@@ -45,6 +45,7 @@ import android.widget.Toast;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
+import com.example.adventurebook.ViewStoryAcivity;
 
 
 /**
@@ -122,9 +123,10 @@ public class OfflineLibraryActivity extends Activity {
 
 				// This is the story object that is returned when a list item is
 				// clicked.
-				Story str = (Story) offlineLV.getItemAtPosition(position);
-				Toast.makeText(getBaseContext(), str.getTitle(),
+				Story story = (Story) offlineLV.getItemAtPosition(position);
+				Toast.makeText(getBaseContext(), story.getTitle(),
 						Toast.LENGTH_SHORT).show();
+				viewStory(story);
 			}
 		});
 
@@ -235,6 +237,12 @@ public class OfflineLibraryActivity extends Activity {
 		return true;
 	}
 
+	private void viewStory(Story story) {
+		Intent intent = new Intent(this, ViewPageActivity.class);
+		intent.putExtra("someStory", story);
+		startActivity(intent);
+	}
+	
 	private class CustomAdapter extends ArrayAdapter<Story> {
 
 		public CustomAdapter() {
@@ -280,4 +288,5 @@ public class OfflineLibraryActivity extends Activity {
 			return itemView;
 		}
 	}
+	
 }

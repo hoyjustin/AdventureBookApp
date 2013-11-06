@@ -28,16 +28,16 @@ public class Page implements Serializable{
 
 	private String title;
 	private List<Option> options;
-	private String textContent;
+	private String pageDescription;
 	
-	public Page(String title, String textContent){
+	public Page(String title, String pageDescription){
 		this.title = title;
-		this.textContent = textContent;
+		this.pageDescription = pageDescription;
 	}
 	
 
-	public void setTextContent(String textContent) {
-		this.textContent = textContent;
+	public void setTextContent(String pageDescripion) {
+		this.pageDescription = pageDescripion;
 	}
 
 	public void setTitle(String startPage){
@@ -48,8 +48,8 @@ public class Page implements Serializable{
 		this.options = options;
 	}
 	
-	public String getTextContent() {
-		return textContent;
+	public String getPageDescription() {
+		return pageDescription;
 	}
 	
 	public String getTitle(){
