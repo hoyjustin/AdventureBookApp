@@ -51,8 +51,8 @@ import com.example.adventurebook.R;
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
-	private final static int ONE = 1;
-	private final static int TWO = 2;
+	private final static int EDIT_PAGE = 1;
+	private final static int DELETE_PAGE = 2;
 
 	private ExpandableListAdapter adpt;
 	private ExpandableListView lstView;
@@ -78,8 +78,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		returnLocalLib = (Button) findViewById(R.id.return_local_lib);
 
 		popupMenu = new PopupMenu(this, findViewById(R.id.expList));
-		popupMenu.getMenu().add(Menu.NONE, ONE, Menu.NONE, "Edit Page");
-		popupMenu.getMenu().add(Menu.NONE, TWO, Menu.NONE, "Delete Page");
+		popupMenu.getMenu().add(Menu.NONE, EDIT_PAGE, Menu.NONE, "Edit Page");
+		popupMenu.getMenu().add(Menu.NONE, DELETE_PAGE, Menu.NONE, "Delete Page");
 		popupMenu.setOnMenuItemClickListener(this);
 
 		someStory = (Story) getIntent().getSerializableExtra("someStory");
@@ -139,11 +139,14 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
-		case ONE:
-			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
-			startActivity(i);
+		// User selects edit page
+		case EDIT_PAGE:
+			Intent intent = new Intent(EditStoryActivity.this, EditPageActivity.class);
+			intent.putExtra("someStory", someStory);
+			startActivity(intent);
 			break;
-		case TWO:
+		// User selects delete page
+		case DELETE_PAGE:
 
 			// 1. Instantiate an AlertDialog.Builder with its constructor
 			AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryActivity.this);

@@ -27,9 +27,9 @@ public class ViewPageActivity extends Activity {
 		setContentView(R.layout.viewpage);
 		
 		story = (Story) getIntent().getSerializableExtra("someStory");
-		List<Page> pages = story.getPages();
-		viewFirstPage();
-		
+		pages = story.getPages();
+
+		viewFirstPage();		
 	}
 
 	@Override
@@ -38,6 +38,7 @@ public class ViewPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.view_story, menu);
 		return true;
 	}
+	
 	
 	/**
 	 * Initialize the first page of the story for the user to view when they
@@ -52,11 +53,13 @@ public class ViewPageActivity extends Activity {
 		TextView pageDescriptionTV = (TextView) findViewById(R.id.pageDescriptionTV);
 		pageDescriptionTV.setText(pageDescription);
 		
+		/*
 		// Set the page options
 		ListView optionsListView = (ListView) findViewById(R.id.list_options);
 		ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this, R.layout.list_row, options);
 		optionsListView.setAdapter(optionAdapter);
-		
+		*/
 	}
+	
 
 }

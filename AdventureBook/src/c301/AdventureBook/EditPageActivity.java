@@ -20,6 +20,8 @@ package c301.AdventureBook;
 import java.io.Serializable;
 
 import c301.AdventureBook.TakePhotoActivity;
+import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
@@ -31,24 +33,27 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 /**
- * The edit page activity allows the author to edit the contents of a page within a story.
+ * The edit page activity allows the author to edit the contents of a page
+ * within a story.
  * 
  * @author Terence
- *
+ * 
  */
-public class EditPageActivity extends Activity implements Serializable{
- 
+public class EditPageActivity extends Activity implements Serializable {
+
 	private static final int EDIT_OPTION = 0;
 	private EditText editStoryDescription;
 	private Button mButtonCreateOption;
 	private Button mButtonSavePage;
 	private CoverFlow coverFlow;
 	int PHOTO_ACTIVITY_REQUEST = 1001;
-	//int my_current_position = 0;
+	// int my_current_position = 0;
 	ImageAdapter coverImageAdapter;
-
+	
+	private Story story;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -56,6 +61,8 @@ public class EditPageActivity extends Activity implements Serializable{
 		super.onCreate(savedInstanceState);
 		setContentView(com.example.adventurebook.R.layout.edit_page);
 
+		story = (Story) getIntent().getSerializableExtra("someStory");
+		
 		editStoryDescription = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
 		mButtonSavePage = (Button) findViewById(R.id.save_page);
@@ -80,10 +87,9 @@ public class EditPageActivity extends Activity implements Serializable{
             	//my_current_position = position;
             	startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
             	
-            });
-        }
+            }
+        });
 
-		
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				Intent intent = new Intent(EditPageActivity.this, EditOptionActivity.class);
@@ -93,31 +99,42 @@ public class EditPageActivity extends Activity implements Serializable{
 
 		mButtonSavePage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
+				
+				EditText editPageDescription = (EditText) findViewById(R.id.editPageDescription);
+				String pageDescripion = editPageDescription.getText().toString();
+				Page page = new Page("test title", pageDescripion);
+				story.addPage(page);
+				
 				finish();
 			}
 		});
+		
 	}
 
-	
+	/**
+	 * TODO: NEED TO FIX THIS METHOD
+	 * editStoryDescription should not be used. This is the edit page activity, not edit story.
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == EDIT_OPTION) {
 			if (resultCode == RESULT_OK) {
-				// Retrieve the option description that the user entered in EditOptionActivity
+				// Retrieve the option description that the user entered in
+				// EditOptionActivity
 				// after they click SaveOption
-				String optionDescription = data.getExtras().getString("option_description");
+				String optionDescription = data.getExtras().getString(
+						"option_description");
 				editStoryDescription.setText(optionDescription);
 			}
-		}else if(requestCode == PHOTO_ACTIVITY_REQUEST) {
+		} else if (requestCode == PHOTO_ACTIVITY_REQUEST) {
 			if (resultCode == RESULT_OK) {
-				//String show_path;
-				//show_path = data.getStringExtra("path");
-				//coverImageAdapter.editAdapter(show_path, my_current_position);
+				// String show_path;
+				// show_path = data.getStringExtra("path");
+				// coverImageAdapter.editAdapter(show_path,
+				// my_current_position);
 			}
 		}
 	}
-	
-
 
 }
