@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) <2013>  <Minhal Syed>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package c301.AdventureBook.Models;
 
 import java.io.Serializable;
@@ -7,11 +24,10 @@ import java.util.List;
 import com.example.adventurebook.R;
 
 /**
- * This is a Story Model Class. A Story is an object that contains title,  description, 
- * author, date, thumbnail, and list of Page objects. 
+ * This is a Story Model Class. A Story is an object that contains title,
+ * description, author, date, thumbnail picture, and list of Page objects. 
  * 
  * @author Minhal Syed
- * @author Justin Hoy
  *
  */
 public class Story implements Serializable{
@@ -26,7 +42,10 @@ public class Story implements Serializable{
 	
 	/**
 	 * This is the constructor function for the Story class.
-	 * It creates a new Story object with information provided.  
+	 * It creates a new Story object with information provided.
+	 * This constructors makes a new story with no pages. To
+	 * add pages to the story, add page function should be called.
+	 *   
 	 * @param title title of the Story.
 	 * @param description description of the Story.
 	 * @param author author of the Story.
@@ -117,14 +136,14 @@ public class Story implements Serializable{
 	}
 
 	/**
-	 * This function returns the pages of the story.
+	 * This function returns all the pages of the story.
 	 * @return
 	 */
 	public List<Page> getPages() {
 		return this.pages;
 	}
 	/**
-	 * This function adds a page to the pages list.
+	 * This function adds a page to the pages list of the story.
 	 * @param page
 	 */
 	public void addPage(Page page) {
@@ -137,7 +156,10 @@ public class Story implements Serializable{
 	public void setPages(List<Page> pages) {
 		this.pages = pages;
 	}
-
+	/**
+	 * This function deletes a particular page from the story.
+	 * @param somePage
+	 */
 	public void deletePage(Page somePage) {
 		this.pages.remove(somePage);
 	}

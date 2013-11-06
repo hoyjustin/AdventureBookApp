@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) <2013>  <Justin Hoy>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package c301.AdventureBook;
 
 import java.io.FileInputStream;
@@ -13,6 +30,15 @@ import android.content.Context;
 import android.util.Log;
 import c301.AdventureBook.Models.Story;
 
+
+/**
+ * This is FileLoader class of the
+ * 
+ * @author Justin Hoy - Main Creator
+ * @author Minhal Syed - minor editor
+ * 
+ *
+ */
 public class FileLoader {
 	Story someStory;
 	Context activityContext;
@@ -20,7 +46,6 @@ public class FileLoader {
 	FileLoader(Context someContext){
 		this.activityContext = someContext;
 	}
-	
 	
 	
 	public Story loadFromFile(String FILENAME) {

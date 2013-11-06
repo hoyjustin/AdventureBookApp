@@ -54,11 +54,22 @@ import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
+
+/**
+ * This is the offline library activity. This activity's main purpose is to
+ * provide a graphical user interface to show all the local stories that are 
+ * present in the phone's memory to the user. 
+ * 
+ * @author Minhal Syed - Main Creator
+ * @author Justin Hoy - Minor Editor
+ *
+ */
+
 public class OfflineLibraryActivity extends Activity {
+	
 	private static final int ACTIVITY_EDIT_STORY = 0;
 
 	ArrayList<Story> offlineStoryLibrary;
-
 	ArrayAdapter<Story> adapter;
 	FileLoader fLoader;
 
