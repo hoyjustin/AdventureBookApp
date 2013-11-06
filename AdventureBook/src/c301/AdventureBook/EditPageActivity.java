@@ -17,20 +17,6 @@
 
 package c301.AdventureBook;
 
-import java.io.Serializable;
-
-import c301.AdventureBook.TakePhotoActivity;
-
-import com.example.adventurebook.R;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * The edit page activity allows the author to edit the contents of a page within a story.
@@ -54,6 +40,7 @@ public class EditPageActivity extends Activity implements Serializable{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 		setContentView(com.example.adventurebook.R.layout.edit_page);
 
 		editStoryDescription = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
