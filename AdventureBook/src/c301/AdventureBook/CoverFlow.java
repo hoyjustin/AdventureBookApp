@@ -30,6 +30,12 @@ import android.view.animation.Transformation;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
+/**
+ * This is the coverflow for displaying media.
+ * 
+ * @author Terence
+ *
+ */
 public class CoverFlow extends Gallery {
 
     /**

@@ -28,6 +28,12 @@ import c301.AdventureBook.Models.Annotations;
 
 import com.example.adventurebook.R;
 
+/**
+ * This is the annotation activity. It is run when a user wants to annotate a story fragment.
+ * 
+ * @author Terence
+ *
+ */
 public class AnnotationActivity extends Activity {
 	private EditText author;
 	private EditText comment;

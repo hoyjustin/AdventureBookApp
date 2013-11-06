@@ -47,7 +47,12 @@ public class FileLoader {
 		this.activityContext = someContext;
 	}
 	
-	
+	/**
+	 * Load the story with the given filename from internal storage.
+	 * 
+	 * @param FILENAME the name of the file to be loaded
+	 * @return a Story object
+	 */
 	public Story loadFromFile(String FILENAME) {
 		try {
 			FileInputStream fis = activityContext.openFileInput(FILENAME);
@@ -106,14 +111,25 @@ public class FileLoader {
 		}
 		return allStories;
 		
-	}	
+	}
+	
+	/**
+	 * Delete a story from internal storage.
+	 * 
+	 * @param story the story to be deleted
+	 */
 	public void deleteStory(Story story){
 		String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
 		activityContext.deleteFile(FILENAME);
 	}
 
-	//set overwrite to true(for editing purposes), where the existing file in the storage is overwritten if it already exists
-	//return false if no save was made, otherwise true
+	/**
+	 * Save a story to internal storage.
+	 * 
+	 * @param saveStory the story to be saved
+	 * @param overwrite set overwrite to true(for editing purposes), where the existing file in the storage is overwritten if it already exists
+	 * @return false if no save was made, true otherwise
+	 */
 	public boolean saveStory(Story saveStory, boolean overwrite) {
 		
 		String FILENAME = saveStory.getTitle() + "-" + saveStory.getAuthor() + ".sav";
@@ -157,7 +173,12 @@ public class FileLoader {
 		return false;
 	}
 	
-	// Check if file with name FILENAME already exists in the app directory
+	/**
+	 * Check if file with name FILENAME already exists in the app directory.
+	 * 
+	 * @param FILENAME
+	 * @return true if a file already exists, false otherwise
+	 */
 	public boolean checkFileExists(String FILENAME) {
 		
 		String[] files = activityContext.getApplicationContext().fileList();

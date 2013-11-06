@@ -15,13 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package c301.AdventureBook;
-/**
- * Creator: Terence Yin Kiu Leung
- * 
- * source: http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
- */
 
 import com.example.adventurebook.R;
 
@@ -30,31 +24,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-
+/**
+ * This is the first activity that is started when the user first opens the app.
+ * It shows a simple splash screen before proceeding to the offline library
+ * activity where the user will be able to browse available stories. source:
+ * http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
+ * 
+ * @author Terence Yin Kiu Leung
+ * 
+ */
 public class SplashScreenMainActivity extends Activity {
 
 	// Splash screen timer
-    private static int SPLASH_TIME_OUT = 3000; // 3 seconds
-    
+	private static int SPLASH_TIME_OUT = 3000; // 1000 = 1 second
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);
-		
+
 		new Handler().postDelayed(new Runnable() {
 
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start OfflineLibraryActivity
-                Intent i = new Intent(SplashScreenMainActivity.this, OfflineLibraryActivity.class);
-                startActivity(i);
- 
-                // close this activity
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+			@Override
+			public void run() {
+				// This method will be executed once the timer is over
+				// Start OfflineLibraryActivity
+				Intent i = new Intent(SplashScreenMainActivity.this,
+						OfflineLibraryActivity.class);
+				startActivity(i);
+
+				// close this activity
+				finish();
+			}
+		}, SPLASH_TIME_OUT);
 	}
-	
+
 }

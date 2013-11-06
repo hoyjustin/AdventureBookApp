@@ -21,7 +21,6 @@ package c301.AdventureBook;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Activity;
@@ -29,17 +28,24 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.os.Environment;
 
 import com.example.adventurebook.R;
+
+/**
+ * TODO: insert class description.
+ * 
+ * @author Zhao Zhang
+ *
+ */
 public class TakePhotoActivity extends Activity{
 	//int REQUEST_CODE = 0;
 	private static final int SELECT_PHOTO = 100;

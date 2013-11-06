@@ -21,8 +21,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.adventurebook.R;
-
 /**
  * This is a Story Model Class. A Story is an object that contains title,
  * description, author, date, thumbnail picture, and list of Page objects. 

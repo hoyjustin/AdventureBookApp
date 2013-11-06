@@ -18,10 +18,6 @@
 
 package c301.AdventureBook;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -30,7 +26,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -38,13 +33,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -76,8 +68,6 @@ public class OfflineLibraryActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-				
-		
 		offlineStoryLibrary = new ArrayList<Story>();
 
 		super.onCreate(savedInstanceState);
@@ -96,19 +86,26 @@ public class OfflineLibraryActivity extends Activity {
 		populateListView();
 	}
 
+	/**
+	 * Starts the create story activity to create a new story.
+	 */
 	public void launchNewStoryActivity(View v) {
 		Intent i = new Intent(this, CreateStoryActivity.class);
 		startActivity(i);
 	}
 
+	/**
+	 * Starts the online library activity to view the online library.
+	 */
 	public void launchOnlineLibraryActivity(View v) {
 		Intent i = new Intent(this, OnlineLibraryActivity.class);
 		// startActivity(i);
 	}
 
+	/**
+	 * Populate the library's list view with all the available stories.
+	 */
 	private void populateListView() {
-
-
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);

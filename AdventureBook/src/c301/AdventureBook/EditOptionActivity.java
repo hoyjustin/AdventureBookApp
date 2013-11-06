@@ -16,6 +16,12 @@ import android.widget.TextView;
 
 import com.example.adventurebook.R;
 
+/**
+ * The edit option activity allows the author to edit an option/choice within a page.
+ * 
+ * @author Terence
+ *
+ */
 public class EditOptionActivity extends Activity {
 
 	final static String EXTRA_MESSAGE = "option_description";
@@ -44,8 +50,10 @@ public class EditOptionActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Populates the list view with all the available pages
+	 */
 	public void populateListView() {
-		// This function will put all the available pages in the listView
 		pageListView = (ListView) findViewById(R.id.list_of_goto_pages);
 
 		this.adapter = new ArrayAdapter<String>(this, R.layout.list_row, pages);
@@ -74,7 +82,6 @@ public class EditOptionActivity extends Activity {
 	 * Method handler when "Save Option" button is clicked.
 	 * Saves the option data and returns user to the edit page activity.
 	 */
-	@SuppressWarnings("unused")
 	public void onClickSaveOption(View v){
 		//TODO: save the option
 		Intent data = new Intent();
@@ -89,7 +96,6 @@ public class EditOptionActivity extends Activity {
 	 * Method handler when "Cancel" button is pressed.
 	 * Returns user to the edit page activity.
 	 */
-	@SuppressWarnings("unused")
 	public void onClickCancel(View v) {
 		finish();
 	}

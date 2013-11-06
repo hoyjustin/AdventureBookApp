@@ -27,7 +27,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
+/**
+ * The edit page activity allows the author to edit the contents of a page within a story.
+ * 
+ * @author Terence
+ *
+ */
 public class EditPageActivity extends Activity implements Serializable{
  
 	private static final int EDIT_OPTION = 0;

@@ -19,7 +19,6 @@
 package c301.AdventureBook.Models;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This is an annotation class. An annotation is any form of review that a user

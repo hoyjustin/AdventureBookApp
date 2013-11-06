@@ -20,19 +20,13 @@ package c301.AdventureBook;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
-import c301.AdventureBook.Models.Story;
-
-import com.example.adventurebook.R;
-
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,16 +34,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import c301.AdventureBook.Models.Story;
 
+import com.example.adventurebook.R;
 
-public class CreateStoryActivity extends Activity{
+/**
+ * The create story activity allows the author to create a new story.
+ * When the story is created successfully, it is stored as a file in
+ * the phone's internal storage. * 
+ * 
+ * @author Terence
+ *
+ */
+public class CreateStoryActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY=0;
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
 	private EditText mStoryTitle;
 	private EditText mStoryAuthor;
 	private EditText mStoryDescription;
 	private TextView mDate;
-	private Button mButtonCreateStory;
 	
 	private Story someStory;
 	String storyTitle;
@@ -58,6 +61,7 @@ public class CreateStoryActivity extends Activity{
 	String formattedDate;
 	ImageView image;
 	String show_path;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -91,9 +95,9 @@ public class CreateStoryActivity extends Activity{
 	}
 
 	/**
-	 * Sets the story creation date
+	 * Set the story creation date
 	 */
-
+	@SuppressLint("SimpleDateFormat")
 	private void setDate() {
 		mDate = (TextView) findViewById(R.id.dateText);
 		Calendar c = Calendar.getInstance();
@@ -102,6 +106,9 @@ public class CreateStoryActivity extends Activity{
 		mDate.setText("Date: " + formattedDate);
 	}
 	
+	/**
+	 * Creates a new story and starts the edit story activity.
+	 */
 	private void createStory() {
 		getUserText();
 		someStory = new Story(storyTitle, storyDescription, storyAuthor, formattedDate, show_path);
@@ -148,15 +155,19 @@ public class CreateStoryActivity extends Activity{
             AlertDialog dialog = builder.create();
             dialog.show();
 		}
-		
 
 	}
+	
+	/**
+	 * Get the user inputed story title, description, and author name, and stores them into class variables
+	 */
 	private void getUserText() {
 		
 		storyTitle = mStoryTitle.getText().toString();
 		storyAuthor = mStoryAuthor.getText().toString();
 		storyDescription = mStoryDescription.getText().toString();
 	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub

@@ -41,7 +41,13 @@ import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
-
+/**
+ * The edit story activity allows the author to edit the contents of a story by
+ * adding or removing story fragments.
+ * 
+ * @author Terence
+ *
+ */
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
@@ -168,6 +174,9 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 	}
 
+	/**
+	 * Populates the list view with a list of all the pages in the story
+	 */
 	private void fillData() {
 		//load model here
 		List<Page> storyPages = someStory.getPages();
@@ -197,6 +206,9 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 	}
 
+	/**
+	 * Delete a page from the story
+	 */
 	private void deletePage() {
 		someStory.deletePage(somePage);
 		FileLoader fLoader = new FileLoader(EditStoryActivity.this);

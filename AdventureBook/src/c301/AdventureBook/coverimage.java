@@ -17,12 +17,10 @@
 package c301.AdventureBook;
 
 
-import com.example.adventurebook.R;
-
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.VideoView;
+
+import com.example.adventurebook.R;
 
 public class coverimage extends Activity{
 
