@@ -18,14 +18,19 @@
 package c301.AdventureBook;
 
 import java.io.Serializable;
+
+import c301.AdventureBook.TakePhotoActivity;
+
 import com.example.adventurebook.R;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * The edit page activity allows the author to edit the contents of a page within a story.
@@ -40,6 +45,7 @@ public class EditPageActivity extends Activity implements Serializable{
 	private Button mButtonCreateOption;
 	private Button mButtonSavePage;
 	private CoverFlow coverFlow;
+	//int my_current_position = 0;
 	ImageAdapter coverImageAdapter;
 
 
@@ -64,6 +70,16 @@ public class EditPageActivity extends Activity implements Serializable{
 		coverFlow.setSpacing(25);
 		coverFlow.setSelection(2, true);
 		coverFlow.setAnimationDuration(1000);
+        coverFlow.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3)
+            {
+                // TODO Auto-generated method stub
+            	Intent intent = new Intent(view.getContext(),TakePhotoActivity.class);
+            	//my_current_position = position;
+            	startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
+            	
+            }
 
 		
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +106,12 @@ public class EditPageActivity extends Activity implements Serializable{
 				// after they click SaveOption
 				String optionDescription = data.getExtras().getString("option_description");
 				editStoryDescription.setText(optionDescription);
+			}
+		}else if(requestCode == PHOTO_ACTIVITY_REQUEST) {
+			if (resultCode == RESULT_OK) {
+				//String show_path;
+				//show_path = data.getStringExtra("path");
+				//coverImageAdapter.editAdapter(show_path, my_current_position);
 			}
 		}
 	}
