@@ -45,6 +45,7 @@ public class EditPageActivity extends Activity implements Serializable{
 	private Button mButtonCreateOption;
 	private Button mButtonSavePage;
 	private CoverFlow coverFlow;
+	int PHOTO_ACTIVITY_REQUEST = 1001;
 	//int my_current_position = 0;
 	ImageAdapter coverImageAdapter;
 
@@ -79,7 +80,8 @@ public class EditPageActivity extends Activity implements Serializable{
             	//my_current_position = position;
             	startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
             	
-            }
+            });
+        }
 
 		
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
