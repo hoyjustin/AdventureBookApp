@@ -72,7 +72,8 @@ public class OfflineLibraryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
 
-
+		fLoader = new FileLoader(this);
+		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 		
 		populateListView();
 	}
@@ -98,8 +99,7 @@ public class OfflineLibraryActivity extends Activity {
 
 
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
-		fLoader = new FileLoader(this);
-		offlineStoryLibrary = fLoader.loadAllStoryFiles();
+
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		adapter = new CustomAdapter();
 		offlineLV.setAdapter(adapter);
@@ -217,6 +217,9 @@ public class OfflineLibraryActivity extends Activity {
 
 			fLoader.deleteStory(storyClicked);
 
+			fLoader = new FileLoader(this);
+			offlineStoryLibrary = fLoader.loadAllStoryFiles();
+			
 			populateListView();
 
 			Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
