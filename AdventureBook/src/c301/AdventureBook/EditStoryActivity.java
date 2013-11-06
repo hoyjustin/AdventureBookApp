@@ -139,13 +139,20 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
+		//User selects option to edit a Page
 		case ONE:
 			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
+   			Bundle bundle = new Bundle();
+   			bundle.putSerializable("somePage", somePage);
+   			bundle.putSerializable("someStory", someStory);
+   			i.putExtras(bundle);
 			startActivity(i);
 			break;
+		//User selects option to delete a Page
 		case TWO:
 
-			// 1. Instantiate an AlertDialog.Builder with its constructor
+			// Ask for a confirmation from user by:
+			// Instantiating an AlertDialog.Builder with its constructor
 			AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryActivity.this);
 
 			// Add buttons
@@ -162,10 +169,9 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 				}
 			});
 
-			// 2. Chain together various setter methods to set the dialog characteristics
+			// Chain together various setter methods to set the dialog characteristics
 			builder.setMessage(R.string.delete_page_confirm);
-
-			// 3. Get the AlertDialog from create()
+			// Get the AlertDialog from create()
 			AlertDialog dialog = builder.create();
 			dialog.show();
 			break;
@@ -203,7 +209,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
 		fLoader.saveStory(someStory, true);	
-
 	}
 
 	/**

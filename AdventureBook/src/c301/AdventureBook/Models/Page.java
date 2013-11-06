@@ -35,6 +35,9 @@ public class Page implements Serializable{
 		this.textContent = textContent;
 	}
 	
+	public void addOption(Option option) {
+		this.options.add(option);
+	}
 
 	public void setTextContent(String textContent) {
 		this.textContent = textContent;

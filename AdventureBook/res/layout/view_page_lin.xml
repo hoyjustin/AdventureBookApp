@@ -26,13 +26,13 @@
         />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/option_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="take the left path" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="take the right path" />

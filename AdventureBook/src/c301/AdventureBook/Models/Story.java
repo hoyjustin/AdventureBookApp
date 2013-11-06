@@ -21,6 +21,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Bitmap;
+
 /**
  * This is a Story Model Class. A Story is an object that contains title,
  * description, author, date, thumbnail picture, and list of Page objects. 
@@ -30,6 +32,7 @@ import java.util.List;
  */
 public class Story implements Serializable{
 	
+	Bitmap thumbnail;
 	private String title;
 	private String description;
 	private String author;
@@ -162,5 +165,7 @@ public class Story implements Serializable{
 		this.pages.remove(somePage);
 	}
 	
-
+	public void setThumbnail(Bitmap someImage) {
+	 this.thumbnail = someImage;
+	}
 }
