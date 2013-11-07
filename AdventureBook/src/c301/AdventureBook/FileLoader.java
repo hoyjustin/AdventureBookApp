@@ -40,7 +40,6 @@ import c301.AdventureBook.Models.Story;
  *
  */
 public class FileLoader {
-	Story someStory;
 	Context activityContext;
 	
 	FileLoader(Context someContext){
