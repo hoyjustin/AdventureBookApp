@@ -59,4 +59,9 @@ public class Page implements Serializable{
 	public List<Option> getOptions(){
 		return this.options;
 	}
+	
+	@Override 
+	public String toString() {
+		return this.title;
+	}
 }
