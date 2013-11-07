@@ -39,21 +39,23 @@ import c301.AdventureBook.Models.Story;
 import com.example.adventurebook.R;
 
 /**
- * The create story activity allows the author to create a new story.
- * When the story is created successfully, it is stored as a file in
- * the phone's internal storage. * 
+ * The create story activity allows the author to create a new story. When the
+ * story is created successfully, it is stored as a file in the phone's internal
+ * storage. *
  * 
  * @author Terence
- *
+ * 
  */
 public class CreateStoryActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY = 0;
+
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
+
 	private EditText mStoryTitle;
 	private EditText mStoryAuthor;
 	private EditText mStoryDescription;
 	private TextView mDate;
-	
+
 	private Story someStory;
 	String storyTitle;
 	String storyAuthor;
@@ -61,27 +63,32 @@ public class CreateStoryActivity extends Activity {
 	String formattedDate;
 	ImageView image;
 	String show_path;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.create_story);
-		
+
 		image = (ImageView) findViewById(R.id.imageView1);
-		mStoryTitle = (EditText) findViewById(R.id.editPageTitle);
+
+		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
+
+
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
+
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
-		
+
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
-		
+
 		setDate();
-		image.setOnClickListener(new OnClickListener() {		
+		image.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-			    Intent intent = new Intent(getApplicationContext(), TakePhotoActivity.class);
-			    startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
+				Intent intent = new Intent(getApplicationContext(),
+						TakePhotoActivity.class);
+				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
 			}
 		});
 		createStoryButton.setOnClickListener(new View.OnClickListener() {
@@ -102,79 +109,89 @@ public class CreateStoryActivity extends Activity {
 		formattedDate = df.format(c.getTime());
 		mDate.setText("Date: " + formattedDate);
 	}
-	
+
 	/**
 	 * Creates a new story and starts the edit story activity.
 	 */
 	private void createStory() {
 		getUserText();
-		someStory = new Story(storyTitle, storyDescription, storyAuthor, formattedDate, show_path);
+		someStory = new Story(storyTitle, storyDescription, storyAuthor,
+				formattedDate, show_path);
 		FileLoader fLoader = new FileLoader(this);
-		
+
 		boolean saveSuccess = fLoader.saveStory(someStory, false);
-		
-		if(saveSuccess == true){
-			Toast.makeText(this, "Story Created: " + storyTitle, Toast.LENGTH_LONG).show();
+
+		if (saveSuccess == true) {
+			Toast.makeText(this, "Story Created: " + storyTitle,
+					Toast.LENGTH_LONG).show();
 			Intent i = new Intent(this, EditStoryActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("someStory", someStory);
 			i.putExtras(bundle);
 			startActivityForResult(i, ACTIVITY_EDIT_STORY);
-		}
-		else{
+		} else {
 			// 1. Instantiate an AlertDialog.Builder with its constructor
-            AlertDialog.Builder builder = new AlertDialog.Builder(CreateStoryActivity.this);
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					CreateStoryActivity.this);
 
-            // Add the buttons
-            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User clicked Cancel button
-                }
-            });
+			// Add the buttons
+			builder.setNegativeButton(R.string.cancel,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							// User clicked Cancel button
+						}
+					});
 
-            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-           	 public void onClick(DialogInterface dialog, int id) {
-           			FileLoader fLoader2 = new FileLoader(CreateStoryActivity.this);
-           			fLoader2.saveStory(someStory, true);
-              			Toast.makeText(CreateStoryActivity.this, "Story Created: " + storyTitle, Toast.LENGTH_LONG).show();
-           			Intent i = new Intent(CreateStoryActivity.this, EditStoryActivity.class);
-           			Bundle bundle = new Bundle();
-           			bundle.putSerializable("someStory", someStory);
-           			i.putExtras(bundle);
-           			startActivityForResult(i, ACTIVITY_EDIT_STORY);
-               }
-           });
-            
-            // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setMessage(R.string.alert_story_exists);
+			builder.setPositiveButton(R.string.ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							FileLoader fLoader2 = new FileLoader(
+									CreateStoryActivity.this);
+							fLoader2.saveStory(someStory, true);
+							Toast.makeText(CreateStoryActivity.this,
+									"Story Created: " + storyTitle,
+									Toast.LENGTH_LONG).show();
+							Intent i = new Intent(CreateStoryActivity.this,
+									EditStoryActivity.class);
+							Bundle bundle = new Bundle();
+							bundle.putSerializable("someStory", someStory);
+							i.putExtras(bundle);
+							startActivityForResult(i, ACTIVITY_EDIT_STORY);
+						}
+					});
 
-            // 3. Get the AlertDialog from create()
-            AlertDialog dialog = builder.create();
-            dialog.show();
+			// 2. Chain together various setter methods to set the dialog
+			// characteristics
+			builder.setMessage(R.string.alert_story_exists);
+
+			// 3. Get the AlertDialog from create()
+			AlertDialog dialog = builder.create();
+			dialog.show();
 		}
 
 	}
-	
+
 	/**
-	 * Get the user inputed story title, description, and author name, and stores them into class variables
+	 * Get the user inputed story title, description, and author name, and
+	 * stores them into class variables
 	 */
 	private void getUserText() {
-		
+
 		storyTitle = mStoryTitle.getText().toString();
 		storyAuthor = mStoryAuthor.getText().toString();
 		storyDescription = mStoryDescription.getText().toString();
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK){
-			
+		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+
 			show_path = data.getStringExtra("path");
-			
+
 			image.setImageBitmap(BitmapFactory.decodeFile(show_path));
-			
+
 		}
 	}
 }

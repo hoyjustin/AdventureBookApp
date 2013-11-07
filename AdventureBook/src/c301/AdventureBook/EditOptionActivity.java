@@ -49,14 +49,13 @@ public class EditOptionActivity extends Activity {
 		
 		this.pages = (ArrayList<Page>) story.getPages();
 		
+
 		//this.pages = new ArrayList<Page>();
 		
 		//this.pages.add(new Page("Title1", "description1"));
 		//this.pages.add(new Page("Title2", "description2"));
 		//this.pages.add(new Page("Title3", "description3"));
-		
 				
-		
 		populateListView();
 		registerForClicks();
 		

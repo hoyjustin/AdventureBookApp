@@ -70,4 +70,5 @@ public class Page implements Serializable{
     public String toString() {
             return this.title;
     }
+
 }

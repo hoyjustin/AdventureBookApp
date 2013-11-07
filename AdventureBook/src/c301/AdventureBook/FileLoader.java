@@ -40,8 +40,8 @@ import c301.AdventureBook.Models.Story;
  *
  */
 public class FileLoader {
-	Story someStory;
 	Context activityContext;
+	Story someStory;
 	
 	FileLoader(Context someContext){
 		this.activityContext = someContext;
@@ -54,6 +54,7 @@ public class FileLoader {
 	 * @return a Story object
 	 */
 	public Story loadFromFile(String FILENAME) {
+		
 		try {
 			FileInputStream fis = activityContext.openFileInput(FILENAME);
 			ObjectInputStream ois = new ObjectInputStream(fis);

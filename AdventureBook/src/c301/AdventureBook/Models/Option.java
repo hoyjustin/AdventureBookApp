@@ -18,20 +18,23 @@
 
 //Creator: Justin Hoy
 
+//Creator: Justin Hoy
+
 package c301.AdventureBook.Models;
 
 import java.io.Serializable;
 
 public class Option implements Serializable{
 	private String description;
+
 	private Page goToPage;
-	
+
 	public Option(String description, Page goToPage){
 		this.description = description;
 		this.goToPage = goToPage;
 	}
 	
-	
+
 	public String getDescription() {
 		return description;
 	}
