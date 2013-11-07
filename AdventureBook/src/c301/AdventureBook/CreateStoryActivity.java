@@ -47,7 +47,7 @@ import com.example.adventurebook.R;
  *
  */
 public class CreateStoryActivity extends Activity {
-	private static final int ACTIVITY_EDIT_STORY=0;
+	private static final int ACTIVITY_EDIT_STORY = 0;
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
 	private EditText mStoryTitle;
 	private EditText mStoryAuthor;
@@ -69,11 +69,8 @@ public class CreateStoryActivity extends Activity {
 		setContentView(R.layout.create_story);
 		
 		image = (ImageView) findViewById(R.id.imageView1);
-		
-		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
-
+		mStoryTitle = (EditText) findViewById(R.id.editPageTitle);
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
-		
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);

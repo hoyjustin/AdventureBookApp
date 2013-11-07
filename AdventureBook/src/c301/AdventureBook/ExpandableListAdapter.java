@@ -77,7 +77,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 		
 		TextView txtEndPage = (TextView)view.findViewById(R.id.txtEndPage);
-		txtEndPage.setText(item.getGoToPage());
+		txtEndPage.setText(item.getGoToPage().getTitle());
 		return view;
 	}
 

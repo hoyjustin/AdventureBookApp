@@ -31,7 +31,7 @@ import android.graphics.Bitmap;
  *
  */
 public class Story implements Serializable{
-	
+
 	Bitmap thumbnail;
 	private String title;
 	private String description;
@@ -39,8 +39,8 @@ public class Story implements Serializable{
 	private String date;
 	private String imagePath;
 	public List<Page> pages = new ArrayList<Page>();
-	
-	
+
+
 	/**
 	 * This is the constructor function for the Story class.
 	 * It creates a new Story object with information provided.
@@ -51,7 +51,7 @@ public class Story implements Serializable{
 	 * @param description description of the Story.
 	 * @param author author of the Story.
 	 * @param date date on which the Story was first created.
-	 * @param imagePath path of the thumnail picture of the Story.
+	 * @param imagePath path of the thumbnail picture of the Story.
 	 */
 	public Story(String title, 	String description, String author, String date, String imagePath){
 		this.title = title;
@@ -60,7 +60,7 @@ public class Story implements Serializable{
 		this.date = date;
 		this.imagePath = imagePath;
 	}
-	
+
 	/**
 	 * This function returns the description of the story.
 	 * @return the description
@@ -84,7 +84,7 @@ public class Story implements Serializable{
 	public String getDate() {
 		return date;
 	}
-	
+
 	/**
 	 * This function sets the creation date of the story.
 	 * @param date
@@ -120,7 +120,7 @@ public class Story implements Serializable{
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
+
 	/**
 	 * This function returns the imagePath of the thumbnail photo of the Story.
 	 * @return
@@ -164,8 +164,18 @@ public class Story implements Serializable{
 	public void deletePage(Page somePage) {
 		this.pages.remove(somePage);
 	}
-	
+
 	public void setThumbnail(Bitmap someImage) {
-	 this.thumbnail = someImage;
+		this.thumbnail = someImage;
+	}
+	
+	public Page getPage(Page page){
+		for(int i=0;i<this.pages.size();i++){
+			if(this.pages.get(i).getTitle().equals(page.getTitle())){
+				return this.pages.get(i);
+			}
+		}
+		this.addPage(page);
+		return page;
 	}
 }

@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -52,7 +53,8 @@ public class EditPageActivity extends Activity implements Serializable{
 	
 	int PHOTO_ACTIVITY_REQUEST = 1001;
 	
-	private EditText editStoryDescription;
+	private EditText mEditPageDes;
+	private EditText mEditPageTitle;
 	private Button mButtonCreateOption;
 	private Button mButtonSavePage;
 	private CoverFlow coverFlow;
@@ -60,6 +62,8 @@ public class EditPageActivity extends Activity implements Serializable{
 	private CustomAdapter adpt;
 	private ListView optionsList;
 	
+	private String someTitle;
+	private String someDescription;
 	private Story someStory;
 	private Page somePage;
 	private List<Option> options;
@@ -73,11 +77,15 @@ public class EditPageActivity extends Activity implements Serializable{
 		somePage = (Page) getIntent().getSerializableExtra("somePage");
 		someStory = (Story) getIntent().getSerializableExtra("someStory");
 		
-		options = new ArrayList<Option>();
+		options = somePage.getOptions();
 
-		editStoryDescription = (EditText)findViewById(com.example.adventurebook.R.id.editStoryDescription);
+		mEditPageTitle = (EditText)findViewById(com.example.adventurebook.R.id.editPageTitle);
+		mEditPageDes = (EditText)findViewById(com.example.adventurebook.R.id.editPageDescription);
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
 		mButtonSavePage = (Button) findViewById(R.id.save_page);
+		
+		mEditPageTitle.setText(somePage.getTitle());
+		mEditPageDes.setText(somePage.getPageDescription());
 
 		coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
 		coverFlow.setAdapter(new ImageAdapter(this));
@@ -89,6 +97,8 @@ public class EditPageActivity extends Activity implements Serializable{
 		coverFlow.setAnimationDuration(1000);
 		
 		optionsList = (ListView) findViewById(R.id.options_list);
+		
+		//somePage.addOption(new Option());
 		fillData();
 		
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +108,25 @@ public class EditPageActivity extends Activity implements Serializable{
 	   			bundle.putSerializable("someStory", someStory);
 	   			i.putExtras(bundle);
 				startActivity(i);
+				
+				//somePage = someStory.getPage(somePage);
+				somePage.addOption(new Option("Do something", somePage));
+				FileLoader fLoader = new FileLoader(EditPageActivity.this);
+				fLoader.saveStory(someStory, true);	
 			}
 		});
 
 		mButtonSavePage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
+				someTitle = mEditPageTitle.getText().toString();
+				someDescription = mEditPageDes.getText().toString();
+				
+				//somePage = someStory.getPage(somePage);
+				somePage.setTitle(someTitle);
+				somePage.setPageDescription(someDescription);
+				
+				FileLoader fLoader = new FileLoader(EditPageActivity.this);
+				fLoader.saveStory(someStory, true);	
 				finish();
 			}
 		});
@@ -115,8 +139,15 @@ public class EditPageActivity extends Activity implements Serializable{
                 if (resultCode == RESULT_OK) {
                         // Retrieve the option description that the user entered in EditOptionActivity
                         // after they click SaveOption
-                        Option someOption = data.getExtras().getString("someOption");
-                        editStoryDescription.setText(optionDescription);
+                        String someOpt = data.getExtras().getString("someOption");
+                		Option someOption = (Option) getIntent().getSerializableExtra("someOption");
+                        
+        				//somePage = someStory.getPage(somePage);
+        				somePage.addOption(new Option("Do Something", somePage));
+        				FileLoader fLoader = new FileLoader(EditPageActivity.this);
+        				fLoader.saveStory(someStory, true);
+                		
+                        //editStoryDescription.setText(optionDescription);
                 }
         }
         else if(requestCode == PHOTO_ACTIVITY_REQUEST) {
@@ -126,6 +157,16 @@ public class EditPageActivity extends Activity implements Serializable{
                         //coverImageAdapter.editAdapter(show_path, my_current_position);
                 }
         }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        //Refresh your stuff here
+		options = somePage.getOptions();
+		adpt = new CustomAdapter(this, optionsList, options);
+		optionsList.setAdapter(adpt);
     }
 
 

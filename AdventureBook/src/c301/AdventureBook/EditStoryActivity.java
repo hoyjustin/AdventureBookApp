@@ -45,7 +45,7 @@ import com.example.adventurebook.R;
  * The edit story activity allows the author to edit the contents of a story by
  * adding or removing story fragments.
  * 
- * @author Terence
+ * @author Justin
  *
  */
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
@@ -112,7 +112,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 			public void onGroupExpand(int position) {
 				somePage = (Page)adpt.getGroup(position);
 				pageView.setText("Page: " + somePage.getTitle() + "\n" +
-						somePage.getTextContent());
+						somePage.getPageDescription());
 				popupMenu.show();
 
 
@@ -186,25 +186,14 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	private void fillData() {
 		//load model here
 		List<Page> storyPages = someStory.getPages();
-
 		adpt = new ExpandableListAdapter(this, lstView, storyPages);
-
 		lstView.setAdapter(adpt);
 	}
 
 	private void createPage() {
-		List<Option> lstdm = new ArrayList<Option>();
-		Option dm1 = new Option();
-
 		//New Page
 		Page model = new Page("NEW PAGE", "");
-		lstdm = new ArrayList<Option>();
 
-		dm1 = new Option();
-		dm1.setGoToPage("END");
-		lstdm.add(dm1);
-
-		model.setOptions(lstdm);
 		someStory.addPage(model);
 
 		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
@@ -219,6 +208,14 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
 		fLoader.saveStory(someStory, true);		
 	}
+	
+	@Override
+    public void onResume(){
+    super.onResume();
+		FileLoader fLoader = new FileLoader(EditStoryActivity.this);	
+    	someStory = fLoader.loadStory(someStory);
+        fillData();
+    }
 
 	/* Do we want a context menu instead?
     @Override

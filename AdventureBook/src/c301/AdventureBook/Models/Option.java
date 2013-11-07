@@ -23,8 +23,14 @@ package c301.AdventureBook.Models;
 import java.io.Serializable;
 
 public class Option implements Serializable{
-	private String goToPage;
 	private String description;
+	private Page goToPage;
+	
+	public Option(String description, Page goToPage){
+		this.description = description;
+		this.goToPage = goToPage;
+	}
+	
 	
 	public String getDescription() {
 		return description;
@@ -34,11 +40,11 @@ public class Option implements Serializable{
 		this.description = description;
 	}
 	
-	public void setGoToPage(String goToPage){
+	public void setGoToPage(Page goToPage){
 		this.goToPage = goToPage;
 	}
 	
-	public String getGoToPage(){
+	public Page getGoToPage(){
 		return this.goToPage;
 	}
 }

@@ -1,5 +1,4 @@
-/*
- * Copyright (C) <2013>  <Justin Hoy>
+/* Copyright (C) <2013>  <Justin Hoy>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,32 +14,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 //Creator: Justin Hoy
 
 package c301.AdventureBook.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page implements Serializable{
 
 	private String title;
 	private List<Option> options;
-	private String textContent;
+	private String pageDescription;
 	
-	public Page(String title, String textContent){
+	public Page(String title, String pageDescription){
 		this.title = title;
-		this.textContent = textContent;
+		this.pageDescription = pageDescription;
+		this.options = new ArrayList<Option>();
 	}
 	
 	public void addOption(Option option) {
 		this.options.add(option);
 	}
 
-	public void setTextContent(String textContent) {
-		this.textContent = textContent;
+	public void setTextContent(String pageDescripion) {
+		this.pageDescription = pageDescripion;
 	}
 
 	public void setTitle(String startPage){
@@ -51,8 +50,12 @@ public class Page implements Serializable{
 		this.options = options;
 	}
 	
-	public String getTextContent() {
-		return textContent;
+	public void setPageDescription(String pageDescription) {
+		this.pageDescription =  pageDescription;
+	}
+	
+	public String getPageDescription() {
+		return pageDescription;
 	}
 	
 	public String getTitle(){
@@ -62,4 +65,9 @@ public class Page implements Serializable{
 	public List<Option> getOptions(){
 		return this.options;
 	}
+	
+    @Override
+    public String toString() {
+            return this.title;
+    }
 }
