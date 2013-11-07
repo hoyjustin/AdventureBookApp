@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
 
@@ -31,6 +32,8 @@ public class EditOptionActivity extends Activity {
 	TextView gotoPageTV;
 	Story story;
 	ArrayList<Page> pages;
+	Page goToPage;
+	Option returnOption;
 	
 	// For now: we can just add Dummy Pages
 	//String[] pages = { "Page1", "Page2", "Page3", "Page4", "Page5",
@@ -43,9 +46,9 @@ public class EditOptionActivity extends Activity {
 		setContentView(R.layout.edit_option);
 		
 		
-		//this.story = (Story) getIntent().getSerializableExtra("someStory");
+		this.story = (Story) getIntent().getSerializableExtra("someStory");
 		
-		//this.pages = (ArrayList<Page>) story.getPages();
+		this.pages = (ArrayList<Page>) story.getPages();
 		
 		this.pages = new ArrayList<Page>();
 		
@@ -86,27 +89,15 @@ public class EditOptionActivity extends Activity {
 				// TODO Auto-generated method stub
 
 				TextView temp = (TextView) view_clicked;
-				
 				gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
 				gotoPageTV.setText(temp.getText().toString());
+				
+				goToPage = adapter.getItem(position);
 			}
 
 		});
 	}
 	
-/*	public class customPageAdapter extends ArrayAdapter<Page>{
-
-		public customPageAdapter() {
-			super(EditOptionActivity.this, R.layout.list_row, pages);
-		}
-		
-		public View getView(int position, View convertView, ViewGroup parent){
-			
-			return parent;
-		}
-		
-		
-	}*/
 	
 	/**
 	 * Method handler when "Save Option" button is clicked.
@@ -120,17 +111,14 @@ public class EditOptionActivity extends Activity {
 		Intent data = new Intent();
 		EditText editOptionDescription = (EditText) findViewById(R.id.editOptionDescription);
 		String optionDescription = editOptionDescription.getText().toString();
-				
+		
 		gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
-		//String gotoPageTV.getText(0);
-
 		
+		returnOption = new Option(optionDescription, goToPage);
 		
-		//newOption = new Option(optionDescription, )
+		data.putExtra(EXTRA_MESSAGE, returnOption);
 		
-		
-		//data.putExtra(EXTRA_MESSAGE, optionDescription);
-		//setResult(RESULT_OK, data);
+		setResult(RESULT_OK, data);
 		
 		finish();
 	}
