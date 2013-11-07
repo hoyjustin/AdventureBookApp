@@ -174,8 +174,7 @@ public class EditPageActivity extends Activity implements Serializable {
                         // after they click SaveOption
                         String someOpt = data.getExtras().getString("someOption");
                 		Option someOption = (Option) getIntent().getSerializableExtra("someOption");
-                        
-        				//somePage = someStory.getPage(somePage);
+
         				somePage.addOption(new Option("Do Something", somePage));
         				FileLoader fLoader = new FileLoader(EditPageActivity.this);
         				fLoader.saveStory(someStory, true);

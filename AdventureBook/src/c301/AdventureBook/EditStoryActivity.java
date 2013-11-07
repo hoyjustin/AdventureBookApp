@@ -194,9 +194,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	private void createPage() {
 		//New Page
 		Page model = new Page("NEW PAGE", "");
-
 		someStory.addPage(model);
-
 		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
 		fLoader.saveStory(someStory, true);	
 	}
