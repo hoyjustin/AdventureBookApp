@@ -38,10 +38,6 @@ public class Page implements Serializable{
 		this.options.add(option);
 	}
 
-	public void setTextContent(String pageDescripion) {
-		this.pageDescription = pageDescripion;
-	}
-
 	public void setTitle(String startPage){
 		this.title = startPage;
 	}
