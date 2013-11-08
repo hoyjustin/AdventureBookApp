@@ -43,6 +43,14 @@ import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
+/**
+ * This is the editOptionActivity. This activity is responsible
+ * for providing the user with an interface to create or edit
+ * an option.
+ * 
+ * @author Minhal Syed
+ * 
+*/
 public class EditOptionActivity extends Activity {
 
 	ArrayAdapter<Page> adapter;

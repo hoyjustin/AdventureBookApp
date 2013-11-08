@@ -126,68 +126,75 @@ public class TakePhotoActivity extends Activity{
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnIntent) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, imageReturnIntent);
-		switch(requestCode){			
-		//Bitmap photo = (Bitmap) imageReturnIntent.getExtras().get("imageReturnIntent");
+		if(imageReturnIntent != null){
+			switch(requestCode){			
+			//Bitmap photo = (Bitmap) imageReturnIntent.getExtras().get("imageReturnIntent");
 
-		//ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-		//test.setImageBitmap(photo);
+			//ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+			//test.setImageBitmap(photo);
 
-		//try{
-		//	String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/name.jpg";
-		//	FileOutputStream out = new FileOutputStream(imageFilePath);
-		//	photo.compress(Bitmap.CompressFormat.JPEG, 90, out);
-		//} catch(Exception e) {
-		//	e.printStackTrace();
-		//}
+			//try{
+			//	String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/name.jpg";
+			//	FileOutputStream out = new FileOutputStream(imageFilePath);
+			//	photo.compress(Bitmap.CompressFormat.JPEG, 90, out);
+			//} catch(Exception e) {
+			//	e.printStackTrace();
+			//}
 
-		case SELECT_PHOTO:
-			If(resultCode == RESULT_OK);{
-				//Uri selectedImage = imageReturnIntent.getData();
-				//
-				//try {
-				//	InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-				//	Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-				//	ImageView test2 = (ImageView) findViewById(R.id.upload_photo_view);
-				//	test2.setImageBitmap(yourSelectedImage);
-				//} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				//	e.printStackTrace();
-				//}
+			case SELECT_PHOTO:
+				if(resultCode == RESULT_OK);{
+					//Uri selectedImage = imageReturnIntent.getData();
+					//
+					//try {
+					//	InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+					//	Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+					//	ImageView test2 = (ImageView) findViewById(R.id.upload_photo_view);
+					//	test2.setImageBitmap(yourSelectedImage);
+					//} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					//	e.printStackTrace();
+					//}
 
-				Uri selectedImage = imageReturnIntent.getData();
-				if(selectedImage != null){
-					String[] filePathColumn = {MediaStore.Images.Media.DATA};
-					Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-					cursor.moveToFirst();
-					int columnIndex =  cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-					String filePath = cursor.getString(columnIndex);
-					cursor.close();
-					ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-					test.setImageBitmap(BitmapFactory.decodeFile(filePath));
-					show_path = filePath;
-					select_result = 1;
+
+					if(imageReturnIntent.getData() != null){
+						try {
+							Uri selectedImage = imageReturnIntent.getData();
+							String[] filePathColumn = {MediaStore.Images.Media.DATA};
+							Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+							cursor.moveToFirst();
+							int columnIndex =  cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+							String filePath = cursor.getString(columnIndex);
+							cursor.close();
+							ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+							test.setImageBitmap(BitmapFactory.decodeFile(filePath));
+							show_path = filePath;
+							select_result = 1;
+						}
+						catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+
+				}
+				break;
+			case TAKE_PHOTO:
+				If(resultCode == RESULT_OK);{
+					try {
+						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
+						test.setImageBitmap(bitmap);
+						select_result = 1;
+						break;
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				break;
 			}
-		case TAKE_PHOTO:
-			If(resultCode == RESULT_OK);{
-				try {
-					ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-					Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
-					test.setImageBitmap(bitmap);
-					select_result = 1;
-					break;
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-
-
 		}
 
 	}
