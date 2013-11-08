@@ -229,29 +229,16 @@ public class OfflineLibraryActivity extends Activity {
 
 		if (item.getTitle() == "Publish Online") {
 			// Do Publish Story Function
-			
-			Toast.makeText(this, "Publish " + storyClicked.getTitle(),
-					Toast.LENGTH_LONG).show();
+			publishStory(storyClicked);
 			
 		} else if (item.getTitle() == "Edit Story") {
 
-			Intent i = new Intent(this, EditStoryActivity.class);
-			Bundle bundle = new Bundle();
-			bundle.putSerializable("someStory", storyClicked);
-			i.putExtras(bundle);
-			startActivityForResult(i, ACTIVITY_EDIT_STORY);
+			editStory(storyClicked);
 
 		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
+			deleteSory(storyClicked);
 
-			fLoader.deleteStory(storyClicked);
-
-			fLoader = new FileManager(this);
-			offlineStoryLibrary = fLoader.loadAllStoryFiles();
-			
-			populateListView();
-
-			Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 		}
 		return true;
 	}
@@ -265,6 +252,31 @@ public class OfflineLibraryActivity extends Activity {
 		//Intent intent = new Intent(this, ViewPageActivity.class);
 		//intent.putExtra("someStory", story);
 		//startActivity(intent);
+	}
+	
+	public void editStory(Story storyClicked) {
+		Intent i = new Intent(this, EditStoryActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("someStory", storyClicked);
+		i.putExtras(bundle);
+		startActivityForResult(i, ACTIVITY_EDIT_STORY);
+	}
+	
+	public void publishStory(Story storyClicked) {
+					
+		Toast.makeText(this, "Publish " + storyClicked.getTitle(),
+		Toast.LENGTH_LONG).show();
+	}
+	
+	public void deleteSory(Story storyClicked) {
+		fLoader.deleteStory(storyClicked);
+
+		fLoader = new FileManager(this);
+		offlineStoryLibrary = fLoader.loadAllStoryFiles();
+		
+		populateListView();
+
+		Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 	}
 	
 	/**
