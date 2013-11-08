@@ -134,7 +134,13 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         });
 		 */
 	}
-
+	
+	/**
+	 * Provides actions to take upon clicking an option on the popup menu
+	 * 
+	 * @param item in popup menu clicked
+	 * @return a boolean indicating task handled
+	 */
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
 		switch (item.getItemId()) {
@@ -208,6 +214,10 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		fLoader.saveStory(someStory, true);		
 	}
 	
+	/**
+	 * Refills view for all pages upon resuming activity
+	 * 
+	 */
 	@Override
     public void onResume(){
     super.onResume();

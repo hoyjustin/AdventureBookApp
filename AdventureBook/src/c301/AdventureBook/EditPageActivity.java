@@ -147,6 +147,11 @@ public class EditPageActivity extends Activity implements Serializable {
 		});
 	}
 
+	/**
+	 * Allows activity to retrieve data upon coming back from another activity
+	 * 
+	 * @param requestCode, resultCode, and intent of incoming activity
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == EDIT_OPTION) {
@@ -174,6 +179,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
+	
 	public void onResume()
 	{  // After a pause OR at startup
 		super.onResume();
