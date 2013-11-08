@@ -38,24 +38,45 @@ public class Option implements Serializable{
 
 	private Page goToPage;
 
+	/**
+	 * The constructor for the Option model class.
+	 * It creates a new option given the description and 
+	 * @param description the description
+	 * @param goToPage the goto page
+	 */
 	public Option(String description, Page goToPage){
 		this.description = description;
 		this.goToPage = goToPage;
 	}
 	
-
+	/**
+	 * Get the option description
+	 * @return description the option description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Set the option description
+	 * @param description the description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
+	/**
+	 * Set the goto page
+	 * @param goToPage the goto page
+	 */
 	public void setGoToPage(Page goToPage){
 		this.goToPage = goToPage;
 	}
 	
+	/**
+	 * Get the goto page
+	 * @return goToPage the goto page
+	 */
 	public Page getGoToPage(){
 		return this.goToPage;
 	}
