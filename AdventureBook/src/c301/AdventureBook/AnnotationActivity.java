@@ -98,7 +98,7 @@ public class AnnotationActivity extends Activity {
 			Intent b = new Intent(this, TakePhotoActivity.class);
 		}
 		private void goBackPage(){
-			i = new Intent(this, StoryFragment.class);
+			//i = new Intent(this, StoryFragment.class);
 		}
 		private void getUserInfo(){
 			authorAnnotation = author.getText().toString();
