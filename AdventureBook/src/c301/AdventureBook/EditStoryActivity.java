@@ -35,7 +35,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
-import c301.AdventureBook.Controllers.FileLoader;
+import c301.AdventureBook.Controllers.FileManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -195,7 +195,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		int pageCount = someStory.getPages().size();
 		Page model = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "");
 		someStory.addPage(model);
-		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
+		FileManager fLoader = new FileManager(EditStoryActivity.this);
 		fLoader.saveStory(someStory, true);	
 	}
 
@@ -204,14 +204,14 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	 */
 	private void deletePage() {
 		someStory.deletePage(somePage);
-		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
+		FileManager fLoader = new FileManager(EditStoryActivity.this);
 		fLoader.saveStory(someStory, true);		
 	}
 	
 	@Override
     public void onResume(){
     super.onResume();
-		FileLoader fLoader = new FileLoader(EditStoryActivity.this);	
+		FileManager fLoader = new FileManager(EditStoryActivity.this);	
     	someStory = fLoader.loadStory(someStory);
         fillData();
     }

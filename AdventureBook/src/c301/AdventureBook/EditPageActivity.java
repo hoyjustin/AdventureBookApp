@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import c301.AdventureBook.Controllers.FileLoader;
+import c301.AdventureBook.Controllers.FileManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -139,7 +139,7 @@ public class EditPageActivity extends Activity implements Serializable {
 				currentPage = currentStory.getPage(currentPage);
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
-				FileLoader fLoader = new FileLoader(EditPageActivity.this);
+				FileManager fLoader = new FileManager(EditPageActivity.this);
 				fLoader.saveStory(currentStory, true);	
 
 				finish();
@@ -158,7 +158,7 @@ public class EditPageActivity extends Activity implements Serializable {
 				if(retrievedOption != null){
 					currentPage = currentStory.getPage(currentPage);
 					currentPage.addOption(retrievedOption);
-					FileLoader fLoader = new FileLoader(EditPageActivity.this);
+					FileManager fLoader = new FileManager(EditPageActivity.this);
 					fLoader.saveStory(currentStory, true);
 					fillData();
 				}
@@ -232,7 +232,7 @@ public class EditPageActivity extends Activity implements Serializable {
 							currentPage = currentStory.getPage(currentPage);
 							currentPageOptions.remove(currentOption);
 							currentPage.setOptions(currentPageOptions);
-							FileLoader fLoader = new FileLoader(EditPageActivity.this);
+							FileManager fLoader = new FileManager(EditPageActivity.this);
 							fLoader.saveStory(currentStory, true);
 							fillData();
 						}

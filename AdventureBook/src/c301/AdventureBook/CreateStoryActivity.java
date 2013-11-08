@@ -34,7 +34,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.FileLoader;
+import c301.AdventureBook.Controllers.FileManager;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -118,7 +118,7 @@ public class CreateStoryActivity extends Activity {
 		getUserText();
 		someStory = new Story(storyTitle, storyDescription, storyAuthor,
 				formattedDate, show_path);
-		FileLoader fLoader = new FileLoader(this);
+		FileManager fLoader = new FileManager(this);
 
 		boolean saveSuccess = fLoader.saveStory(someStory, false);
 
@@ -146,7 +146,7 @@ public class CreateStoryActivity extends Activity {
 			builder.setPositiveButton(R.string.ok,
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							FileLoader fLoader2 = new FileLoader(
+							FileManager fLoader2 = new FileManager(
 									CreateStoryActivity.this);
 							fLoader2.saveStory(someStory, true);
 							Toast.makeText(CreateStoryActivity.this,

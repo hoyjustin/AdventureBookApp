@@ -40,11 +40,11 @@ import c301.AdventureBook.Models.Story;
  * 
  *
  */
-public class FileLoader {
+public class FileManager {
 	Context activityContext;
 	Story someStory;
 	
-	public FileLoader(Context someContext){
+	public FileManager(Context someContext){
 		this.activityContext = someContext;
 	}
 	
