@@ -49,36 +49,92 @@ import com.example.adventurebook.R;
 
 /**
  * This is the offline library activity. This activity's main purpose is to
- * provide a graphical user interface to show all the local stories that are 
- * present in the phone's memory to the user. 
+ * show all the local stories that are present in the phone's memory to the user. 
+ * It also provides the user with an interface to interact with the local stories.
+ * Interactions include: viewing story, deleting story, editing story, adding story,
+ * publishing story, and searching offline stories.
+ * 
  * 
  * @author Minhal Syed - Main Creator
  * @author Justin Hoy - Minor Editor
- *
+ * @author Terence Yin Kiu Leung - Minor Editor
  */
 
 public class OfflineLibraryActivity extends Activity {
 	
 	private static final int ACTIVITY_EDIT_STORY = 0;
 
-	ArrayList<Story> offlineStoryLibrary;
-	ArrayAdapter<Story> adapter;
-	FileLoader fLoader;
+	ArrayList<Story> offlineStoryLibrary;		//Stories array
+	ArrayAdapter<Story> adapter;				//Adapter for the stories
+	FileLoader fLoader;							//Controller for the Files
 
+	
+	/**
+	 * This function is called once, when the application loads
+	 * this activity for the first time.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		
 		offlineStoryLibrary = new ArrayList<Story>();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
 
+		//Load the Local Library
 		fLoader = new FileLoader(this);
 		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 		
+		//Populate the Display
 		populateListView();
 	}
 	
+	
+	/**
+	 * Create a search action in the action bar
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.library_options_menu, menu);
+		
+		// Associate searchable configuration with the SearchView
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
+				.getActionView();
+		
+		final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+			/**
+			 * 
+			 */
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				// Do something
+				
+				String keyword = searchView.getQuery().toString().toLowerCase();
+				offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
+				
+				populateListView();
+				return true;
+			}
+			
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				// Do something
+				return true;
+			}
+		};
+		
+		searchView.setOnQueryTextListener(queryTextListener);
+		
+		return true;
+	}
+	
+	/**
+	 * This function is called every time the activity is
+	 * brought back to the screen.
+	 *  
+	 */
 	protected void onResume(){
 		super.onResume();
 		offlineStoryLibrary = fLoader.loadAllStoryFiles();
@@ -115,6 +171,7 @@ public class OfflineLibraryActivity extends Activity {
 
 		// tutorial used =
 		// http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
+		
 		// When Clicked on the list item, we can return a story.
 		offlineLV.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -131,76 +188,38 @@ public class OfflineLibraryActivity extends Activity {
 
 	}
 
-	/**
-	 * Create options menu in action bar
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.library_options_menu, menu);
-
-		// Associate searchable configuration with the SearchView
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
-				.getActionView();
-
-		final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
-			@Override
-			public boolean onQueryTextChange(String newText) {
-				// Do something
-
-				String keyword = searchView.getQuery().toString().toLowerCase();
-		        offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
-
-		        populateListView();
-				return true;
-			}
-
-			@Override
-			public boolean onQueryTextSubmit(String query) {
-				// Do something
-				return true;
-			}
-		};
-
-		searchView.setOnQueryTextListener(queryTextListener);
-
-		return true;
-	}
 
 	/**
-	 * Create long click menu
+	 * Create long click menu for the ListView.
+	 * When LongCliked, we can see Publish Story, EditStory and DeleteStory
+	 * functions. 
 	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		// TODO Auto-generated method stub
+		// tutorial from:
+		// http://stackoverflow.com/questions/2321332/detecting-which-selected-item-in-a-listview-spawned-the-contextmenu-android
+
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Publish Online");
 		menu.add("Edit Story");
 		menu.add("Delete Story");
 
 		View thisItem = v;
-		// TextView titleText = (TextView) v.findViewById(R.id.titleTV);
-		// this.title = (String) titleText.getText();
-
-		// I am trying to see if I can get the story object directly, rather
-		// than reloading it.
-		// tutorial from:
-		// http://stackoverflow.com/questions/2321332/detecting-which-selected-item-in-a-listview-spawned-the-contextmenu-android
+		
 
 		// Get the info on which item was selected
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 
-		// Retrieve the item that was clicked on
-		Object item = adapter.getItem(info.position);
 	}
+	/**
+	 * This function is a context menu listener. If the user presses
+	 * publish, delete, or edit story, this listener acts accordingly.
+	 */
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		// super.onContextItemSelected(item);
 
-		// Here's how you can get the correct item in onContextItemSelected()
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 
@@ -209,8 +228,10 @@ public class OfflineLibraryActivity extends Activity {
 
 		if (item.getTitle() == "Publish Online") {
 			// Do Publish Story Function
+			
 			Toast.makeText(this, "Publish " + storyClicked.getTitle(),
 					Toast.LENGTH_LONG).show();
+			
 		} else if (item.getTitle() == "Edit Story") {
 
 			Intent i = new Intent(this, EditStoryActivity.class);
@@ -218,9 +239,7 @@ public class OfflineLibraryActivity extends Activity {
 			bundle.putSerializable("someStory", storyClicked);
 			i.putExtras(bundle);
 			startActivityForResult(i, ACTIVITY_EDIT_STORY);
-			// Toast.makeText(this, "Edit " + storyClicked.getTitle(),
-			// Toast.LENGTH_LONG)
-			// .show();
+
 		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
 
@@ -235,13 +254,25 @@ public class OfflineLibraryActivity extends Activity {
 		}
 		return true;
 	}
-
+	/**
+	 * This function starts the viewPage Activity.
+	 * @param story - The Story that the user chose to view.
+	 */
 	private void viewStory(Story story) {
-		Intent intent = new Intent(this, ViewPageActivity.class);
-		intent.putExtra("someStory", story);
-		startActivity(intent);
+		//Do Something
+		
+		//Intent intent = new Intent(this, ViewPageActivity.class);
+		//intent.putExtra("someStory", story);
+		//startActivity(intent);
 	}
 	
+	/**
+	 * This is the CustomAdapter Class. This custom adapter is used
+	 * to populate the ListView of the offline Library.
+	 * 
+	 * @author Minhal Syed
+	 *
+	 */
 	private class CustomAdapter extends ArrayAdapter<Story> {
 
 		public CustomAdapter() {
@@ -254,7 +285,6 @@ public class OfflineLibraryActivity extends Activity {
 			// Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
 
 			// Make sure we have a view to work with (may have been given null)
-
 			View itemView = convertView;
 			if (itemView == null) {
 				itemView = getLayoutInflater().inflate(
