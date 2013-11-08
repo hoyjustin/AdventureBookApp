@@ -45,7 +45,7 @@ import com.example.adventurebook.R;
  * storage. *
  * 
  * @author Terence
- * 
+ * @author Zhao Zhang - Minor Editor
  */
 public class CreateStoryActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY = 0;

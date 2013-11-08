@@ -22,6 +22,8 @@ package c301.AdventureBook;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -41,8 +43,8 @@ import android.widget.ImageView;
 import com.example.adventurebook.R;
 
 /**
- * TODO: insert class description.
- * 
+ * Take Photo Activity allow user to take a photo from camera, or select a photo from phone's gallery.
+ * It will pass a path of photo to other class
  * @author Zhao Zhang
  *
  */
@@ -77,8 +79,12 @@ public class TakePhotoActivity extends Activity{
 		uploadFromWebCam.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				String curentDateandTime = sdf.format(new Date());
+				String newFilePath = Environment.getExternalStorageDirectory() + "/"+curentDateandTime+".jpg"; 
 				Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-				File file = new File(Environment.getExternalStorageDirectory(),  ("temp.jpg"));
+				File file = new File(Environment.getExternalStorageDirectory(),  curentDateandTime+ ".jpg");
+				show_path = newFilePath;
 				try {
 					file.createNewFile();
 				} catch (IOException e) {
@@ -167,7 +173,6 @@ public class TakePhotoActivity extends Activity{
 					ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 					Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
 					test.setImageBitmap(bitmap);
-					show_path = Environment.getExternalStorageDirectory() +"/temp.jpg" ;
 					select_result = 1;
 					break;
 				} catch (FileNotFoundException e) {
