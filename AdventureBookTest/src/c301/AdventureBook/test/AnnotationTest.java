@@ -34,11 +34,13 @@ public class AnnotationTest extends AndroidTestCase
 	@Test
 	public void testChangeAuthorAndComment()
 	{
-		annotation.setAuthor("Author");
-		annotation.setComment("comment");
+		String newAuthor = "Author";
+		String newComment = "comment";
+		annotation.setAuthor(newAuthor);
+		annotation.setComment(newComment);
 		//assertTrue(res);
-		assertEquals("Author",annotation.getComment() );
-		assertEquals("comment",annotation.getAuthor() );
+		assertEquals(newAuthor,annotation.getAuthor());
+		assertEquals(newComment,annotation.getComment());
 	}
 	
 	/**
