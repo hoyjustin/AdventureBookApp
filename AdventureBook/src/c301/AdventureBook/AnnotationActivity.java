@@ -27,7 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import c301.AdventureBook.Models.Annotations;
+import c301.AdventureBook.Models.Annotation;
 
 import com.example.adventurebook.R;
 
@@ -40,7 +40,7 @@ import com.example.adventurebook.R;
 public class AnnotationActivity extends Activity {
 	private EditText author;
 	private EditText comment;
-	private Annotations someAnnotations;
+	private Annotation someAnnotations;
 	String authorAnnotation;
 	String commentAnnotation;
 	Intent i;
@@ -107,7 +107,7 @@ public class AnnotationActivity extends Activity {
 	 */
 		private void createAnnotation(){
 			getUserInfo();
-			someAnnotations = new Annotations(authorAnnotation, commentAnnotation, 0); 
+			someAnnotations = new Annotation(authorAnnotation, commentAnnotation); 
 			
 			goBackPage();
 			Bundle bundle = new Bundle();
