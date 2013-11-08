@@ -32,25 +32,34 @@ public class PageTest extends TestCase {
 		optionsList = new ArrayList<Option>();
 	}
 	
+	/*
+     * Test that the addOption() method adds an option to the list of options
+     */
 	public void testAddOption() {
 		optionsList.add(option);
 		page.addOption(option);
 		assertEquals(optionsList, page.getOptions());
 	}
 	
+	/*
+     * Test that the getPageTitle() method gives data matching the constructor.
+     */
 	public void testGetPageTitle() {
 		assertEquals(pageTitle, page.getTitle());
 	}
 	
+	/*
+     * Test that the getPageDescription() method gives data matching the constructor.
+     */
 	public void testGetPageDescription() {
 		assertEquals(pageDescription, page.getPageDescription());
 	}
 	
+	/*
+     * Test that the getOptions() method gives data matching the constructor.
+     */
 	public void testGetOptions() {
 		assertEquals(optionsList, page.getOptions());
 	}
 
-	protected void tearDown() {
-		
-	}
 }

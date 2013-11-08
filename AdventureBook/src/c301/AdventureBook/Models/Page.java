@@ -22,6 +22,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the Page model class. There can be many pages within a story. 
+ * The model allows authors to set a page title and description, and add
+ * options to the page. 
+ * 
+ * @author tyleung
+ *
+ */
 public class Page implements Serializable{
 
 	private String title;
