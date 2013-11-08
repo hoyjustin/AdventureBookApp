@@ -1,12 +1,19 @@
 package c301.AdventureBook.test;
 
-import java.util.ArrayList;
+import org.junit.Before;
+import org.junit.Test;
 
+import android.test.AndroidTestCase;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
-import junit.framework.TestCase;
 
-public class OptionTest extends TestCase {
+/**
+ * JUnit test case for the Option model
+ * 
+ * @author tyleung
+ *
+ */
+public class OptionTest extends AndroidTestCase {
 	private Option option;
 	private String description = "this is an option description";
 	
@@ -14,6 +21,7 @@ public class OptionTest extends TestCase {
 	private String goToPageDescription = "goToPage description";
 	private Page goToPage;
 	
+	@Before
 	protected void setUp() {
 		goToPage = new Page(goToPageTitle, goToPageDescription);
 		option = new Option(description, goToPage);
@@ -22,6 +30,7 @@ public class OptionTest extends TestCase {
 	/*
      * Test that the getDescription() method gives data matching the constructor.
      */
+	@Test
 	public void testGetDescription() {
 		assertEquals(description, option.getDescription());
 	}
@@ -29,6 +38,7 @@ public class OptionTest extends TestCase {
 	/*
      * Test that the getGoToPage() method gives data matching the constructor.
      */
+	@Test
 	public void testGetGoToPage() {
 		assertEquals(goToPage, option.getGoToPage());
 	}

@@ -3,7 +3,11 @@ package c301.AdventureBook.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import android.test.AndroidTestCase;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
 
@@ -13,7 +17,7 @@ import c301.AdventureBook.Models.Story;
  * @author William
  *
  */
-public class StoryTest extends TestCase{
+public class StoryTest extends AndroidTestCase {
 	private Story story;
 	private String title = "C301";
 	private String description = "This is a test";
@@ -22,13 +26,16 @@ public class StoryTest extends TestCase{
 	private String imagePath = "I don't know";
 	public List<Page> pages = new ArrayList<Page>();
 
+	@Before
 	protected void setUp() throws Exception {
 		story = new Story(title, description, author, date, imagePath);
 	}
 
+	@After
 	protected void tearDown() throws Exception {
 	}
 
+	@Test
 	public void testGetter() {
 		assertEquals(imagePath, story.getImagePath());
 		assertEquals(date, story.getDate());
@@ -38,6 +45,7 @@ public class StoryTest extends TestCase{
 
 	}
 
+	@Test
 	public void testAddDeletePages() {
 		Page page1 = new Page(title, description);
 		String title2 = "this is 2 test";

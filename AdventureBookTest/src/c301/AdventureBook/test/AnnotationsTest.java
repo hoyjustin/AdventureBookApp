@@ -1,15 +1,18 @@
-package c301.AdventureBook;
-
-import static org.junit.Assert.*;
+package c301.AdventureBook.test;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import c301.AdventureBook.Models.Annotation;
+import android.test.AndroidTestCase;
 import c301.AdventureBook.Models.Annotations;
 
-
-public class AnnotationsTest
+/**
+ * JUnit test case for the Annotations model
+ * 
+ * @author ltong2
+ *
+ */
+public class AnnotationsTest extends AndroidTestCase
 {
 	private Annotations annotations;
 	@Before

@@ -1,16 +1,18 @@
-package c301.AdventureBook;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+package c301.AdventureBook.test;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import android.test.AndroidTestCase;
 import c301.AdventureBook.Models.Annotation;
-import c301.AdventureBook.Models.Annotations;
 
-
-public class AnnotationTest
+/**
+ * JUnit test case for the Annotation model.
+ * 
+ * @author ltong2
+ *
+ */
+public class AnnotationTest extends AndroidTestCase
 {
 	private Annotation annotation;
 	@Before
