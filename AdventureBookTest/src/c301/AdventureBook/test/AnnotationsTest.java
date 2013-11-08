@@ -15,10 +15,12 @@ import c301.AdventureBook.Models.Annotations;
 public class AnnotationsTest extends AndroidTestCase
 {
 	private Annotations annotations;
+	
 	@Before
 	public void setUp() throws Exception{
 		annotations = new Annotations(null,null,0);
 	}
+	
 	@Test
 	public void test()
 	{
@@ -28,8 +30,6 @@ public class AnnotationsTest extends AndroidTestCase
 		annotations.setDescription("what's up");
 		assertEquals("jay",annotations.getAuthor());
 		assertEquals("what's up",annotations.getDescription());
-		
-		
 	}
 
 }

@@ -188,4 +188,14 @@ public class Story implements Serializable{
 		this.addPage(page);
 		return page;
 	}
+	
+	/**
+	 * This function sets the filename automatically and returns it.
+	 * 
+	 * @return filename the filename
+	 */
+	public String getFilename() {
+		String filename = this.title + "-" + this.author + ".sav";
+		return filename;
+	}
 }

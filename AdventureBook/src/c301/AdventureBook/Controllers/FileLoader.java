@@ -86,7 +86,7 @@ public class FileLoader {
 	
 	
 	public Story loadStory(Story loadStory) {
-		String FILENAME = loadStory.getTitle() + "-" + loadStory.getAuthor() + ".sav";
+		String FILENAME = loadStory.getFilename();
 		Story someStory = loadFromFile(FILENAME);
 		return someStory;
 	}

@@ -15,10 +15,12 @@ import c301.AdventureBook.Models.Annotation;
 public class AnnotationTest extends AndroidTestCase
 {
 	private Annotation annotation;
+	
 	@Before
 	public void setUp() throws Exception{
 		annotation = new Annotation(null,null);
 	}
+	
 	@Test
 	public void test()
 	{

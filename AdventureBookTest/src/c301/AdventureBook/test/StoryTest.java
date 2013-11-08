@@ -35,6 +35,9 @@ public class StoryTest extends AndroidTestCase {
 	protected void tearDown() throws Exception {
 	}
 
+	/*
+     * Test that the getter methods give data matching the constructor.
+     */
 	@Test
 	public void testGetter() {
 		assertEquals(imagePath, story.getImagePath());
@@ -45,6 +48,9 @@ public class StoryTest extends AndroidTestCase {
 
 	}
 
+	/**
+	 * Test adding and deleting pages.
+	 */
 	@Test
 	public void testAddDeletePages() {
 		Page page1 = new Page(title, description);
@@ -56,6 +62,16 @@ public class StoryTest extends AndroidTestCase {
 	    this.pages.remove(page1);
 	    this.pages.add(page2);
 	    assertEquals(((Story)pages).getPages(), page2);
+	}
+	
+	/**
+	 * Test that the getFilename() method returns a filename in the correct
+	 * format.
+	 */
+	@Test
+	public void testGetFilename() {
+		String filename = story.getTitle() + "-" + story.getAuthor() + ".sav";
+		assertEquals(filename, story.getFilename());
 	}
 
 }
