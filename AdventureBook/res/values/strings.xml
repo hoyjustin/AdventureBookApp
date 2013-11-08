@@ -25,8 +25,6 @@
     <string name=" menu_edit">Edit Page</string>
     <string name=" menu_delete">Delete Page</string>
     <string name="title_activity_edit_page">EditPageActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="delete_page_confirm">Do you really want to delete this page?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -37,5 +35,9 @@
     <string name="add_option">Add a New Option</string>
     <string name="title_activity_view_story_acivity">ViewStoryAcivity</string>
     <string name="title_activity_view_story">ViewStoryActivity</string>
+    <string name="delete_option_confirm">Do you really want to delete this option?</string>
+    
+    <!-- Minhal/Edit Page -->
+    <string name="alert_no_goto">You need to select a page for the option to go to!</string>
 
 </resources>

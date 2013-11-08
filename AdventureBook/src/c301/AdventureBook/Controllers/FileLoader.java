@@ -15,8 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package c301.AdventureBook;
+package c301.AdventureBook.Controllers;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -43,7 +44,7 @@ public class FileLoader {
 	Context activityContext;
 	Story someStory;
 	
-	FileLoader(Context someContext){
+	public FileLoader(Context someContext){
 		this.activityContext = someContext;
 	}
 	
@@ -71,6 +72,9 @@ public class FileLoader {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (Exception e){
 			e.printStackTrace();
 		}
 		return someStory;

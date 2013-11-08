@@ -15,8 +15,9 @@
             android:id="@+id/storyView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0.57"
+            android:layout_gravity="left"
+            android:layout_weight="1.44"
+            android:gravity="center"
             android:textSize="20sp" />
 
         <ExpandableListView
@@ -30,10 +31,11 @@
 
         <TextView
             android:id="@+id/pageView"
-            android:layout_width="match_parent"
+            android:layout_width="295dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0.57"
+            android:layout_weight="1.37"
+            android:gravity="left"
             android:textSize="15sp" />
 
 <LinearLayout

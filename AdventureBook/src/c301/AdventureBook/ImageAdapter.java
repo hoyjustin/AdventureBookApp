@@ -53,7 +53,8 @@ public class ImageAdapter extends BaseAdapter {
 			R.drawable.fish,
 			R.drawable.heart,
 			R.drawable.star,
-			R.drawable.lightning
+			R.drawable.lightning,
+			R.drawable.imageadd128
 	};
 
 	private ImageView[] mImages;

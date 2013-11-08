@@ -35,6 +35,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
+import c301.AdventureBook.Controllers.FileLoader;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -111,7 +112,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 			@Override
 			public void onGroupExpand(int position) {
 				somePage = (Page)adpt.getGroup(position);
-				pageView.setText("Page: " + somePage.getTitle() + "\n" +
+				pageView.setText("Page Selected:    " + somePage.getTitle() + "\n" + "Content:    " +
 						somePage.getPageDescription());
 				popupMenu.show();
 
@@ -133,8 +134,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         });
 		 */
 	}
-
-
 
 	@Override
 	public boolean onMenuItemClick(MenuItem item) {
@@ -193,7 +192,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 	private void createPage() {
 		//New Page
-		Page model = new Page("NEW PAGE", "");
+		int pageCount = someStory.getPages().size();
+		Page model = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "");
 		someStory.addPage(model);
 		FileLoader fLoader = new FileLoader(EditStoryActivity.this);
 		fLoader.saveStory(someStory, true);	

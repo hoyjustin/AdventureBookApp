@@ -5,9 +5,12 @@ package c301.AdventureBook;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
@@ -34,27 +38,15 @@ public class EditOptionActivity extends Activity {
 	Page goToPage;
 	Option returnOption;
 	
-	// For now: we can just add Dummy Pages
-	//String[] pages = { "Page1", "Page2", "Page3", "Page4", "Page5",
-		//	"Page6", "Page7" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_option);
-		
 		
 		this.story = (Story) getIntent().getSerializableExtra("someStory");
 		
 		this.pages = (ArrayList<Page>) story.getPages();
-		
-
-		//this.pages = new ArrayList<Page>();
-		
-		//this.pages.add(new Page("Title1", "description1"));
-		//this.pages.add(new Page("Title2", "description2"));
-		//this.pages.add(new Page("Title3", "description3"));
 				
 		populateListView();
 		registerForClicks();
@@ -78,13 +70,13 @@ public class EditOptionActivity extends Activity {
 	}
 
 	private void registerForClicks() {
-		// TODO Auto-generated method stub
+
 		pageListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view_clicked,
 					int position, long arg3) {
-				// TODO Auto-generated method stub
+
 
 				TextView temp = (TextView) view_clicked;
 				gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
@@ -112,13 +104,35 @@ public class EditOptionActivity extends Activity {
 		
 		gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
 		
+		if(goToPage != null){
 		returnOption = new Option(optionDescription, goToPage);
-		
-		data.putExtra("someOption", returnOption);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("someOption", returnOption);
+			data.putExtra("someOption", returnOption);
 		
 		setResult(RESULT_OK, data);
-		
 		finish();
+		}
+		else{
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					EditOptionActivity.this);
+
+			// Add the buttons
+			builder.setPositiveButton(R.string.ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							// User clicked Cancel button
+						}
+					});
+			
+			// 2. Chain together various setter methods to set the dialog
+			// characteristics
+			builder.setMessage(R.string.alert_no_goto);
+
+			// 3. Get the AlertDialog from create()
+			AlertDialog dialog = builder.create();
+			dialog.show();
+		}
 	}
 	
 	/**

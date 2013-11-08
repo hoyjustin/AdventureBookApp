@@ -34,12 +34,12 @@ public class Page implements Serializable{
 		this.options = new ArrayList<Option>();
 	}
 	
+	public void deleteOption(Option option) {
+		this.options.remove(option);
+	}
+	
 	public void addOption(Option option) {
 		this.options.add(option);
-	}
-
-	public void setTextContent(String pageDescripion) {
-		this.pageDescription = pageDescripion;
 	}
 
 	public void setTitle(String startPage){
@@ -70,5 +70,6 @@ public class Page implements Serializable{
     public String toString() {
         return this.title;
     }
+    
 
 }

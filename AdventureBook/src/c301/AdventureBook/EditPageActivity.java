@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import c301.AdventureBook.Controllers.FileLoader;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -30,10 +31,13 @@ import com.example.adventurebook.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -57,9 +61,8 @@ import android.widget.TextView;
 public class EditPageActivity extends Activity implements Serializable {
 
 	private static final int EDIT_OPTION = 0;
-	
-	int PHOTO_ACTIVITY_REQUEST = 1001;
-	
+	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
+
 	private EditText mEditPageDes;
 	private EditText mEditPageTitle;
 	private Button mButtonCreateOption;
@@ -69,38 +72,30 @@ public class EditPageActivity extends Activity implements Serializable {
 	private ImageAdapter coverImageAdapter;
 	private CustomAdapter adpt;
 	private ListView optionsList;
-	
+
 	private String someTitle;
 	private String someDescription;
-	private Story someStory;
-	private Page somePage;
-	private List<Option> options;
 
-	// int my_current_position = 0;
-	
-	private Story story;
+	private Story currentStory;
+	private Page currentPage;
+	private Option retrievedOption;
+	private Option currentOption;
+	private List<Option> currentPageOptions;
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(com.example.adventurebook.R.layout.edit_page);
-		
-		somePage = (Page) getIntent().getSerializableExtra("somePage");
-		someStory = (Story) getIntent().getSerializableExtra("someStory");
-		
-		options = somePage.getOptions();
+
+		currentPage = (Page) getIntent().getSerializableExtra("somePage");
+		currentStory = (Story) getIntent().getSerializableExtra("someStory");
 
 		mEditPageTitle = (EditText)findViewById(com.example.adventurebook.R.id.editPageTitle);
 		mEditPageDes = (EditText)findViewById(com.example.adventurebook.R.id.editPageDescription);
-
-		story = (Story) getIntent().getSerializableExtra("someStory");
-		
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
 		mButtonSavePage = (Button) findViewById(R.id.save_page);
-		
-		mEditPageTitle.setText(somePage.getTitle());
-		mEditPageDes.setText(somePage.getPageDescription());
+		mEditPageTitle.setText(currentPage.getTitle());
+		mEditPageDes.setText(currentPage.getPageDescription());
 
 		coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
 		coverFlow.setAdapter(new ImageAdapter(this));
@@ -110,36 +105,29 @@ public class EditPageActivity extends Activity implements Serializable {
 		coverFlow.setSpacing(25);
 		coverFlow.setSelection(2, true);
 		coverFlow.setAnimationDuration(1000);
-		
+
 		optionsList = (ListView) findViewById(R.id.options_list);
-		
-		//somePage.addOption(new Option());
 		fillData();
-		
-        coverFlow.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long arg3)
-            {
-                // TODO Auto-generated method stub
-            	Intent intent = new Intent(view.getContext(),TakePhotoActivity.class);
-            	//my_current_position = position;
-            	startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
-            	
-            }
-        });
+
+		coverFlow.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long arg3)
+			{
+
+				Intent intent = new Intent(view.getContext(),TakePhotoActivity.class);
+				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
+
+			}
+		});
 
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				Intent i = new Intent(EditPageActivity.this, EditOptionActivity.class);
-	   			Bundle bundle = new Bundle();
-	   			bundle.putSerializable("someStory", someStory);
-	   			i.putExtras(bundle);
-				startActivity(i);
-				
-				//somePage = someStory.getPage(somePage);
-				somePage.addOption(new Option("Do something", somePage));
-				FileLoader fLoader = new FileLoader(EditPageActivity.this);
-				fLoader.saveStory(someStory, true);	
+				Bundle bundle = new Bundle();
+				bundle.putSerializable("someStory", currentStory);
+				i.putExtras(bundle);
+				startActivityForResult(i, EDIT_OPTION);
+
 			}
 		});
 
@@ -147,59 +135,51 @@ public class EditPageActivity extends Activity implements Serializable {
 			public void onClick(View view) {
 				someTitle = mEditPageTitle.getText().toString();
 				someDescription = mEditPageDes.getText().toString();
-				
-				//somePage = someStory.getPage(somePage);
-				somePage.setTitle(someTitle);
-				somePage.setPageDescription(someDescription);
-				
+
+				currentPage = currentStory.getPage(currentPage);
+				currentPage.setTitle(someTitle);
+				currentPage.setPageDescription(someDescription);
 				FileLoader fLoader = new FileLoader(EditPageActivity.this);
-				fLoader.saveStory(someStory, true);	
-				
-				EditText editPageDescription = (EditText) findViewById(R.id.editPageDescription);
-				String pageDescripion = editPageDescription.getText().toString();
-				Page page = new Page("test title", pageDescripion);
-				story.addPage(page);
-				
+				fLoader.saveStory(currentStory, true);	
+
 				finish();
 			}
 		});
-		
 	}
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == EDIT_OPTION) {
-                if (resultCode == RESULT_OK) {
-                        // Retrieve the option description that the user entered in EditOptionActivity
-                        // after they click SaveOption
-                        String someOpt = data.getExtras().getString("someOption");
-                		Option someOption = (Option) getIntent().getSerializableExtra("someOption");
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == EDIT_OPTION) {
+			if (resultCode == RESULT_OK) {
+				// Retrieve the option description that the user entered in EditOptionActivity
+				// after they click SaveOption
 
-        				somePage.addOption(new Option("Do Something", somePage));
-        				FileLoader fLoader = new FileLoader(EditPageActivity.this);
-        				fLoader.saveStory(someStory, true);
-                		
-                        //editStoryDescription.setText(optionDescription);
-                }
-        }
-        else if(requestCode == PHOTO_ACTIVITY_REQUEST) {
-                if (resultCode == RESULT_OK) {
-                        //String show_path;
-                        //show_path = data.getStringExtra("path");
-                        //coverImageAdapter.editAdapter(show_path, my_current_position);
-                }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-    
-    public void onResume()
-    {  // After a pause OR at startup
-        super.onResume();
-        //Refresh your stuff here
-		options = somePage.getOptions();
-		adpt = new CustomAdapter(this, optionsList, options);
-		optionsList.setAdapter(adpt);
-    }
+				retrievedOption = (Option) data.getSerializableExtra("someOption");
+				if(retrievedOption != null){
+					currentPage = currentStory.getPage(currentPage);
+					currentPage.addOption(retrievedOption);
+					FileLoader fLoader = new FileLoader(EditPageActivity.this);
+					fLoader.saveStory(currentStory, true);
+					fillData();
+				}
+			}
+		}
+		else if(requestCode == PHOTO_ACTIVITY_REQUEST) {
+			if (resultCode == RESULT_OK) {
+				//String show_path;
+				//show_path = data.getStringExtra("path");
+				//coverImageAdapter.editAdapter(show_path, my_current_position);
+			}
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	public void onResume()
+	{  // After a pause OR at startup
+		super.onResume();
+		//Refresh your stuff here
+		fillData();
+	}
 
 
 	/**
@@ -207,16 +187,16 @@ public class EditPageActivity extends Activity implements Serializable {
 	 */
 	private void fillData() {
 		//load model here
-		options = somePage.getOptions();
-		adpt = new CustomAdapter(this, optionsList, options);
+		currentPageOptions = currentPage.getOptions();
+		adpt = new CustomAdapter(this, optionsList, currentPageOptions);
 		optionsList.setAdapter(adpt);
 	}
-	
+
 	private class CustomAdapter extends ArrayAdapter<Option> {
 
 		public CustomAdapter(EditPageActivity editPageActivity, ListView optionsList, List<Option> options) {
 			super(EditPageActivity.this, R.layout.option_row,
-					options);
+					currentPageOptions);
 		}
 
 
@@ -229,13 +209,46 @@ public class EditPageActivity extends Activity implements Serializable {
 						R.layout.option_row, parent, false);
 			}
 
-			Option currentOption = options.get(position);
+			currentOption = currentPageOptions.get(position);
 
 			Button optionDes = (Button) itemView.findViewById(R.id.option_description);
 			optionDes.setText(currentOption.getDescription());
 
-			Button edit = (Button) itemView.findViewById(R.id.edit_button);
+			Button delete = (Button) itemView.findViewById(R.id.delete_button);
 			
+			
+			delete.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					
+					// Ask for a confirmation from user by:
+					// Instantiating an AlertDialog.Builder with its constructor
+					AlertDialog.Builder builder = new AlertDialog.Builder(EditPageActivity.this);
+
+					// Add buttons
+					builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							// User clicked OK button
+
+							currentPage.deleteOption(currentOption);
+							FileLoader fLoader = new FileLoader(EditPageActivity.this);
+							fLoader.saveStory(currentStory, true);
+							fillData();
+						}
+					});
+					builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							// User cancelled the dialog
+						}
+					});
+
+					// Chain together various setter methods to set the dialog characteristics
+					builder.setMessage(R.string.delete_option_confirm);
+					// Get the AlertDialog from create()
+					AlertDialog dialog = builder.create();
+					dialog.show();
+				}
+			});
+
 			return itemView;
 		}
 	}
