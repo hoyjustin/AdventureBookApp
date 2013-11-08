@@ -33,7 +33,7 @@ import c301.AdventureBook.Models.Story;
 
 
 /**
- * This is FileLoader class of the
+ * This is FileManager that is responsible for load the story model from disk
  * 
  * @author Justin Hoy - Main Creator
  * @author Minhal Syed - minor editor
@@ -80,17 +80,31 @@ public class FileManager {
 		return someStory;
 	}
     
+	/**
+	 * Load all stories from internal storage.
+	 * 
+	 * @return a list of all Story objects
+	 */
 	public ArrayList<Story> loadAllStoryFiles() {
 		return loadStoryFileWithKeyword("");
 	}
 	
-	
+	/**
+	 * Load a story reference from internal storage.
+	 * 
+	 * @return a list of all Story objects
+	 */
 	public Story loadStory(Story loadStory) {
 		String FILENAME = loadStory.getFilename();
 		Story someStory = loadFromFile(FILENAME);
 		return someStory;
 	}
 	
+	/**
+	 * Load all stories from internal storage filtered using a given keyword
+	 * 
+	 * @return a list of all Story objects with the keyword
+	 */
 	public ArrayList<Story> loadStoryFileWithKeyword(String KeyWord){
 		ArrayList<Story> allStories = new ArrayList<Story>();
 		String[] files = activityContext.getApplicationContext().fileList();

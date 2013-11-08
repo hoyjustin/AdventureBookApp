@@ -45,6 +45,7 @@ import com.example.adventurebook.R;
  * storage. *
  * 
  * @author Terence
+ * @author Justin Hoy - Minor Editor
  * @author Zhao Zhang - Minor Editor
  */
 public class CreateStoryActivity extends Activity {
@@ -95,6 +96,7 @@ public class CreateStoryActivity extends Activity {
 		createStoryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createStory();
+				finish();
 			}
 		});
 	}
