@@ -229,7 +229,9 @@ public class EditPageActivity extends Activity implements Serializable {
 						public void onClick(DialogInterface dialog, int id) {
 							// User clicked OK button
 
-							currentPage.deleteOption(currentOption);
+							currentPage = currentStory.getPage(currentPage);
+							currentPageOptions.remove(currentOption);
+							currentPage.setOptions(currentPageOptions);
 							FileLoader fLoader = new FileLoader(EditPageActivity.this);
 							fLoader.saveStory(currentStory, true);
 							fillData();
