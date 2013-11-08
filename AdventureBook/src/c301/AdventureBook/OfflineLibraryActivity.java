@@ -42,7 +42,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.FileLoader;
+import c301.AdventureBook.Controllers.FileManager;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -67,7 +67,7 @@ public class OfflineLibraryActivity extends Activity {
 
 	ArrayList<Story> offlineStoryLibrary;		//Stories array
 	ArrayAdapter<Story> adapter;				//Adapter for the stories
-	FileLoader fLoader;							//Controller for the Files
+	FileManager fLoader;							//Controller for the Files
 
 	
 	/**
@@ -83,7 +83,7 @@ public class OfflineLibraryActivity extends Activity {
 		setContentView(R.layout.offline_library);
 
 		//Load the Local Library
-		fLoader = new FileLoader(this);
+		fLoader = new FileManager(this);
 		offlineStoryLibrary = fLoader.loadAllStoryFiles();
 		
 		//Populate the Display
@@ -246,7 +246,7 @@ public class OfflineLibraryActivity extends Activity {
 
 			fLoader.deleteStory(storyClicked);
 
-			fLoader = new FileLoader(this);
+			fLoader = new FileManager(this);
 			offlineStoryLibrary = fLoader.loadAllStoryFiles();
 			
 			populateListView();

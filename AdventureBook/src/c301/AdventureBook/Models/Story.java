@@ -38,7 +38,8 @@ public class Story implements Serializable{
 	private String author;
 	private String date;
 	private String imagePath;
-	public List<Page> pages = new ArrayList<Page>();
+	private List<Page> pages = new ArrayList<Page>();
+	private Page startPage;
 
 
 	/**
@@ -197,5 +198,9 @@ public class Story implements Serializable{
 	public String getFilename() {
 		String filename = this.title + "-" + this.author + ".sav";
 		return filename;
+	}
+	
+	public void setStartPage(Page startPage){
+		this.startPage = startPage;
 	}
 }
