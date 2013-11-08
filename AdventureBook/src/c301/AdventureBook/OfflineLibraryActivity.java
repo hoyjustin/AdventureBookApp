@@ -229,15 +229,15 @@ public class OfflineLibraryActivity extends Activity {
 
 		if (item.getTitle() == "Publish Online") {
 			// Do Publish Story Function
-			publishStory();
+			publishStory(storyClicked);
 			
 		} else if (item.getTitle() == "Edit Story") {
 
-			editStory();
+			editStory(storyClicked);
 
 		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
-			deleteSory();
+			deleteSory(storyClicked);
 
 		}
 		return true;
@@ -254,7 +254,7 @@ public class OfflineLibraryActivity extends Activity {
 		//startActivity(intent);
 	}
 	
-	public void editStory(){
+	public void editStory(Story storyClicked) {
 		Intent i = new Intent(this, EditStoryActivity.class);
 		Bundle bundle = new Bundle();
 		bundle.putSerializable("someStory", storyClicked);
@@ -262,13 +262,13 @@ public class OfflineLibraryActivity extends Activity {
 		startActivityForResult(i, ACTIVITY_EDIT_STORY);
 	}
 	
-	public void publishStory(){
+	public void publishStory(Story storyClicked) {
 					
 		Toast.makeText(this, "Publish " + storyClicked.getTitle(),
 		Toast.LENGTH_LONG).show();
 	}
 	
-	public void deleteSory(){
+	public void deleteSory(Story storyClicked) {
 		fLoader.deleteStory(storyClicked);
 
 		fLoader = new FileManager(this);
