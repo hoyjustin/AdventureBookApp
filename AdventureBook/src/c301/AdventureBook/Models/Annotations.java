@@ -35,6 +35,10 @@ import com.example.adventurebook.R;
  * 
  * @author Lin Tong
  *
+ *
+ * @param description description of the all the annotations
+ * @param author author of each annotation
+ * @param annotations is a list of annotations
  */
 public class Annotations implements Serializable{
 	
@@ -51,6 +55,10 @@ public class Annotations implements Serializable{
 		this.imageIcon = R.drawable.fish;
 
 	}
+	/**
+	 * This function returns the description of the story.
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
@@ -62,26 +70,45 @@ public class Annotations implements Serializable{
 	public void setImageIcon(int imageIcon) {
 		this.imageIcon = imageIcon;
 	}
-
+	/**
+	 * This function sets the description of the story.
+	 * @param description the description to set
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	/**
+	 * Get the author
+	 * @return author 
+	 */
 	public String getAuthor() {
 		return author;
 	}
-
+	/**
+	 * Set the Author
+	 * @param author the annotation author
+	 */
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
+	/**
+	 * get a list of annotation
+	 * @param annotations is the list
+	 */
 	public List<Annotation> getAnnotations() {
 		return annotations;
 	}
-
+	/**
+	 * Set a list of annotation
+	 * return  a list of annotation
+	 */
 	public void setAnnotations(List<Annotation> annotations) {
 		this.annotations = annotations;
 	}
+	/**
+	 * add annotation in to a list of annotation
+	 * return a list of annotation with new annotation is added to it
+	 */
 	public void addAnnotation(Annotation x) {
 		this.annotations.add(x);
 	}

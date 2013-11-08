@@ -34,7 +34,7 @@ import com.example.adventurebook.R;
 /**
  * This is the annotation activity. It is run when a user wants to annotate a story fragment.
  * 
- * @author Terence
+ * @author Lin Tong
  *
  */
 public class AnnotationActivity extends Activity {
@@ -101,6 +101,10 @@ public class AnnotationActivity extends Activity {
 				createAnnotation();
 			}
 		});}
+	/**
+	 * this will create annotation
+	 * save as a bundle and return it back to view page
+	 */
 		private void createAnnotation(){
 			getUserInfo();
 			someAnnotations = new Annotations(authorAnnotation, commentAnnotation, 0); 
@@ -112,17 +116,32 @@ public class AnnotationActivity extends Activity {
 			startActivityForResult(i,0);
 			
 		}
+		/**
+		 * This will jump to takephoto activity
+		 */
 		private void goTakePhoto(){
 			Intent b = new Intent(this, TakePhotoActivity.class);
 		}
+		/**
+		 * this should go back to the view page
+		 */
 		private void goBackPage(){
 			//i = new Intent(this, StoryFragment.class);
 		}
+		/**
+		 * get the user's info for annotation
+		 * it will get the author 
+		 * it will get the comment
+		 */
 		private void getUserInfo(){
 			authorAnnotation = author.getText().toString();
 			commentAnnotation= comment.getText().toString();
 			
 		}
+		/**
+		 * this function is going get the photo by using the path
+		 * return it and display it on the top of the screen
+		 */
 		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 			// TODO Auto-generated method stub
 			super.onActivityResult(requestCode, resultCode, data);
