@@ -19,11 +19,14 @@ package c301.AdventureBook;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import c301.AdventureBook.Models.Annotations;
 
 import com.example.adventurebook.R;
@@ -41,6 +44,9 @@ public class AnnotationActivity extends Activity {
 	String authorAnnotation;
 	String commentAnnotation;
 	Intent i;
+	ImageView image;
+	String show_path;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +54,23 @@ public class AnnotationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.annotations);
 		
+		image = (ImageView) findViewById(R.id.imageView1);
+		
 		author = (EditText) findViewById(R.id.editTextAnnotationAuthor);
 		
 		comment = (EditText)findViewById(R.id.editTextAnnotationComment);
 		
 		ImageButton attachImage = (ImageButton)findViewById(R.id.imageButtonAnnotationAttachImage);
+		
+		image.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getApplicationContext(),
+						TakePhotoActivity.class);
+				startActivityForResult(intent, 1001);
+			}
+		});
 		
 		attachImage.setOnClickListener(new View.OnClickListener() {
 			
@@ -98,11 +116,22 @@ public class AnnotationActivity extends Activity {
 			Intent b = new Intent(this, TakePhotoActivity.class);
 		}
 		private void goBackPage(){
-			i = new Intent(this, StoryFragment.class);
+			//i = new Intent(this, StoryFragment.class);
 		}
 		private void getUserInfo(){
 			authorAnnotation = author.getText().toString();
 			commentAnnotation= comment.getText().toString();
 			
+		}
+		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+			// TODO Auto-generated method stub
+			super.onActivityResult(requestCode, resultCode, data);
+			if (requestCode == 1001 && resultCode == RESULT_OK) {
+
+				show_path = data.getStringExtra("path");
+
+				image.setImageBitmap(BitmapFactory.decodeFile(show_path));
+
+			}
 		}
 	}

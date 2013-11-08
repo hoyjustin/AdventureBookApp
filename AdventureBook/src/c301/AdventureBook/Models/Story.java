@@ -79,7 +79,7 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns the created date of the story.
-	 * @return date
+	 * @return date the story creation date
 	 */
 	public String getDate() {
 		return date;
@@ -87,21 +87,21 @@ public class Story implements Serializable{
 
 	/**
 	 * This function sets the creation date of the story.
-	 * @param date
+	 * @param date the date to be set
 	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 	/**
 	 * This function returns the title of the story.
-	 * @return title
+	 * @return title the title of the story
 	 */
 	public String getTitle() {
 		return title;
 	}
 	/**
 	 * This function sets the title of the story.
-	 * @param title
+	 * @param title the title to be set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -123,14 +123,14 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns the imagePath of the thumbnail photo of the Story.
-	 * @return
+	 * @return imagePath the imagepath
 	 */
 	public String getImagePath() {
 		return imagePath;
 	}
 	/**
 	 * This function sets the imagePath of the thumbnail photo of the story.
-	 * @param imagePath
+	 * @param imagePath the imagepath to set
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
@@ -138,14 +138,14 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns all the pages of the story.
-	 * @return
+	 * @return pages the list of all the pages of the story
 	 */
 	public List<Page> getPages() {
 		return this.pages;
 	}
 	/**
 	 * This function adds a page to the pages list of the story.
-	 * @param page
+	 * @param page the page to be added
 	 */
 	public void addPage(Page page) {
 		this.pages.add(page);
@@ -159,16 +159,26 @@ public class Story implements Serializable{
 	}
 	/**
 	 * This function deletes a particular page from the story.
-	 * @param somePage
+	 * @param somePage the page to be deleted
 	 */
 	public void deletePage(Page somePage) {
 		this.pages.remove(somePage);
 	}
 
+	/**
+	 * Sets the thumbnail image.
+	 * @param someImage the image to set as the thumbnail
+	 */
 	public void setThumbnail(Bitmap someImage) {
 		this.thumbnail = someImage;
 	}
 	
+	/**
+	 * This function searches the list of pages for the specified page given 
+	 * in the parameter and returns it.
+	 * @param page the page to be searched for
+	 * @return page the page
+	 */
 	public Page getPage(Page page){
 		for(int i=0;i<this.pages.size();i++){
 			if(this.pages.get(i).getTitle().equals(page.getTitle())){

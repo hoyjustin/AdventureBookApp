@@ -8,7 +8,7 @@
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="c301.AdventureBook" />
+        android:targetPackage="com.example.adventurebook" />
 
     <application
         android:icon="@drawable/ic_launcher"

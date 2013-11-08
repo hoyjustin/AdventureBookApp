@@ -43,42 +43,69 @@ public class Annotation implements Serializable{
 		 * as string values. In order to add Images, addImage path
 		 * function should be used after.
 		 * 
-		 * @param author
-		 * @param comment
+		 * @param author is the author for the annotaion
+		 * @param comment is the comment that use can post their feedback
 		 */
 		public Annotation(String author, String comment){
 			this.author = author;
 			this.comment = comment;
 			this.ImagePaths = new ArrayList<String>();
 		}
-		
+
+		/**
+		 * Set the Author
+		 * @param author the annotation author
+		 */
 		public void setAuthor(String author){
 			this.author = author;
 		}
-		
+		/**
+		 * Get the author
+		 * @return author 
+		 */
 		public String getAuthor(){
 			return this.author;
 		}
-
+		/**
+		 * Get the  comment
+		 * @return comment
+		 */
 		public String getComment() {
 			return comment;
 		}
-		
+		/**
+		 * Set the Comment
+		 * @param comment the annotation 
+		 */
 		public void setComment(String comment) {
 			this.comment = comment;
 		}
+		/**
+		 * Get the imagePaths
+		 * @return imagepath
+		 */
 		public ArrayList<String> getImagePaths() {
 			return ImagePaths;
 		}
-		
+		/**
+		 * Set the imagePaths
+		 * @param imagePath a list of image path
+		 */
 		public void setImagePaths(ArrayList<String> imagePaths) {
 			this.ImagePaths = imagePaths;
 		}
-		
+		/**
+		 * Adds an ImagePaths to the ImagePathsto the  list
+		 * @param ImagePath is the path of the image that going pass
+		 */
 		public void addImagePath(String ImagePath){
 			this.ImagePaths.add(ImagePath);
 		}
 		
+		/**
+		 * Get the imagePaths's postion
+		 * @return imagepath's position
+		 */
 		public String getImagePath(int position){
 			return this.ImagePaths.get(position);
 			

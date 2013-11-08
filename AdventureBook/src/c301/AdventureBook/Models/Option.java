@@ -24,29 +24,59 @@ package c301.AdventureBook.Models;
 
 import java.io.Serializable;
 
+/**
+ * This is the Option model class. It allows the author to set the option 
+ * description and goto page when that option is clicked. An option object 
+ * can be modified by the author when editing a page. Users viewing the story 
+ * can select an option to move to the next page.
+ * 
+ * @author tyleung
+ *
+ */
 public class Option implements Serializable{
 	private String description;
 
 	private Page goToPage;
 
+	/**
+	 * The constructor for the Option model class.
+	 * It creates a new option given the description and 
+	 * @param description the description
+	 * @param goToPage the goto page
+	 */
 	public Option(String description, Page goToPage){
 		this.description = description;
 		this.goToPage = goToPage;
 	}
 	
-
+	/**
+	 * Get the option description
+	 * @return description the option description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Set the option description
+	 * @param description the description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
+	/**
+	 * Set the goto page
+	 * @param goToPage the goto page
+	 */
 	public void setGoToPage(Page goToPage){
 		this.goToPage = goToPage;
 	}
 	
+	/**
+	 * Get the goto page
+	 * @return goToPage the goto page
+	 */
 	public Page getGoToPage(){
 		return this.goToPage;
 	}
