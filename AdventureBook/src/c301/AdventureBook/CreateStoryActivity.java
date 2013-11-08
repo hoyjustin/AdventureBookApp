@@ -95,6 +95,7 @@ public class CreateStoryActivity extends Activity {
 		createStoryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createStory();
+				finish();
 			}
 		});
 	}

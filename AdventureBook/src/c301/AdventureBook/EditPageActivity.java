@@ -127,7 +127,6 @@ public class EditPageActivity extends Activity implements Serializable {
 				bundle.putSerializable("someStory", currentStory);
 				i.putExtras(bundle);
 				startActivityForResult(i, EDIT_OPTION);
-
 			}
 		});
 

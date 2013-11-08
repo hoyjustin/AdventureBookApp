@@ -1,20 +1,19 @@
- /*
-* Copyright (C) <2013> <Minhal Syed,Terence Yin Kiu Leung>
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
-
+/*
+ * Copyright (C) <2013> <Minhal Syed,Terence Yin Kiu Leung>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package c301.AdventureBook;
 
@@ -53,20 +52,19 @@ public class EditOptionActivity extends Activity {
 	ArrayList<Page> pages;
 	Page goToPage;
 	Option returnOption;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_option);
-		
+
 		this.story = (Story) getIntent().getSerializableExtra("someStory");
-		
+
 		this.pages = (ArrayList<Page>) story.getPages();
-				
+
 		populateListView();
 		registerForClicks();
-		
+
 	}
 
 	@Override
@@ -79,7 +77,7 @@ public class EditOptionActivity extends Activity {
 	public void populateListView() {
 		// This function will put all the available pages in the listView
 		pageListView = (ListView) findViewById(R.id.list_of_goto_pages);
-		
+
 		this.adapter = new ArrayAdapter<Page>(this, R.layout.list_row, pages);
 
 		pageListView.setAdapter(adapter);
@@ -93,43 +91,39 @@ public class EditOptionActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View view_clicked,
 					int position, long arg3) {
 
-
 				TextView temp = (TextView) view_clicked;
 				gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
 				gotoPageTV.setText(temp.getText().toString());
-				
+
 				goToPage = adapter.getItem(position);
 			}
 
 		});
 	}
-	
-	
+
 	/**
-	 * Method handler when "Save Option" button is clicked.
-	 * Saves the option data and returns user to the edit page activity.
+	 * Method handler when "Save Option" button is clicked. Saves the option
+	 * data and returns user to the edit page activity.
 	 */
 	@SuppressWarnings("unused")
-	public void onClickSaveOption(View v){
-		//TODO: save the option
-		
-		
+	public void onClickSaveOption(View v) {
+		// TODO: save the option
+
 		Intent data = new Intent();
 		EditText editOptionDescription = (EditText) findViewById(R.id.editOptionDescription);
 		String optionDescription = editOptionDescription.getText().toString();
-		
+
 		gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
-		
-		if(goToPage != null){
-		returnOption = new Option(optionDescription, goToPage);
+
+		if (goToPage != null) {
+			returnOption = new Option(optionDescription, goToPage);
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("someOption", returnOption);
 			data.putExtra("someOption", returnOption);
-		
-		setResult(RESULT_OK, data);
-		finish();
-		}
-		else{
+
+			setResult(RESULT_OK, data);
+			finish();
+		} else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(
 					EditOptionActivity.this);
 
@@ -140,7 +134,7 @@ public class EditOptionActivity extends Activity {
 							// User clicked Cancel button
 						}
 					});
-			
+
 			// 2. Chain together various setter methods to set the dialog
 			// characteristics
 			builder.setMessage(R.string.alert_no_goto);
@@ -150,10 +144,10 @@ public class EditOptionActivity extends Activity {
 			dialog.show();
 		}
 	}
-	
+
 	/**
-	 * Method handler when "Cancel" button is pressed.
-	 * Returns user to the edit page activity.
+	 * Method handler when "Cancel" button is pressed. Returns user to the edit
+	 * page activity.
 	 */
 	@SuppressWarnings("unused")
 	public void onClickCancel(View v) {
