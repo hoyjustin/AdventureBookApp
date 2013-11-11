@@ -21,7 +21,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.graphics.Bitmap;
 
 /**
  * This is a Story Model Class. A Story is an object that contains title,
@@ -32,7 +31,6 @@ import android.graphics.Bitmap;
  */
 public class Story implements Serializable{
 
-	Bitmap thumbnail;
 	private String title;
 	private String description;
 	private String author;
@@ -166,14 +164,7 @@ public class Story implements Serializable{
 		this.pages.remove(somePage);
 	}
 
-	/**
-	 * Sets the thumbnail image.
-	 * @param someImage the image to set as the thumbnail
-	 */
-	public void setThumbnail(Bitmap someImage) {
-		this.thumbnail = someImage;
-	}
-	
+
 	/**
 	 * This function searches the list of pages for the specified page given 
 	 * in the parameter and returns it.
@@ -191,16 +182,31 @@ public class Story implements Serializable{
 	}
 	
 	/**
+	 * This function returns the id of a story.
+	 * StoryId = <Title>-<Author> (no spaces)
+	 * 
+	 * @return StoryId
+	 */
+	
+	public String getStoryId(){
+		return this.title.replaceAll("\\s+","") + "-" + this.author.replaceAll("\\s+","");
+	}
+	
+	/**
 	 * This function sets the filename automatically and returns it.
 	 * 
 	 * @return filename the filename
 	 */
 	public String getFilename() {
-		String filename = this.title + "-" + this.author + ".sav";
+		String filename = getStoryId() + ".sav";
 		return filename;
 	}
 	
 	public void setStartPage(Page startPage){
 		this.startPage = startPage;
+	}
+	@Override
+	public String toString(){
+		return " title = " + this.title + " description = " + this.description+ " date = "+ this.date;
 	}
 }

@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package c301.AdventureBook;
 
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -43,17 +43,17 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import c301.AdventureBook.Controllers.FileManager;
+import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
-
 /**
- * This is the offline library activity. This activity's main purpose is to
- * show all the local stories that are present in the phone's memory to the user. 
- * It also provides the user with an interface to interact with the local stories.
- * Interactions include: viewing story, deleting story, editing story, adding story,
- * publishing story, and searching offline stories.
+ * This is the offline library activity. This activity's main purpose is to show
+ * all the local stories that are present in the phone's memory to the user. It
+ * also provides the user with an interface to interact with the local stories.
+ * Interactions include: viewing story, deleting story, editing story, adding
+ * story, publishing story, and searching offline stories.
  * 
  * 
  * @author Minhal Syed - Main Creator
@@ -62,35 +62,33 @@ import com.example.adventurebook.R;
  */
 
 public class OfflineLibraryActivity extends Activity {
-	
+
 	private static final int ACTIVITY_EDIT_STORY = 0;
 
-	ArrayList<Story> offlineStoryLibrary;		//Stories array
-	ArrayAdapter<Story> adapter;				//Adapter for the stories
-	FileManager fLoader;							//Controller for the Files
+	ArrayList<Story> offlineStoryLibrary; // Stories array
+	ArrayAdapter<Story> adapter; // Adapter for the stories
+	FileManager fLoader; // Controller for the Files
 
-	
 	/**
-	 * This function is called once, when the application loads
-	 * this activity for the first time.
+	 * This function is called once, when the application loads this activity
+	 * for the first time.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
+
 		offlineStoryLibrary = new ArrayList<Story>();
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
 
-		//Load the Local Library
+		// Load the Local Library
 		fLoader = new FileManager(this);
 		offlineStoryLibrary = fLoader.loadAllStoryFiles();
-		
-		//Populate the Display
+
+		// Populate the Display
 		populateListView();
 	}
-	
-	
+
 	/**
 	 * Create a search action in the action bar
 	 */
@@ -98,49 +96,40 @@ public class OfflineLibraryActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.library_options_menu, menu);
-		
+
 		// Associate searchable configuration with the SearchView
 		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
 				.getActionView();
-		
+
 		final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
 			/**
+			 * This function is called every time a user enters
+			 * anything on the search bar.
 			 * 
 			 */
 			@Override
 			public boolean onQueryTextChange(String newText) {
 				// Do something
-				
-				String keyword = searchView.getQuery().toString().toLowerCase();
-				offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
-				
-				populateListView();
+
+				//String keyword = searchView.getQuery().toString().toLowerCase();
+				//offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
+
+				//populateListView();
+				adapter.getFilter().filter(newText);
 				return true;
 			}
-			
+
 			@Override
 			public boolean onQueryTextSubmit(String query) {
 				// Do something
 				return true;
 			}
 		};
-		
+
 		searchView.setOnQueryTextListener(queryTextListener);
-		
+
 		return true;
-	}
-	
-	/**
-	 * This function is called every time the activity is
-	 * brought back to the screen.
-	 *  
-	 */
-	protected void onResume(){
-		super.onResume();
-		offlineStoryLibrary = fLoader.loadAllStoryFiles();
-		
-		populateListView();
 	}
 
 	/**
@@ -149,6 +138,7 @@ public class OfflineLibraryActivity extends Activity {
 	public void launchNewStoryActivity(View v) {
 		Intent i = new Intent(this, CreateStoryActivity.class);
 		startActivity(i);
+		finish();
 	}
 
 	/**
@@ -156,7 +146,8 @@ public class OfflineLibraryActivity extends Activity {
 	 */
 	public void launchOnlineLibraryActivity(View v) {
 		Intent i = new Intent(this, OnlineLibraryActivity.class);
-		// startActivity(i);
+		startActivity(i);
+		finish();
 	}
 
 	/**
@@ -166,13 +157,13 @@ public class OfflineLibraryActivity extends Activity {
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
-		adapter = new CustomAdapter();
+		adapter = new CustomStoryAdapter(this, R.layout.library_row, offlineStoryLibrary);
 		offlineLV.setAdapter(adapter);
 		registerForContextMenu(offlineLV);
 
 		// tutorial used =
 		// http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
-		
+
 		// When Clicked on the list item, we can return a story.
 		offlineLV.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -189,11 +180,9 @@ public class OfflineLibraryActivity extends Activity {
 
 	}
 
-
 	/**
-	 * Create long click menu for the ListView.
-	 * When LongCliked, we can see Publish Story, EditStory and DeleteStory
-	 * functions. 
+	 * Create long click menu for the ListView. When LongCliked, we can see
+	 * Publish Story, EditStory and DeleteStory functions.
 	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -205,17 +194,11 @@ public class OfflineLibraryActivity extends Activity {
 		menu.add("Publish Online");
 		menu.add("Edit Story");
 		menu.add("Delete Story");
-
-		View thisItem = v;
-		
-
-		// Get the info on which item was selected
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-
 	}
+
 	/**
-	 * This function is a context menu listener. If the user presses
-	 * publish, delete, or edit story, this listener acts accordingly.
+	 * This function is a context menu listener. If the user presses publish,
+	 * delete, or edit story, this listener acts accordingly.
 	 */
 
 	@Override
@@ -230,30 +213,39 @@ public class OfflineLibraryActivity extends Activity {
 		if (item.getTitle() == "Publish Online") {
 			// Do Publish Story Function
 			publishStory(storyClicked);
-			
+
 		} else if (item.getTitle() == "Edit Story") {
 
 			editStory(storyClicked);
 
 		} else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
-			deleteSory(storyClicked);
+			deleteStory(storyClicked);
 
 		}
 		return true;
 	}
+
 	/**
 	 * This function starts the viewPage Activity.
-	 * @param story - The Story that the user chose to view.
+	 * That means that the user will be presented the 
+	 * first page of the story.
+	 * 
+	 * @param story
+	 *            - The Story that the user chose to view.
 	 */
 	private void viewStory(Story story) {
-		//Do Something
-		
-		//Intent intent = new Intent(this, ViewPageActivity.class);
-		//intent.putExtra("someStory", story);
-		//startActivity(intent);
+		// Do Something
+
+		// Intent intent = new Intent(this, ViewPageActivity.class);
+		// intent.putExtra("someStory", story);
+		// startActivity(intent);
 	}
-	
+	/**
+	 * This function launches the editStory activity.
+	 * 
+	 * @param storyClicked
+	 */
 	public void editStory(Story storyClicked) {
 		Intent i = new Intent(this, EditStoryActivity.class);
 		Bundle bundle = new Bundle();
@@ -261,74 +253,59 @@ public class OfflineLibraryActivity extends Activity {
 		i.putExtras(bundle);
 		startActivityForResult(i, ACTIVITY_EDIT_STORY);
 	}
-	
+
+	/**
+	 * This function publishes a story on the 
+	 * WebServer.
+	 * 
+	 * @param storyClicked
+	 */
 	public void publishStory(Story storyClicked) {
-					
-		Toast.makeText(this, "Publish " + storyClicked.getTitle(),
-		Toast.LENGTH_LONG).show();
+		//Since we need to give the HTTP client some time
+		//to publish the story, we need to use AsyncTasks.
+		new publishStoryTask(storyClicked).execute();
+	}
+	/**
+	 * This class defines the publishStoryTask
+	 * 
+	 * @author Minhal
+	 *
+	 */
+	private class publishStoryTask extends AsyncTask<String, String, String> {
+		
+		Story story;
+		public publishStoryTask(Story storyClicked) {
+			this.story = storyClicked;
+		}
+		@Override
+		protected String doInBackground(String... arg0) {
+			ESClient client = new ESClient();
+			client.insertStory(this.story);
+			return null;
+		}
+		protected void onPostExecute(String result) {
+			Toast.makeText(OfflineLibraryActivity.this,
+					"Published " + this.story.getTitle(), Toast.LENGTH_LONG)
+					.show();
+		}
 	}
 	
-	public void deleteSory(Story storyClicked) {
+	/**
+	 * This function deletes a Story from the local storage.
+	 * 
+	 * @param storyClicked
+	 */
+
+	public void deleteStory(Story storyClicked) {
 		fLoader.deleteStory(storyClicked);
 
 		fLoader = new FileManager(this);
 		offlineStoryLibrary = fLoader.loadAllStoryFiles();
-		
-		populateListView();
 
+		populateListView();
 		Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 	}
-	
-	/**
-	 * This is the CustomAdapter Class. This custom adapter is used
-	 * to populate the ListView of the offline Library.
-	 * 
-	 * @author Minhal Syed
-	 *
-	 */
-	private class CustomAdapter extends ArrayAdapter<Story> {
 
-		public CustomAdapter() {
-			super(OfflineLibraryActivity.this, R.layout.offline_library_row,
-					offlineStoryLibrary);
-		}
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
 
-			// Make sure we have a view to work with (may have been given null)
-			View itemView = convertView;
-			if (itemView == null) {
-				itemView = getLayoutInflater().inflate(
-						R.layout.offline_library_row, parent, false);
-			}
-
-			Story currentStory = offlineStoryLibrary.get(position);
-
-			// Fill the view
-			ImageView imageView = (ImageView) itemView
-					.findViewById(R.id.storyThumbnailView);
-
-			if (currentStory.getImagePath() == null) {
-				imageView.setImageResource(R.drawable.default_image);
-			} else {
-				imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
-						.getImagePath()));
-			}
-			TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
-			titleText.setText(currentStory.getTitle());
-
-			TextView authorText = (TextView) itemView
-					.findViewById(R.id.authorTV);
-			authorText.setText(currentStory.getAuthor());
-
-			TextView dateText = (TextView) itemView
-					.findViewById(R.id.dateCreatedTV);
-			dateText.setText(currentStory.getDate());
-
-			return itemView;
-		}
-	}
-	
 }

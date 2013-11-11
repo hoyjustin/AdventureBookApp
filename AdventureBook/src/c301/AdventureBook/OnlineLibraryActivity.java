@@ -20,7 +20,10 @@ package c301.AdventureBook;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,69 +31,90 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
+import c301.AdventureBook.Models.testCases;
 
 import com.example.adventurebook.R;
 
+
+/**
+ * This is the online library activity. This activity's main purpose is to show
+ * all the stories that are present in the WebServer to the user. It also provides
+ * the user with an interface to interact with the online stories. Interactions
+ * include: viewing story, or downloading story.
+ * 
+ * @author Minhal Syed - Main Creator
+ */
 public class OnlineLibraryActivity extends Activity{
 
-	ArrayList<Story> offlineStoryLibrary;
+	ArrayList<Story> onlineStoryLibrary; //This ArrayList will contain all the online
+										 //stories that are on the server.
+	
+	ESClient client = new ESClient();	 //We need a communicator for the Server.
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.online_library);
-		createFakeData();
-		populateListView();
+		
+		
+		
+		
+		
+		//Download all Stories from online then populate
+		//the list view. Since we need to give the application
+		//some time to connect to the Internet, we have to use
+		//AsyncTask.
+		new getStoriesAndDisplay().execute();
 	}
 	
-	private void createFakeData() {
-		// TODO Auto-generated method stub
-
-		//offlineStoryLibrary.add(someStory);
-
+	
+	/**
+	 * This function is called when the Return To Local Library
+	 * Button is pressed. It starts the Local Library activity
+	 * and finishes the current one.
+	 * @param v
+	 */
+	public void LaunchLocalLibraryActivity(View v){
+		Intent i = new Intent(this, OfflineLibraryActivity.class);		
+		startActivity(i);
+		finish();
 	}
-	private void populateListView(){
+	
+	private void fetchDataFromServer(){
+		onlineStoryLibrary = client.getAllStories();
+	}
+	
+	private class getStoriesAndDisplay extends AsyncTask<String, String, String> {
 		
+		/**
+		 * This function is executed first. This function contacts the server
+		 * and downloads all the stories to the phone's memory. 
+		 */
+		@Override
+		protected String doInBackground(String... arg0) {
+			fetchDataFromServer();			
+			return null;
+		}
+		
+		/**
+		 * This function is executed when the previous one finishes.
+		 * Once we have downloaded all the online stories, we can display
+		 * them to the user. 
+		 */
+		protected void onPostExecute(String result){
+			populateListView();
+		}
+	}
+	
+	private void populateListView(){	
 		ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
-		ArrayAdapter<Story> adapter = new CustomAdapter();
+		ArrayAdapter<Story> adapter = new CustomStoryAdapter(this, R.layout.library_row, onlineStoryLibrary);
 		onlineLV.setAdapter(adapter);
 	}
-	private class CustomAdapter extends ArrayAdapter<Story>{
-
-		public CustomAdapter() {
-			super(OnlineLibraryActivity.this, R.layout.complex_story_list_row, offlineStoryLibrary);
-			// TODO Auto-generated constructor stub
-		}
-		
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			//Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
-			
-			// Make sure we have a view to work with (may have been given null)
-			
-			View itemView = convertView;
-			if (itemView == null) {
-				itemView = getLayoutInflater().inflate(R.layout.complex_story_list_row, parent, false);
-			}
-			
-			Story currentStory = offlineStoryLibrary.get(position);
-			
-			// Fill the view
-			ImageView imageView = (ImageView)itemView.findViewById(R.id.storyImageView);
-			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory.getImagePath()));
-
-			
-			TextView authorText = (TextView) itemView.findViewById(R.id.authorTV);
-			authorText.setText(currentStory.getAuthor());
-
-			TextView dateText = (TextView) itemView.findViewById(R.id.dateCreatedTv);
-			dateText.setText(currentStory.getDate());
-			
-			return itemView;
-		}
-	}
+	
 
 	
 }
