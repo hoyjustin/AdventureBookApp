@@ -21,7 +21,9 @@ package c301.AdventureBook;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,12 +102,15 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		ImageView imageView = (ImageView) itemView
 				.findViewById(R.id.storyThumbnailView);
 
-		if (currentStory.getImagePath() == null) {
+		if (currentStory.getImagePath() == null && currentStory.getImageByte() == null) {
 			imageView.setImageResource(R.drawable.default_image);
-		} else {
+		} else if (currentStory.getImageByte() !=null){
+			byte[] decodedString = Base64.decode(currentStory.getImageByte(), Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			imageView.setImageBitmap(decodedByte);
+		} else if (currentStory.getImagePath() != null){
 			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
-					.getImagePath()));
-		}
+					.getImagePath()));}
 		TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 		titleText.setText(currentStory.getTitle());
 

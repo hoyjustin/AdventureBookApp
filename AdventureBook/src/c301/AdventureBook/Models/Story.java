@@ -36,6 +36,7 @@ public class Story implements Serializable{
 	private String author;
 	private String date;
 	private String imagePath;
+	private String imageByte;
 	private List<Page> pages = new ArrayList<Page>();
 	private Page startPage;
 
@@ -52,12 +53,13 @@ public class Story implements Serializable{
 	 * @param date date on which the Story was first created.
 	 * @param imagePath path of the thumbnail picture of the Story.
 	 */
-	public Story(String title, 	String description, String author, String date, String imagePath){
+	public Story(String title, 	String description, String author, String date, String imagePath, String imageByte){
 		this.title = title;
 		this.description = description;
 		this.author = author;
 		this.date = date;
 		this.imagePath = imagePath;
+		this.imageByte = imageByte;
 	}
 
 	/**
@@ -208,5 +210,12 @@ public class Story implements Serializable{
 	@Override
 	public String toString(){
 		return " title = " + this.title + " description = " + this.description+ " date = "+ this.date;
+	}
+	public String getImageByte() {
+		return imageByte;
+	}
+
+	public void setImageByte(String imageByte) {
+		this.imageByte = imageByte;
 	}
 }

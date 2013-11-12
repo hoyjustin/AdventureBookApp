@@ -17,6 +17,7 @@
 
 package c301.AdventureBook;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -25,8 +26,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -65,7 +68,7 @@ public class CreateStoryActivity extends Activity {
 	String formattedDate;
 	ImageView image;
 	String show_path;
-
+	String imageByte;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -119,7 +122,7 @@ public class CreateStoryActivity extends Activity {
 	private void createStory() {
 		getUserText();
 		someStory = new Story(storyTitle, storyDescription, storyAuthor,
-				formattedDate, show_path);
+				formattedDate, show_path, imageByte);
 		FileManager fLoader = new FileManager(this);
 
 		boolean saveSuccess = fLoader.saveStory(someStory, false);
@@ -178,6 +181,21 @@ public class CreateStoryActivity extends Activity {
 	 * Get the user inputed story title, description, and author name, and
 	 * stores them into class variables
 	 */
+	public String imageCovert(String path){
+		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
+		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
+
+		double width = bitmapOrg.getWidth();
+		double height = bitmapOrg.getHeight();
+		double ratio = 400 / width;
+		int newheight = (int) (ratio * height);
+		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, 400, newheight,
+				true);
+		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 95, imageByte);
+		byte[] bytefile = imageByte.toByteArray();
+		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
+		return bytefile64;
+	}
 	private void getUserText() {
 
 		storyTitle = mStoryTitle.getText().toString();
@@ -192,6 +210,8 @@ public class CreateStoryActivity extends Activity {
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
 
 			show_path = data.getStringExtra("path");
+			imageByte = imageCovert(show_path);
+			
 
 			image.setImageBitmap(BitmapFactory.decodeFile(show_path));
 
