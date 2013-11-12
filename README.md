@@ -25,5 +25,3 @@ I want a system where a user can browse available stories to explore.
 I want a system where users can add-on to existing stories.
 
 I would be nice if I could cache some of the stories to read them offline. Needs in (Partial) User Story Form
-
-User needs are expressed in the form of partial user stories: as a , I want as a , I want so that
