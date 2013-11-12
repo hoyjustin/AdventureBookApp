@@ -237,9 +237,10 @@ public class OfflineLibraryActivity extends Activity {
 	private void viewStory(Story story) {
 		// Do Something
 
-		// Intent intent = new Intent(this, ViewPageActivity.class);
-		// intent.putExtra("someStory", story);
-		// startActivity(intent);
+		Intent intent = new Intent(this, ViewPageActivity.class);
+		intent.putExtra("someStory", story);
+		startActivity(intent);
+		finish();
 	}
 	/**
 	 * This function launches the editStory activity.

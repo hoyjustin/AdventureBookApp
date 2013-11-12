@@ -32,13 +32,20 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemClickListener;
 import c301.AdventureBook.Controllers.FileManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
@@ -59,8 +66,14 @@ public class OnlineLibraryActivity extends Activity {
 	ArrayList<Story> onlineStoryLibrary; // This ArrayList will contain all the
 											// online
 											// stories that are on the server.
+	
+	ArrayAdapter<Story> adapter; 	//This is an adapter that will be used to
+									//populate the listview.
 
 	ESClient client = new ESClient(); // We need a communicator for the Server.
+	
+	FileManager fLoader; // Controller for the Files
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -139,10 +152,75 @@ public class OnlineLibraryActivity extends Activity {
 	}
 
 	private void populateListView() {
-		ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
-		ArrayAdapter<Story> adapter = new CustomStoryAdapter(this,
+		final ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
+		adapter = new CustomStoryAdapter(this,
 				R.layout.library_row, onlineStoryLibrary);
 		onlineLV.setAdapter(adapter);
+		
+		registerForContextMenu(onlineLV);
+
+		// tutorial used =
+		// http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
+
+		// When Clicked on the list item, we can return a story.
+		onlineLV.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				// This is the story object that is returned when a list item is
+				// clicked.
+				Story story = (Story) onlineLV.getItemAtPosition(position);
+				Toast.makeText(getBaseContext(), story.getTitle(),
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+	
+	/**
+	 * Create long click menu for the ListView. When LongCliked, we can see
+	 * Publish Story, EditStory and DeleteStory functions.
+	 */
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// tutorial from:
+		// http://stackoverflow.com/questions/2321332/detecting-which-selected-item-in-a-listview-spawned-the-contextmenu-android
+
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.add("Download Story");
+	}
+	
+	/**
+	 * This function is a context menu listener. If the user presses publish,
+	 * delete, or edit story, this listener acts accordingly.
+	 */
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+
+		// Get the Story that is clicked on the listView.
+		Story storyClicked = adapter.getItem(info.position);
+
+		if (item.getTitle() == "Download Story") {
+			downloadStory(storyClicked);
+		}
+		return true;
+	}
+
+
+	/**
+	 * This function downloads the online story to the
+	 * phone's memory.
+	 * 
+	 * @param storyClicked
+	 */
+	private void downloadStory(Story storyClicked) {
+		// TODO Auto-generated method stub
+		fLoader = new FileManager(this);
+		fLoader.saveStory(storyClicked, true);
 	}
 
 	/**
