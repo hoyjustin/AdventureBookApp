@@ -66,14 +66,13 @@ public class OnlineLibraryActivity extends Activity {
 	ArrayList<Story> onlineStoryLibrary; // This ArrayList will contain all the
 											// online
 											// stories that are on the server.
-	
-	ArrayAdapter<Story> adapter; 	//This is an adapter that will be used to
-									//populate the listview.
+
+	ArrayAdapter<Story> adapter; // This is an adapter that will be used to
+									// populate the listview.
 
 	ESClient client = new ESClient(); // We need a communicator for the Server.
-	
-	FileManager fLoader; // Controller for the Files
 
+	FileManager fLoader; // Controller for the Files
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +130,15 @@ public class OnlineLibraryActivity extends Activity {
 	private class getStoriesAndDisplay extends
 			AsyncTask<String, String, String> {
 
+		//Display Loading Spinner on the activity.
+		LinearLayout linearLayoutForProgress = (LinearLayout) findViewById(R.id.linearLayoutForProgress);
+
+		@Override
+		protected void onPreExecute() {
+			// SHOW THE SPINNER WHILE LOADING.
+			linearLayoutForProgress.setVisibility(View.VISIBLE);
+		}
+
 		/**
 		 * This function is executed first. This function contacts the server
 		 * and downloads all the stories to the phone's memory.
@@ -148,15 +156,19 @@ public class OnlineLibraryActivity extends Activity {
 		 */
 		protected void onPostExecute(String result) {
 			populateListView();
+
+		    // HIDE THE SPINNER AFTER LOADING.
+		    linearLayoutForProgress.setVisibility(View.GONE);
 		}
+
 	}
 
 	private void populateListView() {
 		final ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
-		adapter = new CustomStoryAdapter(this,
-				R.layout.library_row, onlineStoryLibrary);
+		adapter = new CustomStoryAdapter(this, R.layout.library_row,
+				onlineStoryLibrary);
 		onlineLV.setAdapter(adapter);
-		
+
 		registerForContextMenu(onlineLV);
 
 		// tutorial used =
@@ -175,7 +187,7 @@ public class OnlineLibraryActivity extends Activity {
 			}
 		});
 	}
-	
+
 	/**
 	 * Create long click menu for the ListView. When LongCliked, we can see
 	 * Publish Story, EditStory and DeleteStory functions.
@@ -189,7 +201,7 @@ public class OnlineLibraryActivity extends Activity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Download Story");
 	}
-	
+
 	/**
 	 * This function is a context menu listener. If the user presses publish,
 	 * delete, or edit story, this listener acts accordingly.
@@ -210,10 +222,8 @@ public class OnlineLibraryActivity extends Activity {
 		return true;
 	}
 
-
 	/**
-	 * This function downloads the online story to the
-	 * phone's memory.
+	 * This function downloads the online story to the phone's memory.
 	 * 
 	 * @param storyClicked
 	 */
