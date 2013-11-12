@@ -131,6 +131,7 @@ public class OnlineLibraryActivity extends Activity {
 			AsyncTask<String, String, String> {
 
 		//Display Loading Spinner on the activity.
+		//Tutorial:	http://stackoverflow.com/questions/12559461/how-to-show-progress-barcircle-in-an-activity-having-a-listview-before-loading
 		LinearLayout linearLayoutForProgress = (LinearLayout) findViewById(R.id.linearLayoutForProgress);
 
 		@Override
