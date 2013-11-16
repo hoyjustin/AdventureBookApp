@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Creator: Minhal Syed
+How to add a border Tutorial:
+http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android-textview
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="Insert Option Description Here"
+        android:textSize="15dp" >
+    </TextView>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/border"
+        android:padding="3dp" >
+
+        <EditText
+	        android:id="@+id/editOptionDescription"
+	        android:layout_width="match_parent"     
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:inputType="textMultiLine"
+	        android:background="#00000000" >
+    	</EditText>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current GotoPage:" />
+
+        <TextView
+            android:id="@+id/GotoPageTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="None" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="Select Goto Page" />
+
+    <ListView
+        android:id="@+id/list_of_goto_pages"
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:layout_weight="0.32"
+        android:background="@drawable/border" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_margin="5dp" >
+
+        <Button
+            android:id="@+id/option_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginRight="10dp"
+            android:text="Cancel"
+            android:onClick="onClickCancel" />
+
+        <Button
+            android:id="@+id/SaveOptionBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="10dp"
+            android:text="Save Option"
+            android:onClick="onClickSaveOption" />
+    </LinearLayout>
+
+</LinearLayout>

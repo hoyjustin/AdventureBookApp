@@ -25,39 +25,3 @@ I want a system where a user can browse available stories to explore.
 I want a system where users can add-on to existing stories.
 
 I would be nice if I could cache some of the stories to read them offline. Needs in (Partial) User Story Form
-
-User needs are expressed in the form of partial user stories: as a , I want as a , I want so that
-
-These descriptions may change to correct omissions and clarify noticed issues.
-
-As a user, I read story fragments.
-
-As a user, I want to browse available stories.
-
-As an author, I want to publish stories.
-
-As a user, I want to search for available stories.
-
-As an author, I want to add story fragments to an existing story.
-
-As an author, I want to add images to an existing story fragment.
-
-As an author, I want to connect 2 existing story fragments as a choice.
-
-As an author, I want to add a choice to an existing story fragment.
-
-As a user, I want to have cache some stories so that I don't need the internet to work for me to use this program.
-
-As a user, I want to post and publish photos to annotate a fragment, but they will not be the fragment's illustration.
-
-As an author, I want to be able to modify fragments to allow for illustrations to be added.
-
-As a user, I want the fragments to be stored so I can view them offline.
-
-As a user, fragments I view can have multiple illustrations.
-
-As a user, I can upload photos for other stories I did not make, but were downloaded.
-
-As an author, I should be able to retake photos I am taking, if I fail to take the photo I want to correct, so that I don't have erroneous photos.
-
-As a user I should be able to get stories from other users and authors somehow.
