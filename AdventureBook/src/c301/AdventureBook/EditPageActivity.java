@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -76,10 +77,11 @@ public class EditPageActivity extends Activity implements Serializable {
 	private String someTitle;
 	private String someDescription;
 
+	private StoryManager sManagerInst;
 	private Story currentStory;
 	private Page currentPage;
 	private Option retrievedOption;
-	private Option currentOption;
+	private Option clickedOption;
 	private List<Option> currentPageOptions;
 
 	@Override
@@ -87,8 +89,9 @@ public class EditPageActivity extends Activity implements Serializable {
 		super.onCreate(savedInstanceState);
 		setContentView(com.example.adventurebook.R.layout.edit_page);
 
-		currentPage = (Page) getIntent().getSerializableExtra("somePage");
-		currentStory = (Story) getIntent().getSerializableExtra("someStory");
+		sManagerInst = StoryManager.getInstance();
+		currentStory = sManagerInst.getStory();
+		currentPage = sManagerInst.getPage();
 
 		mEditPageTitle = (EditText)findViewById(com.example.adventurebook.R.id.editPageTitle);
 		mEditPageDes = (EditText)findViewById(com.example.adventurebook.R.id.editPageDescription);
@@ -123,9 +126,6 @@ public class EditPageActivity extends Activity implements Serializable {
 		mButtonCreateOption.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				Intent i = new Intent(EditPageActivity.this, EditOptionActivity.class);
-				Bundle bundle = new Bundle();
-				bundle.putSerializable("someStory", currentStory);
-				i.putExtras(bundle);
 				startActivityForResult(i, EDIT_OPTION);
 			}
 		});
@@ -138,47 +138,12 @@ public class EditPageActivity extends Activity implements Serializable {
 				currentPage = currentStory.getPage(currentPage);
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
-				LibraryManager fLoader = new LibraryManager(EditPageActivity.this);
-				fLoader.saveStory(currentStory, true);	
-
+				sManagerInst.setPage(currentPage);
 				finish();
 			}
 		});
 	}
 
-	/**
-	 * Allows activity to retrieve data upon coming back from another activity
-	 * 
-	 * @param requestCode, resultCode, and intent of incoming activity
-	 */
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == EDIT_OPTION) {
-			if (resultCode == RESULT_OK) {
-				// Retrieve the option description that the user entered in EditOptionActivity
-				// after they click SaveOption
-
-				retrievedOption = (Option) data.getSerializableExtra("someOption");
-				if(retrievedOption != null){
-					currentPage = currentStory.getPage(currentPage);
-					currentPage.addOption(retrievedOption);
-					LibraryManager fLoader = new LibraryManager(EditPageActivity.this);
-					fLoader.saveStory(currentStory, true);
-					fillData();
-				}
-			}
-		}
-		else if(requestCode == PHOTO_ACTIVITY_REQUEST) {
-			if (resultCode == RESULT_OK) {
-				//String show_path;
-				//show_path = data.getStringExtra("path");
-				//coverImageAdapter.editAdapter(show_path, my_current_position);
-			}
-		}
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-
-	
 	public void onResume()
 	{  // After a pause OR at startup
 		super.onResume();
@@ -192,7 +157,7 @@ public class EditPageActivity extends Activity implements Serializable {
 	 */
 	private void fillData() {
 		//load model here
-		currentPageOptions = currentPage.getOptions();
+		currentPageOptions = sManagerInst.getPage().getOptions();
 		adpt = new CustomAdapter(this, optionsList, currentPageOptions);
 		optionsList.setAdapter(adpt);
 	}
@@ -214,10 +179,10 @@ public class EditPageActivity extends Activity implements Serializable {
 						R.layout.option_row, parent, false);
 			}
 
-			currentOption = currentPageOptions.get(position);
+			sManagerInst.setOption(currentPageOptions.get(position));
 
 			Button optionDes = (Button) itemView.findViewById(R.id.option_description);
-			optionDes.setText(currentOption.getDescription());
+			optionDes.setText(clickedOption.getDescription());
 
 			Button delete = (Button) itemView.findViewById(R.id.delete_button);
 			
@@ -234,11 +199,7 @@ public class EditPageActivity extends Activity implements Serializable {
 						public void onClick(DialogInterface dialog, int id) {
 							// User clicked OK button
 
-							currentPage = currentStory.getPage(currentPage);
-							currentPageOptions.remove(currentOption);
-							currentPage.setOptions(currentPageOptions);
-							LibraryManager fLoader = new LibraryManager(EditPageActivity.this);
-							fLoader.saveStory(currentStory, true);
+							sManagerInst.deleteOption(clickedOption);
 							fillData();
 						}
 					});

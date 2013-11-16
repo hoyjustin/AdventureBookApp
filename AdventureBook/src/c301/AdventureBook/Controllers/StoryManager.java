@@ -43,7 +43,9 @@ import c301.AdventureBook.Models.Story;
  */
 public class StoryManager {
 	Context activityContext;
-	Story currentStory;
+	Story mStory;
+	Page mPage;
+	Option mOption;
 
 	private static StoryManager instance = new StoryManager( );
 
@@ -63,7 +65,7 @@ public class StoryManager {
 	 * @param A Story
 	 */
 	public void setStory(Story story) {
-		this.currentStory = story;
+		this.mStory = story;
 	}
 
 	/**
@@ -71,7 +73,7 @@ public class StoryManager {
 	 * @return The current Story
 	 */
 	public Story getStory() {
-		return currentStory;
+		return mStory;
 	}
 
 	/**
@@ -98,6 +100,7 @@ public class StoryManager {
 	public void deleteStory(Story story){
 		String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
 		activityContext.deleteFile(FILENAME);
+		this.mStory = null;
 	}
 
 	/**
@@ -119,7 +122,7 @@ public class StoryManager {
 					oos.writeObject(story);
 					Log.d("Success Save: ", story.getTitle());
 				fos.close();
-				this.currentStory = story;
+				this.mStory = story;
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -153,7 +156,64 @@ public class StoryManager {
 		return false;
 	}
 
+	/**
+	 * @return the currentPage
+	 */
+	public Page getPage() {
+		return mPage;
+	}
+
+	/**
+	 * @param currentPage the currentPage to set
+	 */
+	public void setPage(Page currentPage) {
+		this.mPage = currentPage;
+	}
+
+	public void createPage() {
+		//New Page
+		int pageCount = this.mStory.getPages().size();
+		Page page = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "");
+		this.mStory.addPage(page);
+		this.mPage = page;
+		saveStory(this.mStory, true);
+	}
 	
+	/**
+	 * Delete a page from the story
+	 */
+	public void deletePage(Page page) {
+		this.mStory.deletePage(page);
+		this.mPage = null;
+		saveStory(this.mStory, true);
+	}
+	
+	
+	/**
+	 * @return the currentOption
+	 */
+	public Option getOption() {
+		return mOption;
+	}
+
+	
+	/**
+	 * @param mOption the currentOption to set
+	 */
+	public void setOption(Option option) {
+		this.mOption = option;
+	}
+
+	public void editOption() {
+		this.mOption = option;
+	}
+
+	
+	public void deleteOption(Option option) {
+		this.mPage.getOptions().remove(option);
+		this.mOption = null;
+		saveStory(this.mStory, true);
+	}
 	
 
 }

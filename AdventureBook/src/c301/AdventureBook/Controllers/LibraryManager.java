@@ -99,6 +99,7 @@ public class LibraryManager {
 		String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
 		activityContext.deleteFile(FILENAME);
 		updateCurrentLibrary();
+		this.mLibrary = null;
 	}
 	
 	public void updateCurrentLibrary() {
@@ -112,7 +113,7 @@ public class LibraryManager {
 	 * @return a list of all Story objects with the keyword
 	 */
 	public void loadStoryFileWithKeyword(String KeyWord){
-		this.mLibrary = new ArrayList<Story>();
+		ArrayList<Story> tempLibrary = new ArrayList<Story>();
 		String[] files = activityContext.getApplicationContext().fileList();
 
 		for (int i = 0; i < files.length; i++) {
@@ -123,7 +124,7 @@ public class LibraryManager {
 					ObjectInputStream ois = new ObjectInputStream(fis);
 					while (true) {
 						Story someStory = (Story) ois.readObject();
-						this.mLibrary.add(someStory);
+						tempLibrary.add(someStory);
 						Log.d("Success Load", someStory.getTitle());
 					}
 
@@ -138,7 +139,8 @@ public class LibraryManager {
 					e.printStackTrace();
 				}
 			}
-		}	
+		}
+		this.mLibrary = tempLibrary;
 	}
 	
 }

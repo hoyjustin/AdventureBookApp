@@ -47,6 +47,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
 import c301.AdventureBook.Models.testCases;
@@ -72,7 +73,7 @@ public class OnlineLibraryActivity extends Activity {
 
 	ESClient client = new ESClient(); // We need a communicator for the Server.
 
-	LibraryManager fLoader; // Controller for the Files
+	StoryManager sManagerInst; // Controller for the Stories
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -229,9 +230,8 @@ public class OnlineLibraryActivity extends Activity {
 	 * @param storyClicked
 	 */
 	private void downloadStory(Story storyClicked) {
-		// TODO Auto-generated method stub
-		fLoader = new LibraryManager(this);
-		fLoader.saveStory(storyClicked, true);
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.saveStory(storyClicked, true);
 	}
 
 	/**
