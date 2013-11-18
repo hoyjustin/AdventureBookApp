@@ -17,7 +17,7 @@
 
 package c301.AdventureBook;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,6 +37,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -57,19 +59,20 @@ public class EditOptionActivity extends Activity {
 	ListView pageListView;
 	TextView gotoPageTV;
 	Story story;
-	ArrayList<Page> pages;
+	List<Page> pages;
 	Page goToPage;
 	Option returnOption;
+	
+	LibraryManager lManagerInst;
+	StoryManager sManagerInst;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_option);
 
-		this.story = (Story) getIntent().getSerializableExtra("someStory");
-
-		this.pages = (ArrayList<Page>) story.getPages();
-
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
 		populateListView();
 		registerForClicks();
 
@@ -85,7 +88,10 @@ public class EditOptionActivity extends Activity {
 	public void populateListView() {
 		// This function will put all the available pages in the listView
 		pageListView = (ListView) findViewById(R.id.list_of_goto_pages);
-
+		
+		pages = sManagerInst.getStory().getPages();
+		Page currentPage = sManagerInst.getPage();
+		
 		this.adapter = new ArrayAdapter<Page>(this, R.layout.list_row, pages);
 
 		pageListView.setAdapter(adapter);
@@ -118,18 +124,13 @@ public class EditOptionActivity extends Activity {
 		// TODO: save the option
 
 		Intent data = new Intent();
-		EditText editOptionDescription = (EditText) findViewById(R.id.editOptionDescription);
-		String optionDescription = editOptionDescription.getText().toString();
+		EditText editOptionDes = (EditText) findViewById(R.id.editOptionDescription);
+		String optionDes = editOptionDes.getText().toString();
 
 		gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
 
 		if (goToPage != null) {
-			returnOption = new Option(optionDescription, goToPage);
-			Bundle bundle = new Bundle();
-			bundle.putSerializable("someOption", returnOption);
-			data.putExtra("someOption", returnOption);
-
-			setResult(RESULT_OK, data);
+			sManagerInst.createOption(optionDes, goToPage);
 			finish();
 		} else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(

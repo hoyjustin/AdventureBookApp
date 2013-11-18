@@ -42,7 +42,8 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.FileManager;
+import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
 
@@ -67,7 +68,10 @@ public class OfflineLibraryActivity extends Activity {
 
 	ArrayList<Story> offlineStoryLibrary; // Stories array
 	ArrayAdapter<Story> adapter; // Adapter for the stories
-	FileManager fLoader; // Controller for the Files
+	LibraryManager lManagerInst; // Controller for the Library
+	StoryManager sManagerInst; // Controller for a story
+	
+	Story storyClicked;
 
 	/**
 	 * This function is called once, when the application loads this activity
@@ -81,10 +85,10 @@ public class OfflineLibraryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.offline_library);
 
-		// Load the Local Library
-		fLoader = new FileManager(this);
-		offlineStoryLibrary = fLoader.loadAllStoryFiles();
-
+		// Initiate and Load the Local Library Manager
+		lManagerInst = LibraryManager.getInstance();
+		lManagerInst.initContext(this);
+		
 		// Populate the Display
 		populateListView();
 	}
@@ -156,6 +160,9 @@ public class OfflineLibraryActivity extends Activity {
 	private void populateListView() {
 		// Tutorial from : https://www.youtube.com/watch?v=4HkfDObzjXk
 
+		// Get the Library
+		offlineStoryLibrary = lManagerInst.getCurrentLibrary();
+				
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		adapter = new CustomStoryAdapter(this, R.layout.library_row, offlineStoryLibrary);
 		offlineLV.setAdapter(adapter);
@@ -208,7 +215,7 @@ public class OfflineLibraryActivity extends Activity {
 				.getMenuInfo();
 
 		// Get the Story that is clicked on the listView.
-		Story storyClicked = adapter.getItem(info.position);
+		storyClicked = adapter.getItem(info.position);
 
 		if (item.getTitle() == "Publish Online") {
 			// Do Publish Story Function
@@ -248,10 +255,11 @@ public class OfflineLibraryActivity extends Activity {
 	 * @param storyClicked
 	 */
 	public void editStory(Story storyClicked) {
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
+		sManagerInst.setCurrentStory(storyClicked);
+		
 		Intent i = new Intent(this, EditStoryActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putSerializable("someStory", storyClicked);
-		i.putExtras(bundle);
 		startActivityForResult(i, ACTIVITY_EDIT_STORY);
 	}
 
@@ -298,11 +306,7 @@ public class OfflineLibraryActivity extends Activity {
 	 */
 
 	public void deleteStory(Story storyClicked) {
-		fLoader.deleteStory(storyClicked);
-
-		fLoader = new FileManager(this);
-		offlineStoryLibrary = fLoader.loadAllStoryFiles();
-
+		lManagerInst.deleteStory(storyClicked);
 		populateListView();
 		Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 	}

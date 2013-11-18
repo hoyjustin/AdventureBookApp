@@ -37,7 +37,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.FileManager;
+import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -60,8 +61,9 @@ public class CreateStoryActivity extends Activity {
 	private EditText mStoryAuthor;
 	private EditText mStoryDescription;
 	private TextView mDate;
+	
+	StoryManager sManagerInst;
 
-	private Story someStory;
 	String storyTitle;
 	String storyAuthor;
 	String storyDescription;
@@ -69,6 +71,7 @@ public class CreateStoryActivity extends Activity {
 	ImageView image;
 	String show_path;
 	String imageByte;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -76,14 +79,9 @@ public class CreateStoryActivity extends Activity {
 		setContentView(R.layout.create_story);
 
 		image = (ImageView) findViewById(R.id.imageView1);
-
 		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
-
-
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
-
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
-
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 
 		setDate();
@@ -121,19 +119,17 @@ public class CreateStoryActivity extends Activity {
 	 */
 	private void createStory() {
 		getUserText();
-		someStory = new Story(storyTitle, storyDescription, storyAuthor,
-				formattedDate, show_path, imageByte);
-		FileManager fLoader = new FileManager(this);
-
-		boolean saveSuccess = fLoader.saveStory(someStory, false);
+		
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
+		
+		boolean saveSuccess = sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
+			 formattedDate, show_path, imageByte, false);
 
 		if (saveSuccess == true) {
 			Toast.makeText(this, "Story Created: " + storyTitle,
 					Toast.LENGTH_LONG).show();
 			Intent i = new Intent(this, EditStoryActivity.class);
-			Bundle bundle = new Bundle();
-			bundle.putSerializable("someStory", someStory);
-			i.putExtras(bundle);
 			startActivityForResult(i, ACTIVITY_EDIT_STORY);
 		} else {
 			// 1. Instantiate an AlertDialog.Builder with its constructor
@@ -151,17 +147,15 @@ public class CreateStoryActivity extends Activity {
 			builder.setPositiveButton(R.string.ok,
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							FileManager fLoader2 = new FileManager(
-									CreateStoryActivity.this);
-							fLoader2.saveStory(someStory, true);
+							
+							sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
+									 formattedDate, show_path, imageByte, true);
+							
 							Toast.makeText(CreateStoryActivity.this,
 									"Story Created: " + storyTitle,
 									Toast.LENGTH_LONG).show();
 							Intent i = new Intent(CreateStoryActivity.this,
 									EditStoryActivity.class);
-							Bundle bundle = new Bundle();
-							bundle.putSerializable("someStory", someStory);
-							i.putExtras(bundle);
 							startActivityForResult(i, ACTIVITY_EDIT_STORY);
 						}
 					});

@@ -35,7 +35,8 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
-import c301.AdventureBook.Controllers.FileManager;
+import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -51,7 +52,6 @@ import com.example.adventurebook.R;
  */
 public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
-	private static final int DELETE_ID = Menu.FIRST + 1;
 	private final static int EDIT_PAGE = 1;
 	private final static int DELETE_PAGE = 2;
 
@@ -63,8 +63,10 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	private Button returnLocalLib;
 	private PopupMenu popupMenu;
 
+	StoryManager sManagerInst;
+	
 	private Story someStory;
-	private Page somePage;
+	private Page clickedPage;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -83,18 +85,13 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		popupMenu.getMenu().add(Menu.NONE, DELETE_PAGE, Menu.NONE, "Delete Page");
 		popupMenu.setOnMenuItemClickListener(this);
 
-		someStory = (Story) getIntent().getSerializableExtra("someStory");
-
-		storyView.setText("Title: " + someStory.getTitle() + "\n" +
-				"Description: " + someStory.getDescription() + "\n" +
-				"Author: " + someStory.getAuthor() + "\n" +
-				"Date: " + someStory.getDate() + "\n");
-
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
 		fillData();
 
 		createPage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				createPage();
+				sManagerInst.createPage();
 				fillData();
 			}
 		});
@@ -111,9 +108,9 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		{  
 			@Override
 			public void onGroupExpand(int position) {
-				somePage = (Page)adpt.getGroup(position);
-				pageView.setText("Page Selected:    " + somePage.getTitle() + "\n" + "Content:    " +
-						somePage.getPageDescription());
+				clickedPage = (Page)adpt.getGroup(position);
+				pageView.setText("Page Selected:    " + clickedPage.getTitle() + "\n" + "Content:    " +
+						clickedPage.getPageDescription());
 				popupMenu.show();
 
 
@@ -147,11 +144,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 		// User selects edit page
 		case EDIT_PAGE:
+			sManagerInst.setCurrentPage(clickedPage);
 			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
-   			Bundle bundle = new Bundle();
-   			bundle.putSerializable("somePage", somePage);
-   			bundle.putSerializable("someStory", someStory);
-   			i.putExtras(bundle);
 			startActivity(i);
 			break;
 
@@ -165,7 +159,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 			builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					// User clicked OK button
-					deletePage();
+					sManagerInst.deletePage(clickedPage);
 					fillData();
 				}
 			});
@@ -191,27 +185,14 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	 */
 	private void fillData() {
 		//load model here
+		someStory = sManagerInst.getStory();
+		storyView.setText("Title: " + someStory.getTitle() + "\n" +
+				"Description: " + someStory.getDescription() + "\n" +
+				"Author: " + someStory.getAuthor() + "\n" +
+				"Date: " + someStory.getDate() + "\n");
 		List<Page> storyPages = someStory.getPages();
 		adpt = new ExpandableListAdapter(this, lstView, storyPages);
 		lstView.setAdapter(adpt);
-	}
-
-	private void createPage() {
-		//New Page
-		int pageCount = someStory.getPages().size();
-		Page model = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "");
-		someStory.addPage(model);
-		FileManager fLoader = new FileManager(EditStoryActivity.this);
-		fLoader.saveStory(someStory, true);	
-	}
-
-	/**
-	 * Delete a page from the story
-	 */
-	private void deletePage() {
-		someStory.deletePage(somePage);
-		FileManager fLoader = new FileManager(EditStoryActivity.this);
-		fLoader.saveStory(someStory, true);		
 	}
 	
 	/**
@@ -221,8 +202,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	@Override
     public void onResume(){
     super.onResume();
-		FileManager fLoader = new FileManager(EditStoryActivity.this);	
-    	someStory = fLoader.loadStory(someStory);
         fillData();
     }
 
