@@ -155,21 +155,6 @@ public class EditPageActivity extends Activity implements Serializable {
 		});
 	}
 	
-	public String imageCovert(String path){
-		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
-		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
-
-		double width = bitmapOrg.getWidth();
-		double height = bitmapOrg.getHeight();
-		double ratio = 400 / width;
-		int newheight = (int) (ratio * height);
-		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, 400, newheight,
-				true);
-		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 95, imageByte);
-		byte[] bytefile = imageByte.toByteArray();
-		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
-		return bytefile64;
-	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -178,7 +163,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
 
 			show_path = data.getStringExtra("path");
-			imageByte = imageCovert(show_path);
+			imageByte = data.getStringExtra("imagebyte");
 			
 
 			imageView.setImageBitmap(BitmapFactory.decodeFile(show_path));

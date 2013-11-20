@@ -19,6 +19,7 @@ package c301.AdventureBook;
 //Creator: Zhao Zhang
 //Done
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,6 +35,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -53,7 +56,9 @@ public class TakePhotoActivity extends Activity{
 	private static final int SELECT_PHOTO = 100;
 	private static final int TAKE_PHOTO = 101;
 	static Uri capturedImageUri=null;
-	String show_path;
+	private String show_path;
+	private EditText EditSize;
+	private String imageByte;
 	int select_result = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,9 @@ public class TakePhotoActivity extends Activity{
 		Button uploadFromPhone = (Button)findViewById(R.id.fromPhoneButton);
 		Button uploadFromWebCam = (Button)findViewById(R.id.fromWebCamButton);
 		Button uploadConfirm = (Button)findViewById(R.id.confirmButton);
+		Button setSmallSize = (Button)findViewById(R.id.set_ok);
+		EditSize = (EditText)findViewById(R.id.size_input);
+
 		uploadFromPhone.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -110,17 +118,48 @@ public class TakePhotoActivity extends Activity{
 			}
 
 		});
-
+		setSmallSize.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (Double.parseDouble(EditSize.getText().toString()) >= 1){
+					imageByte = imageCovert(show_path,Double.parseDouble(EditSize.getText().toString()));
+				}
+				
+				
+				
+			}
+		});
 
 	}
 	private void saveAndFinish() {
-		final EditText my_path = (EditText) findViewById(R.id.editpath);
-		my_path.setText(show_path);
 		Intent intent = new Intent();		
 		intent.putExtra("path", show_path);
+		intent.putExtra("imagebyte", imageByte);
 		setResult(RESULT_OK, intent);
 		finish();
 
+	}
+	public String imageCovert(String path, double size_scale){
+		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
+		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
+
+		double width = bitmapOrg.getWidth();
+		double height = bitmapOrg.getHeight();
+		double ratio = 400 / width;
+		int newheight = (int) (ratio * height);
+		int newwidth = (int) (400/size_scale);
+		int new_height = (int) (newheight/size_scale);
+		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, newwidth, new_height,
+				true);
+		
+		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 95, imageByte);
+		ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+		test.setImageBitmap(bitmapOrg);
+		byte[] bytefile = imageByte.toByteArray();
+		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
+		return bytefile64;
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnIntent) {
@@ -168,6 +207,7 @@ public class TakePhotoActivity extends Activity{
 							ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 							test.setImageBitmap(BitmapFactory.decodeFile(filePath));
 							show_path = filePath;
+							imageByte = imageCovert(show_path,1.0);
 							select_result = 1;
 						}
 						catch (Exception e) {
@@ -183,6 +223,7 @@ public class TakePhotoActivity extends Activity{
 						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
 						test.setImageBitmap(bitmap);
+						imageByte = imageCovert(show_path,1.0);
 						select_result = 1;
 						break;
 					} catch (FileNotFoundException e) {
