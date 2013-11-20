@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +34,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +45,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -94,6 +98,49 @@ public class OnlineLibraryActivity extends Activity {
 			// return to Local Library.
 			createAlertDialog();
 		}
+	}
+	
+	/**
+	 * Create a search action in the action bar
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.library_options_menu, menu);
+
+		// Associate searchable configuration with the SearchView
+		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
+				.getActionView();
+
+		final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+			/**
+			 * This function is called every time a user enters
+			 * anything on the search bar.
+			 * 
+			 */
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				// Do something
+
+				//String keyword = searchView.getQuery().toString().toLowerCase();
+				//offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
+
+				//populateListView();
+				adapter.getFilter().filter(newText);
+				return true;
+			}
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				// Do something
+				return true;
+			}
+		};
+
+		searchView.setOnQueryTextListener(queryTextListener);
+
+		return true;
 	}
 
 	/**
@@ -231,6 +278,7 @@ public class OnlineLibraryActivity extends Activity {
 	 */
 	private void downloadStory(Story storyClicked) {
 		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
 		sManagerInst.saveStory(storyClicked, true);
 	}
 

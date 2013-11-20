@@ -112,7 +112,7 @@ public class StoryManager {
 	 */
 	public boolean saveStory(Story story, Boolean overwrite) {
 		
-		String FILENAME = story.getTitle() + "-" + story.getAuthor() + ".sav";
+		String FILENAME = story.getStoryId()+ ".sav";
 		
 		if(checkFileExists(FILENAME) == false || overwrite == true){
 			try {
