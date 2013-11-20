@@ -17,6 +17,7 @@
 
 package c301.AdventureBook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -88,6 +89,10 @@ public class OfflineLibraryActivity extends Activity {
 		// Initiate and Load the Local Library Manager
 		lManagerInst = LibraryManager.getInstance();
 		lManagerInst.initContext(this);
+		
+		
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
 		
 		// Populate the Display
 		populateListView();
@@ -243,6 +248,8 @@ public class OfflineLibraryActivity extends Activity {
 	 */
 	private void viewStory(Story story) {
 		// Do Something
+		
+		sManagerInst.setCurrentStory(story);
 
 		Intent intent = new Intent(this, ViewPageActivity.class);
 		intent.putExtra("someStory", story);
@@ -255,8 +262,7 @@ public class OfflineLibraryActivity extends Activity {
 	 * @param storyClicked
 	 */
 	public void editStory(Story storyClicked) {
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
+
 		sManagerInst.setCurrentStory(storyClicked);
 		
 		Intent i = new Intent(this, EditStoryActivity.class);
@@ -289,7 +295,12 @@ public class OfflineLibraryActivity extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			ESClient client = new ESClient();
-			client.insertStory(this.story);
+			try {
+				client.insertStory(this.story);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return null;
 		}
 		protected void onPostExecute(String result) {

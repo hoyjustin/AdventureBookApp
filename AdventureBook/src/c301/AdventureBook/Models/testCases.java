@@ -11,10 +11,14 @@ public class testCases {
 
 		Story r = new Story("Cat Story", "This Story is about a Cat", "Minhal Syed",
 				"2013-23-3234", null, null);
+		
 		Page page = new Page("FirstPage", "What should the cat do?");
-		page.addOption(new Option("Choose Jump", new Page("nextPage",
-				"You fell off a cliff")));
+		Page nextPage = new Page("nextPage","You fell off a cliff");
+		page.addOption(new Option("Choose Jump", nextPage));
+		page.addAnnotation(new Annotation("William ", "This page sucks!!!"));
 		r.addPage(page);
+		
+		
 		return r;
 	}
 

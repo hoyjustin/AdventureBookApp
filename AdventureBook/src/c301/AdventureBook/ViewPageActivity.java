@@ -3,11 +3,14 @@ package c301.AdventureBook;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -21,12 +24,21 @@ public class ViewPageActivity extends Activity {
 	private List<Page> pages;
 	private List<Option> options;
 	
+	public StoryManager sManager;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.viewpage);
 		
-		story = (Story) getIntent().getSerializableExtra("someStory");
+		sManager = StoryManager.getInstance();
+		sManager.initContext(this);
+		
+		//story = (Story) getIntent().getSerializableExtra("someStory");
+		//sManager.setCurrentStory(story);
+		
+		story = sManager.getStory();
+		
 		pages = story.getPages();
 
 		viewFirstPage();		
@@ -46,6 +58,8 @@ public class ViewPageActivity extends Activity {
 	 */
 	private void viewFirstPage() {
 		Page page = pages.get(FIRST_PAGE_INDEX);
+		sManager.setCurrentPage(page);
+		
 		options = page.getOptions();
 		
 		// Set the page description
@@ -53,12 +67,17 @@ public class ViewPageActivity extends Activity {
 		TextView pageDescriptionTV = (TextView) findViewById(R.id.pageDescriptionTV);
 		pageDescriptionTV.setText(pageDescription);
 		
-		/*
+		
 		// Set the page options
 		ListView optionsListView = (ListView) findViewById(R.id.list_options);
 		ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this, R.layout.list_row, options);
 		optionsListView.setAdapter(optionAdapter);
-		*/
+		
+	}
+	
+	public void launchAnnotationsActivity(View v){
+		Intent i  = new Intent(this, AnnotationActivity.class);
+		startActivity(i);
 	}
 	
 

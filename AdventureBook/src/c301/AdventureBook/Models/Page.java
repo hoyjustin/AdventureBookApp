@@ -28,10 +28,14 @@ public class Page implements Serializable{
 	private List<Option> options;
 	private String pageDescription;
 	
+	private ArrayList<Annotation> annotations;
+	
+	
 	public Page(String title, String pageDescription){
 		this.title = title;
 		this.pageDescription = pageDescription;
 		this.options = new ArrayList<Option>();
+		this.annotations = new ArrayList<Annotation>();
 	}
 	
 	public void deleteOption(Option option) {
@@ -64,6 +68,10 @@ public class Page implements Serializable{
 	
 	public List<Option> getOptions(){
 		return this.options;
+	}
+	
+	public void addAnnotation(Annotation annotation){
+		this.annotations.add(annotation);
 	}
 	
     @Override

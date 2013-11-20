@@ -27,7 +27,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Annotation;
+import c301.AdventureBook.Models.Page;
 
 import com.example.adventurebook.R;
 
@@ -40,7 +42,7 @@ import com.example.adventurebook.R;
 public class AnnotationActivity extends Activity {
 	private EditText author;
 	private EditText comment;
-	private Annotation someAnnotations;
+	private Annotation someAnnotation;
 	String authorAnnotation;
 	String commentAnnotation;
 	Intent i;
@@ -107,13 +109,25 @@ public class AnnotationActivity extends Activity {
 	 */
 		private void createAnnotation(){
 			getUserInfo();
-			someAnnotations = new Annotation(authorAnnotation, commentAnnotation); 
+			someAnnotation = new Annotation(authorAnnotation, commentAnnotation); 
 			
-			goBackPage();
-			Bundle bundle = new Bundle();
-			bundle.putSerializable("someAnnotation", someAnnotations);
-			i.putExtras(bundle);
-			startActivityForResult(i,0);
+			//goBackPage();
+			//Bundle bundle = new Bundle();
+			//bundle.putSerializable("someAnnotation", someAnnotations);
+			//i.putExtras(bundle);
+			//startActivityForResult(i,0);
+			
+			StoryManager sManager = StoryManager.getInstance();
+			sManager.initContext(this);
+			
+			Page currentPage = sManager.getPage();
+			sManager.getStory().deletePage(currentPage);
+
+			currentPage.addAnnotation(someAnnotation);
+			sManager.getStory().addPage(currentPage);
+			
+			sManager.saveStory(sManager.getStory(), true);
+			
 			
 		}
 		/**

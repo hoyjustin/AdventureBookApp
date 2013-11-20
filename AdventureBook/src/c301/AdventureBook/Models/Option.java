@@ -80,4 +80,8 @@ public class Option implements Serializable{
 	public Page getGoToPage(){
 		return this.goToPage;
 	}
+	@Override
+	public String toString(){
+		return this.description;
+	}
 }

@@ -17,6 +17,7 @@
 
 package c301.AdventureBook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
@@ -195,6 +196,14 @@ public class OnlineLibraryActivity extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			fetchDataFromServer();
+			Story testStory = testCases.initializeStory();
+			try {
+				client.insertStory(testStory);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			return null;
 		}
 

@@ -47,11 +47,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * This is the Elastic Search Client Class.
- * This class is responsible for communicating
- * with WebServer. This class can be used to 
- * insert, delete, modify, and search stories on the
- * WebServer.
+ * This is the Elastic Search Client Class. This class is responsible for
+ * communicating with WebServer. This class can be used to insert, delete,
+ * modify, and search stories on the WebServer.
  * 
  * This code has been taken and modified from:
  * https://github.com/rayzhangcl/ESDemo
@@ -82,47 +80,43 @@ public class ESClient {
 	 * @throws IOException
 	 * @throws IllegalStateException
 	 */
-	public void insertStory(Story story) {
+	public void insertStory(Story story) throws IOException {
+
+		HttpPost httpPost = new HttpPost(WEBSERVICE_URI + STORIES_FOLDER
+				+ story.getStoryId());
+
+		StringEntity stringentity = null;
 
 		try {
-			HttpPost httpPost = new HttpPost(WEBSERVICE_URI + STORIES_FOLDER
-					+ story.getStoryId());
-
-			StringEntity stringentity = null;
-
-			try {
-				stringentity = new StringEntity(gson.toJson(story));
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			httpPost.setHeader("Accept", "application/json");
-
-			httpPost.setEntity(stringentity);
-
-			HttpResponse response = null;
-			try {
-				response = httpclient.execute(httpPost);
-			} catch (ClientProtocolException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			String status = response.getStatusLine().toString();
-			System.out.println(status);
-			HttpEntity entity = response.getEntity();
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					entity.getContent()));
-			String output;
-			System.err.println("Output from Server -> ");
-			while ((output = br.readLine()) != null) {
-				System.err.println(output);
-			}
-
-		} catch (Exception e) {
+			stringentity = new StringEntity(gson.toJson(story));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		httpPost.setHeader("Accept", "application/json");
+
+		httpPost.setEntity(stringentity);
+
+		HttpResponse response = null;
+		try {
+			response = httpclient.execute(httpPost);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		String status = response.getStatusLine().toString();
+		System.out.println(status);
+		HttpEntity entity = response.getEntity();
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				entity.getContent()));
+		String output;
+		System.err.println("Output from Server -> ");
+		while ((output = br.readLine()) != null) {
+			System.err.println(output);
+		}
+
 	}
 
 	/**
@@ -312,8 +306,8 @@ public class ESClient {
 	}
 
 	/**
-	 * Delete a Story Object from WebServer.
-	 * A story is deleted based on its storyId.
+	 * Delete a Story Object from WebServer. A story is deleted based on its
+	 * storyId.
 	 * 
 	 */
 	public void deleteStory(Story story) {
