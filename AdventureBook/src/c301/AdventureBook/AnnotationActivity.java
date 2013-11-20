@@ -45,7 +45,6 @@ public class AnnotationActivity extends Activity {
 	private Annotation someAnnotation;
 	String authorAnnotation;
 	String commentAnnotation;
-	Intent i;
 	ImageView image;
 	String show_path;
 
@@ -140,7 +139,9 @@ public class AnnotationActivity extends Activity {
 		 * this should go back to the view page
 		 */
 		private void goBackPage(){
-			//i = new Intent(this, StoryFragment.class);
+			Intent intent = new Intent(this, ViewPageActivity.class);
+			startActivity(intent);
+			finish();
 		}
 		/**
 		 * get the user's info for annotation
