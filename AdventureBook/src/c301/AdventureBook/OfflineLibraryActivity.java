@@ -147,7 +147,6 @@ public class OfflineLibraryActivity extends Activity {
 	public void launchNewStoryActivity(View v) {
 		Intent i = new Intent(this, CreateStoryActivity.class);
 		startActivity(i);
-		finish();
 	}
 
 	/**
@@ -156,7 +155,6 @@ public class OfflineLibraryActivity extends Activity {
 	public void launchOnlineLibraryActivity(View v) {
 		Intent i = new Intent(this, OnlineLibraryActivity.class);
 		startActivity(i);
-		finish();
 	}
 
 	/**
@@ -251,10 +249,10 @@ public class OfflineLibraryActivity extends Activity {
 		
 		sManagerInst.setCurrentStory(story);
 
-		Intent intent = new Intent(this, ViewPageActivity.class);
-		intent.putExtra("someStory", story);
+		Intent intent = new Intent(this, ViewStoryActivity.class);
+
 		startActivity(intent);
-		finish();
+		
 	}
 	/**
 	 * This function launches the editStory activity.

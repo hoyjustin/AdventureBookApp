@@ -18,7 +18,7 @@
             android:maxHeight="60dp"
             android:maxWidth="70dp"
             android:src="@drawable/fish"
-            android:padding = "10dp" />
+            android:paddingBottom = "10dp" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
