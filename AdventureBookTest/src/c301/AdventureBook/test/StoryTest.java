@@ -24,11 +24,12 @@ public class StoryTest extends AndroidTestCase {
 	private String author = "william";
 	private String date = "2013.11.6";
 	private String imagePath = "I don't know";
+	private String imageByte = "random imagebyte";
 	public List<Page> pages = new ArrayList<Page>();
 
 	@Before
 	protected void setUp() throws Exception {
-		story = new Story(title, description, author, date, imagePath);
+		story = new Story(title, description, author, date, imagePath, imageByte);
 	}
 
 	@After

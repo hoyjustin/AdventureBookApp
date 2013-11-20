@@ -62,6 +62,11 @@ public class ViewPageActivity extends Activity {
 		
 		options = page.getOptions();
 		
+		// Set the page title
+		String pageTitle = page.getTitle();
+		TextView pageTitleTV = (TextView) findViewById(R.id.pageTitleTV);
+		pageTitleTV.setText(pageTitle);
+		
 		// Set the page description
 		String pageDescription = page.getPageDescription();
 		TextView pageDescriptionTV = (TextView) findViewById(R.id.pageDescriptionTV);

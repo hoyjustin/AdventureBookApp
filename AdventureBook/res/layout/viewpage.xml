@@ -9,6 +9,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/pageTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="page title will go here"
+        android:background="@drawable/border" />
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="150dp"
