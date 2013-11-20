@@ -27,6 +27,7 @@ public class Page implements Serializable{
 	private String title;
 	private List<Option> options;
 	private String pageDescription;
+	private String imageByte;
 	
 	private ArrayList<Annotation> annotations;
 	
@@ -78,6 +79,14 @@ public class Page implements Serializable{
     public String toString() {
         return this.title;
     }
+
+	public String getImageByte() {
+		return imageByte;
+	}
+
+	public void setImageByte(String imageByte) {
+		this.imageByte = imageByte;
+	}
     
 
 }

@@ -17,6 +17,7 @@
 
 package c301.AdventureBook;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -35,7 +36,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -68,9 +71,9 @@ public class EditPageActivity extends Activity implements Serializable {
 	private EditText mEditPageTitle;
 	private Button mButtonCreateOption;
 	private Button mButtonSavePage;
-	private CoverFlow coverFlow;
+	//private CoverFlow coverFlow;
 
-	private ImageAdapter coverImageAdapter;
+	//private ImageAdapter coverImageAdapter;
 	private CustomAdapter adpt;
 	private ListView optionsList;
 
@@ -82,6 +85,9 @@ public class EditPageActivity extends Activity implements Serializable {
 	private Page currentPage;
 	private Option clickedOption;
 	private List<Option> currentPageOptions;
+	private ImageView imageView;
+	private String show_path;
+	private String imageByte;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -96,29 +102,34 @@ public class EditPageActivity extends Activity implements Serializable {
 		mEditPageDes = (EditText)findViewById(com.example.adventurebook.R.id.editPageDescription);
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
 		mButtonSavePage = (Button) findViewById(R.id.save_page);
+		imageView = (ImageView) findViewById(R.id.pageimage);
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
+		if (currentPage.getImageByte() !=null){
+			byte[] decodedString = Base64.decode(currentPage.getImageByte(), Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+			imageView.setImageBitmap(decodedByte);			
+		}
 
-		coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
-		coverFlow.setAdapter(new ImageAdapter(this));
-		coverImageAdapter =  new ImageAdapter(this);
+		//coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
+		//coverFlow.setAdapter(new ImageAdapter(this));
+		//coverImageAdapter =  new ImageAdapter(this);
 		//coverImageAdapter.createReflectedImages();
-		coverFlow.setAdapter(coverImageAdapter);
-		coverFlow.setSpacing(25);
-		coverFlow.setSelection(2, true);
-		coverFlow.setAnimationDuration(1000);
+		//coverFlow.setAdapter(coverImageAdapter);
+		//coverFlow.setSpacing(25);
+		//coverFlow.setSelection(2, true);
+		//coverFlow.setAnimationDuration(1000);
 
 		optionsList = (ListView) findViewById(R.id.options_list);
 		fillData();
 
-		coverFlow.setOnItemClickListener(new OnItemClickListener() {
+		imageView.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long arg3)
-			{
-
-				Intent intent = new Intent(view.getContext(),TakePhotoActivity.class);
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getApplicationContext(),
+						TakePhotoActivity.class);
 				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
-
 			}
 		});
 
@@ -137,10 +148,42 @@ public class EditPageActivity extends Activity implements Serializable {
 				currentPage = currentStory.getPage(currentPage);
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
+				currentPage.setImageByte(imageByte);
 				sManagerInst.setCurrentPage(currentPage);
 				finish();
 			}
 		});
+	}
+	
+	public String imageCovert(String path){
+		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
+		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
+
+		double width = bitmapOrg.getWidth();
+		double height = bitmapOrg.getHeight();
+		double ratio = 400 / width;
+		int newheight = (int) (ratio * height);
+		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, 400, newheight,
+				true);
+		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 95, imageByte);
+		byte[] bytefile = imageByte.toByteArray();
+		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
+		return bytefile64;
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+
+			show_path = data.getStringExtra("path");
+			imageByte = imageCovert(show_path);
+			
+
+			imageView.setImageBitmap(BitmapFactory.decodeFile(show_path));
+
+		}
 	}
 
 	public void onResume()
