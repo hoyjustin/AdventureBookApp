@@ -18,12 +18,37 @@
 
     <ImageView
         android:id="@+id/upload_photo_view"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_margin="1dp" >
+
+        <EditText
+            android:id="@+id/size_input"
+            android:layout_width="242dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/set_ok"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Size"/>
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/fromPhoneButton"
@@ -34,7 +59,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:text="From Phone" />
  
     <Button
@@ -60,14 +85,5 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:text="Confirm" />
-
-    <EditText
-        android:id="@+id/editpath"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
 
 </LinearLayout>
