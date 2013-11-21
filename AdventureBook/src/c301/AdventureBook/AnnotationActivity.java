@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -47,13 +48,16 @@ public class AnnotationActivity extends Activity {
 	String commentAnnotation;
 	ImageView image;
 	String show_path;
-
+	StoryManager sManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.annotations);
+		
+		sManager = StoryManager.getInstance();
+		sManager.initContext(this);
 		
 		image = (ImageView) findViewById(R.id.imageView1);
 		
@@ -110,23 +114,9 @@ public class AnnotationActivity extends Activity {
 			getUserInfo();
 			someAnnotation = new Annotation(authorAnnotation, commentAnnotation); 
 			
-			//goBackPage();
-			//Bundle bundle = new Bundle();
-			//bundle.putSerializable("someAnnotation", someAnnotations);
-			//i.putExtras(bundle);
-			//startActivityForResult(i,0);
-			
-			StoryManager sManager = StoryManager.getInstance();
-			sManager.initContext(this);
-			
 			Page currentPage = sManager.getPage();
-			sManager.getStory().deletePage(currentPage);
-
 			currentPage.addAnnotation(someAnnotation);
-			sManager.getStory().addPage(currentPage);
-			
 			sManager.saveStory(sManager.getStory(), true);
-			
 			
 		}
 		/**
@@ -153,19 +143,5 @@ public class AnnotationActivity extends Activity {
 			commentAnnotation= comment.getText().toString();
 			
 		}
-		/**
-		 * this function is going get the photo by using the path
-		 * return it and display it on the top of the screen
-		 */
-		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-			// TODO Auto-generated method stub
-			super.onActivityResult(requestCode, resultCode, data);
-			if (requestCode == 1001 && resultCode == RESULT_OK) {
 
-				show_path = data.getStringExtra("path");
-
-				image.setImageBitmap(BitmapFactory.decodeFile(show_path));
-
-			}
-		}
 	}

@@ -160,7 +160,7 @@ public class StoryManager {
 	 * @return the currentPage
 	 */
 	public Page getPage() {
-		return mPage;
+		return this.mPage;
 	}
 
 	/**
