@@ -164,9 +164,11 @@ public class EditPageActivity extends Activity implements Serializable {
 
 			show_path = data.getStringExtra("path");
 			imageByte = data.getStringExtra("imagebyte");
+			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			imageView.setImageBitmap(decodedByte);
 			
 
-			imageView.setImageBitmap(BitmapFactory.decodeFile(show_path));
 
 		}
 	}
