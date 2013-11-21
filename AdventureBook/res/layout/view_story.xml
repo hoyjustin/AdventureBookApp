@@ -27,19 +27,20 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:background="@drawable/border"
         android:layout_gravity="center"
         android:padding="3dp" >
 
-        <EditText
+        <TextView
             android:id="@+id/storyDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:ems="10"
             android:inputType="textMultiLine" >
-        </EditText>
+        </TextView>
     </ScrollView>
 
     <TextView

@@ -65,7 +65,7 @@ public class ViewStoryActivity extends Activity {
 		//TextView dateText = (TextView)findViewById(R.id.dateCreatedTV);
 		//dateText.setText(currentStory.getDate());
 		
-		EditText storyDescription = (EditText) findViewById(R.id.storyDescription);
+		TextView storyDescription = (TextView) findViewById(R.id.storyDescription);
 		storyDescription.setText(currentStory.getDescription());
 	}
 	
