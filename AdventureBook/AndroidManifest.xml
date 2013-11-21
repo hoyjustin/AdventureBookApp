@@ -46,12 +46,8 @@
         <activity android:name="c301.AdventureBook.AnnotationActivity" >
         </activity>
         <activity
-            android:name="com.example.adventurebook.ViewStoryAcivity"
-            android:label="@string/title_activity_view_story_acivity" >
-        </activity>
-        <activity
             android:name="c301.AdventureBook.ViewPageActivity"
-            android:label="@string/title_activity_view_story" >
+            android:label="@string/title_activity_view_page" >
         </activity>
         <activity
             android:name="c301.AdventureBook.ViewStoryActivity"
