@@ -33,11 +33,11 @@
     <string name="save_page_button">Save Page</string>
     <string name="insert_page_des">Insert Page Text</string>
     <string name="add_option">Add a New Option</string>
-    <string name="title_activity_view_story_acivity">ViewStoryAcivity</string>
     <string name="title_activity_view_story">ViewStoryActivity</string>
     <string name="delete_option_confirm">Do you really want to delete this option?</string>
     
     <!-- Minhal/Edit Page -->
     <string name="alert_no_goto">You need to select a page for the option to go to!</string>
+    <string name="title_activity_view_page">ViewPageActivity</string>
 
 </resources>
