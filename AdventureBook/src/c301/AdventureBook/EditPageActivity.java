@@ -157,6 +157,7 @@ public class EditPageActivity extends Activity implements Serializable {
 	
 	
 	@Override
+	//test image
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
