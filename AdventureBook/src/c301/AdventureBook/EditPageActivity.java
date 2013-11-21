@@ -157,6 +157,7 @@ public class EditPageActivity extends Activity implements Serializable {
 	
 	
 	@Override
+	//test image
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
@@ -164,9 +165,11 @@ public class EditPageActivity extends Activity implements Serializable {
 
 			show_path = data.getStringExtra("path");
 			imageByte = data.getStringExtra("imagebyte");
+			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			imageView.setImageBitmap(decodedByte);
 			
 
-			imageView.setImageBitmap(BitmapFactory.decodeFile(show_path));
 
 		}
 	}
