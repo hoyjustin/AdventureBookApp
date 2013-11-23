@@ -204,16 +204,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		super.onResume();
         fillData();
     }
-	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		if (requestCode == EDIT_PAGE) {
-			if (resultCode == RESULT_OK) {
-				fillData();
-			}
-		}
-	}
 
 	/* Do we want a context menu instead?
     @Override

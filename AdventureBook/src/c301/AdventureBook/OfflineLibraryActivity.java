@@ -236,6 +236,13 @@ public class OfflineLibraryActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		populateListView();
+	}
+
 	/**
 	 * This function starts the viewPage Activity.
 	 * That means that the user will be presented the 
