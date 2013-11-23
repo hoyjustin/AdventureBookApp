@@ -150,6 +150,7 @@ public class EditPageActivity extends Activity implements Serializable {
 				currentPage.setPageDescription(someDescription);
 				currentPage.setImageByte(imageByte);
 				sManagerInst.setCurrentPage(currentPage);
+				sManagerInst.saveStory(currentStory, true);
 				finish();
 			}
 		});
@@ -191,7 +192,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		adpt = new CustomAdapter(this, optionsList, currentPageOptions);
 		optionsList.setAdapter(adpt);
 	}
-
+	
 	private class CustomAdapter extends ArrayAdapter<Option> {
 
 		public CustomAdapter(EditPageActivity editPageActivity, ListView optionsList, List<Option> options) {

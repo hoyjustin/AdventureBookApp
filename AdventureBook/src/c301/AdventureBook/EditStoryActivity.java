@@ -146,7 +146,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		case EDIT_PAGE:
 			sManagerInst.setCurrentPage(clickedPage);
 			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
-			startActivity(i);
+			startActivityForResult(i, EDIT_PAGE);
 			break;
 
 		// User selects delete page
@@ -201,9 +201,19 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	 */
 	@Override
     public void onResume(){
-    super.onResume();
+		super.onResume();
         fillData();
     }
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (requestCode == EDIT_PAGE) {
+			if (resultCode == RESULT_OK) {
+				fillData();
+			}
+		}
+	}
 
 	/* Do we want a context menu instead?
     @Override

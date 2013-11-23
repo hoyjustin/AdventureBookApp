@@ -83,7 +83,7 @@ public class ViewPageActivity extends Activity {
 	public void launchAnnotationsActivity(View v){
 		Intent i  = new Intent(this, AnnotationActivity.class);
 		startActivity(i);
-		finish();
+		//finish();
 	}
 	
 
