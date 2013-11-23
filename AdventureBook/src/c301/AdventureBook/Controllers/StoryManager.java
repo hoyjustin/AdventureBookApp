@@ -98,7 +98,7 @@ public class StoryManager {
 	 * @param story the story to be deleted
 	 */
 	public void deleteStory(Story story){
-		String FILENAME = story.getStoryId() + ".sav";
+		String FILENAME = story.getFilename();
 		activityContext.deleteFile(FILENAME);
 		this.mStory = null;
 	}
@@ -112,7 +112,7 @@ public class StoryManager {
 	 */
 	public boolean saveStory(Story story, Boolean overwrite) {
 		
-		String FILENAME = story.getStoryId() + ".sav";
+		String FILENAME = story.getFilename();
 		
 		if(checkFileExists(FILENAME) == false || overwrite == true){
 			try {

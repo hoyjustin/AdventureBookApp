@@ -1,7 +1,10 @@
 package c301.AdventureBook;
 
+import java.util.List;
+
 import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
+import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -21,14 +24,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ViewStoryActivity extends Activity {
-	LibraryManager lManagerInst; // Controller for the Library
-	StoryManager sManagerInst; // Controller for a story
+	private static final int FIRST_PAGE_INDEX = 0;
+	LibraryManager lManager; // Controller for the Library
+	StoryManager sManager; // Controller for a story
+	Story currentStory;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_story);
-
 		
 		populateData();
 	}
@@ -42,10 +46,10 @@ public class ViewStoryActivity extends Activity {
 	
 	public void populateData(){
 
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
+		sManager = StoryManager.getInstance();
+		sManager.initContext(this);
 		
-		Story currentStory = sManagerInst.getStory();
+		currentStory = sManager.getStory();
 		
 		ImageView imageView = (ImageView)findViewById(R.id.storyThumnail);
 
@@ -69,7 +73,16 @@ public class ViewStoryActivity extends Activity {
 		storyDescription.setText(currentStory.getDescription());
 	}
 	
+	/**
+	 * Start the view page activity when the "Begin Story" button is clicked.
+	 * The first page is displayed when the user begins a new story.
+	 * This method is called via android:onClick in the view_story XML.
+	 * 
+	 */
 	public void launchViewPageActivity(View v){
+		List<Page> pages = currentStory.getPages();
+		Page firstPage = pages.get(FIRST_PAGE_INDEX);
+		sManager.setCurrentPage(firstPage);
 		Intent i = new Intent(this, ViewPageActivity.class);
 		startActivity(i);
 	}

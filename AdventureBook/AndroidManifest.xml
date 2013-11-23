@@ -58,7 +58,6 @@
         </activity>
         <activity
             android:name="c301.AdventureBook.ViewPageActivity"
-            android:launchMode="singleTask"
             android:label="@string/title_activity_view_page" >
         </activity>
         <activity
