@@ -225,7 +225,7 @@ public class OfflineLibraryActivity extends Activity {
 			publishStory(storyClicked);
 
 		} else if (item.getTitle() == "Edit Story") {
-
+			// Do Edit Story Function
 			editStory(storyClicked);
 
 		} else if (item.getTitle() == "Delete Story") {
@@ -285,6 +285,7 @@ public class OfflineLibraryActivity extends Activity {
 		//to publish the story, we need to use AsyncTasks.
 		new publishStoryTask(storyClicked).execute();
 	}
+	
 	/**
 	 * This class defines the publishStoryTask
 	 * 

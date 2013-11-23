@@ -96,7 +96,8 @@ public class LibraryManager {
 	 * @param story the story to be deleted
 	 */
 	public void deleteStory(Story story){
-		String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
+		//String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
+		String FILENAME = story.getFilename();
 		activityContext.deleteFile(FILENAME);
 		updateCurrentLibrary();
 		this.mLibrary = null;
