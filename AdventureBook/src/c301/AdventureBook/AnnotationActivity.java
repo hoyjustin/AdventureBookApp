@@ -125,7 +125,7 @@ public class AnnotationActivity extends Activity {
 		TextView author = (TextView) findViewById(R.id.annotationAuthor);
 		TextView comment = (TextView) findViewById(R.id.annotationComment);
 
-		if (currentAnnotations.get(0) != null) {
+		if (!currentAnnotations.isEmpty()) {
 			author.setText(currentAnnotations.get(0).getAuthor());
 			comment.setText(currentAnnotations.get(0).getComment());
 		}
@@ -142,7 +142,7 @@ public class AnnotationActivity extends Activity {
 		Page currentPage = sManager.getPage();
 		currentPage.addAnnotation(someAnnotation);
 		sManager.saveStory(sManager.getStory(), true);
-
+		populateAnnotations(); //Re-Populate Annotaions list.
 	}
 
 	/**
