@@ -19,6 +19,7 @@ package c301.AdventureBook;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -86,8 +87,9 @@ public class OnlineLibraryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.online_library);
 
+		initializeGlobals();
+		
 		// First CheckWhether Internet is Connected:
-
 		if (isNetworkConnected()) {
 			// Download all Stories from online then populate
 			// the list view. Since we need to give the application
@@ -99,6 +101,12 @@ public class OnlineLibraryActivity extends Activity {
 			// return to Local Library.
 			createAlertDialog();
 		}
+	}
+	
+	private void initializeGlobals(){
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
+		
 	}
 
 	/**
@@ -279,41 +287,56 @@ public class OnlineLibraryActivity extends Activity {
 
 		if (item.getTitle() == "Download Story") {
 			downloadStory(storyClicked);
-		} 
-		else if (item.getTitle() == "Delete Story") {
-			
+		} else if (item.getTitle() == "Delete Story") {
+
 			new deleteStoryTask(storyClicked).execute();
 		}
 		return true;
 	}
-	
-private class deleteStoryTask extends AsyncTask<String, String, String> {
-		
+
+	private class deleteStoryTask extends AsyncTask<String, String, String> {
+
 		Story story;
+
 		public deleteStoryTask(Story storyClicked) {
 			this.story = storyClicked;
 		}
+
 		@Override
 		protected String doInBackground(String... arg0) {
 			client.deleteStory(story);
 			return null;
 		}
+
 		protected void onPostExecute(String result) {
 			Toast.makeText(OnlineLibraryActivity.this,
 					"Delete " + this.story.getTitle(), Toast.LENGTH_SHORT)
 					.show();
 		}
 	}
-	
+
 	/**
 	 * This function downloads the online story to the phone's memory.
 	 * 
 	 * @param storyClicked
 	 */
 	private void downloadStory(Story storyClicked) {
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
 		sManagerInst.saveStory(storyClicked, true);
+	}
+	
+	/**
+	 * This function shows a random story from Online Library.
+	 * @param v
+	 */
+	public void showRandomStory(View v){
+		Random r = new Random();
+		int choice = r.nextInt(onlineStoryLibrary.size());
+		Story randomStory = onlineStoryLibrary.get(choice);
+		
+
+		sManagerInst.setCurrentStory(randomStory);
+		Intent intent = new Intent(this, ViewStoryActivity.class);
+		startActivity(intent);
 	}
 
 	/**
