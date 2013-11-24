@@ -9,7 +9,7 @@ public class testCases {
 	 */
 	public static Story initializeStory() {
 
-		Story r = new Story("Cat Story", "This Story is about a Cat", "Minhal Syed",
+		Story r = new Story("CatStory", "This Story is about a Cat", "MinhalSyed",
 				"2013-23-3234", null, null);
 		
 		Page page = new Page("FirstPage", "What should the cat do?");

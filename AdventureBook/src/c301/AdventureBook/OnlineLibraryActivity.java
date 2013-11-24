@@ -100,7 +100,7 @@ public class OnlineLibraryActivity extends Activity {
 			createAlertDialog();
 		}
 	}
-	
+
 	/**
 	 * Create a search action in the action bar
 	 */
@@ -116,18 +116,20 @@ public class OnlineLibraryActivity extends Activity {
 
 		final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
 			/**
-			 * This function is called every time a user enters
-			 * anything on the search bar.
+			 * This function is called every time a user enters anything on the
+			 * search bar.
 			 * 
 			 */
 			@Override
 			public boolean onQueryTextChange(String newText) {
 				// Do something
 
-				//String keyword = searchView.getQuery().toString().toLowerCase();
-				//offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
+				// String keyword =
+				// searchView.getQuery().toString().toLowerCase();
+				// offlineStoryLibrary =
+				// fLoader.loadStoryFileWithKeyword(keyword);
 
-				//populateListView();
+				// populateListView();
 				adapter.getFilter().filter(newText);
 				return true;
 			}
@@ -179,8 +181,9 @@ public class OnlineLibraryActivity extends Activity {
 	private class getStoriesAndDisplay extends
 			AsyncTask<String, String, String> {
 
-		//Display Loading Spinner on the activity.
-		//Tutorial:	http://stackoverflow.com/questions/12559461/how-to-show-progress-barcircle-in-an-activity-having-a-listview-before-loading
+		// Display Loading Spinner on the activity.
+		// Tutorial:
+		// http://stackoverflow.com/questions/12559461/how-to-show-progress-barcircle-in-an-activity-having-a-listview-before-loading
 		LinearLayout linearLayoutForProgress = (LinearLayout) findViewById(R.id.linearLayoutForProgress);
 
 		@Override
@@ -196,14 +199,8 @@ public class OnlineLibraryActivity extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			fetchDataFromServer();
-			Story testStory = testCases.initializeStory();
-			try {
-				client.insertStory(testStory);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			// Story testStory = testCases.initializeStory();
+			// client.deleteURI("http://cmput301.softwareprocess.es:8080/cmput301f13t11/stories/CoolStory-BrosDick");
 			return null;
 		}
 
@@ -215,8 +212,8 @@ public class OnlineLibraryActivity extends Activity {
 		protected void onPostExecute(String result) {
 			populateListView();
 
-		    // HIDE THE SPINNER AFTER LOADING.
-		    linearLayoutForProgress.setVisibility(View.GONE);
+			// HIDE THE SPINNER AFTER LOADING.
+			linearLayoutForProgress.setVisibility(View.GONE);
 		}
 
 	}
@@ -258,6 +255,7 @@ public class OnlineLibraryActivity extends Activity {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Download Story");
+		menu.add("Delete Story");
 	}
 
 	/**
@@ -276,10 +274,32 @@ public class OnlineLibraryActivity extends Activity {
 
 		if (item.getTitle() == "Download Story") {
 			downloadStory(storyClicked);
+		} 
+		else if (item.getTitle() == "Delete Story") {
+			
+			new deleteStoryTask(storyClicked).execute();
 		}
 		return true;
 	}
-
+	
+private class deleteStoryTask extends AsyncTask<String, String, String> {
+		
+		Story story;
+		public deleteStoryTask(Story storyClicked) {
+			this.story = storyClicked;
+		}
+		@Override
+		protected String doInBackground(String... arg0) {
+			client.deleteStory(story);
+			return null;
+		}
+		protected void onPostExecute(String result) {
+			Toast.makeText(OnlineLibraryActivity.this,
+					"Delete " + this.story.getTitle(), Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
+	
 	/**
 	 * This function downloads the online story to the phone's memory.
 	 * 
