@@ -199,8 +199,13 @@ public class OnlineLibraryActivity extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			fetchDataFromServer();
-			// Story testStory = testCases.initializeStory();
-			// client.deleteURI("http://cmput301.softwareprocess.es:8080/cmput301f13t11/stories/CoolStory-BrosDick");
+			Story testStory = testCases.initializeStory();
+			try {
+				client.insertStory(testStory);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return null;
 		}
 
