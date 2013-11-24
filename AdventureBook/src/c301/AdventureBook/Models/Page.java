@@ -87,6 +87,9 @@ public class Page implements Serializable{
 	public void setImageByte(String imageByte) {
 		this.imageByte = imageByte;
 	}
+	public ArrayList<Annotation> getAnnotations(){
+		return this.annotations; 
+	}
     
 
 }

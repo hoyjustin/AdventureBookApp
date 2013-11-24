@@ -17,6 +17,8 @@
 
 package c301.AdventureBook;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -28,6 +30,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Annotation;
 import c301.AdventureBook.Models.Page;
@@ -35,10 +39,11 @@ import c301.AdventureBook.Models.Page;
 import com.example.adventurebook.R;
 
 /**
- * This is the annotation activity. It is run when a user wants to annotate a story fragment.
+ * This is the annotation activity. It is run when a user wants to annotate a
+ * story fragment.
  * 
  * @author Lin Tong
- *
+ * 
  */
 public class AnnotationActivity extends Activity {
 	private EditText author;
@@ -49,24 +54,23 @@ public class AnnotationActivity extends Activity {
 	ImageView image;
 	String show_path;
 	StoryManager sManager;
-	
+
+	ArrayList<Annotation> currentAnnotations;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.annotations);
-		
+
 		sManager = StoryManager.getInstance();
 		sManager.initContext(this);
-		
+
 		image = (ImageView) findViewById(R.id.imageView1);
-		
 		author = (EditText) findViewById(R.id.editTextAnnotationAuthor);
-		
-		comment = (EditText)findViewById(R.id.editTextAnnotationComment);
-		
-		ImageButton attachImage = (ImageButton)findViewById(R.id.imageButtonAnnotationAttachImage);
-		
+		comment = (EditText) findViewById(R.id.editTextAnnotationComment);
+		ImageButton attachImage = (ImageButton) findViewById(R.id.imageButtonAnnotationAttachImage);
+
 		image.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -76,72 +80,95 @@ public class AnnotationActivity extends Activity {
 				startActivityForResult(intent, 1001);
 			}
 		});
-		
+
 		attachImage.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				goTakePhoto();
 			}
 		});
-		
+
 		Button returnPage = (Button) findViewById(R.id.annotationButtonReturnToPage);
 		returnPage.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				goBackPage();
 			}
 		});
-		
+
 		Button submit = (Button) findViewById(R.id.submit);
-		
+
 		submit.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				createAnnotation();
+
+				Toast.makeText(getBaseContext(), "Annotation Added!",
+						Toast.LENGTH_SHORT).show();
 			}
-		});}
-	/**
-	 * this will create annotation
-	 * save as a bundle and return it back to view page
-	 */
-		private void createAnnotation(){
-			getUserInfo();
-			someAnnotation = new Annotation(authorAnnotation, commentAnnotation); 
-			
-			Page currentPage = sManager.getPage();
-			currentPage.addAnnotation(someAnnotation);
-			sManager.saveStory(sManager.getStory(), true);
-			
-		}
-		/**
-		 * This will jump to takephoto activity
-		 */
-		private void goTakePhoto(){
-			Intent b = new Intent(this, TakePhotoActivity.class);
-		}
-		/**
-		 * this should go back to the view page
-		 */
-		private void goBackPage(){
-			Intent intent = new Intent(this, ViewPageActivity.class);
-			startActivity(intent);
-			finish();
-		}
-		/**
-		 * get the user's info for annotation
-		 * it will get the author 
-		 * it will get the comment
-		 */
-		private void getUserInfo(){
-			authorAnnotation = author.getText().toString();
-			commentAnnotation= comment.getText().toString();
-			
-		}
+		});
+
+		populateAnnotations();
 
 	}
+
+	public void populateAnnotations() {
+		Page currentPage = sManager.getPage();
+		currentAnnotations = currentPage.getAnnotations();
+
+		TextView author = (TextView) findViewById(R.id.annotationAuthor);
+		TextView comment = (TextView) findViewById(R.id.annotationComment);
+
+		if (currentAnnotations.get(0) != null) {
+			author.setText(currentAnnotations.get(0).getAuthor());
+			comment.setText(currentAnnotations.get(0).getComment());
+		}
+	}
+
+	/**
+	 * this will create annotation save as a bundle and return it back to view
+	 * page
+	 */
+	private void createAnnotation() {
+		getUserInfo();
+		someAnnotation = new Annotation(authorAnnotation, commentAnnotation);
+
+		Page currentPage = sManager.getPage();
+		currentPage.addAnnotation(someAnnotation);
+		sManager.saveStory(sManager.getStory(), true);
+
+	}
+
+	/**
+	 * This will jump to takephoto activity
+	 */
+	private void goTakePhoto() {
+		Intent b = new Intent(this, TakePhotoActivity.class);
+	}
+
+	/**
+	 * this should go back to the view page
+	 */
+	private void goBackPage() {
+		Intent intent = new Intent(this, ViewPageActivity.class);
+		startActivity(intent);
+		finish();
+	}
+
+	/**
+	 * get the user's info for annotation it will get the author it will get the
+	 * comment
+	 */
+	private void getUserInfo() {
+		authorAnnotation = author.getText().toString();
+		commentAnnotation = comment.getText().toString();
+
+	}
+
+}

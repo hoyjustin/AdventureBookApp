@@ -71,7 +71,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(com.example.adventurebook.R.layout.edit_story);
+		setContentView(com.example.adventurebook.R.layout.edit_story_pages);
 
 		storyView = (TextView)findViewById(com.example.adventurebook.R.id.storyView);
 		pageView = (TextView)findViewById(com.example.adventurebook.R.id.pageView);

@@ -1,3 +1,4 @@
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -5,16 +6,6 @@
     android:background="#FFFFFF"
     tools:context=".EditPageActivity" >
 
-    <!--
-         The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc.
-    -->
-
-    <!--
-         This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows.
-    -->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -102,24 +93,16 @@
                         android:padding="3dp" />
                 </ScrollView>
             </LinearLayout>
-            <!--
-            <c301.AdventureBook.CoverFlow
-                android:id="@+id/gallery1"
-                android:layout_width="301dp"
-                android:layout_height="87dp"
-                android:layout_gravity="center"
-                android:background="#000000" />
-            -->
-                <ImageView
-                    android:id="@+id/pageimage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="85dp"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@drawable/border"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/imageadd128" />
-                    
-        
+
+
+            <ImageView
+                android:id="@+id/pageimage"
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/border"
+                android:scaleType="fitCenter"
+                android:src="@drawable/imageadd128" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,24 +117,28 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.99" >
                 </ListView>
-
             </LinearLayout>
 
-            <Button
-                android:id="@+id/new_option"
-                android:layout_width="254dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:text="@string/add_option" />
-
-            <Button
-                android:id="@+id/save_page"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="@string/save_page_button" />
-        </LinearLayout>
+                android:layout_gravity="center" >
 
+                <Button
+                    android:id="@+id/new_option"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add a decision" />
+
+                <Button
+                    android:id="@+id/save_page"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_page_button" />
+            </LinearLayout>
+        </LinearLayout>
     </FrameLayout>
 
 </FrameLayout>
