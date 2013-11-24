@@ -39,6 +39,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import android.util.Log;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -66,10 +67,9 @@ public class ESClient {
 	private Gson gson = new Gson();
 
 	public static final String WEBSERVICE_URI = "http://cmput301.softwareprocess.es:8080/cmput301f13t11/";
-
 	public static final String STORIES_FOLDER = "stories/";
 	public static final String SEARCH_PRETTY = "_search?pretty=1&q=";
-
+	public static final int MAX_STORIES = 20;
 	/**
 	 * This function stores a story on the WebServer based on the story's ID. If
 	 * a new story with the same Id is inserted, the previous one is
@@ -180,7 +180,7 @@ public class ESClient {
 			throws UnsupportedEncodingException {
 		String queryHttpURI = null;
 		queryHttpURI = WEBSERVICE_URI + STORIES_FOLDER + SEARCH_PRETTY
-				+ java.net.URLEncoder.encode(str, "UTF-8");
+				+ java.net.URLEncoder.encode(str, "UTF-8")+"&size=" + MAX_STORIES;
 		return queryHttpURI;
 	}
 
@@ -193,6 +193,7 @@ public class ESClient {
 	public ArrayList<Story> getAllStories() {
 		ArrayList<Story> allStories = null;
 		allStories = this.searchStories("*");
+		Log.d("DEBUG", "" + allStories.size());
 		return allStories;
 	}
 
