@@ -71,6 +71,8 @@ public class ViewStoryActivity extends Activity {
 		
 		TextView storyDescription = (TextView) findViewById(R.id.storyDescription);
 		storyDescription.setText(currentStory.getDescription());
+		storyDescription.setKeyListener(null);
+
 	}
 	
 	/**
