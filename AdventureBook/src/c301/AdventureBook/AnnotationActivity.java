@@ -1,5 +1,5 @@
 /*
- * Copyright (C) <2013>  <Lin Tong>
+ * Copyright (C) <2013>  <Lin Tong, Terence Yin Kiu Leung>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +25,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,6 +48,7 @@ import com.example.adventurebook.R;
  * story fragment.
  * 
  * @author Lin Tong
+ * @author Terence Yin Kiu Leung
  * 
  */
 public class AnnotationActivity extends Activity {
@@ -59,12 +58,9 @@ public class AnnotationActivity extends Activity {
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 	String authorAnnotation;
 	String commentAnnotation;
-	//ImageView image;
 	String show_path;
 	StoryManager sManager;
 	String imageByte;
-
-
 	ArrayList<Annotation> currentAnnotations;
 
 	@Override
@@ -76,7 +72,6 @@ public class AnnotationActivity extends Activity {
 		sManager = StoryManager.getInstance();
 		sManager.initContext(this);
 
-		//image = (ImageView) findViewById(R.id.imageView1);
 		author = (EditText) findViewById(R.id.editTextAnnotationAuthor);
 		comment = (EditText) findViewById(R.id.editTextAnnotationComment);
 		ImageButton attachImage = (ImageButton) findViewById(R.id.imageButtonAnnotationAttachImage);
@@ -96,7 +91,6 @@ public class AnnotationActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				goBackPage();
 			}
 		});
@@ -107,7 +101,6 @@ public class AnnotationActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				createAnnotation();
 
 				Toast.makeText(getBaseContext(), "Annotation Added!",
@@ -119,75 +112,99 @@ public class AnnotationActivity extends Activity {
 
 	}
 
+	/**
+	 * Display all the page annotations on the page dynamically.
+	 */
 	public void populateAnnotations() {
 		Page currentPage = sManager.getPage();
 		currentAnnotations = currentPage.getAnnotations();
-		
+
 		LinearLayout hLinearLayout = (LinearLayout) findViewById(R.id.horizontalLinearLayout);
-		//HorizontalScrollView hScrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
-		//TextView authorTV = (TextView) findViewById(R.id.annotationAuthor);
-		//TextView commentTV = (TextView) findViewById(R.id.annotationComment);
 
 		if (!currentAnnotations.isEmpty()) {
-			// Loop over all the annotations, dynamically adding to the horizontal scroll view
+			// Loop over all the annotations, dynamically adding to the
+			// horizontal scroll view
 			for (int i = 0; i < currentAnnotations.size(); i++) {
-				
+
 				// Create the vertical scrollview for individual annotations
-				ScrollView scrollView = new ScrollView(this);
-				scrollView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-				scrollView.setPadding(10, 10, 10, 10);
-				
+				ScrollView scrollView = initScrollView();
+
 				// Create the vertical linear layout for individual annotations
-				LinearLayout lLayout = new LinearLayout(this);
-				lLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-				lLayout.setOrientation(LinearLayout.VERTICAL);
-				lLayout.setGravity(Gravity.CENTER_HORIZONTAL);
-				
+				LinearLayout lLayout = initLinearLayout();
+
 				// Create the views to go in the linear layout
 				TextView authorTV = new TextView(this);
 				ImageView imageView = new ImageView(this);
 				TextView commentTV = new TextView(this);
-				
+
 				// Set the author into the textview
 				authorTV.setText(currentAnnotations.get(i).getAuthor());
-				
+
 				// Set the image into the imageview
-				imageByte = currentAnnotations.get(i).getIllustration();		
+				imageByte = currentAnnotations.get(i).getIllustration();
 				// check if annotation has a picture first
-				if(imageByte != null){
-					byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
-					Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
-							0, decodedString.length);
+				if (imageByte != null) {
+					byte[] decodedString = Base64.decode(imageByte,
+							Base64.DEFAULT);
+					Bitmap decodedByte = BitmapFactory.decodeByteArray(
+							decodedString, 0, decodedString.length);
 					imageView.setImageBitmap(decodedByte);
 				}
-				
+
 				// Set the comment into the textview
 				commentTV.setText(currentAnnotations.get(i).getComment());
-				
+
 				lLayout.addView(authorTV);
 				lLayout.addView(imageView);
 				lLayout.addView(commentTV);
-				
+
 				scrollView.addView(lLayout);
 				hLinearLayout.addView(scrollView);
 			}
 		}
 	}
-	
 
 	/**
-	 * this will create annotation save as a bundle and return it back to view
-	 * page
+	 * Creates a new vertical scrollview for dynamic adding to the annotations.
+	 * 
+	 * @return scrollView the new scrollview
+	 */
+	private ScrollView initScrollView() {
+		ScrollView scrollView = new ScrollView(this);
+		scrollView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT));
+		scrollView.setPadding(10, 10, 10, 10);
+		return scrollView;
+	}
+
+	/**
+	 * Creates a new linear layout for dynamic adding to the annotations. This
+	 * linear layout gets added to the vertical scrollview.
+	 * 
+	 * @return lLayout the new linear layout
+	 */
+	private LinearLayout initLinearLayout() {
+		LinearLayout lLayout = new LinearLayout(this);
+		lLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT));
+		lLayout.setOrientation(LinearLayout.VERTICAL);
+		lLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+		return lLayout;
+	}
+
+	/**
+	 * Create a new annotation and add it to the list of annotations for the
+	 * page.
 	 */
 	private void createAnnotation() {
 		getUserInfo();
 		someAnnotation = new Annotation(authorAnnotation, commentAnnotation);
 		someAnnotation.setIllustration(imageByte);
-		
+
 		Page currentPage = sManager.getPage();
 		currentPage.addAnnotation(someAnnotation);
 		sManager.saveStory(sManager.getStory(), true);
-		//populateAnnotations(); // Re-Populate Annotaions list.
+
 		// Refresh the current activity to repopulate views
 		finish();
 		startActivity(getIntent());
@@ -197,8 +214,6 @@ public class AnnotationActivity extends Activity {
 	 * this should go back to the view page
 	 */
 	private void goBackPage() {
-		//Intent intent = new Intent(this, ViewPageActivity.class);
-		//startActivity(intent);
 		finish();
 	}
 
@@ -214,13 +229,9 @@ public class AnnotationActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
 			imageByte = data.getStringExtra("imagebyte");
-
-
-
 		}
 	}
 

@@ -15,6 +15,7 @@
         android:maxHeight="100dp"
         android:maxWidth="100dp"
         android:padding="10dp"
+        android:contentDescription="@string/image_content_description"
         android:src="@drawable/ic_launcher" />
 
     <ScrollView
@@ -29,21 +30,11 @@
         android:layout_weight="0.27"
         android:background="@drawable/border" >
 
-        <!--
-        <EditText
-            android:id="@+id/addPageDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:padding="10dp" />        -->
-
         <TextView
             android:id="@+id/pageDescriptionTV"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="page descripion goes here" />
+            android:layout_height="wrap_content"
+            android:text="@string/page_desc_goes_here" />
     </ScrollView>
 
     <TextView
@@ -52,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="5dp"
-        android:text="Now make your decision:" />
+        android:text="@string/make_decision" />
 
     <ListView
         android:id="@+id/list_options"
@@ -71,13 +62,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Annotations For This Page:" />
+            android:text="@string/annotations_for_page" />
         
         <TextView
             android:id="@+id/annotationCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0" />
+            android:text="@string/initial_annotation_count" />
 
     </LinearLayout>
 
@@ -90,6 +81,6 @@
         android:layout_marginBottom="10dp"
 
         android:onClick="launchAnnotationsActivity"
-        android:text="View Annotations" />
+        android:text="@string/view_annotations" />
 
 </LinearLayout>

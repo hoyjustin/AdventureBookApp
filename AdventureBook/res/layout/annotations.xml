@@ -166,7 +166,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/textView4"
             android:layout_marginBottom="10dp"
-            android:text="Author: " />
+            android:text="@string/annotation_author" />
 
         <EditText
             android:id="@+id/editTextAnnotationAuthor"
@@ -178,7 +178,7 @@
             android:layout_toRightOf="@+id/textView3"
             android:background="@drawable/border"
             android:ems="10"
-            android:hint="name here"
+            android:hint="@string/annotation_author_hint"
             android:padding="3dp"
             android:singleLine="true" >
         </EditText>
@@ -189,7 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/editTextAnnotationAuthor"
-            android:text="Comment: " />
+            android:text="@string/annotation_comment" />
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -202,13 +202,11 @@
             <EditText
                 android:id="@+id/editTextAnnotationComment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#00000000"
-                android:hint="comment here"
+                android:hint="@string/annotation_comment_hint"
                 android:inputType="textMultiLine"
                 android:padding="3dp" >
-
-                <requestFocus />
             </EditText>
         </ScrollView>
 
@@ -218,6 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/scrollView2"
             android:layout_alignLeft="@+id/textView4"
+            android:contentDescription="@string/image_content_description"
             android:src="@android:drawable/btn_star" />
 
         <Button
@@ -226,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:text="submit" />
+            android:text="@string/annotation_submit" />
     </RelativeLayout>
 
     <Button
@@ -236,6 +235,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:text="Return to Page" />
+        android:text="@string/annotation_return_to_page" />
 
 </LinearLayout>

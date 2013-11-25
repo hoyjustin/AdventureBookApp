@@ -14,8 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Story Name"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/storyThumnail"
@@ -23,6 +22,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:padding="10dp"
+        android:contentDescription="@string/image_content_description"
         android:src="@drawable/default_image" />
 
     <ScrollView
@@ -39,8 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:ems="10"
-            android:inputType="textMultiLine" >
+            android:ems="10" >
         </TextView>
     </ScrollView>
 
@@ -54,14 +53,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Written By:"
-            android:paddingRight="10dp" />
+            android:text="@string/writen_by" />
 
         <TextView
             android:id="@+id/authorTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/some_author" />
 
     </LinearLayout>
 
@@ -69,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Begin Story"
+        android:text="@string/begin_story"
         android:onClick="launchViewPageActivity" />
 
 </LinearLayout>
