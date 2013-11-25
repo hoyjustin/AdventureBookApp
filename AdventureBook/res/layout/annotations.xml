@@ -17,50 +17,126 @@
         android:id="@+id/horizontalScrollView1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/border"
-        android:fillViewport="true" >
+        android:layout_weight="0.5"
+        android:background="@drawable/border" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
+        <!-- Main Linear Layout within the horizontal scroll view -->
+        <LinearLayout
+            android:id="@+id/horizontalLinearLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp" >
-            
-            <LinearLayout
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_gravity="center_horizontal"
-	            android:orientation="vertical" >
-	
-	            <TextView
-	                android:id="@+id/annotationAuthor"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_marginBottom="10dp"
-	                android:text="Author: Jim" />
-	
-	            <ImageView
-	                android:id="@+id/imageView1"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_gravity="center_horizontal"
-	                android:layout_marginBottom="10dp"
-	                android:src="@drawable/star" />
-	
-	            <TextView
-	                android:id="@+id/annotationComment"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="Comment: " />
-	
-	        </LinearLayout>
-	                    
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
 
+            <!-- 
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/annotationAuthor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Author: Jim" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/star" />
+
+                    <TextView
+                        android:id="@+id/annotationComment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comment: test annotation coment" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/annotationAuthor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Author: Terence" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/bug" />
+
+                    <TextView
+                        android:id="@+id/annotationComment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comment: hello" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/annotationAuthor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Author: justin" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/bug" />
+
+                    <TextView
+                        android:id="@+id/annotationComment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comment: bye" />
+                </LinearLayout>
+            </ScrollView>
+             -->
+        </LinearLayout>
     </HorizontalScrollView>
 
     <TextView
@@ -70,18 +146,17 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="@string/add_annotation"
-        android:textSize="15sp"  />
+        android:textSize="15sp" />
 
-    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        android:background="@drawable/border" >
+        android:layout_weight="0.5"
+        android:background="@drawable/border"
+        android:padding="10dp" >
 
         <TextView
             android:id="@+id/textView3"
@@ -92,20 +167,20 @@
             android:layout_alignRight="@+id/textView4"
             android:layout_marginBottom="10dp"
             android:text="Author: " />
-        
+
         <EditText
             android:id="@+id/editTextAnnotationAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textView3"
-            android:layout_toRightOf="@+id/textView3"
-            android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:padding="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView3"
+            android:background="@drawable/border"
             android:ems="10"
             android:hint="name here"
-            android:singleLine="true"
-            android:background="@drawable/border" >
+            android:padding="3dp"
+            android:singleLine="true" >
         </EditText>
 
         <TextView
@@ -128,14 +203,13 @@
                 android:id="@+id/editTextAnnotationComment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="3dp"
                 android:background="#00000000"
                 android:hint="comment here"
-                android:inputType="textMultiLine" >
+                android:inputType="textMultiLine"
+                android:padding="3dp" >
 
                 <requestFocus />
             </EditText>
-            
         </ScrollView>
 
         <ImageButton
@@ -153,9 +227,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:text="submit" />
-
     </RelativeLayout>
-
 
     <Button
         android:id="@+id/annotationButtonReturnToPage"

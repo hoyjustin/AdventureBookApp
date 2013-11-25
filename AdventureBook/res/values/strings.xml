@@ -39,5 +39,6 @@
     <!-- Minhal/Edit Page -->
     <string name="alert_no_goto">You need to select a page for the option to go to!</string>
     <string name="title_activity_view_page">ViewPageActivity</string>
+    <string name="add_decision">Add a decision</string>
 
 </resources>
