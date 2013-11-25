@@ -1,45 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) <2013>  <Zhao Zhang>
- 
--->
+<!-- Copyright (C) <2013>  <Zhao Zhang> -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/pageTitleTV"
+    <ImageView
+        android:id="@+id/pageThumnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="page title will go here"
-        android:background="@drawable/border" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="0.09"
-        android:background="@drawable/border"
+        android:adjustViewBounds="true"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:padding="10dp"
         android:src="@drawable/ic_launcher" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="0.27"
         android:background="@drawable/border" >
 
-        <!-- 
+        <!--
         <EditText
             android:id="@+id/addPageDescription"
             android:layout_width="match_parent"
@@ -48,15 +38,22 @@
             android:ems="10"
             android:inputType="textMultiLine"
             android:padding="10dp" />
-    -->
+        -->
 
         <TextView
             android:id="@+id/pageDescriptionTV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="page descripion goes here" />
-
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="Now make your decision:" />
 
     <ListView
         android:id="@+id/list_options"
@@ -76,7 +73,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:text="View/Add Annotations"
-        android:onClick = "launchAnnotationsActivity" />
+        android:onClick="launchAnnotationsActivity"
+        android:text="View/Add Annotations" />
 
 </LinearLayout>

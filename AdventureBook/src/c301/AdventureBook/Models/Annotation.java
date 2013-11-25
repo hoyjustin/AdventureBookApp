@@ -35,7 +35,7 @@ public class Annotation implements Serializable{
 
 		private String author;
 		private String comment;
-		private ArrayList<String> ImagePaths;
+		private String imageByte;
 		
 		/**
 		 * This is the constructor for the annotation Object.
@@ -49,7 +49,19 @@ public class Annotation implements Serializable{
 		public Annotation(String author, String comment){
 			this.author = author;
 			this.comment = comment;
-			this.ImagePaths = new ArrayList<String>();
+		}
+		
+		public void setIllustration(String ImageByte){
+			this.imageByte = ImageByte;
+		}
+
+		/**
+		 * Get the imagePaths's postion
+		 * @return imagepath's position
+		 */
+		public String getIllustration(){
+			return this.imageByte;
+			
 		}
 
 		/**
@@ -80,35 +92,7 @@ public class Annotation implements Serializable{
 		public void setComment(String comment) {
 			this.comment = comment;
 		}
-		/**
-		 * Get the imagePaths
-		 * @return imagepath
-		 */
-		public ArrayList<String> getImagePaths() {
-			return ImagePaths;
-		}
-		/**
-		 * Set the imagePaths
-		 * @param imagePath a list of image path
-		 */
-		public void setImagePaths(ArrayList<String> imagePaths) {
-			this.ImagePaths = imagePaths;
-		}
-		/**
-		 * Adds an ImagePaths to the ImagePathsto the  list
-		 * @param ImagePath is the path of the image that going pass
-		 */
-		public void addImagePath(String ImagePath){
-			this.ImagePaths.add(ImagePath);
-		}
+
 		
-		/**
-		 * Get the imagePaths's postion
-		 * @return imagepath's position
-		 */
-		public String getImagePath(int position){
-			return this.ImagePaths.get(position);
-			
-		}
 		
 }

@@ -21,12 +21,16 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import c301.AdventureBook.Controllers.StoryManager;
@@ -93,10 +97,18 @@ public class ViewPageActivity extends Activity {
 		Page page = sManager.getPage();
 		options = page.getOptions();
 		
-		// Set the page title
-		String pageTitle = page.getTitle();
-		TextView pageTitleTV = (TextView) findViewById(R.id.pageTitleTV);
-		pageTitleTV.setText(pageTitle);
+		// Set the Image for the Page
+		
+		ImageView imageView = (ImageView)findViewById(R.id.pageThumnail);
+
+		if (page.getImageByte() == null) {
+			imageView.setImageResource(R.drawable.default_image);
+		} else {
+			byte[] decodedString = Base64.decode(page.getImageByte(), Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			imageView.setImageBitmap(decodedByte);
+		}
+		
 		
 		// Set the page description
 		String pageDescription = page.getPageDescription();

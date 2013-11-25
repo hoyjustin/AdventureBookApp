@@ -21,8 +21,10 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,11 +51,14 @@ public class AnnotationActivity extends Activity {
 	private EditText author;
 	private EditText comment;
 	private Annotation someAnnotation;
+	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 	String authorAnnotation;
 	String commentAnnotation;
 	ImageView image;
 	String show_path;
 	StoryManager sManager;
+	String imageByte;
+
 
 	ArrayList<Annotation> currentAnnotations;
 
@@ -71,22 +76,13 @@ public class AnnotationActivity extends Activity {
 		comment = (EditText) findViewById(R.id.editTextAnnotationComment);
 		ImageButton attachImage = (ImageButton) findViewById(R.id.imageButtonAnnotationAttachImage);
 
-		image.setOnClickListener(new OnClickListener() {
+		attachImage.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getApplicationContext(),
 						TakePhotoActivity.class);
-				startActivityForResult(intent, 1001);
-			}
-		});
-
-		attachImage.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				goTakePhoto();
+				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
 			}
 		});
 
@@ -128,6 +124,13 @@ public class AnnotationActivity extends Activity {
 		if (!currentAnnotations.isEmpty()) {
 			author.setText(currentAnnotations.get(0).getAuthor());
 			comment.setText(currentAnnotations.get(0).getComment());
+			
+			imageByte =currentAnnotations.get(0).getIllustration();
+			
+			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+					0, decodedString.length);
+			image.setImageBitmap(decodedByte);
 		}
 	}
 
@@ -138,18 +141,12 @@ public class AnnotationActivity extends Activity {
 	private void createAnnotation() {
 		getUserInfo();
 		someAnnotation = new Annotation(authorAnnotation, commentAnnotation);
-
+		someAnnotation.setIllustration(imageByte);
+		
 		Page currentPage = sManager.getPage();
 		currentPage.addAnnotation(someAnnotation);
 		sManager.saveStory(sManager.getStory(), true);
-		populateAnnotations(); //Re-Populate Annotaions list.
-	}
-
-	/**
-	 * This will jump to takephoto activity
-	 */
-	private void goTakePhoto() {
-		Intent b = new Intent(this, TakePhotoActivity.class);
+		populateAnnotations(); // Re-Populate Annotaions list.
 	}
 
 	/**
@@ -169,6 +166,18 @@ public class AnnotationActivity extends Activity {
 		authorAnnotation = author.getText().toString();
 		commentAnnotation = comment.getText().toString();
 
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+			imageByte = data.getStringExtra("imagebyte");
+
+
+
+		}
 	}
 
 }
