@@ -121,6 +121,11 @@ public class ViewPageActivity extends Activity {
 		ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this, R.layout.list_row, options);
 		optionsListView.setAdapter(optionAdapter);
 		
+		// Set the No of Annotations added
+		
+		TextView annotationsCount = (TextView) findViewById(R.id.annotationCount);
+		annotationsCount.setText(""+ page.getAnnotations().size());
+		
 	}
 	
 	public void launchAnnotationsActivity(View v){
