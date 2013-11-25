@@ -19,17 +19,17 @@ package c301.AdventureBook.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
 
 /**
  * This is a Story Model Class. A Story is an object that contains title,
- * description, author, date, thumbnail picture, and list of Page objects. 
+ * description, author, date, thumbnail picture, and list of Page objects.
  * 
  * @author Minhal Syed
- *
+ * 
  */
-public class Story implements Serializable{
+public class Story implements Serializable {
 
 	private String title;
 	private String description;
@@ -40,20 +40,25 @@ public class Story implements Serializable{
 	private List<Page> pages = new ArrayList<Page>();
 	private Page startPage;
 
-
 	/**
-	 * This is the constructor function for the Story class.
-	 * It creates a new Story object with information provided.
-	 * This constructors makes a new story with no pages. To
-	 * add pages to the story, add page function should be called.
-	 *   
-	 * @param title title of the Story.
-	 * @param description description of the Story.
-	 * @param author author of the Story.
-	 * @param date date on which the Story was first created.
-	 * @param imagePath path of the thumbnail picture of the Story.
+	 * This is the constructor function for the Story class. It creates a new
+	 * Story object with information provided. This constructors makes a new
+	 * story with no pages. To add pages to the story, add page function should
+	 * be called.
+	 * 
+	 * @param title
+	 *            title of the Story.
+	 * @param description
+	 *            description of the Story.
+	 * @param author
+	 *            author of the Story.
+	 * @param date
+	 *            date on which the Story was first created.
+	 * @param imagePath
+	 *            path of the thumbnail picture of the Story.
 	 */
-	public Story(String title, 	String description, String author, String date, String imagePath, String imageByte){
+	public Story(String title, String description, String author, String date,
+			String imagePath, String imageByte) {
 		this.title = title;
 		this.description = description;
 		this.author = author;
@@ -64,6 +69,7 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns the description of the story.
+	 * 
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -72,7 +78,9 @@ public class Story implements Serializable{
 
 	/**
 	 * This function sets the description of the story.
-	 * @param description the description to set
+	 * 
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -80,6 +88,7 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns the created date of the story.
+	 * 
 	 * @return date the story creation date
 	 */
 	public String getDate() {
@@ -88,34 +97,45 @@ public class Story implements Serializable{
 
 	/**
 	 * This function sets the creation date of the story.
-	 * @param date the date to be set
+	 * 
+	 * @param date
+	 *            the date to be set
 	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
+
 	/**
 	 * This function returns the title of the story.
+	 * 
 	 * @return title the title of the story
 	 */
 	public String getTitle() {
 		return title;
 	}
+
 	/**
 	 * This function sets the title of the story.
-	 * @param title the title to be set
+	 * 
+	 * @param title
+	 *            the title to be set
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	/**
 	 * This function returns the author of the story.
+	 * 
 	 * @return String author
 	 */
 	public String getAuthor() {
 		return author;
 	}
+
 	/**
 	 * This function sets the author of the story.
+	 * 
 	 * @param author
 	 */
 	public void setAuthor(String author) {
@@ -124,14 +144,18 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns the imagePath of the thumbnail photo of the Story.
+	 * 
 	 * @return imagePath the imagepath
 	 */
 	public String getImagePath() {
 		return imagePath;
 	}
+
 	/**
 	 * This function sets the imagePath of the thumbnail photo of the story.
-	 * @param imagePath the imagepath to set
+	 * 
+	 * @param imagePath
+	 *            the imagepath to set
 	 */
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
@@ -139,61 +163,82 @@ public class Story implements Serializable{
 
 	/**
 	 * This function returns all the pages of the story.
+	 * 
 	 * @return pages the list of all the pages of the story
 	 */
 	public List<Page> getPages() {
 		return this.pages;
 	}
+
 	/**
 	 * This function adds a page to the pages list of the story.
-	 * @param page the page to be added
+	 * 
+	 * @param page
+	 *            the page to be added
 	 */
 	public void addPage(Page page) {
 		this.pages.add(page);
 	}
+
 	/**
 	 * This function sets all the pages of a story.
-	 * @param pages the pages to set
+	 * 
+	 * @param pages
+	 *            the pages to set
 	 */
 	public void setPages(List<Page> pages) {
 		this.pages = pages;
 	}
+
 	/**
 	 * This function deletes a particular page from the story.
-	 * @param somePage the page to be deleted
+	 * 
+	 * @param somePage
+	 *            the page to be deleted
 	 */
 	public void deletePage(Page somePage) {
 		this.pages.remove(somePage);
 	}
 
-
 	/**
-	 * This function searches the list of pages for the specified page given 
-	 * in the parameter and returns it.
-	 * @param page the page to be searched for
+	 * This function searches the list of pages for the specified page given in
+	 * the parameter and returns it.
+	 * 
+	 * @param page
+	 *            the page to be searched for
 	 * @return page the page
 	 */
-	public Page getPage(Page page){
-		for(int i=0;i<this.pages.size();i++){
-			if(this.pages.get(i).getTitle().equals(page.getTitle())){
+	public Page getPage(Page page) {
+		for (int i = 0; i < this.pages.size(); i++) {
+			if (this.pages.get(i).getTitle().equals(page.getTitle())) {
 				return this.pages.get(i);
 			}
 		}
-		this.addPage(page);
+		// this.addPage(page);
 		return page;
 	}
-	
+
+	public void replacePage(Page page){
+		for(int i=0; i < this.pages.size();i++){
+			if(this.pages.get(i).getTitle().equals(page.getTitle())){
+				this.pages.remove(i);
+				this.pages.add(i, page);
+			}
+		}
+	}
+
 	/**
-	 * This function returns the id of a story.
-	 * StoryId = <Title>-<Author> (no spaces)
+	 * This function returns the id of a story. StoryId = <Title>-<Author> (no
+	 * spaces)
 	 * 
 	 * @return StoryId
 	 */
-	
-	public String getStoryId(){
-		return this.title.replaceAll("\\s+","") + "-" + this.author.replaceAll("\\s+","");
+
+	public String getStoryId() {
+		return this.title.replaceAll("\\s+", "") + "-"
+				+ this.author.replaceAll("\\s+", "");
 	}
-	
+
 	/**
 	 * This function sets the filename automatically and returns it.
 	 * 
@@ -203,14 +248,17 @@ public class Story implements Serializable{
 		String filename = getStoryId() + ".sav";
 		return filename;
 	}
-	
-	public void setStartPage(Page startPage){
+
+	public void setStartPage(Page startPage) {
 		this.startPage = startPage;
 	}
+
 	@Override
-	public String toString(){
-		return " title = " + this.title + " description = " + this.description+ " date = "+ this.date;
+	public String toString() {
+		return " title = " + this.title + " description = " + this.description
+				+ " date = " + this.date;
 	}
+
 	public String getImageByte() {
 		return imageByte;
 	}

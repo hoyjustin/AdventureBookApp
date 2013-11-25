@@ -145,10 +145,18 @@ public class EditPageActivity extends Activity implements Serializable {
 				someTitle = mEditPageTitle.getText().toString();
 				someDescription = mEditPageDes.getText().toString();
 
-				currentPage = currentStory.getPage(currentPage);
+				
+				//currentPage = currentStory.getPage(currentPage);
+				
+				
+				
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
 				currentPage.setImageByte(imageByte);
+				
+				
+				//We need to over write the previous page with the new one.
+				currentStory.replacePage(currentPage);
 				sManagerInst.setCurrentPage(currentPage);
 				sManagerInst.saveStory(currentStory, true);
 				finish();
