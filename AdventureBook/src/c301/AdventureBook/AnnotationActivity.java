@@ -125,12 +125,15 @@ public class AnnotationActivity extends Activity {
 			author.setText(currentAnnotations.get(0).getAuthor());
 			comment.setText(currentAnnotations.get(0).getComment());
 			
-			imageByte =currentAnnotations.get(0).getIllustration();
+			imageByte = currentAnnotations.get(0).getIllustration();
 			
-			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
-					0, decodedString.length);
-			image.setImageBitmap(decodedByte);
+			// check if annotation has a picture first
+			if(imageByte != null){
+				byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
+				Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+						0, decodedString.length);
+				image.setImageBitmap(decodedByte);
+			}
 		}
 	}
 
