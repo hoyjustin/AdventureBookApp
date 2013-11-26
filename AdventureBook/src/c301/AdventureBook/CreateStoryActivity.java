@@ -17,7 +17,6 @@
 
 package c301.AdventureBook;
 
-import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -37,9 +36,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
-import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 

@@ -36,6 +36,7 @@ import android.widget.ImageView;
  * @author Terence
  *
  */
+@SuppressWarnings("deprecation")
 public class CoverFlow extends Gallery {
 
     /**
