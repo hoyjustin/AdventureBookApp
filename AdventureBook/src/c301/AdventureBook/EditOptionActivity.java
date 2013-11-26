@@ -119,11 +119,9 @@ public class EditOptionActivity extends Activity {
 	 * Method handler when "Save Option" button is clicked. Saves the option
 	 * data and returns user to the edit page activity.
 	 */
-	@SuppressWarnings("unused")
 	public void onClickSaveOption(View v) {
 		// TODO: save the option
 
-		Intent data = new Intent();
 		EditText editOptionDes = (EditText) findViewById(R.id.editOptionDescription);
 		String optionDes = editOptionDes.getText().toString();
 
@@ -158,7 +156,6 @@ public class EditOptionActivity extends Activity {
 	 * Method handler when "Cancel" button is pressed. Returns user to the edit
 	 * page activity.
 	 */
-	@SuppressWarnings("unused")
 	public void onClickCancel(View v) {
 		finish();
 	}

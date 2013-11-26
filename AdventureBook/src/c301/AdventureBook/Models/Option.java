@@ -49,6 +49,7 @@ public class Option implements Serializable{
 		this.goToPage = goToPage;
 	}
 	
+	
 	/**
 	 * Get the option description
 	 * @return description the option description

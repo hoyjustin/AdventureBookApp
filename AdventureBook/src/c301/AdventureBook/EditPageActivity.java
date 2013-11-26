@@ -27,6 +27,7 @@ import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.RandomOption;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -38,6 +39,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +50,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import c301.AdventureBook.TakePhotoActivity;
 import android.widget.AdapterView;
@@ -70,6 +73,7 @@ public class EditPageActivity extends Activity implements Serializable {
 	private EditText mEditPageDes;
 	private EditText mEditPageTitle;
 	private Button mButtonCreateOption;
+	private Button mButtonRandomOption;
 	private Button mButtonSavePage;
 	//private CoverFlow coverFlow;
 
@@ -101,6 +105,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		mEditPageTitle = (EditText)findViewById(com.example.adventurebook.R.id.editPageTitle);
 		mEditPageDes = (EditText)findViewById(com.example.adventurebook.R.id.editPageDescription);
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
+		mButtonRandomOption = (Button) findViewById(R.id.random_option);
 		mButtonSavePage = (Button) findViewById(R.id.save_page);
 		imageView = (ImageView) findViewById(R.id.pageimage);
 		mEditPageTitle.setText(currentPage.getTitle());
@@ -123,6 +128,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		optionsList = (ListView) findViewById(R.id.options_list);
 		fillData();
 
+
 		imageView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -140,21 +146,30 @@ public class EditPageActivity extends Activity implements Serializable {
 			}
 		});
 
+
+		mButtonRandomOption.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				sManagerInst.createRandomOption();
+				fillData();
+			}
+		});
+
+
 		mButtonSavePage.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				someTitle = mEditPageTitle.getText().toString();
 				someDescription = mEditPageDes.getText().toString();
 
-				
+
 				//currentPage = currentStory.getPage(currentPage);
-				
-				
-				
+
+
+
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
 				currentPage.setImageByte(imageByte);
-				
-				
+
+
 				//We need to over write the previous page with the new one.
 				currentStory.replacePage(currentPage);
 				sManagerInst.setCurrentPage(currentPage);
@@ -163,8 +178,8 @@ public class EditPageActivity extends Activity implements Serializable {
 			}
 		});
 	}
-	
-	
+
+
 	@Override
 	//test image
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -177,7 +192,7 @@ public class EditPageActivity extends Activity implements Serializable {
 			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
 			imageView.setImageBitmap(decodedByte);
-			
+
 
 
 		}
@@ -192,15 +207,29 @@ public class EditPageActivity extends Activity implements Serializable {
 
 
 	/**
-	 * Populates the list view with a list of all the pages in the story
+	 * Populates the list view with a list of all the options in the page
 	 */
 	private void fillData() {
 		//load model here
 		currentPageOptions = sManagerInst.getPage().getOptions();
+		// grey out button to add a random option if there is already one in the page or no options exist
+		boolean randomOptionExists = false;
+		for(Option option:currentPageOptions){
+			if(option instanceof RandomOption){
+				randomOptionExists = true;
+			}
+		}
+		if(currentPageOptions.size() == 0 || randomOptionExists == true){
+			mButtonRandomOption.setEnabled(false);
+			//mButtonRandomOption.setBackgroundColor(Color.parseColor("#808080"));
+		}
+		else{
+			mButtonRandomOption.setEnabled(true);
+		}
 		adpt = new CustomAdapter(this, optionsList, currentPageOptions);
 		optionsList.setAdapter(adpt);
 	}
-	
+
 	private class CustomAdapter extends ArrayAdapter<Option> {
 
 		public CustomAdapter(EditPageActivity editPageActivity, ListView optionsList, List<Option> options) {
@@ -218,44 +247,55 @@ public class EditPageActivity extends Activity implements Serializable {
 						R.layout.option_row, parent, false);
 			}
 
-			clickedOption = currentPageOptions.get(position);
-			sManagerInst.setCurrentOption(clickedOption);
+			final Button edit = (Button) itemView.findViewById(R.id.option_description);
+			edit.setText(clickedOption.getDescription());
+			final Button delete = (Button) itemView.findViewById(R.id.delete_button);
 
-			Button optionDes = (Button) itemView.findViewById(R.id.option_description);
-			optionDes.setText(clickedOption.getDescription());
-
-			Button delete = (Button) itemView.findViewById(R.id.delete_button);
+			delete.setTag(position);
+			edit.setTag(position);
 			
-			
-			delete.setOnClickListener(new OnClickListener() {
+			OnClickListener mClickListener = new OnClickListener() {
 				public void onClick(View v) {
-					
-					// Ask for a confirmation from user by:
-					// Instantiating an AlertDialog.Builder with its constructor
-					AlertDialog.Builder builder = new AlertDialog.Builder(EditPageActivity.this);
+					int position = (Integer)v.getTag();
+					if(v.getId() == edit.getId()){
+						Toast.makeText(EditPageActivity.this,"Editing Page: "+v.getTag(), Toast.LENGTH_SHORT).show();
+						clickedOption = (Option) optionsList.getItemAtPosition(position);
+						sManagerInst.setCurrentOption(clickedOption);
+						
+					}
+					else if(v.getId() == delete.getId()){
+						clickedOption = (Option) optionsList.getItemAtPosition(position);
+						sManagerInst.setCurrentOption(clickedOption);
+						// Ask for a confirmation from user by:
+						// Instantiating an AlertDialog.Builder with its constructor
+						AlertDialog.Builder builder = new AlertDialog.Builder(EditPageActivity.this);
 
-					// Add buttons
-					builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							// User clicked OK button
+						// Add buttons
+						builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								// User clicked OK button
 
-							sManagerInst.deleteOption(clickedOption);
-							fillData();
-						}
-					});
-					builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							// User cancelled the dialog
-						}
-					});
+								sManagerInst.deleteOption(clickedOption);
+								fillData();
+							}
+						});
+						builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								// User cancelled the dialog
+							}
+						});
 
-					// Chain together various setter methods to set the dialog characteristics
-					builder.setMessage(R.string.delete_option_confirm);
-					// Get the AlertDialog from create()
-					AlertDialog dialog = builder.create();
-					dialog.show();
+						// Chain together various setter methods to set the dialog characteristics
+						builder.setMessage(R.string.delete_option_confirm);
+						// Get the AlertDialog from create()
+						AlertDialog dialog = builder.create();
+						dialog.show();
+					}
 				}
-			});
+			};
+
+			delete.setOnClickListener(mClickListener);
+			edit.setOnClickListener(mClickListener);
 
 			return itemView;
 		}

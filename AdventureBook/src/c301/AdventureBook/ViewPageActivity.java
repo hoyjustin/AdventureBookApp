@@ -18,6 +18,7 @@
 package c301.AdventureBook;
 
 import java.util.List;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -33,9 +34,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.RandomOption;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
@@ -65,9 +68,15 @@ public class ViewPageActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
 				Option chosenOption = (Option) optionsListView.getItemAtPosition(position);
+				Random rand = new Random();
+				while(chosenOption instanceof RandomOption){
+					int randomIndex = rand.nextInt(options.size());
+					chosenOption = (Option) options.get(randomIndex);
+				}				
 				sManager.setCurrentOption(chosenOption);
 				Page goToPage = chosenOption.getGoToPage();
 				sManager.setCurrentPage(goToPage);
+				Toast.makeText(ViewPageActivity.this, "You Picked The Option: " + chosenOption.getDescription(), Toast.LENGTH_LONG).show();
 				Intent intent = new Intent(getApplicationContext(), ViewPageActivity.class);
 				startActivity(intent);
 				

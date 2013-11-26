@@ -30,6 +30,7 @@ import android.content.Context;
 import android.util.Log;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.RandomOption;
 import c301.AdventureBook.Models.Story;
 
 
@@ -120,7 +121,7 @@ public class StoryManager {
 						0);
 				ObjectOutputStream oos = new ObjectOutputStream(fos);
 					oos.writeObject(story);
-					Log.d("Success Save: ", story.getTitle());
+					Log.d("Successful Story Save: ", story.getTitle());
 				fos.close();
 				this.mStory = story;
 			} catch (FileNotFoundException e) {
@@ -217,6 +218,13 @@ public class StoryManager {
 	public void deleteOption(Option option) {
 		this.mPage.getOptions().remove(option);
 		this.mOption = null;
+		saveStory(this.mStory, true);
+	}
+
+	public void createRandomOption() {
+		RandomOption randomOption = new RandomOption();
+		this.mPage.addOption(randomOption);
+		this.mOption = randomOption;
 		saveStory(this.mStory, true);
 	}
 	
