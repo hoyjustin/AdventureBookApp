@@ -217,6 +217,9 @@ public class StoryManager {
 	
 	public void deleteOption(Option option) {
 		this.mPage.getOptions().remove(option);
+		if(this.mPage.getOptions().size() == 1){
+			deleteAllRandomOptions();
+		}
 		this.mOption = null;
 		saveStory(this.mStory, true);
 	}
@@ -225,6 +228,15 @@ public class StoryManager {
 		RandomOption randomOption = new RandomOption();
 		this.mPage.addOption(randomOption);
 		this.mOption = randomOption;
+		saveStory(this.mStory, true);
+	}
+	
+	public void deleteAllRandomOptions() {
+		for(Option option: this.mPage.getOptions()){
+			if(option instanceof RandomOption){
+				deleteOption(option);
+			}
+		}
 		saveStory(this.mStory, true);
 	}
 	
