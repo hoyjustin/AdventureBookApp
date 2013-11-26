@@ -19,12 +19,12 @@ public class AnnotationTest extends AndroidTestCase
 	private Annotation annotation;
 	private String author = "Some author";
 	private String comment = "Some comment";
-	private String imagepath1 = "some random imagepath 1";
+	//private String imagepath1 = "some random imagepath 1";
 	
 	@Before
 	public void setUp() throws Exception{
 		annotation = new Annotation(author, comment);
-		annotation.addImagePath(imagepath1);
+		//annotation.addImagePath(imagepath1);
 	}
 	
 	/**
@@ -59,11 +59,13 @@ public class AnnotationTest extends AndroidTestCase
 		assertEquals(comment, annotation.getComment());
 	}
 	
+	
 	/**
 	 * Test the methods that involve the imagepath.
 	 * Checks to see if adding and getting the imagepath from the arraylist of 
 	 * imagepaths works.
 	 */
+	/*
 	@Test
 	public void testImagepath() {
 		String imagepath2 = "some imagepath 2";
@@ -75,7 +77,7 @@ public class AnnotationTest extends AndroidTestCase
 		// there are only 2 elements in the arraylist (imagepath1 and imagepath2)
 		assertEquals(imagepath2, annotation.getImagePath(1));
 	}
-	
+	*/
 
 
 }

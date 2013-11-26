@@ -12,12 +12,24 @@
     <string name="action_muted">muted</string>
     <string name="search_title">Search</string>
     <string name="search_hint">Search titles..</string>
-
     <string name="page_title">Page Title</string>
+    <string name="image_content_description">An image</string>
     
     <!-- Create Story -->
     <string name="alert_story_exists">Story with the same title and author already exists! Do you want to overwrite the existing story?</string>
+    
+    <!-- View Story -->
+    <string name="writen_by">Written By:</string>
+    <string name="some_author">some author</string>
+    <string name="begin_story">Begin Story</string>
 
+    <!-- View Page -->
+    <string name="page_desc_goes_here">page description goes here</string>
+    <string name="make_decision">Now make your decision: </string>
+    <string name="annotations_for_page">Annotations For This Page: </string>
+    <string name="initial_annotation_count">0</string>
+    <string name="view_annotations">View Annotations</string>
+    
     <!-- Justin/Edit Story -->
     <string name="title_activity_main">MainActivity</string>
     <string name="create_new_page">Create New Page</string>
@@ -39,5 +51,16 @@
     <!-- Minhal/Edit Page -->
     <string name="alert_no_goto">You need to select a page for the option to go to!</string>
     <string name="title_activity_view_page">ViewPageActivity</string>
+    <string name="add_decision">Add a decision</string>
+    <string name="page_title_hint">A New Page</string>
+    <string name="page_description_hint">Some Text… Blah Blah Blah"</string>
+    
+    <!-- Annotations Page -->
+    <string name="annotation_author">Author: </string>
+    <string name="annotation_author_hint">name here</string>
+    <string name="annotation_comment">Comment: </string>
+    <string name="annotation_comment_hint">comment here</string>
+    <string name="annotation_submit">Submit</string>
+    <string name="annotation_return_to_page">Return to Page</string>
 
 </resources>
