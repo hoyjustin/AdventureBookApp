@@ -247,6 +247,7 @@ public class EditPageActivity extends Activity implements Serializable {
 						R.layout.option_row, parent, false);
 			}
 
+			clickedOption = (Option) optionsList.getItemAtPosition(position);
 			final Button edit = (Button) itemView.findViewById(R.id.option_description);
 			edit.setText(clickedOption.getDescription());
 			final Button delete = (Button) itemView.findViewById(R.id.delete_button);
