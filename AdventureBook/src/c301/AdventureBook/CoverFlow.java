@@ -33,7 +33,7 @@ import android.widget.ImageView;
 /**
  * This is the coverflow for displaying media.
  * 
- * @author Terence
+ * @author Justin Hoy
  *
  */
 @SuppressWarnings("deprecation")

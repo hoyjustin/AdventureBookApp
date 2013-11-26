@@ -107,16 +107,19 @@ public class ViewPageActivity extends Activity {
 		options = page.getOptions();
 		
 		// Set the Image for the Page
-		
-		ImageView imageView = (ImageView)findViewById(R.id.pageThumnail);
+	     CoverFlow coverFlow = (CoverFlow) findViewById(R.id.coverFlow);
 
-		if (page.getImageByte() == null) {
-			imageView.setImageResource(R.drawable.default_image);
-		} else {
-			byte[] decodedString = Base64.decode(page.getImageByte(), Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
-			imageView.setImageBitmap(decodedByte);
-		}
+	     coverFlow.setAdapter(new ImageAdapter(this, page));
+
+	     ImageAdapter coverImageAdapter =  new ImageAdapter(this, page);
+	     
+	     //coverImageAdapter.createReflectedImages();
+	     
+	     coverFlow.setAdapter(coverImageAdapter);
+	     
+	     coverFlow.setSpacing(25);
+	     coverFlow.setSelection(0, true);
+	     coverFlow.setAnimationDuration(1000);
 		
 		
 		// Set the page description
