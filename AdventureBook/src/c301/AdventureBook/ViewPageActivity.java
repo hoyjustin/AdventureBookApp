@@ -27,6 +27,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -45,6 +46,7 @@ import com.example.adventurebook.R;
 
 public class ViewPageActivity extends Activity {
 
+	private static final int LOCALLIBRARY_ID = 0;
 	//private Story currentStory;
 	//private List<Page> pages;
 	private List<Option> options;
@@ -89,14 +91,32 @@ public class ViewPageActivity extends Activity {
 		});
 		
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_story, menu);
-		return true;
-	}
+        menu.add(0, LOCALLIBRARY_ID, 0, R.string.menu_offline_library);
+        return true;
+    }
+    
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch(item.getItemId()) {
+            case LOCALLIBRARY_ID:
+                returnHome();
+                return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
 	
+    private void returnHome() {
+        Intent i = new Intent(this, OfflineLibraryActivity.class);
+        startActivity(i);
+    }
+    
 	
 	/**
 	 * Loads the page data including the title, description, and options that

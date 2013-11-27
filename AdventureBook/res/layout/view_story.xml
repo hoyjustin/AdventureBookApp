@@ -18,20 +18,25 @@
 
     <ImageView
         android:id="@+id/storyThumnail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="194dp"
+        android:layout_height="138dp"
         android:layout_gravity="center"
-        android:padding="10dp"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="#000000"
         android:contentDescription="@string/image_content_description"
+        android:padding="10dp"
         android:src="@drawable/default_image" />
 
     <ScrollView
         android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:background="@drawable/border"
+        android:layout_width="262dp"
+        android:layout_height="114dp"
         android:layout_gravity="center"
+        android:layout_weight="0.07"
+        android:background="@drawable/border"
         android:padding="3dp" >
 
         <TextView
@@ -46,8 +51,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation = "horizontal"
-        android:layout_gravity = "center"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
         android:padding="10dp" >
 
         <TextView
@@ -60,14 +65,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/some_author" />
-
     </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/begin_story"
-        android:onClick="launchViewPageActivity" />
+        android:onClick="launchViewPageActivity"
+        android:text="@string/begin_story" />
 
 </LinearLayout>
