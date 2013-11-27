@@ -22,10 +22,7 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +30,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +37,6 @@ import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.RandomOption;
-import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
@@ -132,6 +127,7 @@ public class ViewPageActivity extends Activity {
 	 * Loads the page data including the title, description, and options that
 	 * are available on that page.
 	 */
+	@SuppressWarnings("deprecation")
 	private void populatePage() {
 		Page page = sManager.getPage();
 		options = page.getOptions();

@@ -17,31 +17,17 @@
 
 package c301.AdventureBook;
 
-import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import c301.AdventureBook.Controllers.LibraryManager;
-import c301.AdventureBook.Controllers.StoryManager;
-import c301.AdventureBook.Models.Option;
-import c301.AdventureBook.Models.Page;
-import c301.AdventureBook.Models.RandomOption;
-import c301.AdventureBook.Models.Story;
-
-import com.example.adventurebook.R;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -51,12 +37,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+import c301.AdventureBook.Controllers.StoryManager;
+import c301.AdventureBook.Models.Option;
+import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.RandomOption;
+import c301.AdventureBook.Models.Story;
 
-import c301.AdventureBook.TakePhotoActivity;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-
-import android.widget.TextView;
+import com.example.adventurebook.R;
 
 /**
  * The edit page activity allows the author to edit the contents of a page

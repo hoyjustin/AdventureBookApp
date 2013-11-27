@@ -18,7 +18,6 @@
 package c301.AdventureBook;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -35,9 +34,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
-import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
-import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
 

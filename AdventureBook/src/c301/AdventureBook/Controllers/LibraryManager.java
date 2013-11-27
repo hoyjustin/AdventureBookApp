@@ -17,20 +17,15 @@
 
 package c301.AdventureBook.Controllers;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
+import java.util.Locale;
 
 import android.content.Context;
 import android.util.Log;
-import c301.AdventureBook.Models.Option;
-import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
 
 
@@ -119,7 +114,7 @@ public class LibraryManager {
 
 		for (int i = 0; i < files.length; i++) {
 			// do something with the file
-			if (files[i].toLowerCase().contains(KeyWord) && files[i].toLowerCase().contains(".sav")) {
+			if (files[i].toLowerCase(Locale.getDefault()).contains(KeyWord) && files[i].toLowerCase().contains(".sav")) {
 				try {
 					FileInputStream fis = activityContext.openFileInput(files[i]);
 					ObjectInputStream ois = new ObjectInputStream(fis);

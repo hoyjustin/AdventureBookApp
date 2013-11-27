@@ -2,26 +2,22 @@ package c301.AdventureBook;
 
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.util.Base64;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
-import com.example.adventurebook.R.layout;
-import com.example.adventurebook.R.menu;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-import android.view.Menu;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class ViewStoryActivity extends Activity {
 	private static final int FIRST_PAGE_INDEX = 0;

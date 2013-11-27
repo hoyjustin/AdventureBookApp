@@ -17,19 +17,15 @@
 
 package c301.AdventureBook.Controllers;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-import c301.AdventureBook.CreateStoryActivity;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.RandomOption;
@@ -155,8 +151,8 @@ public class StoryManager {
 		
 		for (int i = 0; i < files.length; i++) {
 			// check if file exists
-			if (files[i].toLowerCase().contains(".sav")) {
-				if(files[i].toLowerCase().equals(FILENAME)){
+			if (files[i].toLowerCase(Locale.getDefault()).contains(".sav")) {
+				if(files[i].toLowerCase(Locale.getDefault()).equals(FILENAME)){
 					return true;
 				}
 			}

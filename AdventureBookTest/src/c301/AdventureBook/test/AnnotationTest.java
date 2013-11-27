@@ -1,7 +1,5 @@
 package c301.AdventureBook.test;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
