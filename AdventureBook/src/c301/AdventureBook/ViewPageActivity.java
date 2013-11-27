@@ -32,6 +32,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,6 +52,8 @@ public class ViewPageActivity extends Activity {
 	//private List<Page> pages;
 	private List<Option> options;
 	ListView optionsListView;
+	Button endStoryButton;
+	TextView optionDescription;
 	
 	public StoryManager sManager;
 	
@@ -86,6 +89,13 @@ public class ViewPageActivity extends Activity {
 				 * Allow the user to go back? Implementing finish() will
 				 * inhibit the user from going back to the previous page
 				 */
+				finish();
+			}
+		});
+		
+		endStoryButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				returnHome();
 				finish();
 			}
 		});
@@ -149,10 +159,22 @@ public class ViewPageActivity extends Activity {
 		
 		
 		// Set the page options
-		optionsListView = (ListView) findViewById(R.id.list_options);
-		ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this, R.layout.list_row, options);
-		optionsListView.setAdapter(optionAdapter);
+
+			optionsListView = (ListView) findViewById(R.id.list_options);
+			ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this, R.layout.list_row, options);
+			optionsListView.setAdapter(optionAdapter);
+			endStoryButton = (Button) findViewById(R.id.endStory);
+			optionDescription = (TextView) findViewById(R.id.option_des);
 		
+			if(options.size() != 0){
+				endStoryButton.setVisibility(View.GONE);
+				
+			}
+			else{
+				optionDescription.setText("The End");
+				optionsListView.setVisibility(View.GONE);
+			}
+			
 		// Set the No of Annotations added
 		
 		TextView annotationsCount = (TextView) findViewById(R.id.annotationCount);

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) <2013>  <Zhao Zhang> -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <c301.AdventureBook.CoverFlow
+        android:id="@+id/coverFlow"
+        android:layout_width="282dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_weight="0.75"
+        android:background="#000000" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="280dp"
+        android:layout_height="84dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border" >
+
+        <TextView
+            android:id="@+id/pageDescriptionTV"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/page_desc_goes_here" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/option_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="@string/make_decision" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.75" >
+
+        <ListView
+            android:id="@+id/list_options"
+            android:layout_width="280dp"
+            android:layout_height="112dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border" >
+        </ListView>
+
+        <Button
+            android:id="@+id/endStory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="Return to Main Menu" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/annotations_for_page" />
+
+        <TextView
+            android:id="@+id/annotationCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/initial_annotation_count" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addAnnotationButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:onClick="launchAnnotationsActivity"
+        android:text="@string/view_annotations" />
+
+</LinearLayout>

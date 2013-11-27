@@ -6,7 +6,7 @@
     android:background="@drawable/cloud_wallpaper" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/option_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
