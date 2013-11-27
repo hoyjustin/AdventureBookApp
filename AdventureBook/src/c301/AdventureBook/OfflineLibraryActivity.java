@@ -205,7 +205,6 @@ public class OfflineLibraryActivity extends Activity {
 	 * This function is a context menu listener. If the user presses publish,
 	 * delete, or edit story, this listener acts accordingly.
 	 */
-
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
@@ -316,7 +315,6 @@ public class OfflineLibraryActivity extends Activity {
 	 * 
 	 * @param storyClicked
 	 */
-
 	public void deleteStory(Story storyClicked) {
 		lManagerInst.deleteStory(storyClicked);
 		populateListView();

@@ -20,6 +20,14 @@ import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
+/**
+ * The view story activity allows the user to view a story upon selection from
+ * the library. When the user chooses to begin the story, the first page of 
+ * the story is shown.
+ * 
+ * @author Terence Yin Kiu Leung - minor editor
+ *
+ */
 public class ViewStoryActivity extends Activity {
 	private static final int FIRST_PAGE_INDEX = 0;
 	LibraryManager lManager; // Controller for the Library

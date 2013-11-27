@@ -40,6 +40,12 @@ import c301.AdventureBook.Models.RandomOption;
 
 import com.example.adventurebook.R;
 
+/**
+ * The view page activity handles page viewing to the user when they read
+ * through a story. From the page, users can choose an option that takes
+ * them to another page, or view/add annotations to the page.
+ *
+ */
 public class ViewPageActivity extends Activity {
 
 	private static final int LOCALLIBRARY_ID = 0;
@@ -76,7 +82,7 @@ public class ViewPageActivity extends Activity {
 				sManager.setCurrentOption(chosenOption);
 				Page goToPage = chosenOption.getGoToPage();
 				sManager.setCurrentPage(goToPage);
-				Toast.makeText(ViewPageActivity.this, "You Picked The Option: " + chosenOption.getDescription(), Toast.LENGTH_LONG).show();
+				Toast.makeText(ViewPageActivity.this, "You Picked The Option: " + chosenOption.getDescription(), Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(getApplicationContext(), ViewPageActivity.class);
 				startActivity(intent);
 				
@@ -116,6 +122,9 @@ public class ViewPageActivity extends Activity {
         return super.onMenuItemSelected(featureId, item);
     }
 	
+    /**
+     * Return to the library when the user finishes a story.
+     */
     private void returnHome() {
         Intent i = new Intent(this, OfflineLibraryActivity.class);
         startActivity(i);
@@ -180,6 +189,9 @@ public class ViewPageActivity extends Activity {
 		
 	}
 	
+	/**
+	 * Start the annotations activity when the user chooses to view annotations
+	 */
 	public void launchAnnotationsActivity(View v){
 		Intent i  = new Intent(this, AnnotationActivity.class);
 		startActivity(i);

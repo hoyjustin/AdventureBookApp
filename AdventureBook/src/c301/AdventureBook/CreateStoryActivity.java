@@ -45,7 +45,7 @@ import com.example.adventurebook.R;
  * story is created successfully, it is stored as a file in the phone's internal
  * storage. *
  * 
- * @author Terence
+ * @author Terence Yin Kiu Leung
  * @author Justin Hoy - Minor Editor
  * @author Zhao Zhang - Minor Editor
  */
