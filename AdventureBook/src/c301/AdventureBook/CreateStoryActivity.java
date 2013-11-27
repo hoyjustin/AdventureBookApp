@@ -174,7 +174,6 @@ public class CreateStoryActivity extends Activity {
 	 * Get the user inputed story title, description, and author name, and
 	 * stores them into class variables
 	 */
-
 	private void getUserText() {
 
 		storyTitle = mStoryTitle.getText().toString();

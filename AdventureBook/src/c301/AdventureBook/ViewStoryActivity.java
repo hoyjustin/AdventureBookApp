@@ -49,6 +49,10 @@ public class ViewStoryActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * Populates the page with the story data, including the title, author,
+	 * description, and image.
+	 */
 	public void populateData(){
 
 		sManager = StoryManager.getInstance();
