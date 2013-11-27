@@ -138,7 +138,7 @@ public class AnnotationActivity extends Activity {
 				TextView commentTV = new TextView(this);
 
 				// Set the author into the textview
-				authorTV.setText(currentAnnotations.get(i).getAuthor());
+				authorTV.setText("Author: " + currentAnnotations.get(i).getAuthor());
 
 				// Set the image into the imageview
 				imageByte = currentAnnotations.get(i).getIllustration();

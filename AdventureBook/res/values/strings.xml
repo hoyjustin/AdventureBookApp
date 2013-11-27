@@ -17,6 +17,11 @@
     
     <!-- Create Story -->
     <string name="alert_story_exists">Story with the same title and author already exists! Do you want to overwrite the existing story?</string>
+    <string name="new_story_hint">A New Story</string>
+    <string name="story_desc_hint">Some Description… Blah, Blah, Blah</string>
+    <string name="story_author">Author: </string>
+    <string name="story_date">Date: </string>
+    <string name="create_story">Create Story!!!</string>
     
     <!-- View Story -->
     <string name="written_by">Written By:</string>
@@ -53,6 +58,7 @@
     <string name="alert_no_goto">You need to select a page for the option to go to!</string>
     <string name="title_activity_view_page">ViewPageActivity</string>
     <string name="add_decision">Add a decision</string>
+    <string name="add_random_decision">Add a Random Decision</string>
     <string name="page_title_hint">A New Page</string>
     <string name="page_description_hint">Some Text… Blah Blah Blah"</string>
     
@@ -68,5 +74,16 @@
     <string name="local_library">Local Library</string>
     <string name="add_story">Add Story</string>
     <string name="online_library">Online Library</string>
+    
+    <!-- Online Library -->
+    <string name="view_local_library">View Local Library</string>
+    <string name="feeling_lucky">I\'m feeling lucky</string>
+    
+    <!-- Edit Options -->
+    <string name="insert_option_description">Insert option description: </string>
+    <string name="current_goto_page">Current GotoPage:</string>
+    <string name="none">None</string>
+    <string name="select_goto_page">Select Goto Page</string>
+    <string name="save_option">Save Option</string>
 
 </resources>

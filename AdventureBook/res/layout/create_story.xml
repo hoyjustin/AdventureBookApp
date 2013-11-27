@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:ems="10"
-            android:hint="A New Story"
+            android:hint="@string/new_story_hint"
             android:padding="3dp"
             android:singleLine="true" >
 
@@ -65,6 +65,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/border"
         android:scaleType="fitCenter"
+        android:contentDescription="@string/image_content_description"
         android:src="@drawable/imageadd128" />
 
     <TextView
@@ -94,7 +95,7 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:ems="10"
-            android:hint="Some Description... Blah, Blah, Blah"
+            android:hint="@string/story_desc_hint"
             android:inputType="textMultiLine"
             android:padding="3dp" />
     </ScrollView>
@@ -110,7 +111,7 @@
 
         <!-- Author box -->
 
-        <EditText
+        <TextView
             android:id="@+id/authorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,7 +120,7 @@
             android:background="@drawable/border"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:hint="Author: " />
+            android:text="@string/story_author" />
 
         <!-- Date box -->
 
@@ -132,7 +133,7 @@
             android:background="@drawable/border"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Date: " />
+            android:text="@string/story_date" />
     </LinearLayout>
 
     <!-- Create story button -->
@@ -149,7 +150,7 @@
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Create Story!!!"
+        android:text="@string/create_story"
         android:onClick="onClickBtn" />
 
 </LinearLayout>

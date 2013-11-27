@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Online Library"
-            android:textSize="25dp" />
+            android:text="@string/online_library"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +40,7 @@
     <ListView
         android:id="@+id/online_library_listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1" >
     </ListView>
 
@@ -56,14 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="LaunchLocalLibraryActivity"
-            android:text="View Local Library" />
+            android:text="@string/view_local_library" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="showRandomStory"
-            android:text="I&apos;m Feeling Lucky" />
+            android:text="@string/feeling_lucky" />
     </LinearLayout>
 
 </LinearLayout>

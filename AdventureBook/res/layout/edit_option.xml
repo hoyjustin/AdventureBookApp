@@ -16,8 +16,8 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="Insert Option Description Here"
-        android:textSize="15dp" >
+        android:text="@string/insert_option_description"
+        android:textSize="15sp" >
     </TextView>
 
     <ScrollView
@@ -47,14 +47,14 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Current GotoPage:" />
+            android:text="@string/current_goto_page" />
 
         <TextView
             android:id="@+id/GotoPageTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="None" />
+            android:text="@string/none" />
     </LinearLayout>
 
     <TextView
@@ -62,12 +62,12 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="Select Goto Page" />
+        android:text="@string/select_goto_page" />
 
     <ListView
         android:id="@+id/list_of_goto_pages"
         android:layout_width="match_parent"
-        android:layout_height="224dp"
+        android:layout_height="0dp"
         android:layout_weight="0.32"
         android:background="@drawable/border" >
     </ListView>
@@ -85,7 +85,7 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:layout_marginRight="10dp"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:onClick="onClickCancel" />
 
         <Button
@@ -94,7 +94,7 @@ http://stackoverflow.com/questions/3496269/how-to-put-a-border-around-an-android
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:layout_marginLeft="10dp"
-            android:text="Save Option"
+            android:text="@string/save_option"
             android:onClick="onClickSaveOption" />
     </LinearLayout>
 
