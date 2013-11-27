@@ -37,20 +37,36 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/option_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="5dp"
         android:text="@string/make_decision" />
 
-    <ListView
-        android:id="@+id/list_options"
-        android:layout_width="280dp"
-        android:layout_height="112dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/border" >
-    </ListView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.75" >
+
+        <ListView
+            android:id="@+id/list_options"
+            android:layout_width="280dp"
+            android:layout_height="112dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border" >
+        </ListView>
+
+        <Button
+            android:id="@+id/endStory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="Return to Main Menu" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
