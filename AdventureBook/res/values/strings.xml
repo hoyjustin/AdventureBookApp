@@ -24,7 +24,7 @@
     <string name="create_story">Create Story!!!</string>
     
     <!-- View Story -->
-    <string name="written_by">Written By:</string>
+    <string name="written_by">Written By: </string>
     <string name="some_author">some author</string>
     <string name="begin_story">Begin Story</string>
     <string name="menu_offline_library">Return To The Local Library</string>
