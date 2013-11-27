@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,8 @@ import com.example.adventurebook.R;
 public class CustomStoryAdapter extends ArrayAdapter<Story> {
 	Context context;
 	int layout_row_id;
+	Typeface font;
+	Typeface font2;
 	
 	ArrayList<Story> storedlibrary; //This is storedLibrary that is
 									//initially passed to this class.
@@ -67,6 +70,7 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		this.layout_row_id = layout_row_id;
 		this.library = library;
 		this.storedlibrary = new ArrayList<Story>(library);
+		font = Typeface.createFromAsset(context.getAssets(), "straightline.ttf");  
 	}
 
 	@Override
@@ -113,13 +117,16 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 					.getImagePath()));}
 		TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 		titleText.setText(currentStory.getTitle());
+		titleText.setTypeface(font);
 
 		TextView authorText = (TextView) itemView.findViewById(R.id.authorTV);
 		authorText.setText(currentStory.getAuthor());
+		authorText.setTypeface(font);
 
 		TextView dateText = (TextView) itemView
 				.findViewById(R.id.dateCreatedTV);
 		dateText.setText(currentStory.getDate());
+		dateText.setTypeface(font);
 
 		return itemView;
 	}
