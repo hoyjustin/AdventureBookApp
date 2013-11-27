@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) <2013>  <Zhao Zhang> -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/cloud_wallpaper" >
+    android:background="@drawable/cloud_wallpaper"
+    android:orientation="vertical" >
 
     <c301.AdventureBook.CoverFlow
         android:id="@+id/coverFlow"
         android:layout_width="282dp"
-        android:layout_height="0dp"
+        android:layout_height="110dp"
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
@@ -38,20 +37,36 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/option_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="5dp"
         android:text="@string/make_decision" />
 
-    <ListView
-        android:id="@+id/list_options"
-        android:layout_width="280dp"
-        android:layout_height="112dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/border" >
-    </ListView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.75" >
+
+        <ListView
+            android:id="@+id/list_options"
+            android:layout_width="280dp"
+            android:layout_height="112dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border" >
+        </ListView>
+
+        <Button
+            android:id="@+id/endStory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="Return to Main Menu" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -65,7 +80,7 @@
             android:text="@string/annotations_for_page" />
 
         <TextView
-            android:id="@+id/annotationCount"
+            android:id="@+id/annotationsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/initial_annotation_count" />
