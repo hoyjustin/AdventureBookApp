@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ViewStoryActivity" >
+    tools:context=".ViewStoryActivity"
+    android:background="@drawable/cloud_wallpaper" >
 
     <TextView
         android:id="@+id/storyTitle"
@@ -33,7 +34,7 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="262dp"
-        android:layout_height="114dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="0.07"
         android:background="@drawable/border"
@@ -58,7 +59,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/writen_by" />
+            android:text="@string/written_by" />
 
         <TextView
             android:id="@+id/authorTV"

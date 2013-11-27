@@ -28,6 +28,8 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+import c301.AdventureBook.CreateStoryActivity;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.RandomOption;
@@ -86,6 +88,11 @@ public class StoryManager {
 	 */
 	public boolean createStory(String storyTitle, String storyDescription, String storyAuthor, 
 			String formattedDate, String show_path, String imageByte, boolean overwrite){
+		// Make sure that the user inputs a nonempty story title
+		if (storyTitle.length() == 0) {
+			Toast.makeText(activityContext, "Story title cannot be blank!", Toast.LENGTH_LONG).show();
+			return false;
+		}
 		Story newStory = new Story(storyTitle, storyDescription, storyAuthor,
 				formattedDate, show_path, imageByte);
 		
