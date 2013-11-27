@@ -96,7 +96,6 @@ public class ViewPageActivity extends Activity {
 		endStoryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				returnHome();
-				finish();
 			}
 		});
 		
@@ -125,6 +124,7 @@ public class ViewPageActivity extends Activity {
     private void returnHome() {
         Intent i = new Intent(this, OfflineLibraryActivity.class);
         startActivity(i);
+        finish();
     }
     
 	
@@ -167,17 +167,19 @@ public class ViewPageActivity extends Activity {
 			optionDescription = (TextView) findViewById(R.id.option_des);
 		
 			if(options.size() != 0){
+				optionsListView.setVisibility(View.VISIBLE);
 				endStoryButton.setVisibility(View.GONE);
 				
 			}
 			else{
 				optionDescription.setText("The End");
 				optionsListView.setVisibility(View.GONE);
+				endStoryButton.setVisibility(View.VISIBLE);
 			}
 			
 		// Set the No of Annotations added
 		
-		TextView annotationsCount = (TextView) findViewById(R.id.annotationCount);
+		TextView annotationsCount = (TextView) findViewById(R.id.annotationsCount);
 		annotationsCount.setText(""+ page.getAnnotations().size());
 		
 	}
