@@ -63,5 +63,10 @@
     <string name="annotation_comment_hint">comment here</string>
     <string name="annotation_submit">Submit</string>
     <string name="annotation_return_to_page">Return to Page</string>
+    
+    <!-- Offline Library -->
+    <string name="local_library">Local Library</string>
+    <string name="add_story">Add Story</string>
+    <string name="online_library">Online Library</string>
 
 </resources>
