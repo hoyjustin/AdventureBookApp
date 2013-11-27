@@ -19,7 +19,7 @@
     <string name="alert_story_exists">Story with the same title and author already exists! Do you want to overwrite the existing story?</string>
     
     <!-- View Story -->
-    <string name="writen_by">Written By:</string>
+    <string name="written_by">Written By:</string>
     <string name="some_author">some author</string>
     <string name="begin_story">Begin Story</string>
     <string name="menu_offline_library">Return To The Local Library</string>

@@ -94,7 +94,6 @@ public class CreateStoryActivity extends Activity {
 		createStoryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createStory();
-				finish();
 			}
 		});
 	}
@@ -128,7 +127,9 @@ public class CreateStoryActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 			Intent i = new Intent(this, EditStoryActivity.class);
 			startActivityForResult(i, ACTIVITY_EDIT_STORY);
+			finish();
 		} else {
+			
 			// 1. Instantiate an AlertDialog.Builder with its constructor
 			AlertDialog.Builder builder = new AlertDialog.Builder(
 					CreateStoryActivity.this);
@@ -164,6 +165,7 @@ public class CreateStoryActivity extends Activity {
 			// 3. Get the AlertDialog from create()
 			AlertDialog dialog = builder.create();
 			dialog.show();
+			
 		}
 
 	}
