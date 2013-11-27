@@ -178,8 +178,7 @@ public class OfflineLibraryActivity extends Activity {
 				// This is the story object that is returned when a list item is
 				// clicked.
 				Story story = (Story) offlineLV.getItemAtPosition(position);
-				Toast.makeText(getBaseContext(), story.getTitle(),
-						Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getBaseContext(), story.getTitle(), Toast.LENGTH_SHORT).show();
 				viewStory(story);
 			}
 		});

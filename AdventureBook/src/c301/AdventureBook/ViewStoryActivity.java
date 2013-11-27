@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Page;
@@ -79,10 +80,15 @@ public class ViewStoryActivity extends Activity {
 	 */
 	public void launchViewPageActivity(View v){
 		List<Page> pages = currentStory.getPages();
-		Page firstPage = pages.get(FIRST_PAGE_INDEX);
-		sManager.setCurrentPage(firstPage);
-		Intent i = new Intent(this, ViewPageActivity.class);
-		startActivity(i);
+		// Do nothing if story doesn't contain any pages
+		if (pages.size() > 0) {
+			Page firstPage = pages.get(FIRST_PAGE_INDEX);
+			sManager.setCurrentPage(firstPage);
+			Intent i = new Intent(this, ViewPageActivity.class);
+			startActivity(i);
+		} else {
+			Toast.makeText(this, "There are no pages to view!", Toast.LENGTH_LONG).show();
+		}
 	}
 
 }
