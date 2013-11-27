@@ -27,6 +27,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -68,6 +69,7 @@ public class CreateStoryActivity extends Activity {
 	ImageView image;
 	String show_path;
 	String imageByte;
+	Typeface font;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,9 @@ public class CreateStoryActivity extends Activity {
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
+		
+		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");  
+		createStoryButton.setTypeface(font);  
 
 		setDate();
 		image.setOnClickListener(new OnClickListener() {

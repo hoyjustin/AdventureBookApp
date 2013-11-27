@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -38,6 +39,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import c301.AdventureBook.Controllers.LibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
@@ -67,6 +69,7 @@ public class OfflineLibraryActivity extends Activity {
 	ArrayAdapter<Story> adapter; // Adapter for the stories
 	LibraryManager lManagerInst; // Controller for the Library
 	StoryManager sManagerInst; // Controller for a story
+	Typeface font;
 	
 	Story storyClicked;
 
@@ -89,6 +92,10 @@ public class OfflineLibraryActivity extends Activity {
 		
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
+		
+		TextView txt = (TextView) findViewById(R.id.local_lib);  
+		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");  
+		txt.setTypeface(font);  
 		
 		// Populate the Display
 		populateListView();

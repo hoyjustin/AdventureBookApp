@@ -24,7 +24,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,14 +66,19 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	
 	private Story someStory;
 	private Page clickedPage;
+	private Typeface font;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(com.example.adventurebook.R.layout.edit_story_pages);
+		
+		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");
 
 		storyView = (TextView)findViewById(com.example.adventurebook.R.id.storyView);
+		storyView.setTypeface(font);
 		pageView = (TextView)findViewById(com.example.adventurebook.R.id.pageView);
+		pageView.setMovementMethod(new ScrollingMovementMethod());
 		lstView = (ExpandableListView)findViewById(R.id.expList);
 
 		createPage = (Button) findViewById(R.id.create_new_page);

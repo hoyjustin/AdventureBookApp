@@ -27,6 +27,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
@@ -71,6 +73,7 @@ public class OnlineLibraryActivity extends Activity {
 	ESClient client = new ESClient(); // We need a communicator for the Server.
 
 	StoryManager sManagerInst; // Controller for the Stories
+	Typeface font;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,9 @@ public class OnlineLibraryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.online_library);
 
+		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");
+		TextView txt = (TextView) findViewById(R.id.online_lib);  
+		txt.setTypeface(font);  
 		initializeGlobals();
 		
 		// First CheckWhether Internet is Connected:
