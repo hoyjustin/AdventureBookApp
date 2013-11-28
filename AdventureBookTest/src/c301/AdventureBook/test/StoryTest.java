@@ -2,6 +2,7 @@ package c301.AdventureBook.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,6 +22,7 @@ public class StoryTest extends AndroidTestCase {
 	private Story story;
 	private String title = "C301";
 	private String description = "This is a test";
+	private String uuid = UUID.randomUUID().toString();
 	private String author = "william";
 	private String date = "2013.11.6";
 	private String imagePath = "I don't know";
@@ -54,15 +56,16 @@ public class StoryTest extends AndroidTestCase {
 	 */
 	@Test
 	public void testAddDeletePages() {
-		Page page1 = new Page(title, description);
+		Page page1 = new Page(title, description, uuid);
 		String title2 = "this is 2 test";
-		String description = "just a test";
-		Page page2 = new Page(title2, description);
+		String description2 = "just a test";
+		String uuid2 = UUID.randomUUID().toString();
+		Page page2 = new Page(title2, description2, uuid2);
 		this.pages.add(page1);
-	    assertEquals(((Story) pages).getPages(), page1);
+	    assertEquals(pages.get(0), page1);
 	    this.pages.remove(page1);
 	    this.pages.add(page2);
-	    assertEquals(((Story)pages).getPages(), page2);
+	    assertEquals(pages.get(0), page2);
 	}
 	
 	/**

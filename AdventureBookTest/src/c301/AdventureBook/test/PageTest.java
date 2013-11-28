@@ -2,6 +2,7 @@ package c301.AdventureBook.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,17 +23,19 @@ public class PageTest extends AndroidTestCase {
 	private List<Option> optionsList;
 	private String pageTitle = "Page 1";
 	private String pageDescription = "This is a page description";
+	private String uuid = UUID.randomUUID().toString();
 	private String optionDescription = "this is an option description";
 	
 	private String goToPageTitle = "goToPage title";
 	private String goToPageDescription = "goToPage description";
+	private String goToPageId = UUID.randomUUID().toString();
 	private Page goToPage;
 	
 	@Before
 	protected void setUp() {
-		page = new Page(pageTitle, pageDescription);
-		goToPage = new Page(goToPageTitle, goToPageDescription);
-		option = new Option(optionDescription, goToPage);
+		page = new Page(pageTitle, pageDescription, uuid);
+		goToPage = new Page(goToPageTitle, goToPageDescription, goToPageId);
+		option = new Option(optionDescription, goToPage.getuuid());
 		optionsList = new ArrayList<Option>();
 	}
 	

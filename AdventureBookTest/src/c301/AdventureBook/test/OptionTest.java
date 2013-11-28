@@ -1,5 +1,7 @@
 package c301.AdventureBook.test;
 
+import java.util.UUID;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,12 +21,13 @@ public class OptionTest extends AndroidTestCase {
 	
 	private String goToPageTitle = "goToPage title";
 	private String goToPageDescription = "goToPage description";
+	private String goToPageId = UUID.randomUUID().toString();
 	private Page goToPage;
 	
 	@Before
 	protected void setUp() {
-		goToPage = new Page(goToPageTitle, goToPageDescription);
-		option = new Option(description, goToPage);
+		goToPage = new Page(goToPageTitle, goToPageDescription, goToPageId);
+		option = new Option(description, goToPage.getuuid());
 	}
 	
 	/*
@@ -40,6 +43,6 @@ public class OptionTest extends AndroidTestCase {
      */
 	@Test
 	public void testGetGoToPage() {
-		assertEquals(goToPage, option.getGoToPage());
+		assertEquals(goToPageId, option.getGoToPage());
 	}
 }
