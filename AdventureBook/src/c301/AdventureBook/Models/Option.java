@@ -23,6 +23,7 @@
 package c301.AdventureBook.Models;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * This is the Option model class. It allows the author to set the option 
@@ -35,8 +36,7 @@ import java.io.Serializable;
  */
 public class Option implements Serializable{
 	private String description;
-
-	private Page goToPage;
+	private String goToUUID;
 
 	/**
 	 * The constructor for the Option model class.
@@ -44,9 +44,9 @@ public class Option implements Serializable{
 	 * @param description the description
 	 * @param goToPage the goto page
 	 */
-	public Option(String description, Page goToPage){
+	public Option(String description, String goToPage){
 		this.description = description;
-		this.goToPage = goToPage;
+		this.goToUUID = goToPage;
 	}
 	
 	
@@ -70,17 +70,18 @@ public class Option implements Serializable{
 	 * Set the goto page
 	 * @param goToPage the goto page
 	 */
-	public void setGoToPage(Page goToPage){
-		this.goToPage = goToPage;
+	public void setGoToPage(String goToPage){
+		this.goToUUID = goToPage;
 	}
 	
 	/**
 	 * Get the goto page
 	 * @return goToPage the goto page
 	 */
-	public Page getGoToPage(){
-		return this.goToPage;
+	public String getGoToPage(){
+		return this.goToUUID;
 	}
+	
 	@Override
 	public String toString(){
 		return this.description;

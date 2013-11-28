@@ -59,7 +59,7 @@ public class CreateStoryActivity extends Activity {
 	private EditText mStoryAuthor;
 	private EditText mStoryDescription;
 	private TextView mDate;
-	
+
 	StoryManager sManagerInst;
 
 	String storyTitle;
@@ -70,7 +70,7 @@ public class CreateStoryActivity extends Activity {
 	String show_path;
 	String imageByte;
 	Typeface font;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -82,7 +82,7 @@ public class CreateStoryActivity extends Activity {
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
-		
+
 		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");  
 		createStoryButton.setTypeface(font);  
 
@@ -120,59 +120,64 @@ public class CreateStoryActivity extends Activity {
 	 */
 	private void createStory() {
 		getUserText();
-		
+
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
-		
-		boolean saveSuccess = sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-			 formattedDate, show_path, imageByte, false);
 
-		if (saveSuccess == true) {
-			Toast.makeText(this, "Story Created: " + storyTitle,
-					Toast.LENGTH_LONG).show();
-			Intent i = new Intent(this, EditStoryActivity.class);
-			startActivityForResult(i, ACTIVITY_EDIT_STORY);
-			finish();
-		} else {
-			
-			// 1. Instantiate an AlertDialog.Builder with its constructor
-			AlertDialog.Builder builder = new AlertDialog.Builder(
-					CreateStoryActivity.this);
-
-			// Add the buttons
-			builder.setNegativeButton(R.string.cancel,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							// User clicked Cancel button
-						}
-					});
-
-			builder.setPositiveButton(R.string.ok,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							
-							sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-									 formattedDate, show_path, imageByte, true);
-							
-							Toast.makeText(CreateStoryActivity.this,
-									"Story Created: " + storyTitle,
-									Toast.LENGTH_LONG).show();
-							Intent i = new Intent(CreateStoryActivity.this,
-									EditStoryActivity.class);
-							startActivityForResult(i, ACTIVITY_EDIT_STORY);
-						}
-					});
-
-			// 2. Chain together various setter methods to set the dialog
-			// characteristics
-			builder.setMessage(R.string.alert_story_exists);
-
-			// 3. Get the AlertDialog from create()
-			AlertDialog dialog = builder.create();
-			dialog.show();
-			
+		// Make sure that the user inputs a nonempty story title
+		if (storyTitle.length() == 0) {
+			Toast.makeText(this, "Story title cannot be blank!", Toast.LENGTH_LONG).show();
 		}
+		else{
+			boolean saveSuccess = sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
+					formattedDate, show_path, imageByte, false);
 
+			if (saveSuccess == true) {
+				Toast.makeText(this, "Story Created: " + storyTitle,
+						Toast.LENGTH_LONG).show();
+				Intent i = new Intent(this, EditStoryActivity.class);
+				startActivityForResult(i, ACTIVITY_EDIT_STORY);
+				finish();
+			}
+			else {
+
+				// 1. Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						CreateStoryActivity.this);
+
+				// Add the buttons
+				builder.setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// User clicked Cancel button
+					}
+				});
+
+				builder.setPositiveButton(R.string.ok,
+						new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+
+						sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
+								formattedDate, show_path, imageByte, true);
+
+						Toast.makeText(CreateStoryActivity.this,
+								"Story Created: " + storyTitle,
+								Toast.LENGTH_LONG).show();
+						Intent i = new Intent(CreateStoryActivity.this,
+								EditStoryActivity.class);
+						startActivityForResult(i, ACTIVITY_EDIT_STORY);
+					}
+				});
+
+				// 2. Chain together various setter methods to set the dialog
+				// characteristics
+				builder.setMessage(R.string.alert_story_exists);
+
+				// 3. Get the AlertDialog from create()
+				AlertDialog dialog = builder.create();
+				dialog.show();
+			}
+		}
 	}
 
 	/**
@@ -194,7 +199,7 @@ public class CreateStoryActivity extends Activity {
 
 			show_path = data.getStringExtra("path");
 			imageByte = data.getStringExtra("imagebyte");
-			
+
 			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
 			image.setImageBitmap(decodedByte);

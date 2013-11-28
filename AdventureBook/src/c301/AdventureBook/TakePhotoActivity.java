@@ -17,7 +17,7 @@
 
 package c301.AdventureBook;
 //Creator: Zhao Zhang
-//Done
+//Minor Editor: Justin Hoy
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -41,6 +41,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 import com.example.adventurebook.R;
 
@@ -50,7 +53,7 @@ import com.example.adventurebook.R;
  * @author Zhao Zhang
  *
  */
-public class TakePhotoActivity extends Activity{
+public class TakePhotoActivity extends Activity implements OnSeekBarChangeListener{
 	//int REQUEST_CODE = 0;
 	private static final int SELECT_PHOTO = 100;
 	private static final int TAKE_PHOTO = 101;
@@ -59,8 +62,12 @@ public class TakePhotoActivity extends Activity{
 	private EditText EditSize;
 	private String imageByte;
 	int select_result = 0;
+	SeekBar sb;
+	TextView resize;
+	TextView tv;
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState){
 
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -68,8 +75,20 @@ public class TakePhotoActivity extends Activity{
 		Button uploadFromPhone = (Button)findViewById(R.id.fromPhoneButton);
 		Button uploadFromWebCam = (Button)findViewById(R.id.fromWebCamButton);
 		Button uploadConfirm = (Button)findViewById(R.id.confirmButton);
-		Button setSmallSize = (Button)findViewById(R.id.set_ok);
-		EditSize = (EditText)findViewById(R.id.size_input);
+		
+		tv = (TextView)findViewById(R.id.percent);
+		tv.setText("DISABLED");
+		
+		resize = (TextView)findViewById(R.id.resize);
+		resize.setEnabled(false);
+		
+		sb = (SeekBar)findViewById(R.id.slider);
+		sb.setMax(200);
+		sb.setProgress(100);
+		sb.setOnSeekBarChangeListener(this);
+		sb.setEnabled(false);
+		
+		
 
 		uploadFromPhone.setOnClickListener(new OnClickListener(){
 			@Override
@@ -117,21 +136,27 @@ public class TakePhotoActivity extends Activity{
 			}
 
 		});
-		setSmallSize.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (Double.parseDouble(EditSize.getText().toString()) >= 1){
-					imageByte = imageCovert(show_path,Double.parseDouble(EditSize.getText().toString()));
-				}
-				
-				
-				
-			}
-		});
+	}
+	
+	@Override
+	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
+		tv.setText(Integer.toString(scalePercent)+" %");
+		imageCovert(show_path, scalePercent/100);
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+	// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+	// TODO Auto-generated method stub
+
+	}
+	
+	
 	private void saveAndFinish() {
 		Intent intent = new Intent();		
 		intent.putExtra("path", show_path);
@@ -155,6 +180,7 @@ public class TakePhotoActivity extends Activity{
 		
 		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 95, imageByte);
 		ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+		test.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 		test.setImageBitmap(bitmapOrg);
 		byte[] bytefile = imageByte.toByteArray();
 		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
@@ -204,9 +230,15 @@ public class TakePhotoActivity extends Activity{
 							String filePath = cursor.getString(columnIndex);
 							cursor.close();
 							ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+							test.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 							test.setImageBitmap(BitmapFactory.decodeFile(filePath));
 							show_path = filePath;
-							imageByte = imageCovert(show_path,1.0);
+							imageByte = imageCovert(show_path,1.5);
+							
+							sb.setEnabled(true);
+							resize.setText("Re-size");
+							tv.setText("100 %");
+							
 							select_result = 1;
 						}
 						catch (Exception e) {
@@ -223,6 +255,11 @@ public class TakePhotoActivity extends Activity{
 						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
 						test.setImageBitmap(bitmap);
 						imageByte = imageCovert(show_path,1.0);
+						
+						sb.setEnabled(true);
+						resize.setText("Re-size");
+						tv.setText("100 %");
+						
 						select_result = 1;
 						break;
 					} catch (FileNotFoundException e) {

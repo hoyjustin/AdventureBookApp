@@ -112,11 +112,11 @@ public class LibraryManager {
 		ArrayList<Story> tempLibrary = new ArrayList<Story>();
 		String[] files = activityContext.getApplicationContext().fileList();
 
-		for (int i = 0; i < files.length; i++) {
+		for (String fileStr:files) {
 			// do something with the file
-			if (files[i].toLowerCase(Locale.getDefault()).contains(KeyWord) && files[i].toLowerCase().contains(".sav")) {
+			if (fileStr.toLowerCase(Locale.getDefault()).contains(KeyWord) && fileStr.toLowerCase().contains(".sav")) {
 				try {
-					FileInputStream fis = activityContext.openFileInput(files[i]);
+					FileInputStream fis = activityContext.openFileInput(fileStr);
 					ObjectInputStream ois = new ObjectInputStream(fis);
 					while (true) {
 						Story someStory = (Story) ois.readObject();

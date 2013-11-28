@@ -204,13 +204,6 @@ public class OnlineLibraryActivity extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			fetchDataFromServer();
-			Story testStory = testCases.initializeStory();
-			try {
-				client.insertStory(testStory);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			return null;
 		}
 
@@ -319,6 +312,9 @@ public class OnlineLibraryActivity extends Activity {
 	 */
 	private void downloadStory(Story storyClicked) {
 		sManagerInst.saveStory(storyClicked, true);
+		Toast.makeText(this,
+				"Downloaded: " + storyClicked.getTitle(), Toast.LENGTH_LONG)
+				.show();
 	}
 	
 	/**

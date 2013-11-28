@@ -33,12 +33,10 @@ import com.example.adventurebook.R;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	private Context mContext;
-	private ExpandableListView mListView;
 	private List<Page> mModel;
 	
 	public ExpandableListAdapter(Context pContext, ExpandableListView pListView, List<Page> pModel){
 		this.mContext = pContext;
-		this.mListView = pListView;
 		this.mModel = pModel;
 	}
 	

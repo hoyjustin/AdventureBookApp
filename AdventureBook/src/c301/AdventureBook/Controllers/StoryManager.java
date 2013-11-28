@@ -22,10 +22,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Locale;
+import java.util.UUID;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.RandomOption;
@@ -84,11 +84,7 @@ public class StoryManager {
 	 */
 	public boolean createStory(String storyTitle, String storyDescription, String storyAuthor, 
 			String formattedDate, String show_path, String imageByte, boolean overwrite){
-		// Make sure that the user inputs a nonempty story title
-		if (storyTitle.length() == 0) {
-			Toast.makeText(activityContext, "Story title cannot be blank!", Toast.LENGTH_LONG).show();
-			return false;
-		}
+		
 		Story newStory = new Story(storyTitle, storyDescription, storyAuthor,
 				formattedDate, show_path, imageByte);
 		
@@ -149,10 +145,10 @@ public class StoryManager {
 		
 		String[] files = activityContext.getApplicationContext().fileList();
 		
-		for (int i = 0; i < files.length; i++) {
+		for (String fileStr:files) {
 			// check if file exists
-			if (files[i].toLowerCase(Locale.getDefault()).contains(".sav")) {
-				if(files[i].toLowerCase(Locale.getDefault()).equals(FILENAME)){
+			if (fileStr.toLowerCase(Locale.getDefault()).contains(".sav")) {
+				if(fileStr.toLowerCase(Locale.getDefault()).equals(FILENAME)){
 					return true;
 				}
 			}
@@ -177,7 +173,8 @@ public class StoryManager {
 	public void createPage() {
 		//New Page
 		int pageCount = this.mStory.getPages().size();
-		Page page = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "");
+		String generatedUUID = UUID.randomUUID().toString();
+		Page page = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "", generatedUUID);
 		this.mStory.addPage(page);
 		this.mPage = page;
 		saveStory(this.mStory, true);
@@ -211,7 +208,8 @@ public class StoryManager {
 	
 	public void createOption(String description, Page goToPage) {
 		//New Page
-		Option option = new Option(description, goToPage);
+		String uuid = goToPage.getuuid();
+		Option option = new Option(description, uuid);
 		this.mPage.addOption(option);
 		this.mOption = option;
 		saveStory(this.mStory, true);

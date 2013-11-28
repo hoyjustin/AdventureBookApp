@@ -21,6 +21,7 @@ package c301.AdventureBook.Models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Page implements Serializable{
 
@@ -28,15 +29,17 @@ public class Page implements Serializable{
 	private List<Option> options;
 	private String pageDescription;
 	private String imageByte;
+	private String uuid;
 	
 	private ArrayList<Annotation> annotations;
 	
 	
-	public Page(String title, String pageDescription){
+	public Page(String title, String pageDescription, String uuid){
 		this.title = title;
 		this.pageDescription = pageDescription;
 		this.options = new ArrayList<Option>();
 		this.annotations = new ArrayList<Annotation>();
+		this.uuid = uuid;
 	}
 	
 	public void deleteOption(Option option) {
@@ -89,6 +92,10 @@ public class Page implements Serializable{
 	}
 	public ArrayList<Annotation> getAnnotations(){
 		return this.annotations; 
+	}
+	
+	public String getuuid(){
+		return this.uuid;
 	}
     
 

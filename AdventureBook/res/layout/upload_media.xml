@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <TextView
         android:id="@+id/upload_media_title"
         android:layout_width="wrap_content"
@@ -18,12 +19,49 @@
 
     <ImageView
         android:id="@+id/upload_photo_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:layout_weight="1"/>
+        android:layout_weight="0.90" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/resize"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Add a Picture First"
+            android:textColor="#33B5E5"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/slider"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:max="19"
+            android:progress="0"
+            android:secondaryProgress="0" />
+
+        <TextView
+            android:id="@+id/percent"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="100%"
+            android:textColor="#33B5E5"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,59 +69,42 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:layout_margin="1dp" >
-
-        <EditText
-            android:id="@+id/size_input"
-            android:layout_width="242dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-
-        <Button
-            android:id="@+id/set_ok"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Size"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/fromPhoneButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="1dp"
-        android:text="From Phone" />
- 
-    <Button
-        android:id="@+id/fromWebCamButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:text="From Webcam" />
- 
-    <Button
-        android:id="@+id/confirmButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:text="Confirm" />
+            <Button
+                android:id="@+id/fromWebCamButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="138dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="From Webcam" />
+
+            <Button
+                android:id="@+id/fromPhoneButton"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="154dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="From Phone" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirmButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="266dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Confirm" />
+
+    </LinearLayout>
 
 </LinearLayout>

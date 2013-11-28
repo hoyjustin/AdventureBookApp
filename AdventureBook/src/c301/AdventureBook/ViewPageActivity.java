@@ -23,6 +23,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.RandomOption;
+import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
@@ -55,6 +57,7 @@ public class ViewPageActivity extends Activity {
 	ListView optionsListView;
 	Button endStoryButton;
 	TextView optionDescription;
+	Page goToPage;
 	
 	public StoryManager sManager;
 	
@@ -80,7 +83,18 @@ public class ViewPageActivity extends Activity {
 					chosenOption = (Option) options.get(randomIndex);
 				}				
 				sManager.setCurrentOption(chosenOption);
-				Page goToPage = chosenOption.getGoToPage();
+				
+				chosenOption.getGoToPage();
+				
+				Story currentStory = sManager.getStory();
+				List<Page> pages = currentStory.getPages();
+				for(Page page:pages){
+					if(chosenOption.getGoToPage().equals(page.getuuid())){
+						goToPage = page;
+						Log.d("UUID", page.getuuid());
+					}
+				}
+				
 				sManager.setCurrentPage(goToPage);
 				Toast.makeText(ViewPageActivity.this, "You Picked The Option: " + chosenOption.getDescription(), Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(getApplicationContext(), ViewPageActivity.class);
