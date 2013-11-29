@@ -15,7 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package c301.AdventureBook;
 
 import java.util.ArrayList;
@@ -49,17 +48,17 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 	int layout_row_id;
 	Typeface font;
 	Typeface font2;
-	
-	ArrayList<Story> storedlibrary; //This is storedLibrary that is
-									//initially passed to this class.
-									//This library never changes. Unless
-									//An element is deleted.
-	
-	ArrayList<Story> library;		//This is the FilteredLibrary that
-									//is displayed on the ListView.
-									//This library changes if stories
-									//are deleted or if someone filters
-									//the result.
+
+	ArrayList<Story> storedlibrary; // This is storedLibrary that is
+									// initially passed to this class.
+									// This library never changes. Unless
+									// An element is deleted.
+
+	ArrayList<Story> library; // This is the FilteredLibrary that
+								// is displayed on the ListView.
+								// This library changes if stories
+								// are deleted or if someone filters
+								// the result.
 
 	public CustomStoryAdapter(Context context, int layout_row_id,
 			ArrayList<Story> library) {
@@ -70,7 +69,8 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		this.layout_row_id = layout_row_id;
 		this.library = library;
 		this.storedlibrary = new ArrayList<Story>(library);
-		font = Typeface.createFromAsset(context.getAssets(), "straightline.ttf");  
+		font = Typeface
+				.createFromAsset(context.getAssets(), "straightline.ttf");
 	}
 
 	@Override
@@ -106,15 +106,19 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		ImageView imageView = (ImageView) itemView
 				.findViewById(R.id.storyThumbnailView);
 
-		if (currentStory.getImagePath() == null && currentStory.getImageByte() == null) {
+		if (currentStory.getImagePath() == null
+				&& currentStory.getImageByte() == null) {
 			imageView.setImageResource(R.drawable.default_image);
-		} else if (currentStory.getImageByte() !=null){
-			byte[] decodedString = Base64.decode(currentStory.getImageByte(), Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+		} else if (currentStory.getImageByte() != null) {
+			byte[] decodedString = Base64.decode(currentStory.getImageByte(),
+					Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+					0, decodedString.length);
 			imageView.setImageBitmap(decodedByte);
-		} else if (currentStory.getImagePath() != null){
+		} else if (currentStory.getImagePath() != null) {
 			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
-					.getImagePath()));}
+					.getImagePath()));
+		}
 		TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 		titleText.setText(currentStory.getTitle());
 		titleText.setTypeface(font);
@@ -130,13 +134,13 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 
 		return itemView;
 	}
-	
+
 	/**
-	 * This function changes the list to be displayed based on the
-	 * search criteria.
+	 * This function changes the list to be displayed based on the search
+	 * criteria.
 	 * 
 	 */
-	// Tutorial used from: 
+	// Tutorial used from:
 	// http://stackoverflow.com/questions/17962675/android-custom-listview-adapter-filter-not-going-back-to-original-list
 
 	@Override
@@ -160,11 +164,11 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 					results.values = storedlibrary;
 					results.count = storedlibrary.size();
 
-				} else { 
+				} else {
 					// We perform filtering operation
 					// Filtering is done based on story title or story author.
 					// We can extend this search criteria more if we want.
-					
+
 					ArrayList<Story> filteredStories = new ArrayList<Story>();
 
 					String query = constraint.toString().toLowerCase();
@@ -173,10 +177,13 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 
 						String story_title = story.getTitle().toLowerCase();
 						String story_author = story.getAuthor().toLowerCase();
+						String story_description = story.getDescription()
+								.toLowerCase();
 						
 						if ((story_title.contains(query))
-								|| (story_author.contains(query))) {
-							
+								|| (story_author.contains(query))
+								|| (story_description.contains(query))) {
+
 							filteredStories.add(story);
 						}
 					}
