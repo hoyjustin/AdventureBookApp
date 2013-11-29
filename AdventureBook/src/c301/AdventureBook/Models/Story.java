@@ -196,7 +196,32 @@ public class Story implements Serializable {
 	 *            the page to be deleted
 	 */
 	public void deletePage(Page somePage) {
+		
+		//First Delete All the Options from the pages that lead to 
+		//the current Page.
+		
+		for (Page p: this.pages){
+			ArrayList<Option> options = (ArrayList<Option>) p.getOptions();
+			
+			for (int i = 0; i < options.size(); i++){
+				Option o = options.get(i);
+				if (o.getGoToPage() == somePage.getuuid()){
+					options.remove(i);
+					i = i - 1;
+				}
+			}
+			p.setOptions(options);
+		}		
 		this.pages.remove(somePage);
+		
+		
+		
+		//for (Page p: this.pages){
+			//if (p.getuuid() == somePage.getuuid()){
+				//this.pages.remove(p);
+		//	}
+		//}
+		
 	}
 
 	/**
