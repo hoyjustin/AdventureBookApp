@@ -28,7 +28,7 @@ public class Page implements Serializable{
 	private String title;
 	private List<Option> options;
 	private String pageDescription;
-	private String imageByte;
+	private ArrayList<String> imageBytes;
 	private String uuid;
 	
 	private ArrayList<Annotation> annotations;
@@ -83,12 +83,12 @@ public class Page implements Serializable{
         return this.title;
     }
 
-	public String getImageByte() {
-		return imageByte;
+	public ArrayList<String> getImageBytes() {
+		return imageBytes;
 	}
 
-	public void setImageByte(String imageByte) {
-		this.imageByte = imageByte;
+	public void addImageByte(String imageBytes) {
+		this.imageBytes.add(imageBytes);
 	}
 	public ArrayList<Annotation> getAnnotations(){
 		return this.annotations; 

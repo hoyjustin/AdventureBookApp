@@ -1,5 +1,7 @@
 package c301.AdventureBook;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,26 +27,27 @@ public class ImageAdapter extends BaseAdapter {
 	private Page mPage;
 
 	private Bitmap[] bitmaps;
-	
-	private ImageView[] mImages;
 
 	public ImageAdapter(Context c, Page page) {
 		mPage = page;
 		mContext = c;
 		//change array size when multiple images appear in a page
 		//mImages = new ImageView[mImageIds.length];
-		bitmaps = new Bitmap[1];
-		
-		if (mPage.getImageByte() == null) {
+		ArrayList<String> imageBytes = mPage.getImageBytes();
+		if (imageBytes.size() == 0) {
+				bitmaps = new Bitmap[1];
 				Bitmap originalImage = BitmapFactory.decodeResource(mContext.getResources(), 
 						R.drawable.default_image);
 				bitmaps[0] = originalImage;
 		}
 		else{
-			byte[] decodedString = Base64.decode(mPage.getImageByte(), Base64.DEFAULT);
+			bitmaps = new Bitmap[imageBytes.size()];
+			for(int i = 0; i < imageBytes.size(); i++){
+			byte[] decodedString = Base64.decode(imageBytes.get(i), Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
 			//index = extractBitmap(reflectionGap, index, decodedByte);
-			bitmaps[0] = decodedByte;
+			bitmaps[i] = decodedByte;
+			}
 
 		}
 	}

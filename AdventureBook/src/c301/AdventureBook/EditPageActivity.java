@@ -50,7 +50,7 @@ import com.example.adventurebook.R;
  * within a story.
  * 
  * @author Justin Hoy
- *
+ * @author Zhao Zhang
  */
 public class EditPageActivity extends Activity implements Serializable {
 
@@ -97,8 +97,8 @@ public class EditPageActivity extends Activity implements Serializable {
 		imageView = (ImageView) findViewById(R.id.pageimage);
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
-		if (currentPage.getImageByte() !=null){
-			byte[] decodedString = Base64.decode(currentPage.getImageByte(), Base64.DEFAULT);
+		if (currentPage.getImageBytes().size() != 0){
+			byte[] decodedString = Base64.decode(currentPage.getImageBytes().get(1), Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 			imageView.setImageBitmap(decodedByte);			
 		}
@@ -114,7 +114,6 @@ public class EditPageActivity extends Activity implements Serializable {
 
 		optionsList = (ListView) findViewById(R.id.options_list);
 		fillData();
-
 
 		imageView.setOnClickListener(new OnClickListener() {
 			@Override
@@ -150,12 +149,9 @@ public class EditPageActivity extends Activity implements Serializable {
 
 				//currentPage = currentStory.getPage(currentPage);
 
-
-
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
-				currentPage.setImageByte(imageByte);
-
+				currentPage.addImageByte(imageByte);
 
 				//We need to over write the previous page with the new one.
 				currentStory.replacePage(currentPage);
@@ -179,9 +175,6 @@ public class EditPageActivity extends Activity implements Serializable {
 			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
 			imageView.setImageBitmap(decodedByte);
-
-
-
 		}
 	}
 
@@ -284,7 +277,6 @@ public class EditPageActivity extends Activity implements Serializable {
 
 			delete.setOnClickListener(mClickListener);
 			edit.setOnClickListener(mClickListener);
-
 			return itemView;
 		}
 	}

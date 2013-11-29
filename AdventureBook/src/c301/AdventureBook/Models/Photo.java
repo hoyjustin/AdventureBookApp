@@ -15,7 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package c301.AdventureBook;
+package c301.AdventureBook.Models;
+
 
 
 

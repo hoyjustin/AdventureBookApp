@@ -1,4 +1,5 @@
-package c301.AdventureBook;
+package c301.AdventureBook.Models;
+
 
 
 
