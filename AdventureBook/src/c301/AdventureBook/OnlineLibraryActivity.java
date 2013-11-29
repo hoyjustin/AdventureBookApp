@@ -240,10 +240,19 @@ public class OnlineLibraryActivity extends Activity {
 				// This is the story object that is returned when a list item is
 				// clicked.
 				Story story = (Story) onlineLV.getItemAtPosition(position);
-				Toast.makeText(getBaseContext(), story.getTitle(),
-						Toast.LENGTH_SHORT).show();
+				viewStory(story);
+
 			}
 		});
+	}
+	
+	private void viewStory(Story story) {
+		// Do Something
+		
+		sManagerInst.setCurrentStory(story);
+		Intent intent = new Intent(this, ViewStoryActivity.class);
+		startActivity(intent);
+		
 	}
 
 	/**
