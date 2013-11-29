@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ import com.example.adventurebook.R;
  */
 public class ViewStoryActivity extends Activity {
 	private static final int FIRST_PAGE_INDEX = 0;
+	private static final int LOCALLIBRARY_ID = 0;
+	
 	LibraryManager lManager; // Controller for the Library
 	StoryManager sManager; // Controller for a story
 	Story currentStory;
@@ -41,13 +44,35 @@ public class ViewStoryActivity extends Activity {
 		
 		populateData();
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_story, menu);
-		return true;
-	}
+        menu.add(0, LOCALLIBRARY_ID, 0, R.string.menu_offline_library);
+        return true;
+    }
+    
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch(item.getItemId()) {
+            case LOCALLIBRARY_ID:
+                returnHome();
+                return true;
+        }
+        return super.onMenuItemSelected(featureId, item);
+    }
+    
+    /**
+     * Return to the library when the user is finished with viewing story.
+     */
+    private void returnHome() {
+        Intent i = new Intent(this, OfflineLibraryActivity.class);
+        startActivity(i);
+        finish();
+    }
 	
 	/**
 	 * Populates the page with the story data, including the title, author,

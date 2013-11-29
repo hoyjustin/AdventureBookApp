@@ -69,7 +69,7 @@ public class GalleryActivity extends Activity{
 			public void onClick(View view) {
 				Intent intent = new Intent(GalleryActivity.this,
 						TakePhotoActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
 			}
 		});
 		mButtonReturn.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +110,13 @@ public class GalleryActivity extends Activity{
 			this.mContext = c;
 			bitmaps = new Bitmap[imageBytes.size()];
 
+			if (imageBytes.size() == 0) {
+				bitmaps = new Bitmap[1];
+				Bitmap originalImage = BitmapFactory.decodeResource(mContext.getResources(), 
+						R.drawable.default_image);
+				bitmaps[0] = originalImage;
+			}
+			
 			for(int i = 0; i < imageBytes.size(); i++){
 				byte[] decodedString = Base64.decode(imageBytes.get(i), Base64.DEFAULT);
 				Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
@@ -135,9 +142,9 @@ public class GalleryActivity extends Activity{
 			ImageView imageView;
 			if (convertView == null) {  // if it's not recycled, initialize some attributes
 				imageView = new ImageView(mContext);
-				imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
+				imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
 				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-				imageView.setPadding(8, 8, 8, 8);
+				imageView.setPadding(8, 10, 10, 8);
 			} else {
 				imageView = (ImageView) convertView;
 			}

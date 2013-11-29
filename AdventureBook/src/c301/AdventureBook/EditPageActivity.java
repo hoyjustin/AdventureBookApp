@@ -55,7 +55,6 @@ import com.example.adventurebook.R;
 public class EditPageActivity extends Activity implements Serializable {
 
 	private static final int EDIT_OPTION = 0;
-	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 
 	private EditText mEditPageDes;
 	private EditText mEditPageTitle;
@@ -96,11 +95,6 @@ public class EditPageActivity extends Activity implements Serializable {
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
 		
-		if (currentPage.getImageBytes().size() != 0){
-			byte[] decodedString = Base64.decode(currentPage.getImageBytes().get(1), Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-			imageView.setImageBitmap(decodedByte);			
-		}
 
 		//coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
 		//coverFlow.setAdapter(new ImageAdapter(this));

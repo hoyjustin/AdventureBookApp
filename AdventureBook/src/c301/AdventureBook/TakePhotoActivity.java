@@ -140,8 +140,13 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
-		tv.setText(String.valueOf(Math.sqrt(100-scalePercent) + " %"));
-		imageCovert(show_path, Math.sqrt(100-scalePercent));
+		tv.setText(String.valueOf(scalePercent/100.00) + " %");
+		if(scalePercent > 100){
+			imageCovert(show_path, Math.sqrt(((200.00-scalePercent)/100.00)));
+		}
+		else if(scalePercent < 100){
+			imageCovert(show_path, ((200.00-scalePercent)/100.00));
+		}
 	}
 
 	@Override
@@ -172,9 +177,9 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		double width = bitmapOrg.getWidth();
 		double height = bitmapOrg.getHeight();
 		
-		double ratio = 400 / width;
+		double ratio = 400.00 / width;
 		int newheight = (int) (ratio * height);
-		int newwidth = (int) (400/size_scale);
+		int newwidth = (int) (400.00/size_scale);
 		int new_height = (int) (newheight/size_scale);
 		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, newwidth, new_height,
 				true);

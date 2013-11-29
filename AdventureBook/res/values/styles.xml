@@ -9,7 +9,7 @@
     <!-- Application theme. -->
 
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        
+        <item name="android:typeface">sans</item>
     </style>
 
 </resources>

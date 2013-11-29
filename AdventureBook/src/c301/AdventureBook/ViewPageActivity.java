@@ -137,7 +137,7 @@ public class ViewPageActivity extends Activity {
     }
 	
     /**
-     * Return to the library when the user finishes a story.
+     * Return to the library when the user is finished with viewing story.
      */
     private void returnHome() {
         Intent i = new Intent(this, OfflineLibraryActivity.class);
