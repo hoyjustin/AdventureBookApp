@@ -17,12 +17,14 @@
 
 package c301.AdventureBook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Gravity;
@@ -38,8 +40,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import c301.AdventureBook.Controllers.StoryManager;
+import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Annotation;
 import c301.AdventureBook.Models.Page;
+import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
@@ -138,7 +142,8 @@ public class AnnotationActivity extends Activity {
 				TextView commentTV = new TextView(this);
 
 				// Set the author into the textview
-				authorTV.setText("Author: " + currentAnnotations.get(i).getAuthor());
+				authorTV.setText("Author: "
+						+ currentAnnotations.get(i).getAuthor());
 
 				// Set the image into the imageview
 				imageByte = currentAnnotations.get(i).getIllustration();
@@ -197,18 +202,71 @@ public class AnnotationActivity extends Activity {
 	 * page.
 	 */
 	private void createAnnotation() {
+
+		boolean isOnline = ((AdventureBook) this.getApplication())
+				.getIsOnlineParameter();
+
+		
 		getUserInfo();
 		someAnnotation = new Annotation(authorAnnotation, commentAnnotation);
 		someAnnotation.setIllustration(imageByte);
-
 		Page currentPage = sManager.getPage();
 		currentPage.addAnnotation(someAnnotation);
-		sManager.saveStory(sManager.getStory(), true);
+		
+		
+		if (!isOnline) {
+			// If we are viewing this story locally then do this:
+			// Save the Updated Story Locally
+			
+			sManager.saveStory(sManager.getStory(), true);
+			// Refresh the current activity to repopulate views
 
-		// Refresh the current activity to repopulate views
+		} else {
+			// If we are viewing this story from online then do this:
+			new publishStoryTask(sManager.getStory()).execute();
+
+		}
 		finish();
 		startActivity(getIntent());
 	}
+	
+	/**
+	 * This function publishes a story on the 
+	 * WebServer.
+	 * 
+	 * @param storyClicked
+	 */
+	public void publishStory(Story storyClicked) {
+		//Since we need to give the HTTP client some time
+		//to publish the story, we need to use AsyncTasks.
+		new publishStoryTask(storyClicked).execute();
+	}
+	
+	/**
+	 * This class defines the publishStoryTask
+	 * 
+	 * @author Minhal
+	 *
+	 */
+	private class publishStoryTask extends AsyncTask<String, String, String> {
+		
+		Story story;
+		public publishStoryTask(Story storyClicked) {
+			this.story = storyClicked;
+		}
+		@Override
+		protected String doInBackground(String... arg0) {
+			ESClient client = new ESClient();
+			try {
+				client.insertStory(this.story);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
+	
 
 	/**
 	 * this should go back to the view page

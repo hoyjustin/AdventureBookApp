@@ -253,7 +253,10 @@ public class OfflineLibraryActivity extends Activity {
 	 *            - The Story that the user chose to view.
 	 */
 	private void viewStory(Story story) {
-		// Do Something
+		
+		//Tell the Application that we are viewing this story Locally.
+		((AdventureBook) this.getApplication()).setIsOnlineParameter(false);
+		
 		
 		sManagerInst.setCurrentStory(story);
 

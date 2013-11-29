@@ -103,7 +103,6 @@ public class OnlineLibraryActivity extends Activity {
 	private void initializeGlobals(){
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
-		
 	}
 
 	/**
@@ -247,8 +246,10 @@ public class OnlineLibraryActivity extends Activity {
 	}
 	
 	private void viewStory(Story story) {
-		// Do Something
 		
+		//Tell the Application that we are viewing this story from Online.
+		((AdventureBook) this.getApplication()).setIsOnlineParameter(true);
+						
 		sManagerInst.setCurrentStory(story);
 		Intent intent = new Intent(this, ViewStoryActivity.class);
 		startActivity(intent);
