@@ -14,7 +14,7 @@
     <string name="search_hint">Search titles..</string>
     <string name="page_title">Page Title</string>
     <string name="image_content_description">An image</string>
-    
+
     <!-- Create Story -->
     <string name="alert_story_exists">Story with the same title and author already exists! Do you want to overwrite the existing story?</string>
     <string name="new_story_hint">A New Story</string>
@@ -22,7 +22,7 @@
     <string name="story_author">Author:  </string>
     <string name="story_date">Date:  </string>
     <string name="create_story">Create Story!!!</string>
-    
+
     <!-- View Story -->
     <string name="written_by">Written By:  </string>
     <string name="some_author">some author</string>
@@ -35,7 +35,7 @@
     <string name="annotations_for_page">Annotations For This Page: </string>
     <string name="initial_annotation_count">0</string>
     <string name="view_annotations">View Annotations</string>
-    
+
     <!-- Justin/Edit Story -->
     <string name="title_activity_main">MainActivity</string>
     <string name="create_new_page">Create New Page</string>
@@ -53,7 +53,7 @@
     <string name="add_option">Add a New Option</string>
     <string name="title_activity_view_story">ViewStoryActivity</string>
     <string name="delete_option_confirm">Do you really want to delete this option?</string>
-    
+
     <!-- Minhal/Edit Page -->
     <string name="alert_no_goto">You need to select a page for the option to go to!</string>
     <string name="title_activity_view_page">ViewPageActivity</string>
@@ -61,7 +61,7 @@
     <string name="add_random_decision">Add a Random Decision</string>
     <string name="page_title_hint">A New Page</string>
     <string name="page_description_hint">Some Text… Blah Blah Blah"</string>
-    
+
     <!-- Annotations Page -->
     <string name="annotation_author">Author: </string>
     <string name="annotation_author_hint">name here</string>
@@ -69,21 +69,24 @@
     <string name="annotation_comment_hint">comment here</string>
     <string name="annotation_submit">Submit</string>
     <string name="annotation_return_to_page">Return to Page</string>
-    
+
     <!-- Offline Library -->
     <string name="local_library">Local Library</string>
     <string name="add_story">Add Story</string>
     <string name="online_library">Online Library</string>
-    
+
     <!-- Online Library -->
     <string name="view_local_library">View Local Library</string>
     <string name="feeling_lucky">I\'m Feeling Lucky</string>
-    
+
     <!-- Edit Options -->
     <string name="insert_option_description">Insert option description: </string>
     <string name="current_goto_page">Current GotoPage:</string>
     <string name="none">None</string>
     <string name="select_goto_page">Select Goto Page</string>
     <string name="save_option">Save Option</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

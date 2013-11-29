@@ -39,6 +39,7 @@ public class Page implements Serializable{
 		this.pageDescription = pageDescription;
 		this.options = new ArrayList<Option>();
 		this.annotations = new ArrayList<Annotation>();
+		this.imageBytes = new ArrayList<String>();
 		this.uuid = uuid;
 	}
 	

@@ -77,8 +77,6 @@ public class EditPageActivity extends Activity implements Serializable {
 	private Option clickedOption;
 	private List<Option> currentPageOptions;
 	private ImageView imageView;
-	private String show_path;
-	private String imageByte;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +95,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		imageView = (ImageView) findViewById(R.id.pageimage);
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
+		
 		if (currentPage.getImageBytes().size() != 0){
 			byte[] decodedString = Base64.decode(currentPage.getImageBytes().get(1), Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -118,10 +117,11 @@ public class EditPageActivity extends Activity implements Serializable {
 		imageView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(getApplicationContext(),
-						TakePhotoActivity.class);
-				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
+
+				Intent intent = new Intent(EditPageActivity.this,
+						//TakePhotoActivity
+						GalleryActivity.class);
+				startActivity(intent);
 			}
 		});
 
@@ -151,7 +151,6 @@ public class EditPageActivity extends Activity implements Serializable {
 
 				currentPage.setTitle(someTitle);
 				currentPage.setPageDescription(someDescription);
-				currentPage.addImageByte(imageByte);
 
 				//We need to over write the previous page with the new one.
 				currentStory.replacePage(currentPage);
@@ -160,22 +159,6 @@ public class EditPageActivity extends Activity implements Serializable {
 				finish();
 			}
 		});
-	}
-
-
-	@Override
-	//test image
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
-
-			show_path = data.getStringExtra("path");
-			imageByte = data.getStringExtra("imagebyte");
-			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
-			imageView.setImageBitmap(decodedByte);
-		}
 	}
 
 	public void onResume()

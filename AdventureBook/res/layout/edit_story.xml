@@ -32,7 +32,7 @@
             android:text="Change Story Thumnail" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/return_from_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
