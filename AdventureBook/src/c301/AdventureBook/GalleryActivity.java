@@ -49,7 +49,7 @@ public class GalleryActivity extends Activity{
 
 		sManagerInst = StoryManager.getInstance();
 		currentPage = sManagerInst.getPage();
-		currentStory = sManagerInst.getStory();
+		currentStory = sManagerInst.getCurrentStory();
 		imageBytes = currentPage.getImageBytes();
 
 		gridview = (GridView) findViewById(R.id.gridview);

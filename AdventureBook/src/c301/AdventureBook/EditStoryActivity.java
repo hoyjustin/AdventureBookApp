@@ -189,7 +189,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	 */
 	private void fillData() {
 		//load model here
-		someStory = sManagerInst.getStory();
+		someStory = sManagerInst.getCurrentStory();
 		storyView.setText("Title: " + someStory.getTitle() + "\n" +
 				"Description: " + someStory.getDescription() + "\n" +
 				"Author: " + someStory.getAuthor() + "\n" +

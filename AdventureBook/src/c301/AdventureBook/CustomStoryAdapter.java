@@ -106,19 +106,17 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		ImageView imageView = (ImageView) itemView
 				.findViewById(R.id.storyThumbnailView);
 
-		if (currentStory.getImagePath() == null
-				&& currentStory.getImageByte() == null) {
+		if (currentStory.getImageByte() == null) {
 			imageView.setImageResource(R.drawable.default_image);
-		} else if (currentStory.getImageByte() != null) {
+		} else{
+			
 			byte[] decodedString = Base64.decode(currentStory.getImageByte(),
 					Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
 					0, decodedString.length);
 			imageView.setImageBitmap(decodedByte);
-		} else if (currentStory.getImagePath() != null) {
-			imageView.setImageBitmap(BitmapFactory.decodeFile(currentStory
-					.getImagePath()));
-		}
+		} 
+		
 		TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 		titleText.setText(currentStory.getTitle());
 		titleText.setTypeface(font);

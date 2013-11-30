@@ -86,7 +86,7 @@ public class ViewPageActivity extends Activity {
 				
 				chosenOption.getGoToPage();
 				
-				Story currentStory = sManager.getStory();
+				Story currentStory = sManager.getCurrentStory();
 				List<Page> pages = currentStory.getPages();
 				for(Page page:pages){
 					if(chosenOption.getGoToPage().equals(page.getuuid())){

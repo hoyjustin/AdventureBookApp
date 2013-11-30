@@ -71,7 +71,7 @@ public class StoryManager {
 	 * This gets the current Story
 	 * @return The current Story
 	 */
-	public Story getStory() {
+	public Story getCurrentStory() {
 		return mStory;
 	}
 
@@ -83,10 +83,10 @@ public class StoryManager {
 	 * @return false if story already exists, true otherwise
 	 */
 	public boolean createStory(String storyTitle, String storyDescription, String storyAuthor, 
-			String formattedDate, String show_path, String imageByte, boolean overwrite){
+			String formattedDate, String imageByte, boolean overwrite){
 		
 		Story newStory = new Story(storyTitle, storyDescription, storyAuthor,
-				formattedDate, show_path, imageByte);
+				formattedDate, imageByte);
 		
 		boolean storyExists = saveStory(newStory, overwrite);
 		return storyExists;

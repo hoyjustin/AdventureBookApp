@@ -83,7 +83,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		setContentView(com.example.adventurebook.R.layout.edit_page);
 
 		sManagerInst = StoryManager.getInstance();
-		currentStory = sManagerInst.getStory();
+		currentStory = sManagerInst.getCurrentStory();
 		currentPage = sManagerInst.getPage();
 
 		mEditPageTitle = (EditText)findViewById(com.example.adventurebook.R.id.editPageTitle);

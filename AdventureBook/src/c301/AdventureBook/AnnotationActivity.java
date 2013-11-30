@@ -218,12 +218,12 @@ public class AnnotationActivity extends Activity {
 			// If we are viewing this story locally then do this:
 			// Save the Updated Story Locally
 			
-			sManager.saveStory(sManager.getStory(), true);
+			sManager.saveStory(sManager.getCurrentStory(), true);
 			// Refresh the current activity to repopulate views
 
 		} else {
 			// If we are viewing this story from online then do this:
-			new publishStoryTask(sManager.getStory()).execute();
+			new publishStoryTask(sManager.getCurrentStory()).execute();
 
 		}
 		finish();
