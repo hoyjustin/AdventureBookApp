@@ -29,10 +29,10 @@ public class StoryManagerTest extends AndroidTestCase {
 		storyManager = StoryManager.getInstance();
 		storyManager.initContext(context);
 		
-		story = new Story("Titletest", "Descriptiontest", "Authortest", "Datetest", "Imagepathtest", "Imagebytetest");
+		story = new Story("Titletest", "Descriptiontest", "Authortest", "Datetest", "Imagebytetest");
 		storyManager.saveStory(story, true);
 		
-		story2 = new Story("someTitle", "someDescription", "someAuthor", "someDate", "someImagepath", "someImagebyte");
+		story2 = new Story("someTitle", "someDescription", "someAuthor", "someDate", "someImagebyte");
 		storyManager.saveStory(story2, true);
 		
 		fakeFilename = "randomTitle-randomAuthor.sav";
@@ -46,13 +46,12 @@ public class StoryManagerTest extends AndroidTestCase {
 	public void testLoadFromFile() {
 		//String filename = story.getFilename();
 		storyManager.setCurrentStory(story);
-		Story someStory = storyManager.getStory();
+		Story someStory = storyManager.getCurrentStory();
 		assertNotNull(someStory);
 		assertEquals(story.getTitle(), someStory.getTitle());
 		assertEquals(story.getDescription(), someStory.getDescription());
 		assertEquals(story.getAuthor(), someStory.getAuthor());
 		assertEquals(story.getDate(), someStory.getDate());
-		assertEquals(story.getImagePath(), someStory.getImagePath());
 		assertEquals(story.getImageByte(), someStory.getImageByte());
 	}
 	
@@ -69,10 +68,10 @@ public class StoryManagerTest extends AndroidTestCase {
 		//assertTrue(fileLoader.saveStory(story, false));
 		//assertTrue(fileLoader.checkFileExists(filename));
 		storyManager.setCurrentStory(story);
-		Story storyLoaded = storyManager.getStory();
+		Story storyLoaded = storyManager.getCurrentStory();
 		Log.i("Testing story load", storyLoaded.getTitle());
 		storyManager.setCurrentStory(story2);
-		Story story2Loaded = storyManager.getStory();
+		Story story2Loaded = storyManager.getCurrentStory();
 		Log.i("Testing story2 load", story2Loaded.getTitle());
 		
 		//Story fakeStoryLoaded = storyManager.loadFromFile("randomnonexistantfilename");

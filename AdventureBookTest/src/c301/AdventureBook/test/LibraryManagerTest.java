@@ -30,7 +30,7 @@ public class LibraryManagerTest extends AndroidTestCase {
 		lManager = LibraryManager.getInstance();
 		lManager.initContext(context);
 		
-		story = new Story("Titletest", "Descriptiontest", "Authortest", "Datetest", "Imagepathtest", "Imagebytetest");
+		story = new Story("Titletest", "Descriptiontest", "Authortest", "Datetest", "Imagebytetest");
 		
 		
 	}
