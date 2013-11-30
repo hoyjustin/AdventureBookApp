@@ -36,7 +36,7 @@ import java.util.UUID;
  */
 public class Option implements Serializable{
 	private String description;
-	private String goToUUID;
+	private String gotoPageid;
 
 	/**
 	 * The constructor for the Option model class.
@@ -46,7 +46,7 @@ public class Option implements Serializable{
 	 */
 	public Option(String description, String goToPage){
 		this.description = description;
-		this.goToUUID = goToPage;
+		this.gotoPageid = goToPage;
 	}
 	
 	
@@ -71,7 +71,7 @@ public class Option implements Serializable{
 	 * @param goToPage the goto page
 	 */
 	public void setGoToPage(String goToPage){
-		this.goToUUID = goToPage;
+		this.gotoPageid = goToPage;
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class Option implements Serializable{
 	 * @return goToPage the goto page
 	 */
 	public String getGoToPage(){
-		return this.goToUUID;
+		return this.gotoPageid;
 	}
 	
 	@Override
