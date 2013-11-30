@@ -29,7 +29,7 @@ public class Page implements Serializable{
 	private List<Option> options;
 	private String pageDescription;
 	private ArrayList<String> imageBytes;
-	private String uuid;
+	private String pageId;
 	
 	private ArrayList<Annotation> annotations;
 	
@@ -40,7 +40,7 @@ public class Page implements Serializable{
 		this.options = new ArrayList<Option>();
 		this.annotations = new ArrayList<Annotation>();
 		this.imageBytes = new ArrayList<String>();
-		this.uuid = uuid;
+		this.pageId = uuid;
 	}
 	
 	public void deleteOption(Option option) {
@@ -95,8 +95,8 @@ public class Page implements Serializable{
 		return this.annotations; 
 	}
 	
-	public String getuuid(){
-		return this.uuid;
+	public String getPageId(){
+		return this.pageId;
 	}
     
 
