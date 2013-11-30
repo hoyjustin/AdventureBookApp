@@ -197,7 +197,7 @@ public class StoryManager {
 	
 	public void createOption(String description, Page goToPage) {
 		//New Page
-		String uuid = goToPage.getuuid();
+		String uuid = goToPage.getPageId();
 		Option option = new Option(description, uuid);
 		this.currentPage.addOption(option);
 		this.currentOption = option;

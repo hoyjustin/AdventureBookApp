@@ -79,7 +79,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		//Find All the children of the current Page.
 		
 		for (Page p : this.mModel){
-			if (p.getuuid() == item.getGoToPage()){
+			if (p.getPageId() == item.getGoToPage()){
 				txtEndPage.setText(p.getTitle());
 			}
 		}
