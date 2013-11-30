@@ -195,24 +195,6 @@ public class Story implements Serializable {
 			
 	}
 
-	/**
-	 * This function searches the list of pages for the specified page given in
-	 * the parameter and returns it.
-	 * 
-	 * @param page
-	 *            the page to be searched for
-	 * @return page the page
-	 */
-	public Page getPage(Page page) {
-		for (int i = 0; i < this.pages.size(); i++) {
-			if (this.pages.get(i).getTitle().equals(page.getTitle())) {
-				return this.pages.get(i);
-			}
-		}
-		// this.addPage(page);
-		return page;
-	}
-
 	public void replacePage(Page page){
 		for(int i=0; i < this.pages.size();i++){
 			if(this.pages.get(i).getTitle().equals(page.getTitle())){
@@ -241,6 +223,11 @@ public class Story implements Serializable {
 	 */
 	public String getFilename() {
 		String filename = getStoryId() + ".sav";
+		return filename;
+	}
+	
+	public String getCacheFileName(){
+		String filename = getStoryId() + ".cache";
 		return filename;
 	}
 
