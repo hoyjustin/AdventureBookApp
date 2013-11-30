@@ -93,17 +93,6 @@ public class StoryManager {
 	}
 	
 	/**
-	 * Delete a story from internal storage.
-	 * 
-	 * @param story the story to be deleted
-	 */
-	public void deleteStory(Story story){
-		String FILENAME = story.getFilename();
-		activityContext.deleteFile(FILENAME);
-		this.mStory = null;
-	}
-
-	/**
 	 * Save a story to internal storage.
 	 * 
 	 * @param saveStory the story to be saved
