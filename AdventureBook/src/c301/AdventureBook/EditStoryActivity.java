@@ -93,7 +93,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		editAuthor = (EditText)findViewById(com.example.adventurebook.R.id.editAuthor);
 		editDescription = (EditText)findViewById(com.example.adventurebook.R.id.editDescription);
 		editDescription.setMovementMethod(new ScrollingMovementMethod());
-		date  = (TextView)findViewById(com.example.adventurebook.R.id.editDate);
+		date  = (TextView)findViewById(com.example.adventurebook.R.id.date);
 		date.setTypeface(font);
 		
 		lstView = (ExpandableListView)findViewById(R.id.expList);
