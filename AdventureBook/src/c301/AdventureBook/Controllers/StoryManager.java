@@ -42,9 +42,9 @@ import c301.AdventureBook.Models.Story;
  */
 public class StoryManager {
 	Context activityContext;
-	Story mStory;
-	Page mPage;
-	Option mOption;
+	Story currentStory;
+	Page currentPage;
+	Option currentOption;
 
 	private static StoryManager instance = null;
 
@@ -64,7 +64,7 @@ public class StoryManager {
 	 * @param A Story
 	 */
 	public void setCurrentStory(Story story) {
-		this.mStory = story;
+		this.currentStory = story;
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class StoryManager {
 	 * @return The current Story
 	 */
 	public Story getCurrentStory() {
-		return mStory;
+		return currentStory;
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class StoryManager {
 					oos.writeObject(story);
 					Log.d("Successful Story Save: ", story.getTitle());
 				fos.close();
-				this.mStory = story;
+				this.currentStory = story;
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -149,33 +149,33 @@ public class StoryManager {
 	 * @return the currentPage
 	 */
 	public Page getPage() {
-		return this.mPage;
+		return this.currentPage;
 	}
 
 	/**
 	 * @param currentPage the currentPage to set
 	 */
 	public void setCurrentPage(Page currentPage) {
-		this.mPage = currentPage;
+		this.currentPage = currentPage;
 	}
 
 	public void createPage() {
 		//New Page
-		int pageCount = this.mStory.getPages().size();
+		int pageCount = this.currentStory.getPages().size();
 		String generatedUUID = UUID.randomUUID().toString();
 		Page page = new Page("NEW PAGE " + "(" + (pageCount + 1) + ")", "", generatedUUID);
-		this.mStory.addPage(page);
-		this.mPage = page;
-		saveStory(this.mStory, true);
+		this.currentStory.addPage(page);
+		this.currentPage = page;
+		saveStory(this.currentStory, true);
 	}
 	
 	/**
 	 * Delete a page from the story
 	 */
 	public void deletePage(Page page) {
-		this.mStory.deletePage(page);
-		this.mPage = null;
-		saveStory(this.mStory, true);
+		this.currentStory.deletePage(page);
+		this.currentPage = null;
+		saveStory(this.currentStory, true);
 	}
 	
 	
@@ -183,7 +183,7 @@ public class StoryManager {
 	 * @return the currentOption
 	 */
 	public Option getOption() {
-		return mOption;
+		return currentOption;
 	}
 
 	
@@ -191,7 +191,7 @@ public class StoryManager {
 	 * @param mOption the currentOption to set
 	 */
 	public void setCurrentOption(Option option) {
-		this.mOption = option;
+		this.currentOption = option;
 	}
 
 	
@@ -199,35 +199,35 @@ public class StoryManager {
 		//New Page
 		String uuid = goToPage.getuuid();
 		Option option = new Option(description, uuid);
-		this.mPage.addOption(option);
-		this.mOption = option;
-		saveStory(this.mStory, true);
+		this.currentPage.addOption(option);
+		this.currentOption = option;
+		saveStory(this.currentStory, true);
 	}
 	
 	
 	public void deleteOption(Option option) {
-		this.mPage.getOptions().remove(option);
-		if(this.mPage.getOptions().size() == 1){
+		this.currentPage.getOptions().remove(option);
+		if(this.currentPage.getOptions().size() == 1){
 			deleteAllRandomOptions();
 		}
-		this.mOption = null;
-		saveStory(this.mStory, true);
+		this.currentOption = null;
+		saveStory(this.currentStory, true);
 	}
 
 	public void createRandomOption() {
 		RandomOption randomOption = new RandomOption();
-		this.mPage.addOption(randomOption);
-		this.mOption = randomOption;
-		saveStory(this.mStory, true);
+		this.currentPage.addOption(randomOption);
+		this.currentOption = randomOption;
+		saveStory(this.currentStory, true);
 	}
 	
 	public void deleteAllRandomOptions() {
-		for(Option option: this.mPage.getOptions()){
+		for(Option option: this.currentPage.getOptions()){
 			if(option instanceof RandomOption){
 				deleteOption(option);
 			}
 		}
-		saveStory(this.mStory, true);
+		saveStory(this.currentStory, true);
 	}
 	
 
