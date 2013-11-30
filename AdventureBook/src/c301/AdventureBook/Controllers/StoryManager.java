@@ -46,7 +46,7 @@ public class StoryManager {
 	Page mPage;
 	Option mOption;
 
-	private static StoryManager instance = new StoryManager( );
+	private static StoryManager instance = null;
 
 	public static StoryManager getInstance() {
 		if (instance == null) {

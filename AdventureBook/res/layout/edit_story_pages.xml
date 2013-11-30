@@ -12,14 +12,100 @@
         android:layout_alignParentLeft="true"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/storyView"
-            android:layout_width="298dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_weight="0.08"
-            android:gravity="center"
-            android:textSize="20sp" />
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title: "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" >
+
+                    <requestFocus />
+                </EditText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Author: "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_vertical_margin"
+                    android:text="Date Created: "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.08" >
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description: "
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:background="#00FFFFFF"
+                    android:ems="10" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <ExpandableListView
             android:id="@+id/expList"
@@ -30,19 +116,6 @@
             tools:listitem="@android:layout/simple_expandable_list_item_2" >
 
         </ExpandableListView>
-
-        <TextView
-            android:id="@+id/pageView"
-            android:layout_width="297dp"
-            android:layout_height="84dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:background="#33FFFFFF"
-            android:fadeScrollbars="false"
-            android:gravity="left"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/return_local_lib" />
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

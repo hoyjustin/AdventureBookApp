@@ -141,7 +141,7 @@
     </HorizontalScrollView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -160,7 +160,7 @@
         android:padding="10dp" >
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -173,10 +173,10 @@
             android:id="@+id/editTextAnnotationAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView3"
+            android:layout_alignTop="@+id/description"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/textView3"
+            android:layout_toRightOf="@+id/description"
             android:background="@drawable/border"
             android:ems="10"
             android:hint="@string/annotation_author_hint"

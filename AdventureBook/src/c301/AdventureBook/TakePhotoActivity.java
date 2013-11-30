@@ -141,7 +141,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
 		tv.setText(String.valueOf(scalePercent/100.00) + " %");
-		if(scalePercent > 100){
+		if(scalePercent > 100 && scalePercent != 200){
 			imageCovert(show_path, Math.sqrt(((200.00-scalePercent)/100.00)));
 		}
 		else if(scalePercent < 100){
