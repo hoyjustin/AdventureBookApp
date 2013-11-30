@@ -19,12 +19,16 @@
             android:layout_marginLeft="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:layout_weight="0.08"
+            android:layout_weight="0.23"
+            android:background="#33FFFFFF"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin" >
 
                 <TextView
                     android:id="@+id/title"
@@ -47,7 +51,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin" >
 
                 <TextView
                     android:id="@+id/author"
@@ -66,10 +72,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin" >
 
                 <TextView
-                    android:id="@+id/TextView01"
+                    android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/activity_vertical_margin"
@@ -77,7 +85,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
-                    android:id="@+id/date"
+                    android:id="@+id/editDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -87,6 +95,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
                 android:layout_weight="0.08" >
 
                 <TextView
@@ -100,7 +110,6 @@
                     android:id="@+id/editDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
-                    android:background="#00FFFFFF"
                     android:ems="10" />
 
             </LinearLayout>

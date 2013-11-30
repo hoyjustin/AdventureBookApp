@@ -161,8 +161,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 		// User selects edit page
 		case EDIT_PAGE:
-			sManagerInst.setCurrentPage(clickedPage);
 			saveState();
+			sManagerInst.setCurrentPage(clickedPage);
 			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
 			startActivityForResult(i, EDIT_PAGE);
 			break;
