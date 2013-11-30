@@ -83,7 +83,7 @@ public class ViewStoryActivity extends Activity {
 		sManager = StoryManager.getInstance();
 		sManager.initContext(this);
 		
-		currentStory = sManager.getStory();
+		currentStory = sManager.getCurrentStory();
 		
 		ImageView imageView = (ImageView)findViewById(R.id.storyThumnail);
 

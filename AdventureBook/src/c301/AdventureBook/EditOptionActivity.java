@@ -83,7 +83,7 @@ public class EditOptionActivity extends Activity {
 		// This function will put all the available pages in the listView
 		pageListView = (ListView) findViewById(R.id.list_of_goto_pages);
 		
-		pages = sManagerInst.getStory().getPages();
+		pages = sManagerInst.getCurrentStory().getPages();
 		Page currentPage = sManagerInst.getPage();
 		
 		this.adapter = new ArrayAdapter<Page>(this, R.layout.list_row, pages);

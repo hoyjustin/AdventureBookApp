@@ -34,7 +34,6 @@ public class Story implements Serializable {
 	private String description;
 	private String author;
 	private String date;
-	private String imagePath;
 	private String imageByte;
 	private List<Page> pages = new ArrayList<Page>();
 	private Page startPage;
@@ -56,13 +55,11 @@ public class Story implements Serializable {
 	 * @param imagePath
 	 *            path of the thumbnail picture of the Story.
 	 */
-	public Story(String title, String description, String author, String date,
-			String imagePath, String imageByte) {
+	public Story(String title, String description, String author, String date,String imageByte) {
 		this.title = title;
 		this.description = description;
 		this.author = author;
 		this.date = date;
-		this.imagePath = imagePath;
 		this.imageByte = imageByte;
 	}
 
@@ -141,24 +138,6 @@ public class Story implements Serializable {
 		this.author = author;
 	}
 
-	/**
-	 * This function returns the imagePath of the thumbnail photo of the Story.
-	 * 
-	 * @return imagePath the imagepath
-	 */
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	/**
-	 * This function sets the imagePath of the thumbnail photo of the story.
-	 * 
-	 * @param imagePath
-	 *            the imagepath to set
-	 */
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
 
 	/**
 	 * This function returns all the pages of the story.
@@ -213,33 +192,7 @@ public class Story implements Serializable {
 			p.setOptions(options);
 		}		
 		this.pages.remove(somePage);
-		
-		
-		
-		//for (Page p: this.pages){
-			//if (p.getuuid() == somePage.getuuid()){
-				//this.pages.remove(p);
-		//	}
-		//}
-		
-	}
-
-	/**
-	 * This function searches the list of pages for the specified page given in
-	 * the parameter and returns it.
-	 * 
-	 * @param page
-	 *            the page to be searched for
-	 * @return page the page
-	 */
-	public Page getPage(Page page) {
-		for (int i = 0; i < this.pages.size(); i++) {
-			if (this.pages.get(i).getTitle().equals(page.getTitle())) {
-				return this.pages.get(i);
-			}
-		}
-		// this.addPage(page);
-		return page;
+			
 	}
 
 	public void replacePage(Page page){
@@ -270,6 +223,11 @@ public class Story implements Serializable {
 	 */
 	public String getFilename() {
 		String filename = getStoryId() + ".sav";
+		return filename;
+	}
+	
+	public String getCacheFileName(){
+		String filename = getStoryId() + ".cache";
 		return filename;
 	}
 

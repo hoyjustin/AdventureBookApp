@@ -130,7 +130,7 @@ public class CreateStoryActivity extends Activity {
 		}
 		else{
 			boolean saveSuccess = sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-					formattedDate, show_path, imageByte, false);
+					formattedDate, imageByte, false);
 
 			if (saveSuccess == true) {
 				Toast.makeText(this, "Story Created: " + storyTitle,
@@ -158,7 +158,7 @@ public class CreateStoryActivity extends Activity {
 					public void onClick(DialogInterface dialog, int id) {
 
 						sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-								formattedDate, show_path, imageByte, true);
+								formattedDate, imageByte, true);
 
 						Toast.makeText(CreateStoryActivity.this,
 								"Story Created: " + storyTitle,
