@@ -31,14 +31,14 @@ public class GalleryActivity extends Activity{
 
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 	
-	private StoryManager sManagerInst;
-	private Page currentPage;
-	private Story currentStory;
-	private GridView gridview;
-	private Button mButtonAddPic;
-	private Button mButtonReturn;
-	private Typeface font;
-	private ArrayList<String> imageBytes;
+	StoryManager sManagerInst;
+	Page currentPage;
+	Story currentStory;
+	GridView gridview;
+	Button mButtonAddPic;
+	Button mButtonReturn;
+	Typeface font;
+	ArrayList<String> imageBytes;
 	
 	private String show_path;
 	private String imageByte;
@@ -56,7 +56,7 @@ public class GalleryActivity extends Activity{
 		gridview.setAdapter(new ImageAdapter(this, imageBytes));
 		mButtonAddPic = (Button) findViewById(R.id.add_pic);
 		mButtonReturn = (Button) findViewById(R.id.return_from_gallery);
-		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");  
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 		mButtonAddPic.setTypeface(font);  
 		mButtonReturn.setTypeface(font);  
 
@@ -111,10 +111,7 @@ public class GalleryActivity extends Activity{
 			bitmaps = new Bitmap[imageBytes.size()];
 
 			if (imageBytes.size() == 0) {
-				bitmaps = new Bitmap[1];
-				Bitmap originalImage = BitmapFactory.decodeResource(mContext.getResources(), 
-						R.drawable.default_image);
-				bitmaps[0] = originalImage;
+				
 			}
 			
 			for(int i = 0; i < imageBytes.size(); i++){

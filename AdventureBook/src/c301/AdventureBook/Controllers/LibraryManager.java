@@ -41,7 +41,7 @@ public class LibraryManager {
 	Context activityContext;
 	ArrayList<Story> mLibrary;
 
-	private static LibraryManager instance = new LibraryManager( );
+	private static LibraryManager instance = null;
 
 	public static LibraryManager getInstance() {
 		if (instance == null) {
