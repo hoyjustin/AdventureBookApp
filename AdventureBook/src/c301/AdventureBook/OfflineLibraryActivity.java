@@ -94,7 +94,7 @@ public class OfflineLibraryActivity extends Activity {
 		sManagerInst.initContext(this);
 		
 		TextView txt = (TextView) findViewById(R.id.local_lib);  
-		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");  
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
 		txt.setTypeface(font);  
 		
 		// Populate the Display

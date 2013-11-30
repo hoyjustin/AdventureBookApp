@@ -83,7 +83,7 @@ public class CreateStoryActivity extends Activity {
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 
-		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");  
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
 		createStoryButton.setTypeface(font);  
 
 		setDate();

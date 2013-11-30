@@ -70,7 +70,7 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		this.library = library;
 		this.storedlibrary = new ArrayList<Story>(library);
 		font = Typeface
-				.createFromAsset(context.getAssets(), "straightline.ttf");
+				.createFromAsset(context.getAssets(), "fonts/straightline.ttf");
 	}
 
 	@Override

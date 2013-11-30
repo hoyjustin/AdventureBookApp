@@ -81,7 +81,7 @@ public class OnlineLibraryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.online_library);
 
-		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 		TextView txt = (TextView) findViewById(R.id.online_lib);  
 		txt.setTypeface(font);  
 		initializeGlobals();

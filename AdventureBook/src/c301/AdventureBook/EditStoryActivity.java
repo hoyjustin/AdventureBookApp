@@ -73,7 +73,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(com.example.adventurebook.R.layout.edit_story_pages);
 		
-		font = Typeface.createFromAsset(getAssets(), "straightline.ttf");
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 
 		storyView = (TextView)findViewById(com.example.adventurebook.R.id.storyView);
 		storyView.setTypeface(font);
