@@ -193,7 +193,7 @@ public class ESClient {
 	/**
 	 * search by keywords
 	 */
-	private ArrayList<Story> searchStories(String Keyword) {
+	public ArrayList<Story> searchStories(String Keyword) {
 		try {
 			ArrayList<Story> filteredStories = new ArrayList<Story>();
 
