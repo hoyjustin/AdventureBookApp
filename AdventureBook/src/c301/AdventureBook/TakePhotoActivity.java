@@ -83,8 +83,8 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		resize.setEnabled(false);
 		
 		sb = (SeekBar)findViewById(R.id.slider);
-		sb.setMax(200);
-		sb.setProgress(100);
+		sb.setMax(5);
+		sb.setProgress(2);
 		sb.setOnSeekBarChangeListener(this);
 		sb.setEnabled(false);
 		
@@ -140,13 +140,9 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
-		tv.setText(String.valueOf(scalePercent/100.00) + " %");
-		if(scalePercent > 100 && scalePercent != 200){
-			imageCovert(show_path, Math.sqrt(((200.00-scalePercent)/100.00)));
-		}
-		else if(scalePercent < 100){
-			imageCovert(show_path, ((200.00-scalePercent)/100.00));
-		}
+		tv.setText(String.valueOf(scalePercent));
+		imageByte = imageCovert(show_path, (scalePercent*0.5 - 1) + 1.5);
+
 	}
 
 	@Override
@@ -196,7 +192,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnIntent) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, imageReturnIntent);
-		if(imageReturnIntent != null){
 			switch(requestCode){			
 			//Bitmap photo = (Bitmap) imageReturnIntent.getExtras().get("imageReturnIntent");
 
@@ -213,6 +208,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 			case SELECT_PHOTO:
 				if(resultCode == RESULT_OK);{
+					if(imageReturnIntent != null){
 					//Uri selectedImage = imageReturnIntent.getData();
 					//
 					//try {
@@ -243,30 +239,31 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 							
 							sb.setEnabled(true);
 							resize.setText("Re-size");
-							tv.setText("100 %");
-							sb.setProgress(100);
+							tv.setText("2");
+							sb.setProgress(2);
 							
 							select_result = 1;
+							break;
 						}
 						catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
-
+					}
+                    
 				}
-				break;
 			case TAKE_PHOTO:
 				If(resultCode == RESULT_OK);{
 					try {
 						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
 						test.setImageBitmap(bitmap);
-						imageByte = imageCovert(show_path,1.0);
+						imageByte = imageCovert(show_path,1.5);
 						
 						sb.setEnabled(true);
 						resize.setText("Re-size");
-						tv.setText("100 %");
-						sb.setProgress(100);
+						tv.setText("2");
+						sb.setProgress(2);
 						
 						select_result = 1;
 						break;
@@ -278,11 +275,9 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 						e.printStackTrace();
 					}
 				}
-				break;
 			}
 		}
 
-	}
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		finish();
@@ -292,4 +287,5 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 	}
 }
+
 
