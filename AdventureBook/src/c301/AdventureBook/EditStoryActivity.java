@@ -93,7 +93,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		editAuthor = (EditText)findViewById(com.example.adventurebook.R.id.editAuthor);
 		editDescription = (EditText)findViewById(com.example.adventurebook.R.id.editDescription);
 		editDescription.setMovementMethod(new ScrollingMovementMethod());
-		date  = (TextView)findViewById(com.example.adventurebook.R.id.date);
+		date  = (TextView)findViewById(com.example.adventurebook.R.id.editDate);
 		date.setTypeface(font);
 		
 		lstView = (ExpandableListView)findViewById(R.id.expList);
@@ -161,8 +161,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 		// User selects edit page
 		case EDIT_PAGE:
-			sManagerInst.setCurrentPage(clickedPage);
 			saveState();
+			sManagerInst.setCurrentPage(clickedPage);
 			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
 			startActivityForResult(i, EDIT_PAGE);
 			break;
