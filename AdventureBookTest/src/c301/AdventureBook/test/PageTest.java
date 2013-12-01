@@ -35,7 +35,7 @@ public class PageTest extends AndroidTestCase {
 	protected void setUp() {
 		page = new Page(pageTitle, pageDescription, uuid);
 		goToPage = new Page(goToPageTitle, goToPageDescription, goToPageId);
-		option = new Option(optionDescription, goToPage.getuuid());
+		option = new Option(optionDescription, goToPage.getPageId());
 		optionsList = new ArrayList<Option>();
 	}
 	

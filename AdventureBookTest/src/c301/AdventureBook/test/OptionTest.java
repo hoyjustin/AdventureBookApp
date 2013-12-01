@@ -27,7 +27,7 @@ public class OptionTest extends AndroidTestCase {
 	@Before
 	protected void setUp() {
 		goToPage = new Page(goToPageTitle, goToPageDescription, goToPageId);
-		option = new Option(description, goToPage.getuuid());
+		option = new Option(description, goToPage.getPageId());
 	}
 	
 	/*
