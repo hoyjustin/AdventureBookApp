@@ -62,7 +62,7 @@ public class LocalLibraryManager {
 	/**
 	 * @return the activityContext
 	 */
-	public Context getActivityContext() {
+	public Context getApplicationContext() {
 		return activityContext;
 	}
 	
@@ -97,23 +97,19 @@ public class LocalLibraryManager {
 		updateCurrentLibrary();
 	}
 	
-	public void updateCurrentLibrary() {
-		loadStoryFileWithKeyword("");
-	}
-	
 	
 	/**
 	 * Load all stories from internal storage filtered using a given keyword
 	 * 
 	 * @return a list of all Story objects with the keyword
 	 */
-	public void loadStoryFileWithKeyword(String KeyWord){
+	public void updateCurrentLibrary(){
 		ArrayList<Story> tempLibrary = new ArrayList<Story>();
 		String[] files = activityContext.getApplicationContext().fileList();
 
 		for (String fileStr:files) {
 			// do something with the file
-			if (fileStr.toLowerCase(Locale.getDefault()).contains(KeyWord) && fileStr.toLowerCase().contains(".sav")) {
+			if (fileStr.toLowerCase().contains(".sav")) {
 				try {
 					FileInputStream fis = activityContext.openFileInput(fileStr);
 					ObjectInputStream ois = new ObjectInputStream(fis);
@@ -137,5 +133,11 @@ public class LocalLibraryManager {
 		}
 		this.mLibrary = tempLibrary;
 	}
+	
+	
+	
+	
+	
+	
 	
 }
