@@ -108,7 +108,7 @@ public class GalleryActivity extends Activity{
 				ContextMenuInfo menuInfo) {
 			// TODO Auto-generated method stub
 			AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-			currentId = (int)info.id;
+			currentId = (int)info.position;
 			menu.add(0,MENU_DELETE_ID,0,"Delete");
 	}
 	public boolean onContextItemSelected(MenuItem item) {

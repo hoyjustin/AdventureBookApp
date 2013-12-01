@@ -224,6 +224,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 						}
 					}
 					}
+					break;
                     
 				}
 			case TAKE_PHOTO:
