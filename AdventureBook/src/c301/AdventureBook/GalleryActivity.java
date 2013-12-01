@@ -2,6 +2,7 @@ package c301.AdventureBook;
 
 import java.util.ArrayList;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +11,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -30,6 +35,8 @@ import com.example.adventurebook.R;
 public class GalleryActivity extends Activity{
 
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
+	private static final int MENU_DELETE_ID = 1002;
+	private int currentId;
 	
 	StoryManager sManagerInst;
 	Page currentPage;
@@ -54,6 +61,7 @@ public class GalleryActivity extends Activity{
 
 		gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(new ImageAdapter(this, imageBytes));
+		registerForContextMenu(gridview);
 		mButtonAddPic = (Button) findViewById(R.id.add_pic);
 		mButtonReturn = (Button) findViewById(R.id.return_from_gallery);
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
@@ -64,7 +72,7 @@ public class GalleryActivity extends Activity{
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Toast.makeText(GalleryActivity.this, "" + position, Toast.LENGTH_SHORT).show();
 			}
-		});
+		}); 
 		mButtonAddPic.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				Intent intent = new Intent(GalleryActivity.this,
@@ -93,7 +101,25 @@ public class GalleryActivity extends Activity{
 			sManagerInst.saveStory(currentStory, true);
 		}
 	}
+	@Override
+	//create the keep touching menu for delete 
+	public void onCreateContextMenu(ContextMenu menu, View v,
+				ContextMenuInfo menuInfo) {
+			// TODO Auto-generated method stub
+			AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+			currentId = (int)info.id;
+			menu.add(0,MENU_DELETE_ID,0,"Delete");
+	}
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		if (item.getItemId() == MENU_DELETE_ID) {
+			currentPage.removeImageByte(currentId);
+			gridview.setAdapter(new ImageAdapter(this, imageBytes));
+			
 
+		}
+		return super.onContextItemSelected(item);
+	}
 	public void onResume()
 	{  // After a pause OR at startup
 		super.onResume();

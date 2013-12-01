@@ -1,5 +1,4 @@
-/*
- * Copyright (C) <2013>  <Zhao Zhang>
+/* Copyright (C) <2013>  <Zhao Zhang>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,7 +83,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		
 		sb = (SeekBar)findViewById(R.id.slider);
 		sb.setMax(5);
-		sb.setProgress(2);
+		sb.setProgress(3);
 		sb.setOnSeekBarChangeListener(this);
 		sb.setEnabled(false);
 		
@@ -141,7 +140,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
 		tv.setText(String.valueOf(scalePercent));
-		imageByte = imageCovert(show_path, (scalePercent*0.5 - 1) + 1.5);
+		imageByte = imageCovert(show_path, (1 - scalePercent*0.5) + 2.0);
 
 	}
 
@@ -239,8 +238,8 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 							
 							sb.setEnabled(true);
 							resize.setText("Re-size");
-							tv.setText("2");
-							sb.setProgress(2);
+							tv.setText("3");
+							sb.setProgress(3);
 							
 							select_result = 1;
 							break;
@@ -262,8 +261,8 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 						
 						sb.setEnabled(true);
 						resize.setText("Re-size");
-						tv.setText("2");
-						sb.setProgress(2);
+						tv.setText("3");
+						sb.setProgress(3);
 						
 						select_result = 1;
 						break;

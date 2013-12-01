@@ -92,6 +92,9 @@ public class Page implements Serializable{
 	public void addImageByte(String imageBytes) {
 		this.imageBytes.add(imageBytes);
 	}
+	public void removeImageByte(int position){
+		this.imageBytes.remove(position);
+	}
 	public ArrayList<Annotation> getAnnotations(){
 		return this.annotations; 
 	}
