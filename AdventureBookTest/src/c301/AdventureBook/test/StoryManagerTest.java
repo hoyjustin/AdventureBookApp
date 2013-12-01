@@ -58,8 +58,6 @@ public class StoryManagerTest extends AndroidTestCase {
 	/**
 	 * Test that saveStory(Story saveStory, boolean overwrite) returns true if
 	 * the story is saved.
-	 * 
-	 * TODO: loadFromFile works if a random filename is passed in. Need to fix!
 	 */
 	@Test
 	public void testSaveStory() {

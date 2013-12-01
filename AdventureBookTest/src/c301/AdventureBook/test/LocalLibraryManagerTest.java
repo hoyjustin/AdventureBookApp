@@ -55,12 +55,19 @@ public class LocalLibraryManagerTest extends AndroidTestCase {
 		//lManager.setCurrentLibrary(library);
 	}
 	
+	/**
+	 * Test that the correct context is retrieved. 
+	 */
 	@Test
 	public void testGetActivityContext() {
 		Context activityContext = lManager.getActivityContext();
 		assertEquals(context, activityContext);
 	}
 	
+	/**
+	 * Test that the getCurrentLibrary() method returns an ArrayList containing
+	 * the correct stories.
+	 */
 	@Test
 	public void testGetCurrentLibrary() {
 		// Stories are not loaded in normal ordering
@@ -89,6 +96,9 @@ public class LocalLibraryManagerTest extends AndroidTestCase {
 		assertEquals(story3.getTitle(), someLibraryTitles.get(2));
 	}
 	
+	/**
+	 * Test that the deleteStory() method deletes a story from library.
+	 */
 	@Test
 	public void testDeleteStory() {
 		lManager.setCurrentLibrary(library);
