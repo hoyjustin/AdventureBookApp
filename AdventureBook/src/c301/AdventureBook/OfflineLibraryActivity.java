@@ -41,7 +41,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.LocalLibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
@@ -68,7 +68,7 @@ public class OfflineLibraryActivity extends Activity {
 
 	ArrayList<Story> offlineStoryLibrary; // Stories array
 	ArrayAdapter<Story> adapter; // Adapter for the stories
-	LibraryManager lManagerInst; // Controller for the Library
+	LocalLibraryManager lManagerInst; // Controller for the Library
 	StoryManager sManagerInst; // Controller for a story
 	Typeface font;
 	
@@ -87,7 +87,7 @@ public class OfflineLibraryActivity extends Activity {
 		setContentView(R.layout.offline_library);
 
 		// Initiate and Load the Local Library Manager
-		lManagerInst = LibraryManager.getInstance();
+		lManagerInst = LocalLibraryManager.getInstance();
 		lManagerInst.initContext(this);
 		
 		

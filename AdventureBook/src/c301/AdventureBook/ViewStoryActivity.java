@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.LocalLibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -33,7 +33,7 @@ public class ViewStoryActivity extends Activity {
 	private static final int FIRST_PAGE_INDEX = 0;
 	private static final int LOCALLIBRARY_ID = 0;
 	
-	LibraryManager lManager; // Controller for the Library
+	LocalLibraryManager lManager; // Controller for the Library
 	StoryManager sManager; // Controller for a story
 	Story currentStory;
 

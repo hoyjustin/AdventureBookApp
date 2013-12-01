@@ -37,15 +37,15 @@ import c301.AdventureBook.Models.Story;
  * 
  *
  */
-public class LibraryManager {
+public class LocalLibraryManager {
 	Context activityContext;
 	ArrayList<Story> mLibrary;
 
-	private static LibraryManager instance = null;
+	private static LocalLibraryManager instance = null;
 
-	public static LibraryManager getInstance() {
+	public static LocalLibraryManager getInstance() {
 		if (instance == null) {
-			instance = new LibraryManager();
+			instance = new LocalLibraryManager();
 		}
 		return instance;
 	}
@@ -95,7 +95,6 @@ public class LibraryManager {
 		String FILENAME = story.getFilename();
 		activityContext.deleteFile(FILENAME);
 		updateCurrentLibrary();
-		this.mLibrary = null;
 	}
 	
 	public void updateCurrentLibrary() {

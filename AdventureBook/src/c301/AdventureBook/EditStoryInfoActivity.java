@@ -37,6 +37,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import c301.AdventureBook.Controllers.LocalLibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Story;
 
@@ -52,8 +53,6 @@ import com.example.adventurebook.R;
  * @author Zhao Zhang - Minor Editor
  */
 public class EditStoryInfoActivity extends Activity {
-	private static final int ACTIVITY_EDIT_STORY = 0;
-
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
 
 	private EditText mStoryTitle;
@@ -61,6 +60,7 @@ public class EditStoryInfoActivity extends Activity {
 	private EditText mStoryDescription;
 	private TextView mDate;
 
+	LocalLibraryManager lManagerInst;
 	StoryManager sManagerInst;
 
 	String storyTitle;
@@ -104,7 +104,7 @@ public class EditStoryInfoActivity extends Activity {
 		});
 		saveChanges.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				createStory();
+				editStory();
 			}
 		});
 	}
@@ -126,9 +126,9 @@ public class EditStoryInfoActivity extends Activity {
 	}
 
 	/**
-	 * Creates a new story and starts the edit story activity.
+	 * Saves the edited story to file and exits activity.
 	 */
-	private void createStory() {
+	private void editStory() {
 		getUserText();
 
 		// Make sure that the user inputs a nonempty story title
@@ -136,49 +136,18 @@ public class EditStoryInfoActivity extends Activity {
 			Toast.makeText(this, "Story title cannot be blank!", Toast.LENGTH_LONG).show();
 		}
 		else{
-			boolean saveSuccess = sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-					formattedDate, imageByte, false);
+			lManagerInst = LocalLibraryManager.getInstance();
+			lManagerInst.initContext(this);
+			lManagerInst.deleteStory(currentStory);
+			currentStory.setTitle(storyTitle);
+			currentStory.setAuthor(storyAuthor);
+			currentStory.setAuthor(storyDescription);
+			boolean saveSuccess = sManagerInst.saveStory(currentStory, true);
 
 			if (saveSuccess == true) {
-				Toast.makeText(this, "Story Created: " + storyTitle,
+				Toast.makeText(this, "Story Info Edited: " + storyTitle,
 						Toast.LENGTH_LONG).show();
 				finish();
-			}
-			else {
-
-				// 1. Instantiate an AlertDialog.Builder with its constructor
-				AlertDialog.Builder builder = new AlertDialog.Builder(
-						EditStoryInfoActivity.this);
-
-				// Add the buttons
-				builder.setNegativeButton(R.string.cancel,
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// User clicked Cancel button
-					}
-				});
-
-				builder.setPositiveButton(R.string.ok,
-						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-
-						sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-								formattedDate, imageByte, true);
-
-						Toast.makeText(EditStoryInfoActivity.this,
-								"Story Created: " + storyTitle,
-								Toast.LENGTH_LONG).show();
-						finish();
-					}
-				});
-
-				// 2. Chain together various setter methods to set the dialog
-				// characteristics
-				builder.setMessage(R.string.alert_story_exists);
-
-				// 3. Get the AlertDialog from create()
-				AlertDialog dialog = builder.create();
-				dialog.show();
 			}
 		}
 	}

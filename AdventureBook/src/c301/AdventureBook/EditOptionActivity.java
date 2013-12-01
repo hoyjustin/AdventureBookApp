@@ -31,7 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import c301.AdventureBook.Controllers.LibraryManager;
+import c301.AdventureBook.Controllers.LocalLibraryManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Option;
 import c301.AdventureBook.Models.Page;
@@ -57,7 +57,7 @@ public class EditOptionActivity extends Activity {
 	Page goToPage;
 	Option returnOption;
 	
-	LibraryManager lManagerInst;
+	LocalLibraryManager lManagerInst;
 	StoryManager sManagerInst;
 
 	@Override
