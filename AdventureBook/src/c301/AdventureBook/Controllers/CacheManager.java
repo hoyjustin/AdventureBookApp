@@ -52,7 +52,8 @@ public class CacheManager {
 				}
 
 				String FILENAME = aStory.getFilename();
-				fos = applicationContext.openFileOutput(FILENAME, 0);
+				File file = new File(cacheDir, FILENAME);
+				fos = new FileOutputStream(file);
 				oos = new ObjectOutputStream(fos);
 				oos.writeObject(aStory);
 				Log.d("Successful Story Cache: ", aStory.getTitle());
@@ -77,13 +78,16 @@ public class CacheManager {
 		if (cacheDir!= null && cacheDir.isDirectory()) {
 			Log.v("Trim", "can read " + cacheDir.canRead());
 			String[] fileNames = cacheDir.list();
+			
 			//Iterate for the fileName and delete
 
 			for (String fileStr:fileNames) {
+				Log.v("Cached", fileStr);
 				// do something with the file
 				if (fileStr.toLowerCase().contains(".sav")) {
 					try {
-						FileInputStream fis = applicationContext.openFileInput(fileStr);
+						File file = new File(cacheDir, fileStr);
+						FileInputStream fis = new FileInputStream(file);
 						ObjectInputStream ois = new ObjectInputStream(fis);
 						while (true) {
 							Story someStory = (Story) ois.readObject();

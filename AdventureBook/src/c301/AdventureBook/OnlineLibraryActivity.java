@@ -366,12 +366,13 @@ public class OnlineLibraryActivity extends Activity {
 		// set dialog message
 		alertDialogBuilder
 				.setMessage(
-						"There's no network connection right now.\nLoading from Cached Data.")
+						"There's no network connection right now! Library will Loaded from Cached Data.")
 				.setCancelable(false)
 				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						// close current activity and go back to Local Library.
 						onlineStoryLibrary = cManagerInst.getCacheLibrary();
+						populateListView();
 					}
 				});
 		// create alert dialog
