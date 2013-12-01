@@ -60,11 +60,11 @@ public class AnnotationActivity extends Activity {
 	private EditText comment;
 	private Annotation someAnnotation;
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
-	String authorAnnotation;
-	String commentAnnotation;
-	StoryManager sManager;
-	String imageByte;
-	ArrayList<Annotation> currentAnnotations;
+	private String authorAnnotation;
+	private String commentAnnotation;
+	private StoryManager sManager;
+	private String imageByte;
+	private ArrayList<Annotation> currentAnnotations;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +108,9 @@ public class AnnotationActivity extends Activity {
 			}
 		});
 		populateAnnotations();
+		
+		// reset imagebyte
+		imageByte = null;
 	}
 
 	/**
