@@ -49,7 +49,7 @@ import com.example.adventurebook.R;
  * @author Justin
  *
  */
-public class EditStoryActivity extends Activity implements OnMenuItemClickListener, Serializable{
+public class EditStoryPagesActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private final static int EDIT_PAGE = 1;
 	private final static int DELETE_PAGE = 2;
@@ -103,7 +103,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		returnLocalLib.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 
-				Intent i = new Intent(EditStoryActivity.this, OfflineLibraryActivity.class);
+				Intent i = new Intent(EditStoryPagesActivity.this, OfflineLibraryActivity.class);
 				startActivity(i);
 			}
 		});
@@ -150,7 +150,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		// User selects edit page
 		case EDIT_PAGE:
 			sManagerInst.setCurrentPage(clickedPage);
-			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
+			Intent i = new Intent(EditStoryPagesActivity.this, EditPageActivity.class);
 			startActivityForResult(i, EDIT_PAGE);
 			break;
 
@@ -158,7 +158,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		case DELETE_PAGE:
 			// Ask for a confirmation from user by:
 			// Instantiating an AlertDialog.Builder with its constructor
-			AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryActivity.this);
+			AlertDialog.Builder builder = new AlertDialog.Builder(EditStoryPagesActivity.this);
 
 			// Add buttons
 			builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {

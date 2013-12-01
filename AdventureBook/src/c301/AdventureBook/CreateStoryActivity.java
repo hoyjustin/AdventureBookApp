@@ -135,7 +135,7 @@ public class CreateStoryActivity extends Activity {
 			if (saveSuccess == true) {
 				Toast.makeText(this, "Story Created: " + storyTitle,
 						Toast.LENGTH_LONG).show();
-				Intent i = new Intent(this, EditStoryActivity.class);
+				Intent i = new Intent(this, EditStoryPagesActivity.class);
 				startActivityForResult(i, ACTIVITY_EDIT_STORY);
 				finish();
 			}
@@ -164,7 +164,7 @@ public class CreateStoryActivity extends Activity {
 								"Story Created: " + storyTitle,
 								Toast.LENGTH_LONG).show();
 						Intent i = new Intent(CreateStoryActivity.this,
-								EditStoryActivity.class);
+								EditStoryPagesActivity.class);
 						startActivityForResult(i, ACTIVITY_EDIT_STORY);
 					}
 				});

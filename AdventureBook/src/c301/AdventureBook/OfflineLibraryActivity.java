@@ -295,7 +295,7 @@ public class OfflineLibraryActivity extends Activity {
 
 		sManagerInst.setCurrentStory(storyClicked);
 		
-		Intent i = new Intent(this, EditStoryActivity.class);
+		Intent i = new Intent(this, EditStoryPagesActivity.class);
 		startActivityForResult(i, ACTIVITY_EDIT_STORY);
 	}
 

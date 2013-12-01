@@ -40,7 +40,7 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
-        <activity android:name="c301.AdventureBook.EditStoryActivity" >
+        <activity android:name="c301.AdventureBook.EditStoryPagesActivity" >
         </activity>
         <activity
             android:name="c301.AdventureBook.EditPageActivity"
