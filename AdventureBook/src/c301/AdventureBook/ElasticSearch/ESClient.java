@@ -98,7 +98,8 @@ public class ESClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		
 		String status = response.getStatusLine().toString();
 		System.out.println(status);
 		HttpEntity entity = response.getEntity();

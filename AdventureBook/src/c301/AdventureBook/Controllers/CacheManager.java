@@ -78,7 +78,7 @@ public class CacheManager {
 		if (cacheDir!= null && cacheDir.isDirectory()) {
 			Log.v("Trim", "can read " + cacheDir.canRead());
 			String[] fileNames = cacheDir.list();
-			
+
 			//Iterate for the fileName and delete
 
 			for (String fileStr:fileNames) {
@@ -140,9 +140,24 @@ public class CacheManager {
 
 		return size;
 	}
-	
+
 	public ArrayList<Story> getCacheLibrary() {
 		retrieveData();
 		return this.mCacheLibrary;
 	}
+
+	public void deleteCachedStory(Story story){
+		//String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
+		String FILENAME = story.getFilename();
+
+		File cacheDir = applicationContext.getCacheDir();
+		File[] files = cacheDir.listFiles();
+
+		for (File file : files) {
+			if(file.getName().equals(FILENAME)){
+				file.delete();
+			}
+		}
+	}
+
 }

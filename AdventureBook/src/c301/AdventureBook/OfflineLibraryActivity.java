@@ -21,10 +21,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -71,7 +74,7 @@ public class OfflineLibraryActivity extends Activity {
 	LocalLibraryManager lManagerInst; // Controller for the Library
 	StoryManager sManagerInst; // Controller for a story
 	Typeface font;
-	
+
 	Story storyClicked;
 
 	/**
@@ -89,15 +92,15 @@ public class OfflineLibraryActivity extends Activity {
 		// Initiate and Load the Local Library Manager
 		lManagerInst = LocalLibraryManager.getInstance();
 		lManagerInst.initContext(this);
-		
-		
+
+
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
-		
+
 		TextView txt = (TextView) findViewById(R.id.local_lib);  
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
 		txt.setTypeface(font);  
-		
+
 		// Populate the Display
 		populateListView();
 	}
@@ -169,7 +172,7 @@ public class OfflineLibraryActivity extends Activity {
 
 		// Get the Library
 		offlineStoryLibrary = lManagerInst.getCurrentLibrary();
-				
+
 		final ListView offlineLV = (ListView) findViewById(R.id.offline_library_listView);
 		adapter = new CustomStoryAdapter(this, R.layout.library_row, offlineStoryLibrary);
 		offlineLV.setAdapter(adapter);
@@ -259,20 +262,20 @@ public class OfflineLibraryActivity extends Activity {
 	 *            - The Story that the user chose to view.
 	 */
 	private void viewStory(Story story) {
-		
+
 		//Tell the Application that we are viewing this story Locally.
 		((AdventureBook) this.getApplication()).setIsOnlineParameter(false);
-		
-		
+
+
 		sManagerInst.setCurrentStory(story);
 
 		Intent intent = new Intent(this, ViewStoryActivity.class);
 
 		startActivity(intent);
-		
+
 	}
-	
-	
+
+
 	/**
 	 * This function launches the editStory activity.
 	 * 
@@ -281,11 +284,11 @@ public class OfflineLibraryActivity extends Activity {
 	public void editInfo(Story storyClicked) {
 
 		sManagerInst.setCurrentStory(storyClicked);
-		
+
 		Intent i = new Intent(this, EditStoryInfoActivity.class);
 		startActivityForResult(i, ACTIVITY_EDIT_INFO);
 	}
-	
+
 	/**
 	 * This function launches the editStory activity.
 	 * 
@@ -294,7 +297,7 @@ public class OfflineLibraryActivity extends Activity {
 	public void editPages(Story storyClicked) {
 
 		sManagerInst.setCurrentStory(storyClicked);
-		
+
 		Intent i = new Intent(this, EditStoryPagesActivity.class);
 		startActivityForResult(i, ACTIVITY_EDIT_STORY);
 	}
@@ -306,19 +309,18 @@ public class OfflineLibraryActivity extends Activity {
 	 * @param storyClicked
 	 */
 	public void publishStory(Story storyClicked) {
+		if (isNetworkConnected()) {
 		//Since we need to give the HTTP client some time
 		//to publish the story, we need to use AsyncTasks.
 		new publishStoryTask(storyClicked).execute();
+		}
+		else {
+			// Else Display Message that Internet is not available and
+			createAlertDialog();
+		}
 	}
-	
-	/**
-	 * This class defines the publishStoryTask
-	 * 
-	 * @author Minhal
-	 *
-	 */
+
 	private class publishStoryTask extends AsyncTask<String, String, String> {
-		
 		Story story;
 		public publishStoryTask(Story storyClicked) {
 			this.story = storyClicked;
@@ -340,7 +342,8 @@ public class OfflineLibraryActivity extends Activity {
 					.show();
 		}
 	}
-	
+
+
 	/**
 	 * This function deletes a Story from the local storage.
 	 * 
@@ -352,6 +355,48 @@ public class OfflineLibraryActivity extends Activity {
 		Toast.makeText(this, "Deleted Story!", Toast.LENGTH_LONG).show();
 	}
 
+	/**
+	 * This function checks whether an Internet connection is available to the
+	 * activity.
+	 * 
+	 * Tutorial from:
+	 * http://stackoverflow.com/questions/9570237/android-check-internet
+	 * -connection
+	 * 
+	 * @return boolean
+	 */
+	private boolean isNetworkConnected() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		return (cm.getActiveNetworkInfo() != null);
+	}
+	
+	/**
+	 * This function creates a dialog box that shows internet connection error when publishing.
+	 * 
+	 */
+	private void createAlertDialog() {
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
+		// set title
+		alertDialogBuilder.setTitle("Network Error!");
+
+		// set dialog message
+		alertDialogBuilder
+				.setMessage(
+						"There's no network connection! Cannot Publish Story.")
+				.setCancelable(false)
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// close current activity and go back to Local Library.
+
+					}
+				});
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+
+		// show it
+		alertDialog.show();
+
+	}
 
 }

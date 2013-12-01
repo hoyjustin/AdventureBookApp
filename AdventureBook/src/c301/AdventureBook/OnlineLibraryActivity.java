@@ -66,17 +66,18 @@ import com.example.adventurebook.R;
 public class OnlineLibraryActivity extends Activity {
 
 	ArrayList<Story> onlineStoryLibrary = new ArrayList<Story>(); // This ArrayList will contain all the
-											// online
-											// stories that are on the server.
+	// online
+	// stories that are on the server.
 
 	ArrayAdapter<Story> adapter; // This is an adapter that will be used to
-									// populate the listview.
+	// populate the listview.
 
 	ESClient client = new ESClient(); // We need a communicator for the Server.
 
 	StoryManager sManagerInst; // Controller for the Stories
 	CacheManager cManagerInst;
 	Typeface font;
+	boolean networkConnected;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +88,14 @@ public class OnlineLibraryActivity extends Activity {
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 		TextView txt = (TextView) findViewById(R.id.online_lib);
 		txt.setTypeface(font);
-		cManagerInst = CacheManager.getInstance();
-		cManagerInst.initApplicationContext(this.getApplicationContext());
 		initializeGlobals();
-		
+		attemptNetworkConnection();
+	}
+
+	private void attemptNetworkConnection() {
 		// First CheckWhether Internet is Connected:
-		if (isNetworkConnected()) {
+		networkConnected = isNetworkConnected();
+		if (networkConnected) {
 			// Download all Stories from online then populate
 			// the list view. Since we need to give the application
 			// some time to connect to the Internet, we have to use
@@ -104,8 +107,10 @@ public class OnlineLibraryActivity extends Activity {
 			createAlertDialog();
 		}
 	}
-	
+
 	private void initializeGlobals(){
+		cManagerInst = CacheManager.getInstance();
+		cManagerInst.initApplicationContext(this.getApplicationContext());
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
 	}
@@ -189,7 +194,7 @@ public class OnlineLibraryActivity extends Activity {
 	}
 
 	private class getStoriesAndDisplay extends
-			AsyncTask<String, String, String> {
+	AsyncTask<String, String, String> {
 
 		// Display Loading Spinner on the activity.
 		// Tutorial:
@@ -208,7 +213,12 @@ public class OnlineLibraryActivity extends Activity {
 		 */
 		@Override
 		protected String doInBackground(String... arg0) {
-			fetchDataFromServer();
+			if (networkConnected) {
+				fetchDataFromServer();
+			}
+			else{
+				onlineStoryLibrary = cManagerInst.getCacheLibrary();
+			}	
 			return null;
 		}
 
@@ -250,16 +260,16 @@ public class OnlineLibraryActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private void viewStory(Story story) {
-		
+
 		//Tell the Application that we are viewing this story from Online.
 		((AdventureBook) this.getApplication()).setIsOnlineParameter(true);
-						
+
 		sManagerInst.setCurrentStory(story);
 		Intent intent = new Intent(this, ViewStoryActivity.class);
 		startActivity(intent);
-		
+
 	}
 
 	/**
@@ -293,9 +303,15 @@ public class OnlineLibraryActivity extends Activity {
 
 		if (item.getTitle() == "Download Story") {
 			downloadStory(storyClicked);
-		} else if (item.getTitle() == "Delete Story") {
-
-			new deleteStoryTask(storyClicked).execute();
+		}
+		else if (item.getTitle() == "Delete Story") {
+			
+			if (networkConnected) {
+				new deleteStoryTask(storyClicked).execute();
+			}
+			else{
+				cManagerInst.deleteCachedStory(storyClicked);
+			}
 			new getStoriesAndDisplay().execute();
 		}
 		return true;
@@ -308,7 +324,6 @@ public class OnlineLibraryActivity extends Activity {
 		public deleteStoryTask(Story storyClicked) {
 			this.story = storyClicked;
 		}
-
 		@Override
 		protected String doInBackground(String... arg0) {
 			client.deleteStory(story);
@@ -333,7 +348,7 @@ public class OnlineLibraryActivity extends Activity {
 				"Downloaded: " + storyClicked.getTitle(), Toast.LENGTH_LONG)
 				.show();
 	}
-	
+
 	/**
 	 * This function shows a random story from Online Library.
 	 * @param v
@@ -341,11 +356,11 @@ public class OnlineLibraryActivity extends Activity {
 	public void showRandomStory(View v){
 		Random r = new Random();
 		if(onlineStoryLibrary.size() != 0){
-		int choice = r.nextInt(onlineStoryLibrary.size());
-		Story randomStory = onlineStoryLibrary.get(choice);
-		sManagerInst.setCurrentStory(randomStory);
-		Intent intent = new Intent(this, ViewStoryActivity.class);
-		startActivity(intent);
+			int choice = r.nextInt(onlineStoryLibrary.size());
+			Story randomStory = onlineStoryLibrary.get(choice);
+			sManagerInst.setCurrentStory(randomStory);
+			Intent intent = new Intent(this, ViewStoryActivity.class);
+			startActivity(intent);
 		}else{
 			Toast.makeText(OnlineLibraryActivity.this,
 					"You should have a story in online library first!", Toast.LENGTH_LONG)
@@ -365,15 +380,15 @@ public class OnlineLibraryActivity extends Activity {
 
 		// set dialog message
 		alertDialogBuilder
-				.setMessage(
-						"There's no network connection right now! Library will Loaded from Cached Data.")
+		.setMessage(
+				"There's no network connection! Library will Loaded from Cached Data.")
 				.setCancelable(false)
 				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						// close current activity and go back to Local Library.
-						onlineStoryLibrary = cManagerInst.getCacheLibrary();
-						populateListView();
+						new getStoriesAndDisplay().execute();
 					}
+
 				});
 		// create alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
@@ -382,5 +397,4 @@ public class OnlineLibraryActivity extends Activity {
 		alertDialog.show();
 
 	}
-
 }

@@ -70,7 +70,8 @@ public class GalleryActivity extends Activity{
 
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Toast.makeText(GalleryActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+				//can implement full screen picture here
+				//Toast.makeText(GalleryActivity.this, "" + position, Toast.LENGTH_SHORT).show();
 			}
 		}); 
 		mButtonAddPic.setOnClickListener(new View.OnClickListener() {
