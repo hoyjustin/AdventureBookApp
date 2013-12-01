@@ -47,6 +47,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+import c301.AdventureBook.Controllers.CacheManager;
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
@@ -74,6 +75,7 @@ public class OnlineLibraryActivity extends Activity {
 	ESClient client = new ESClient(); // We need a communicator for the Server.
 
 	StoryManager sManagerInst; // Controller for the Stories
+	CacheManager cManagerInst;
 	Typeface font;
 
 	@Override
@@ -83,8 +85,10 @@ public class OnlineLibraryActivity extends Activity {
 		setContentView(R.layout.online_library);
 
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
-		TextView txt = (TextView) findViewById(R.id.online_lib);  
-		txt.setTypeface(font);  
+		TextView txt = (TextView) findViewById(R.id.online_lib);
+		txt.setTypeface(font);
+		cManagerInst = CacheManager.getInstance();
+		cManagerInst.initApplicationContext(this.getApplicationContext());
 		initializeGlobals();
 		
 		// First CheckWhether Internet is Connected:
@@ -181,6 +185,7 @@ public class OnlineLibraryActivity extends Activity {
 
 	private void fetchDataFromServer() {
 		onlineStoryLibrary = client.getAllStories();
+		cManagerInst.cacheData(onlineStoryLibrary);
 	}
 
 	private class getStoriesAndDisplay extends
@@ -361,12 +366,12 @@ public class OnlineLibraryActivity extends Activity {
 		// set dialog message
 		alertDialogBuilder
 				.setMessage(
-						"There's no network connection right now.\nReturning to Local Library.")
+						"There's no network connection right now.\nLoading from Cached Data.")
 				.setCancelable(false)
 				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						// close current activity and go back to Local Library.
-						LaunchLocalLibraryActivity(null);
+						onlineStoryLibrary = cManagerInst.getCacheLibrary();
 					}
 				});
 		// create alert dialog
