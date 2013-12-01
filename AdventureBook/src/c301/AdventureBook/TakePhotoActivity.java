@@ -229,26 +229,33 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				}
 			case TAKE_PHOTO:
 				If(resultCode == RESULT_OK);{
-					try {
-						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
-						test.setImageBitmap(bitmap);
-						imageByte = imageCovert(show_path,1.5);
-						
-						sb.setEnabled(true);
-						resize.setText("Re-size");
-						tv.setText("3");
-						sb.setProgress(3);
-						
-						select_result = 1;
-						break;
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					if(imageReturnIntent != null){
+						if(imageReturnIntent.getData() != null){
+							try {
+								ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+								Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
+								test.setImageBitmap(bitmap);
+								imageByte = imageCovert(show_path,1.5);
+								
+								sb.setEnabled(true);
+								resize.setText("Re-size");
+								tv.setText("3");
+								sb.setProgress(3);
+								
+								select_result = 1;
+								break;
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}
 					}
+					break;
+					
 				}
 			}
 		}
@@ -262,5 +269,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 	}
 }
+
+
 
 
