@@ -238,6 +238,11 @@ public class Story implements Serializable {
 		return filename;
 	}
 
+	/**
+	 * Set the start page.
+	 * 
+	 * @param startPage the start page
+	 */
 	public void setStartPage(Page startPage) {
 		this.startPage = startPage;
 	}
@@ -248,10 +253,20 @@ public class Story implements Serializable {
 				+ " date = " + this.date;
 	}
 
+	/**
+	 * Get the image byte.
+	 * 
+	 * @return imageByte the image byte
+	 */
 	public String getImageByte() {
 		return imageByte;
 	}
 
+	/**
+	 * Set the provided image byte.
+	 * 
+	 * @param imageByte the image byte to set
+	 */
 	public void setImageByte(String imageByte) {
 		this.imageByte = imageByte;
 	}
