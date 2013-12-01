@@ -9,8 +9,7 @@ import junit.framework.TestCase;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.junit.Before;
-import org.junit.Test;
+
 
 import c301.AdventureBook.Models.Annotation;
 import c301.AdventureBook.Models.Option;
@@ -33,15 +32,13 @@ public class EclienTest extends TestCase
 	public static final String SEARCH_PRETTY = "_search?pretty=1&q=";
 	public static final int MAX_STORIES = 20;
 
-	
-	@Before
+
 	protected void setUp() throws Exception
 	{
 		super.setUp();
 		Eclient =new ESClient();
 	}
 
-	@Test
 	public void testInsertStory() throws IOException {
 		
 		r = new Story("CatStory", "This Story is about a Cat", "lala",
