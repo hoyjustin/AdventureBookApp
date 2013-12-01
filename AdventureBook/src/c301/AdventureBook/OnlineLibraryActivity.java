@@ -1,4 +1,5 @@
 /*
+ /*
  * Copyright (C) <2013>  <Minhal Syed>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -63,7 +64,7 @@ import com.example.adventurebook.R;
  */
 public class OnlineLibraryActivity extends Activity {
 
-	ArrayList<Story> onlineStoryLibrary; // This ArrayList will contain all the
+	ArrayList<Story> onlineStoryLibrary = new ArrayList<Story>(); // This ArrayList will contain all the
 											// online
 											// stories that are on the server.
 
@@ -334,13 +335,17 @@ public class OnlineLibraryActivity extends Activity {
 	 */
 	public void showRandomStory(View v){
 		Random r = new Random();
+		if(onlineStoryLibrary.size() != 0){
 		int choice = r.nextInt(onlineStoryLibrary.size());
 		Story randomStory = onlineStoryLibrary.get(choice);
-		
-
 		sManagerInst.setCurrentStory(randomStory);
 		Intent intent = new Intent(this, ViewStoryActivity.class);
 		startActivity(intent);
+		}else{
+			Toast.makeText(OnlineLibraryActivity.this,
+					"You should have a story in online library first!", Toast.LENGTH_LONG)
+					.show();
+		}
 	}
 
 	/**
