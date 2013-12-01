@@ -57,7 +57,6 @@ public class EditOptionActivity extends Activity {
 	Page goToPage;
 	Option returnOption;
 	
-	LocalLibraryManager lManagerInst;
 	StoryManager sManagerInst;
 
 	@Override
