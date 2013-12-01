@@ -31,7 +31,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.PopupMenu;
@@ -57,14 +56,8 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 	private ExpandableListAdapter adpt;
 	private ExpandableListView lstView;
-	private TextView title;
-	private TextView author;
-	private TextView description;
-	private EditText editTitle;
-	private EditText editAuthor;
-	private EditText editDescription;
-	private TextView date;
-	
+	private TextView tableContents;
+	private TextView pageView;
 	private Button createPage;
 	private Button returnLocalLib;
 	private PopupMenu popupMenu;
@@ -82,21 +75,12 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 
-		title = (TextView)findViewById(com.example.adventurebook.R.id.title);
-		title.setTypeface(font);
-		author = (TextView)findViewById(com.example.adventurebook.R.id.author);
-		author.setTypeface(font);
-		description = (TextView)findViewById(com.example.adventurebook.R.id.description);
-		description.setTypeface(font);
-		
-		editTitle = (EditText)findViewById(com.example.adventurebook.R.id.editTitle);
-		editAuthor = (EditText)findViewById(com.example.adventurebook.R.id.editAuthor);
-		editDescription = (EditText)findViewById(com.example.adventurebook.R.id.editDescription);
-		editDescription.setMovementMethod(new ScrollingMovementMethod());
-		date  = (TextView)findViewById(com.example.adventurebook.R.id.date);
-		date.setTypeface(font);
-		
+		tableContents = (TextView)findViewById(com.example.adventurebook.R.id.table_contents);
+		tableContents.setTypeface(font);
+		pageView = (TextView)findViewById(com.example.adventurebook.R.id.pageView);
+		pageView.setMovementMethod(new ScrollingMovementMethod());
 		lstView = (ExpandableListView)findViewById(R.id.expList);
+
 		createPage = (Button) findViewById(R.id.create_new_page);
 		returnLocalLib = (Button) findViewById(R.id.return_local_lib);
 
@@ -118,7 +102,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 		returnLocalLib.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				saveState();
+
 				Intent i = new Intent(EditStoryActivity.this, OfflineLibraryActivity.class);
 				startActivity(i);
 			}
@@ -128,6 +112,9 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		{  
 			@Override
 			public void onGroupExpand(int position) {
+				clickedPage = (Page)adpt.getGroup(position);
+				pageView.setText("Page Selected:    " + clickedPage.getTitle() + "\n" + "Content:    " +
+						clickedPage.getPageDescription());
 				popupMenu.show();
 
 
@@ -161,7 +148,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 
 		// User selects edit page
 		case EDIT_PAGE:
-			saveState();
 			sManagerInst.setCurrentPage(clickedPage);
 			Intent i = new Intent(EditStoryActivity.this, EditPageActivity.class);
 			startActivityForResult(i, EDIT_PAGE);
@@ -203,12 +189,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 	 */
 	private void fillData() {
 		//load model here
-
 		someStory = sManagerInst.getCurrentStory();
-		editTitle.setText(someStory.getTitle());
-		editAuthor.setText(someStory.getDescription());
-		editDescription.setText(someStory.getAuthor());
-		date.setText(someStory.getDate());
 		List<Page> storyPages = someStory.getPages();
 		adpt = new ExpandableListAdapter(this, lstView, storyPages);
 		lstView.setAdapter(adpt);
@@ -224,17 +205,6 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
         fillData();
     }
 
-	private void saveState() {
-
-        String title = editTitle.getText().toString();
-        String author = editAuthor.getText().toString();
-        String description = editDescription.getText().toString();
-        someStory.setTitle(title);
-        someStory.setAuthor(author);
-        someStory.setDescription(description);
-    }
-	
-	
 	/* Do we want a context menu instead?
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,

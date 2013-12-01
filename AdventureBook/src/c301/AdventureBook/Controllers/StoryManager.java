@@ -85,6 +85,8 @@ public class StoryManager {
 	public boolean createStory(String storyTitle, String storyDescription, String storyAuthor, 
 			String formattedDate, String imageByte, boolean overwrite){
 		
+		UUID generatedUUID = UUID.randomUUID();
+				
 		Story newStory = new Story(storyTitle, storyDescription, storyAuthor,
 				formattedDate, imageByte);
 		
@@ -208,7 +210,7 @@ public class StoryManager {
 	
 	public void createOption(String description, Page goToPage) {
 		//New Page
-		String uuid = goToPage.getuuid();
+		String uuid = goToPage.getPageUUID();
 		Option option = new Option(description, uuid);
 		this.mPage.addOption(option);
 		this.mOption = option;

@@ -64,6 +64,7 @@ import com.example.adventurebook.R;
 public class OfflineLibraryActivity extends Activity {
 
 	private static final int ACTIVITY_EDIT_STORY = 0;
+	private int ACTIVITY_EDIT_INFO = 100;
 
 	ArrayList<Story> offlineStoryLibrary; // Stories array
 	ArrayAdapter<Story> adapter; // Adapter for the stories
@@ -204,7 +205,8 @@ public class OfflineLibraryActivity extends Activity {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Publish Online");
-		menu.add("Edit Story");
+		menu.add("Edit Story Info");
+		menu.add("Edit Pages");
 		menu.add("Delete Story");
 	}
 
@@ -225,11 +227,15 @@ public class OfflineLibraryActivity extends Activity {
 			// Do Publish Story Function
 			publishStory(storyClicked);
 
-		} else if (item.getTitle() == "Edit Story") {
+		} else if (item.getTitle() == "Edit Story Info") {
 			// Do Edit Story Function
-			editStory(storyClicked);
+			editInfo(storyClicked);
 
-		} else if (item.getTitle() == "Delete Story") {
+		} else if (item.getTitle() == "Edit Pages") {
+			// Do Edit Story Function
+			editPages(storyClicked);
+		} 
+		else if (item.getTitle() == "Delete Story") {
 			// Do Delete Story Function
 			deleteStory(storyClicked);
 
@@ -265,12 +271,27 @@ public class OfflineLibraryActivity extends Activity {
 		startActivity(intent);
 		
 	}
+	
+	
 	/**
 	 * This function launches the editStory activity.
 	 * 
 	 * @param storyClicked
 	 */
-	public void editStory(Story storyClicked) {
+	public void editInfo(Story storyClicked) {
+
+		sManagerInst.setCurrentStory(storyClicked);
+		
+		Intent i = new Intent(this, EditStoryInfoActivity.class);
+		startActivityForResult(i, ACTIVITY_EDIT_INFO);
+	}
+	
+	/**
+	 * This function launches the editStory activity.
+	 * 
+	 * @param storyClicked
+	 */
+	public void editPages(Story storyClicked) {
 
 		sManagerInst.setCurrentStory(storyClicked);
 		

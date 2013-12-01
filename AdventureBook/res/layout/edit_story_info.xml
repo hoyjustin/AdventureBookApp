@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) <2013>  <Terence Yin Kiu Leung>
+ 
+	 This program is free software: you can redistribute it and/or modify
+	 it under the terms of the GNU General Public License as published by
+	 the Free Software Foundation, either version 3 of the License, or
+	 (at your option) any later version.
+	 
+	 This program is distributed in the hope that it will be useful,
+	 but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 GNU General Public License for more details.
+	 
+	 You should have received a copy of the GNU General Public License
+	 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cloud_wallpaper"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="#33FFFFFF"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/title"
+            android:textSize="20sp" />
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border" >
+
+            <EditText
+                android:id="@+id/editStoryTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="@string/new_story_hint"
+                android:padding="3dp"
+                android:singleLine="true" />
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Upload image box -->
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/border"
+        android:contentDescription="@string/image_content_description"
+        android:scaleType="fitCenter"
+        android:src="@drawable/imageadd128" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_weight="0.59"
+        android:background="#33FFFFFF"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/storyDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/story_description"
+            android:textSize="17sp" />
+
+        <ScrollView
+            android:id="@+id/editStoryBox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.06"
+            android:background="@drawable/border" >
+
+            <EditText
+                android:id="@+id/editStoryDescription"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="@string/story_desc_hint"
+                android:inputType="textMultiLine"
+                android:padding="3dp" />
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/authorText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:hint="@string/story_author"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/story_date" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Create story button -->
+
+    <Button
+        android:id="@+id/createStoryButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:onClick="onClickBtn"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/create_story" />
+
+</LinearLayout>

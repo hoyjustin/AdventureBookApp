@@ -29,18 +29,18 @@ public class Page implements Serializable{
 	private List<Option> options;
 	private String pageDescription;
 	private ArrayList<String> imageBytes;
-	private String uuid;
+	private String pageUUID;
 	
 	private ArrayList<Annotation> annotations;
 	
 	
-	public Page(String title, String pageDescription, String uuid){
+	public Page(String title, String pageDescription, String pageUUID){
 		this.title = title;
 		this.pageDescription = pageDescription;
 		this.options = new ArrayList<Option>();
 		this.annotations = new ArrayList<Annotation>();
 		this.imageBytes = new ArrayList<String>();
-		this.uuid = uuid;
+		this.pageUUID = pageUUID;
 	}
 	
 	public void deleteOption(Option option) {
@@ -95,8 +95,14 @@ public class Page implements Serializable{
 		return this.annotations; 
 	}
 	
-	public String getuuid(){
-		return this.uuid;
+	/**
+	 * This function returns the id of a page. StoryId = a randomly generated UUID provided in the constructor (no
+	 * spaces)
+	 * 
+	 * @return pageUUID
+	 */
+	public String getPageUUID(){
+		return this.pageUUID;
 	}
     
 

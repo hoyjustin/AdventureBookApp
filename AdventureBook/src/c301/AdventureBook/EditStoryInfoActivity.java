@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import c301.AdventureBook.Controllers.StoryManager;
+import c301.AdventureBook.Models.Story;
 
 import com.example.adventurebook.R;
 
@@ -50,7 +51,7 @@ import com.example.adventurebook.R;
  * @author Justin Hoy - Minor Editor
  * @author Zhao Zhang - Minor Editor
  */
-public class CreateStoryActivity extends Activity {
+public class EditStoryInfoActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY = 0;
 
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
@@ -70,6 +71,8 @@ public class CreateStoryActivity extends Activity {
 	String show_path;
 	String imageByte;
 	Typeface font;
+	
+	Story currentStory;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +84,15 @@ public class CreateStoryActivity extends Activity {
 		mStoryTitle = (EditText) findViewById(R.id.editStoryTitle);
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
-		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
+		mDate = (TextView) findViewById(R.id.dateText);
+		
+		Button saveChanges = (Button) findViewById(R.id.createStoryButton);
 
-		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
-		createStoryButton.setTypeface(font);  
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
+		saveChanges.setText("Save Changes");
+		saveChanges.setTypeface(font);  
 
-		setDate();
+		setInfo();
 		image.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -96,7 +102,7 @@ public class CreateStoryActivity extends Activity {
 				startActivityForResult(intent, PHOTO_ACTIVITY_REQUEST);
 			}
 		});
-		createStoryButton.setOnClickListener(new View.OnClickListener() {
+		saveChanges.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				createStory();
 			}
@@ -107,12 +113,16 @@ public class CreateStoryActivity extends Activity {
 	 * Set the story creation date
 	 */
 	@SuppressLint("SimpleDateFormat")
-	private void setDate() {
-		mDate = (TextView) findViewById(R.id.dateText);
-		Calendar c = Calendar.getInstance();
-		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-		formattedDate = df.format(c.getTime());
-		mDate.setText("Date: " + formattedDate);
+	private void setInfo() {
+		
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
+		currentStory = sManagerInst.getCurrentStory();
+
+		mStoryTitle.setText(currentStory.getTitle());
+		mStoryDescription.setText(currentStory.getDescription());
+		mStoryAuthor.setText(currentStory.getAuthor());
+		mDate.setText(currentStory.getDate());
 	}
 
 	/**
@@ -120,9 +130,6 @@ public class CreateStoryActivity extends Activity {
 	 */
 	private void createStory() {
 		getUserText();
-
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
 
 		// Make sure that the user inputs a nonempty story title
 		if (storyTitle.length() == 0) {
@@ -135,15 +142,13 @@ public class CreateStoryActivity extends Activity {
 			if (saveSuccess == true) {
 				Toast.makeText(this, "Story Created: " + storyTitle,
 						Toast.LENGTH_LONG).show();
-				Intent i = new Intent(this, EditStoryActivity.class);
-				startActivityForResult(i, ACTIVITY_EDIT_STORY);
 				finish();
 			}
 			else {
 
 				// 1. Instantiate an AlertDialog.Builder with its constructor
 				AlertDialog.Builder builder = new AlertDialog.Builder(
-						CreateStoryActivity.this);
+						EditStoryInfoActivity.this);
 
 				// Add the buttons
 				builder.setNegativeButton(R.string.cancel,
@@ -160,12 +165,10 @@ public class CreateStoryActivity extends Activity {
 						sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
 								formattedDate, imageByte, true);
 
-						Toast.makeText(CreateStoryActivity.this,
+						Toast.makeText(EditStoryInfoActivity.this,
 								"Story Created: " + storyTitle,
 								Toast.LENGTH_LONG).show();
-						Intent i = new Intent(CreateStoryActivity.this,
-								EditStoryActivity.class);
-						startActivityForResult(i, ACTIVITY_EDIT_STORY);
+						finish();
 					}
 				});
 
