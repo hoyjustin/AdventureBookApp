@@ -228,6 +228,11 @@ public class Story implements Serializable {
 		return filename;
 	}
 	
+	/**
+	 * This function gets the cache filename and returns it.
+	 * 
+	 * @return filename the filename
+	 */
 	public String getCacheFileName(){
 		String filename = getStoryId() + ".cache";
 		return filename;
