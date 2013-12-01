@@ -317,7 +317,7 @@ public class OnlineLibraryActivity extends Activity {
 
 		protected void onPostExecute(String result) {
 			Toast.makeText(OnlineLibraryActivity.this,
-					"Delete " + this.story.getTitle(), Toast.LENGTH_SHORT)
+					"Deleted " + this.story.getTitle(), Toast.LENGTH_SHORT)
 					.show();
 		}
 	}
