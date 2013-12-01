@@ -41,10 +41,10 @@ import c301.AdventureBook.Models.Story;
  *
  */
 public class StoryManager {
-	Context activityContext;
-	Story currentStory;
-	Page currentPage;
-	Option currentOption;
+	private Context activityContext;
+	private Story currentStory;
+	private Page currentPage;
+	private Option currentOption;
 
 	private static StoryManager instance = null;
 
