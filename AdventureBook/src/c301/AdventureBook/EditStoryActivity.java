@@ -112,6 +112,7 @@ public class EditStoryActivity extends Activity implements OnMenuItemClickListen
 		{  
 			@Override
 			public void onGroupExpand(int position) {
+
 				clickedPage = (Page)adpt.getGroup(position);
 				pageView.setText("Page Selected:    " + clickedPage.getTitle() + "\n" + "Content:    " +
 						clickedPage.getPageDescription());

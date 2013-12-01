@@ -193,7 +193,7 @@ public class ESClient {
 	/**
 	 * search by keywords
 	 */
-	private ArrayList<Story> searchStories(String Keyword) {
+	public ArrayList<Story> searchStories(String Keyword) {
 		try {
 			ArrayList<Story> filteredStories = new ArrayList<Story>();
 
@@ -224,54 +224,6 @@ public class ESClient {
 		}
 	}
 
-	/**
-	 * advanced search (logical operators)
-	 */
-	/*
-	 * public void searchsearchRecipes(String str) throws
-	 * ClientProtocolException, IOException { HttpPost searchRequest = new
-	 * HttpPost(
-	 * "http://cmput301.softwareprocess.es:8080/cmput301f13t11/_search?pretty=1"
-	 * ); String query =
-	 * "{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \""
-	 * + str + "\"}}}"; StringEntity stringentity = new StringEntity(query);
-	 * 
-	 * searchRequest.setHeader("Accept", "application/json");
-	 * searchRequest.setEntity(stringentity);
-	 * 
-	 * HttpResponse response = httpclient.execute(searchRequest); String status
-	 * = response.getStatusLine().toString(); System.out.println(status);
-	 * 
-	 * String json = getEntityContent(response);
-	 * 
-	 * Type elasticSearchSearchResponseType = new
-	 * TypeToken<ElasticSearchSearchResponse<Recipe>>() { }.getType();
-	 * ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json,
-	 * elasticSearchSearchResponseType); System.err.println(esResponse); for
-	 * (ElasticSearchResponse<Recipe> r : esResponse.getHits()) { Recipe recipe
-	 * = r.getSource(); System.err.println(recipe); }
-	 * searchRequest.releaseConnection(); }
-	 */
-
-	/**
-	 * update a field in a recipe
-	 */
-	/*
-	 * public void updateRecipes(String str) throws ClientProtocolException,
-	 * IOException { HttpPost updateRequest = new HttpPost(
-	 * "http://cmput301.softwareprocess.es:8080/testing/lab02/1/_update");
-	 * String query = "{\"script\" : \"ctx._source." + str + "}"; StringEntity
-	 * stringentity = new StringEntity(query);
-	 * 
-	 * updateRequest.setHeader("Accept", "application/json");
-	 * updateRequest.setEntity(stringentity);
-	 * 
-	 * HttpResponse response = httpclient.execute(updateRequest); String status
-	 * = response.getStatusLine().toString(); System.out.println(status);
-	 * 
-	 * String json = getEntityContent(response);
-	 * //updateRequest.releaseConnection(); }
-	 */
 	public void deleteURI(String URI) {
 		try {
 
@@ -362,23 +314,4 @@ public class ESClient {
 		return storyExists;
 	}
 
-	/*
-	 * // Main Test public static void main(String[] args) {
-	 * 
-	 * ESClient client = new ESClient();
-	 * 
-	 * Story aStory = testCases.initializeStory(); Story bStory =
-	 * testCases.initializeStory2();
-	 * 
-	 * client.insertStory(aStory); //client.insertStory(bStory);
-	 * 
-	 * // search by keywords
-	 * 
-	 * ArrayList<Story> searchedStories = client.getAllStories();
-	 * 
-	 * for (Story cStory : searchedStories) {
-	 * System.out.println(cStory.toString()); }
-	 * 
-	 * }
-	 */
 }

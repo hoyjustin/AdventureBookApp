@@ -25,13 +25,12 @@ public class StoryTest extends AndroidTestCase {
 	private String uuid = UUID.randomUUID().toString();
 	private String author = "william";
 	private String date = "2013.11.6";
-	private String imagePath = "I don't know";
 	private String imageByte = "random imagebyte";
 	public List<Page> pages = new ArrayList<Page>();
 
 	@Before
 	protected void setUp() throws Exception {
-		story = new Story(title, description, author, date, imagePath, imageByte);
+		story = new Story(title, description, author, date, imageByte);
 	}
 
 	@After
@@ -43,7 +42,6 @@ public class StoryTest extends AndroidTestCase {
      */
 	@Test
 	public void testGetter() {
-		assertEquals(imagePath, story.getImagePath());
 		assertEquals(date, story.getDate());
 		assertEquals(title, story.getTitle());
 		assertEquals(description, story.getDescription());

@@ -184,7 +184,9 @@ public class Story implements Serializable {
 			
 			for (int i = 0; i < options.size(); i++){
 				Option o = options.get(i);
-				if (o.getGoToPage() == somePage.getPageUUID()){
+
+				if (o.getGoToPage() == somePage.getPageId()){
+
 					options.remove(i);
 					i = i - 1;
 				}
