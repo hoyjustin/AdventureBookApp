@@ -53,7 +53,7 @@ import com.example.adventurebook.R;
  * @author Zhao Zhang - Minor Editor
  */
 public class EditStoryInfoActivity extends Activity {
-	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
+	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 
 	private EditText mStoryTitle;
 	private EditText mStoryAuthor;
@@ -68,10 +68,9 @@ public class EditStoryInfoActivity extends Activity {
 	String storyDescription;
 	String formattedDate;
 	ImageView image;
-	String show_path;
 	String imageByte;
 	Typeface font;
-	
+
 	Story currentStory;
 
 	@Override
@@ -85,12 +84,12 @@ public class EditStoryInfoActivity extends Activity {
 		mStoryDescription = (EditText) findViewById(R.id.editStoryDescription);
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		mDate = (TextView) findViewById(R.id.dateText);
-		
+
 		Button saveChanges = (Button) findViewById(R.id.createStoryButton);
 
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 		saveChanges.setText("Save Changes");
-		saveChanges.setTypeface(font);  
+		saveChanges.setTypeface(font);
 
 		setInfo();
 		image.setOnClickListener(new OnClickListener() {
@@ -110,15 +109,23 @@ public class EditStoryInfoActivity extends Activity {
 	}
 
 	/**
-	 * Set the story creation date
+	 * Display the Story's Previous Info
 	 */
 	@SuppressLint("SimpleDateFormat")
 	private void setInfo() {
-		
+
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
 		currentStory = sManagerInst.getCurrentStory();
 
+		if (currentStory.getImageByte()!= null){
+			imageByte = currentStory.getImageByte();
+			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			image.setImageBitmap(decodedByte);
+		}
+		
+		
 		mStoryTitle.setText(currentStory.getTitle());
 		mStoryDescription.setText(currentStory.getDescription());
 		mStoryAuthor.setText(currentStory.getAuthor());
@@ -133,15 +140,23 @@ public class EditStoryInfoActivity extends Activity {
 
 		// Make sure that the user inputs a nonempty story title
 		if (storyTitle.length() == 0) {
-			Toast.makeText(this, "Story title cannot be blank!", Toast.LENGTH_LONG).show();
-		}
-		else{
+			Toast.makeText(this, "Story title cannot be blank!",
+					Toast.LENGTH_LONG).show();
+		} else if (storyAuthor.length() == 0) {
+			Toast.makeText(this, "Story's author cannot be blank!",
+					Toast.LENGTH_LONG).show();
+
+		} else {
 			lManagerInst = LocalLibraryManager.getInstance();
 			lManagerInst.initContext(this);
 			lManagerInst.deleteStory(currentStory);
+
 			currentStory.setTitle(storyTitle);
 			currentStory.setAuthor(storyAuthor);
-			currentStory.setAuthor(storyDescription);
+			currentStory.setDescription(storyDescription);
+			if (imageByte != null) {
+				currentStory.setImageByte(imageByte);
+			}
 			boolean saveSuccess = sManagerInst.saveStory(currentStory, true);
 
 			if (saveSuccess == true) {
@@ -168,11 +183,11 @@ public class EditStoryInfoActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
 
-			show_path = data.getStringExtra("path");
 			imageByte = data.getStringExtra("imagebyte");
 
 			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+					0, decodedString.length);
 			image.setImageBitmap(decodedByte);
 
 		}

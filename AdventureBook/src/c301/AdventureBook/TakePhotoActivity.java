@@ -159,7 +159,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	
 	private void saveAndFinish() {
 		Intent intent = new Intent();		
-		intent.putExtra("path", show_path);
 		intent.putExtra("imagebyte", imageByte);
 		setResult(RESULT_OK, intent);
 		finish();
@@ -192,34 +191,10 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, imageReturnIntent);
 			switch(requestCode){			
-			//Bitmap photo = (Bitmap) imageReturnIntent.getExtras().get("imageReturnIntent");
-
-			//ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-			//test.setImageBitmap(photo);
-
-			//try{
-			//	String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/name.jpg";
-			//	FileOutputStream out = new FileOutputStream(imageFilePath);
-			//	photo.compress(Bitmap.CompressFormat.JPEG, 90, out);
-			//} catch(Exception e) {
-			//	e.printStackTrace();
-			//}
 
 			case SELECT_PHOTO:
 				if(resultCode == RESULT_OK);{
 					if(imageReturnIntent != null){
-					//Uri selectedImage = imageReturnIntent.getData();
-					//
-					//try {
-					//	InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-					//	Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-					//	ImageView test2 = (ImageView) findViewById(R.id.upload_photo_view);
-					//	test2.setImageBitmap(yourSelectedImage);
-					//} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					//	e.printStackTrace();
-					//}
-
 
 					if(imageReturnIntent.getData() != null){
 						try {
