@@ -62,7 +62,6 @@ public class AnnotationActivity extends Activity {
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 	String authorAnnotation;
 	String commentAnnotation;
-	String show_path;
 	StoryManager sManager;
 	String imageByte;
 	ArrayList<Annotation> currentAnnotations;
@@ -106,14 +105,9 @@ public class AnnotationActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				createAnnotation();
-
-				Toast.makeText(getBaseContext(), "Annotation Added!",
-						Toast.LENGTH_SHORT).show();
 			}
 		});
-
 		populateAnnotations();
-
 	}
 
 	/**
@@ -157,7 +151,7 @@ public class AnnotationActivity extends Activity {
 				}
 
 				// Set the comment into the textview
-				commentTV.setText(currentAnnotations.get(i).getComment());
+				commentTV.setText("Comment: " + currentAnnotations.get(i).getComment());
 
 				lLayout.addView(authorTV);
 				lLayout.addView(imageView);
@@ -206,54 +200,54 @@ public class AnnotationActivity extends Activity {
 		boolean isOnline = ((AdventureBook) this.getApplication())
 				.getIsOnlineParameter();
 
-		
 		getUserInfo();
-		someAnnotation = new Annotation(authorAnnotation, commentAnnotation);
-		someAnnotation.setIllustration(imageByte);
-		Page currentPage = sManager.getPage();
-		currentPage.addAnnotation(someAnnotation);
-		
-		
-		if (!isOnline) {
-			// If we are viewing this story locally then do this:
-			// Save the Updated Story Locally
-			
-			sManager.saveStory(sManager.getCurrentStory(), true);
-			// Refresh the current activity to repopulate views
 
+		if (authorAnnotation.length() == 0) {
+			Toast.makeText(this, "Author cannot be blank!", Toast.LENGTH_SHORT)
+					.show();
 		} else {
-			// If we are viewing this story from online then do this:
-			new publishStoryTask(sManager.getCurrentStory()).execute();
+			someAnnotation = new Annotation(authorAnnotation, commentAnnotation);
+			someAnnotation.setIllustration(imageByte);
+			
+			Page currentPage = sManager.getPage();
+			currentPage.addAnnotation(someAnnotation);
 
+			if (!isOnline) {
+				// If we are viewing this story locally then do this:
+				// Save the Updated Story Locally
+
+				sManager.saveStory(sManager.getCurrentStory(), true);
+				// Refresh the current activity to repopulate views
+
+			} else {
+				// If we are viewing this story from online then do this:
+				new publishStoryTask(sManager.getCurrentStory()).execute();
+
+			}
+			
+			Toast.makeText(getBaseContext(), "Annotation Added!",
+					Toast.LENGTH_SHORT).show();
+						
+			finish();
+			startActivity(getIntent());
 		}
-		finish();
-		startActivity(getIntent());
+
 	}
-	
-	/**
-	 * This function publishes a story on the 
-	 * WebServer.
-	 * 
-	 * @param storyClicked
-	 */
-	public void publishStory(Story storyClicked) {
-		//Since we need to give the HTTP client some time
-		//to publish the story, we need to use AsyncTasks.
-		new publishStoryTask(storyClicked).execute();
-	}
-	
+
 	/**
 	 * This class defines the publishStoryTask
 	 * 
 	 * @author Minhal
-	 *
+	 * 
 	 */
 	private class publishStoryTask extends AsyncTask<String, String, String> {
-		
+
 		Story story;
+
 		public publishStoryTask(Story storyClicked) {
 			this.story = storyClicked;
 		}
+
 		@Override
 		protected String doInBackground(String... arg0) {
 			ESClient client = new ESClient();
@@ -266,7 +260,6 @@ public class AnnotationActivity extends Activity {
 			return null;
 		}
 	}
-	
 
 	/**
 	 * this should go back to the view page
@@ -282,7 +275,6 @@ public class AnnotationActivity extends Activity {
 	private void getUserInfo() {
 		authorAnnotation = author.getText().toString();
 		commentAnnotation = comment.getText().toString();
-
 	}
 
 	@Override
