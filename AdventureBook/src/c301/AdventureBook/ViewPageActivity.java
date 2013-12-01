@@ -44,108 +44,113 @@ import com.example.adventurebook.R;
 
 /**
  * The view page activity handles page viewing to the user when they read
- * through a story. From the page, users can choose an option that takes
- * them to another page, or view/add annotations to the page.
- *
+ * through a story. From the page, users can choose an option that takes them to
+ * another page, or view/add annotations to the page.
+ * 
  */
 public class ViewPageActivity extends Activity {
 
 	private static final int LOCALLIBRARY_ID = 0;
-	//private Story currentStory;
-	//private List<Page> pages;
+	// private Story currentStory;
+	// private List<Page> pages;
 	private List<Option> options;
 	ListView optionsListView;
 	Button endStoryButton;
 	TextView optionDescription;
 	Page goToPage;
-	
+
 	public StoryManager sManager;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_page);
-		
+
 		sManager = StoryManager.getInstance();
 		sManager.initContext(this);
 		populatePage();
-		
+
 		// When option is clicked, go to the next page.
 		optionsListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
-				Option chosenOption = (Option) optionsListView.getItemAtPosition(position);
+				Option chosenOption = (Option) optionsListView
+						.getItemAtPosition(position);
 				Random rand = new Random();
-				while(chosenOption instanceof RandomOption){
+				while (chosenOption instanceof RandomOption) {
 					int randomIndex = rand.nextInt(options.size());
 					chosenOption = (Option) options.get(randomIndex);
-				}				
+				}
 				sManager.setCurrentOption(chosenOption);
-				
+
 				chosenOption.getGoToPage();
-				
+
 				Story currentStory = sManager.getCurrentStory();
 				List<Page> pages = currentStory.getPages();
-				for(Page page:pages){
-					if(chosenOption.getGoToPage().equals(page.getPageId())){
+				for (Page page : pages) {
+					if (chosenOption.getGoToPage().equals(page.getPageId())) {
 						goToPage = page;
 						Log.d("UUID", page.getPageId());
 					}
 				}
-				
+
 				sManager.setCurrentPage(goToPage);
-				Toast.makeText(ViewPageActivity.this, "You Picked The Option: " + chosenOption.getDescription(), Toast.LENGTH_SHORT).show();
-				Intent intent = new Intent(getApplicationContext(), ViewPageActivity.class);
+				Toast.makeText(
+						ViewPageActivity.this,
+						"You Picked The Option: "
+								+ chosenOption.getDescription(),
+						Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(getApplicationContext(),
+						ViewPageActivity.class);
 				startActivity(intent);
-				
+
 				/*
-				 * Allow the user to go back? Implementing finish() will
-				 * inhibit the user from going back to the previous page
+				 * Allow the user to go back? Implementing finish() will inhibit
+				 * the user from going back to the previous page
 				 */
 				finish();
 			}
 		});
-		
+
 		endStoryButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 				returnHome();
 			}
 		});
-		
+
 	}
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_story, menu);
-        menu.add(0, LOCALLIBRARY_ID, 0, R.string.menu_offline_library);
-        return true;
-    }
-    
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch(item.getItemId()) {
-            case LOCALLIBRARY_ID:
-                returnHome();
-                return true;
-        }
-        return super.onMenuItemSelected(featureId, item);
-    }
-	
-    /**
-     * Return to the library when the user is finished with viewing story.
-     */
-    private void returnHome() {
-        Intent i = new Intent(this, OfflineLibraryActivity.class);
-        startActivity(i);
-        finish();
-    }
-    
-	
+		menu.add(0, LOCALLIBRARY_ID, 0, R.string.menu_offline_library);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+		case LOCALLIBRARY_ID:
+			returnHome();
+			return true;
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	/**
+	 * Return to the library when the user is finished with viewing story.
+	 */
+	private void returnHome() {
+		Intent i = new Intent(this, OfflineLibraryActivity.class);
+		startActivity(i);
+		finish();
+	}
+
 	/**
 	 * Loads the page data including the title, description, and options that
 	 * are available on that page.
@@ -154,62 +159,69 @@ public class ViewPageActivity extends Activity {
 	private void populatePage() {
 		Page page = sManager.getPage();
 		options = page.getOptions();
-		
+
 		// Set the Image for the Page
-	     CoverFlow coverFlow = (CoverFlow) findViewById(R.id.coverFlow);
+		CoverFlow coverFlow = (CoverFlow) findViewById(R.id.coverFlow);
 
-	     coverFlow.setAdapter(new ImageAdapter(this, page));
+		coverFlow.setAdapter(new ImageAdapter(this, page));
 
-	     ImageAdapter coverImageAdapter =  new ImageAdapter(this, page);
-	     
-	     //coverImageAdapter.createReflectedImages();
-	     
-	     coverFlow.setAdapter(coverImageAdapter);
-	     
-	     coverFlow.setSpacing(25);
-	     coverFlow.setSelection(0, true);
-	     coverFlow.setAnimationDuration(1000);
-		
-		
+		ImageAdapter coverImageAdapter = new ImageAdapter(this, page);
+
+		// coverImageAdapter.createReflectedImages();
+
+		coverFlow.setAdapter(coverImageAdapter);
+
+		coverFlow.setSpacing(25);
+		coverFlow.setSelection(0, true);
+		coverFlow.setAnimationDuration(1000);
+
 		// Set the page description
 		String pageDescription = page.getPageDescription();
 		TextView pageDescriptionTV = (TextView) findViewById(R.id.pageDescriptionTV);
 		pageDescriptionTV.setText(pageDescription);
-		
-		
+
 		// Set the page options
 
-			optionsListView = (ListView) findViewById(R.id.list_options);
-			ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this, R.layout.list_row, options);
-			optionsListView.setAdapter(optionAdapter);
-			endStoryButton = (Button) findViewById(R.id.endStory);
-			optionDescription = (TextView) findViewById(R.id.option_des);
-		
-			if(options.size() != 0){
-				optionsListView.setVisibility(View.VISIBLE);
-				endStoryButton.setVisibility(View.GONE);
-				
-			}
-			else{
-				optionDescription.setText("The End");
-				optionsListView.setVisibility(View.GONE);
-				endStoryButton.setVisibility(View.VISIBLE);
-			}
-			
+		optionsListView = (ListView) findViewById(R.id.list_options);
+		ArrayAdapter<Option> optionAdapter = new ArrayAdapter<Option>(this,
+				R.layout.list_row, options);
+		optionsListView.setAdapter(optionAdapter);
+		endStoryButton = (Button) findViewById(R.id.endStory);
+		optionDescription = (TextView) findViewById(R.id.option_des);
+
+		if (options.size() != 0) {
+			optionsListView.setVisibility(View.VISIBLE);
+			endStoryButton.setVisibility(View.GONE);
+
+		} else {
+			optionDescription.setText("The End");
+			optionsListView.setVisibility(View.GONE);
+			endStoryButton.setVisibility(View.VISIBLE);
+		}
+
 		// Set the No of Annotations added
-		
-		TextView annotationsCount = (TextView) findViewById(R.id.annotationsCount);
-		annotationsCount.setText(""+ page.getAnnotations().size());
-		
+		displayAnnotationsCount();
 	}
-	
+
+	private void displayAnnotationsCount() {
+
+		TextView annotationsCount = (TextView) findViewById(R.id.annotationsCount);
+		annotationsCount.setText(""
+				+ sManager.getPage().getAnnotations().size());
+
+	}
+
+	public void onResume() {
+		super.onResume();
+		displayAnnotationsCount();
+	}
+
 	/**
 	 * Start the annotations activity when the user chooses to view annotations
 	 */
-	public void launchAnnotationsActivity(View v){
-		Intent i  = new Intent(this, AnnotationActivity.class);
+	public void launchAnnotationsActivity(View v) {
+		Intent i = new Intent(this, AnnotationActivity.class);
 		startActivity(i);
 	}
-	
 
 }

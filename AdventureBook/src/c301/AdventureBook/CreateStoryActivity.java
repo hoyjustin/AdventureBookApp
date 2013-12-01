@@ -53,7 +53,7 @@ import com.example.adventurebook.R;
 public class CreateStoryActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY = 0;
 
-	private static final int PHOTO_ACTIVITY_REQUEST = 1001;	
+	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
 
 	private EditText mStoryTitle;
 	private EditText mStoryAuthor;
@@ -83,8 +83,8 @@ public class CreateStoryActivity extends Activity {
 		mStoryAuthor = (EditText) findViewById(R.id.authorText);
 		Button createStoryButton = (Button) findViewById(R.id.createStoryButton);
 
-		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
-		createStoryButton.setTypeface(font);  
+		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
+		createStoryButton.setTypeface(font);
 
 		setDate();
 		image.setOnClickListener(new OnClickListener() {
@@ -126,11 +126,15 @@ public class CreateStoryActivity extends Activity {
 
 		// Make sure that the user inputs a nonempty story title
 		if (storyTitle.length() == 0) {
-			Toast.makeText(this, "Story title cannot be blank!", Toast.LENGTH_LONG).show();
-		}
-		else{
-			boolean saveSuccess = sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-					formattedDate, imageByte, false);
+			Toast.makeText(this, "Story title cannot be blank!",
+					Toast.LENGTH_SHORT).show();
+		} else if (storyAuthor.length() == 0) {
+			Toast.makeText(this, "Story's author cannot be blank!",
+					Toast.LENGTH_SHORT).show();
+		} else {
+			boolean saveSuccess = sManagerInst.createStory(storyTitle,
+					storyDescription, storyAuthor, formattedDate, imageByte,
+					false);
 
 			if (saveSuccess == true) {
 				Toast.makeText(this, "Story Created: " + storyTitle,
@@ -138,8 +142,7 @@ public class CreateStoryActivity extends Activity {
 				Intent i = new Intent(this, EditStoryPagesActivity.class);
 				startActivityForResult(i, ACTIVITY_EDIT_STORY);
 				finish();
-			}
-			else {
+			} else {
 
 				// 1. Instantiate an AlertDialog.Builder with its constructor
 				AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -148,26 +151,27 @@ public class CreateStoryActivity extends Activity {
 				// Add the buttons
 				builder.setNegativeButton(R.string.cancel,
 						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// User clicked Cancel button
-					}
-				});
+							public void onClick(DialogInterface dialog, int id) {
+								// User clicked Cancel button
+							}
+						});
 
 				builder.setPositiveButton(R.string.ok,
 						new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
+							public void onClick(DialogInterface dialog, int id) {
 
-						sManagerInst.createStory(storyTitle, storyDescription, storyAuthor, 
-								formattedDate, imageByte, true);
+								sManagerInst.createStory(storyTitle,
+										storyDescription, storyAuthor,
+										formattedDate, imageByte, true);
 
-						Toast.makeText(CreateStoryActivity.this,
-								"Story Created: " + storyTitle,
-								Toast.LENGTH_LONG).show();
-						Intent i = new Intent(CreateStoryActivity.this,
-								EditStoryPagesActivity.class);
-						startActivityForResult(i, ACTIVITY_EDIT_STORY);
-					}
-				});
+								Toast.makeText(CreateStoryActivity.this,
+										"Story Created: " + storyTitle,
+										Toast.LENGTH_LONG).show();
+								Intent i = new Intent(CreateStoryActivity.this,
+										EditStoryPagesActivity.class);
+								startActivityForResult(i, ACTIVITY_EDIT_STORY);
+							}
+						});
 
 				// 2. Chain together various setter methods to set the dialog
 				// characteristics
@@ -201,7 +205,8 @@ public class CreateStoryActivity extends Activity {
 			imageByte = data.getStringExtra("imagebyte");
 
 			byte[] decodedString = Base64.decode(imageByte, Base64.DEFAULT);
-			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length); 
+			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+					0, decodedString.length);
 			image.setImageBitmap(decodedByte);
 
 		}

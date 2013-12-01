@@ -141,10 +141,10 @@ public class EditStoryInfoActivity extends Activity {
 		// Make sure that the user inputs a nonempty story title
 		if (storyTitle.length() == 0) {
 			Toast.makeText(this, "Story title cannot be blank!",
-					Toast.LENGTH_LONG).show();
+					Toast.LENGTH_SHORT).show();
 		} else if (storyAuthor.length() == 0) {
 			Toast.makeText(this, "Story's author cannot be blank!",
-					Toast.LENGTH_LONG).show();
+					Toast.LENGTH_SHORT).show();
 
 		} else {
 			lManagerInst = LocalLibraryManager.getInstance();
