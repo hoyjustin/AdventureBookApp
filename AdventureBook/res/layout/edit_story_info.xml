@@ -22,33 +22,30 @@
     android:background="@drawable/cloud_wallpaper"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_horizontal_margin" >
+    <FrameLayout
+        android:layout_width="107dp"
+        android:layout_height="106dp"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:background="#33FFFFFF" >
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
+            android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center"
             android:background="@drawable/border"
             android:contentDescription="@string/image_content_description"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/imageadd128" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_weight="0.25"
         android:background="#33FFFFFF"
         android:orientation="vertical" >
 
@@ -78,7 +75,10 @@
                 android:ems="10"
                 android:hint="@string/new_story_hint"
                 android:padding="3dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:singleLine="true" />
+
         </ScrollView>
 
         <TextView
@@ -86,7 +86,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_weight="1"
             android:text="@string/story_author"
             android:textSize="17sp" />
 
@@ -97,10 +96,10 @@
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
             android:background="@drawable/border"
             android:ems="10"
             android:hint="Name"
+            android:padding="3dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp" >
 
@@ -115,8 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_weight="0.36"
+        android:layout_marginTop="5dp"
+        android:layout_weight="0.12"
         android:background="#33FFFFFF"
         android:orientation="vertical" >
 
@@ -165,9 +164,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/border"
+                android:padding="3dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/story_date" />
+
         </LinearLayout>
 
     </LinearLayout>

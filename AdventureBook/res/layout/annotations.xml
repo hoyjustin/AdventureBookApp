@@ -211,15 +211,6 @@
             </EditText>
         </ScrollView>
 
-        <ImageButton
-            android:id="@+id/imageButtonAnnotationAttachImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/scrollView2"
-            android:layout_alignLeft="@+id/textView4"
-            android:contentDescription="@string/image_content_description"
-            android:src="@android:drawable/btn_star" />
-
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
@@ -227,6 +218,24 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:text="@string/annotation_submit" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/submit"
+            android:layout_toLeftOf="@+id/editTextAnnotationAuthor" >
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonAnnotationAttachImage"
+            android:layout_width="wrap_content"
+            android:layout_height="64dp"
+            android:layout_alignBottom="@+id/frameLayout1"
+            android:layout_toLeftOf="@+id/editTextAnnotationAuthor"
+            android:contentDescription="@string/image_content_description"
+            android:scaleType="fitCenter"
+            android:src="@drawable/imageadd128" />
     </RelativeLayout>
 
     <Button

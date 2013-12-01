@@ -24,17 +24,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import c301.AdventureBook.Controllers.StoryManager;
@@ -75,7 +71,7 @@ public class EditPageActivity extends Activity implements Serializable {
 	private Page currentPage;
 	private Option clickedOption;
 	private List<Option> currentPageOptions;
-	private ImageView imageView;
+	private Button editImages;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +87,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		mButtonCreateOption = (Button) findViewById(R.id.new_option);
 		mButtonRandomOption = (Button) findViewById(R.id.random_option);
 		mButtonSavePage = (Button) findViewById(R.id.save_page);
-		imageView = (ImageView) findViewById(R.id.pageimage);
+		editImages = (Button) findViewById(R.id.edit_page_images);
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
 		
@@ -108,7 +104,7 @@ public class EditPageActivity extends Activity implements Serializable {
 		optionsList = (ListView) findViewById(R.id.options_list);
 		fillData();
 
-		imageView.setOnClickListener(new OnClickListener() {
+		editImages.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
