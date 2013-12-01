@@ -60,7 +60,7 @@ public class LocalLibraryManagerTest extends AndroidTestCase {
 	 */
 	@Test
 	public void testGetActivityContext() {
-		Context activityContext = lManager.getActivityContext();
+		Context activityContext = lManager.getApplicationContext();
 		assertEquals(context, activityContext);
 	}
 	
