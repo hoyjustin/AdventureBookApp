@@ -290,6 +290,7 @@ public class OnlineLibraryActivity extends Activity {
 		} else if (item.getTitle() == "Delete Story") {
 
 			new deleteStoryTask(storyClicked).execute();
+			new getStoriesAndDisplay().execute();
 		}
 		return true;
 	}

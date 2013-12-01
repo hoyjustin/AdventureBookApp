@@ -18,7 +18,7 @@
     <!-- Create Story -->
     <string name="alert_story_exists">Story with the same title and author already exists! Do you want to overwrite the existing story?</string>
     <string name="new_story_hint">A New Story</string>
-    <string name="story_desc_hint">Some Description… Blah, Blah, Blah</string>
+    <string name="story_desc_hint">Story Text Here...</string>
     <string name="story_author">Author:  </string>
     <string name="story_date">Date:  </string>
     <string name="create_story">Create Story!!!</string>

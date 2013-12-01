@@ -157,7 +157,6 @@ public class EditStoryInfoActivity extends Activity {
 	 * stores them into class variables
 	 */
 	private void getUserText() {
-
 		storyTitle = mStoryTitle.getText().toString();
 		storyAuthor = mStoryAuthor.getText().toString();
 		storyDescription = mStoryDescription.getText().toString();
