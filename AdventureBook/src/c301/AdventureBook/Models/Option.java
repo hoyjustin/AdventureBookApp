@@ -82,6 +82,10 @@ public class Option implements Serializable{
 		return this.gotoPageid;
 	}
 	
+	/**
+	 * An option represented as a string is its description
+	 * @return description of the option
+	 */
 	@Override
 	public String toString(){
 		return this.description;

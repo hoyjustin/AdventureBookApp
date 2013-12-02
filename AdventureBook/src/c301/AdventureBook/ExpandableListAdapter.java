@@ -95,9 +95,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/**
 	 * Gets a View that displays the data for the given gotopage within a given page.
 	 * 
-	 * @param groupPosition The position of the group that contains the child
-	 * @param childPosition	 The position of the child (for which the View is returned) within the group
-	 * @param isLastChild Whether the child is the last child within the group
+	 * @param groupPosition	The position of the group that contains the child
+	 * @param childPosition		The position of the child (for which the View is returned) within the group
+	 * @param isLastChild	Whether the child is the last child within the group
 	 * @param view	The old view to reuse, if possible
 	 * @return The View corresponding to the gotopage at the specified position
 	 */
@@ -125,8 +125,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/**
 	 * Gets the number of children in a specified group.
 	 * 
-	 * @param groupPosition	the position of the group for which the children count should be returned
-	 * @return the children count in the specified group
+	 * @param groupPosition		the position of the group for which the children count should be returned
+	 * @return	the children count in the specified group
 	 */
 	@Override
 	public int getChildrenCount(int groupPosition) {
@@ -136,8 +136,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/**
 	 * Gets the data associated with the given group.
 	 * 
-	 * @param groupPosition	the position of the group
-	 * @return the data gotopage for the specified group
+	 * @param groupPosition		the position of the group
+	 * @return	the data gotopage for the specified group
 	 */
 	@Override
 	public Object getGroup(int groupPosition) {
@@ -147,7 +147,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/**
 	 * Gets the number of groups.
 	 * 	 
-	 * @return the number of groups
+	 * @return	the number of groups
 	 */
 	@Override
 	public int getGroupCount() {
@@ -155,9 +155,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * Gets the number of groups.
-	 * 	 
-	 * @return the number of groups
+	 * Gets the ID for the group at the given position.
+	 * 
+	 * @param groupPosition	the position of the group for which the ID is wanted
+	 * @returns the ID associated with the group
 	 */
 	@Override
 	public long getGroupId(int groupPosition) {
@@ -165,9 +166,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * Gets the number of groups.
-	 * 	 
-	 * @return the number of groups
+	 * Gets a View that displays the given group
+	 * 
+	 * @param groupPosition		the position of the group for which the View is returned
+	 * @param isLastChild	whether the group is expanded or collapsed
+	 * @param view	the old view to reuse, if possible.
+	 * @param parent	the parent that this view will eventually be attached to
+	 * @return	the View corresponding to the group at the specified position
 	 */
 	@Override
 	public View getGroupView(int groupPosition, boolean isLastChild, View view, ViewGroup parent) {
@@ -183,9 +188,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 	
 	/**
-	 * Gets the number of groups.
-	 * 	 
-	 * @return the number of groups
+	 * Indicates whether the child and group IDs are stable across changes to the underlying data.
+	 * 
+	 * @return	whether or not the same ID always refers to the same object
 	 */
 	@Override
 	public boolean hasStableIds() {
@@ -194,9 +199,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * Gets the number of groups.
-	 * 	 
-	 * @return the number of groups
+	 * Whether the child at the specified position is selectable.
+	 * 
+	 * @param groupPosition	the position of the group that contains the child
+	 * @param childPosition	the position of the child within the group
+	 * @return	whether the child is selectable.
 	 */
 	@Override
 	public boolean isChildSelectable(int arg0, int arg1) {

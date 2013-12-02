@@ -197,6 +197,11 @@ public class Story implements Serializable {
 			
 	}
 
+	/**
+	 * This function replaces a particular page with the same title from a story.
+	 * 
+	 * @param page the page to be replaced
+	 */
 	public void replacePage(Page page){
 		for(int i=0; i < this.pages.size();i++){
 			if(this.pages.get(i).getTitle().equals(page.getTitle())){
@@ -212,7 +217,6 @@ public class Story implements Serializable {
 	 * 
 	 * @return StoryId
 	 */
-
 	public String getStoryId() {
 		return this.title.replaceAll("\\s+", "") + "-"
 				+ this.author.replaceAll("\\s+", "");
@@ -247,6 +251,12 @@ public class Story implements Serializable {
 		this.startPage = startPage;
 	}
 
+	/**
+	 * This function returns the string representation of a story
+	 *  as a concatenation or its title, description, and date
+	 * 
+	 * @return Story as a string
+	 */
 	@Override
 	public String toString() {
 		return " title = " + this.title + " description = " + this.description

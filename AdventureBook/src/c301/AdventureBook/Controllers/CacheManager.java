@@ -14,6 +14,16 @@ import c301.AdventureBook.Models.Story;
 import android.content.Context;
 import android.util.Log;
 
+/**
+ *  The CacheManager is responsible for caching and the retrieving of such cached stories.
+ *  It will check if the cache is full before doing such operations and clear it if 
+ *  it is in order for new stories to be cached.
+ *  
+ *  Tutorial: http://stackoverflow.com/questions/9942560/when-to-clear-the-cache-dir-in-android
+ * 
+ *  @author Justin Hoy
+ * 
+ */
 public class CacheManager {
 
 	private static final long MAX_SIZE = 5242880L; // 5MB
@@ -29,11 +39,20 @@ public class CacheManager {
 		return instance;
 	}
 
+	/**
+	 * Initializes the manager to the application's context.
+	 * 
+	 * @param context the activityContext to set
+	 */
 	public void initApplicationContext(Context context) {
 		this.applicationContext = context;
 	}
 
-
+	/**
+	 * Caches a given library of stories into the phone after checking the cache size.
+	 * 
+	 * @param cacheLibrary the library of stories to be cached
+	 */
 	public void cacheData(ArrayList<Story> cacheLibrary) {
 
 		try{
@@ -70,8 +89,11 @@ public class CacheManager {
 		}
 	}
 
+	/**
+	 * Retrieves all cached stories into the phone and sets it to be the current cache library in this manager.
+	 * 
+	 */
 	public void retrieveData(){
-
 		File cacheDir = applicationContext.getCacheDir();
 		ArrayList<Story> tempLibrary = new ArrayList<Story>();
 
@@ -80,7 +102,6 @@ public class CacheManager {
 			String[] fileNames = cacheDir.list();
 
 			//Iterate for the fileName and delete
-
 			for (String fileStr:fileNames) {
 				Log.v("Cached", fileStr);
 				// do something with the file
@@ -111,8 +132,13 @@ public class CacheManager {
 		}
 	}
 
+	/**
+	 * Cleans the given directory to be the predefined maximum size allowed (in bytes).
+	 * 
+	 * @param dir the directory to be cleaned
+	 * @param bytes the max size allowed (in bytes)
+	 */
 	private static void cleanDir(File dir, long bytes) {
-
 		long bytesDeleted = 0;
 		File[] files = dir.listFiles();
 
@@ -126,8 +152,12 @@ public class CacheManager {
 		}
 	}
 
+	/**
+	 * Retrieves the size of a given directory (in bytes).
+	 * 
+	 * @param dir the directory to be checked
+	 */
 	private static long getDirSize(File dir) {
-
 		long size = 0;
 		File[] files = dir.listFiles();
 
@@ -140,11 +170,21 @@ public class CacheManager {
 		return size;
 	}
 
+	/**
+	 * Retrieves the cache library of a phone.
+	 * 
+	 * @return the stories in cache
+	 */
 	public ArrayList<Story> getCacheLibrary() {
 		retrieveData();
 		return this.mCacheLibrary;
 	}
 
+	/**
+	 * Deletes a given story from cache.
+	 * 
+	 * @param story the story to be deleted
+	 */
 	public void deleteCachedStory(Story story){
 		//String FILENAME = story.getTitle().toLowerCase() + "-" + story.getAuthor().toLowerCase() + ".sav";
 		String FILENAME = story.getFilename();

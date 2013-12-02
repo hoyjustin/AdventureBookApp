@@ -167,7 +167,7 @@ public class ESClient {
 	 * information from the WebServer.
 	 * 
 	 * @param str
-	 * @return
+	 * @return URI
 	 * @throws UnsupportedEncodingException
 	 */
 	private String getQueryHttpURI(String str)

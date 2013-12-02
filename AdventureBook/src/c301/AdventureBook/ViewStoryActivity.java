@@ -105,6 +105,9 @@ public class ViewStoryActivity extends Activity {
 
 	}
 
+	/**
+	 * Initialize managers used by this activity
+	 */
 	private void initManager() {
 		sManager = StoryManager.getInstance();
 		sManager.initContext(this);
@@ -128,6 +131,9 @@ public class ViewStoryActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Set the story manager's current page to the first page of the story in preperation for starting the story
+	 */
 	private void setManagerFirstPage(List<Page> pages) {
 		Page firstPage = pages.get(FIRST_PAGE_INDEX);
 		sManager.setCurrentPage(firstPage);

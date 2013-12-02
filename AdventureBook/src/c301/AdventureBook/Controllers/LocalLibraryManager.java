@@ -28,7 +28,8 @@ import c301.AdventureBook.Models.Story;
 
 
 /**
- * This is LibraryManager that is responsible to load the library from disk
+ * This is LibraryManager that is responsible in loading all stories in disk.
+ * 
  * 
  * @author Justin Hoy - Main Creator
  * @author Minhal Syed - minor editor
@@ -50,6 +51,8 @@ public class LocalLibraryManager {
 
 	
 	/**
+	 * Initializes the manager to the application's context.
+	 * 
 	 * @param activityContext the activityContext to set
 	 */
 	public void initContext(Context activityContext) {
@@ -77,6 +80,8 @@ public class LocalLibraryManager {
 
 	
 	/**
+	 * Set the managers library to be a list of stories
+	 * 
 	 * @param currentLibrary the currentLibrary to set
 	 */
 	public void setCurrentLibrary(ArrayList<Story> currentLibrary) {
@@ -131,11 +136,6 @@ public class LocalLibraryManager {
 		}
 		this.mLibrary = tempLibrary;
 	}
-	
-	
-	
-	
-	
 	
 	
 }
