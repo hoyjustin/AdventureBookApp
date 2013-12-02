@@ -32,7 +32,7 @@ import com.example.adventurebook.R;
 
 
 /**
- * The adapter for displaying story fragments in a tree view. Used in the EditStoryPagesActivity
+ * The adapter for displaying story fragments (pages) and the directly pages its linked to through a tree view.
  * 
  * @author Justin Hoy
  *
@@ -48,6 +48,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 	
 	
+	/**
+	 * Add an item 
+	 * 
+	 * @param
+	 *
+	 */
 	public void addItem(Option item, Page groupData){
 		if(!mModel.contains(groupData)){
 			mModel.add(groupData);

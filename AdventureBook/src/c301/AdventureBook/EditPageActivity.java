@@ -91,7 +91,8 @@ public class EditPageActivity extends Activity implements Serializable {
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
 		
-
+		//(use below code if a cover flow is wanted to display pictures)
+		
 		//coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
 		//coverFlow.setAdapter(new ImageAdapter(this));
 		//coverImageAdapter =  new ImageAdapter(this);
@@ -179,9 +180,8 @@ public class EditPageActivity extends Activity implements Serializable {
 	}
 
 	/**
-	 * Check if a random option exists
-	 * 
-	 * @return boolean
+	 * Check all of options for a page and check if there is a random option
+	 * @return boolean true if theres a random option otherwise false
 	 */
 	private boolean randomOptionExists() {
 		for (Option option : currentPageOptions) {
