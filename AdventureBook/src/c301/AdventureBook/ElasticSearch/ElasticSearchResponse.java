@@ -9,6 +9,9 @@
 package c301.AdventureBook.ElasticSearch;
 
 public class ElasticSearchResponse<T> {
+	/**
+	 * this function just get the source and check does it exist
+	 */
 	String _index;
 	String _type;
 	String _id;

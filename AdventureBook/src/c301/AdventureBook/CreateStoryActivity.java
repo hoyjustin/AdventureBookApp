@@ -49,6 +49,7 @@ import com.example.adventurebook.R;
  * @author Terence Yin Kiu Leung
  * @author Justin Hoy - Minor Editor
  * @author Zhao Zhang - Minor Editor
+ * @author ltong2 - Minor Editor
  */
 public class CreateStoryActivity extends Activity {
 	private static final int ACTIVITY_EDIT_STORY = 0;

@@ -17,12 +17,14 @@
 
 package c301.AdventureBook;
 
+
 import com.example.adventurebook.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.SurfaceView;
 
 /**
  * This is the first activity that is started when the user first opens the app.
@@ -44,6 +46,7 @@ public class SplashScreenMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);
 
+		
 		new Handler().postDelayed(new Runnable() {
 
 			@Override
