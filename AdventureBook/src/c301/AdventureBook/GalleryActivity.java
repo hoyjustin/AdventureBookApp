@@ -109,13 +109,14 @@ public class GalleryActivity extends Activity{
 		});
 	}
 	
-	@Override
+	
 	/**
 	 * On return of the TakePhotoActivity, the uploaded image is passed here and
 	 * saved onto the current page.
 	 * @param requestCode, resultCode, data
 	 * 
 	 */
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
@@ -127,22 +128,22 @@ public class GalleryActivity extends Activity{
 			sManagerInst.saveStory(currentStory, true);
 		}
 	}
-	@Override
+	
 
 	/**
 	 * Create a context menu 
 	 * @param requestCode, resultCode, data
 	 * 
 	 */
+	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 				ContextMenuInfo menuInfo) {
-			// TODO Auto-generated method stub
 			AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 			currentId = (int)info.position;
 			menu.add(0,MENU_DELETE_ID,0,"Delete");
 	}
+	
 	public boolean onContextItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		if (item.getItemId() == MENU_DELETE_ID) {
 			currentPage.removeImageByte(currentId);
 			gridview.setAdapter(new GalleryImageAdapter(this, imageBytes));
@@ -151,6 +152,7 @@ public class GalleryActivity extends Activity{
 		}
 		return super.onContextItemSelected(item);
 	}
+	
 	public void onResume()
 	{  // After a pause OR at startup
 		super.onResume();
@@ -159,6 +161,10 @@ public class GalleryActivity extends Activity{
 		gridview.setAdapter(new GalleryImageAdapter(this, imageBytes));
 	}
 
+	/**
+	 * This is the ImageAdapter used for displaying media in the gallery.
+	 *
+	 */
 	public class GalleryImageAdapter extends BaseAdapter {
 		private Context mContext;
 		private Bitmap[] bitmaps;
@@ -180,19 +186,30 @@ public class GalleryActivity extends Activity{
 			}
 		}
 
+		/**
+		 * Get the length of bitmaps.
+		 */
 		public int getCount() {
 			return bitmaps.length;
 		}
 
+		/**
+		 * Get the object at the given position.
+		 */
 		public Object getItem(int position) {
 			return null;
 		}
 
+		/**
+		 * Get the item id at the given position.
+		 */
 		public long getItemId(int position) {
 			return 0;
 		}
 
-		// create a new ImageView for each item referenced by the Adapter
+		/**
+		 *  create a new ImageView for each item referenced by the Adapter
+		 */
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ImageView imageView;
 			if (convertView == null) {  // if it's not recycled, initialize some attributes

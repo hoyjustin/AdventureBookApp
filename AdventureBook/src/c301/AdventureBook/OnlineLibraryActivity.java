@@ -52,7 +52,6 @@ import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
 
-
 import com.example.adventurebook.R;
 
 /**
@@ -65,7 +64,11 @@ import com.example.adventurebook.R;
  */
 public class OnlineLibraryActivity extends Activity {
 
-	ArrayList<Story> onlineStoryLibrary = new ArrayList<Story>(); // This ArrayList will contain all the
+	ArrayList<Story> onlineStoryLibrary = new ArrayList<Story>(); // This
+																	// ArrayList
+																	// will
+																	// contain
+																	// all the
 	// online
 	// stories that are on the server.
 
@@ -92,6 +95,10 @@ public class OnlineLibraryActivity extends Activity {
 		attemptNetworkConnection();
 	}
 
+	/**
+	 * Attempt to connect to the network. If there is no connection, shows a
+	 * message and returns to the offline library.
+	 */
 	private void attemptNetworkConnection() {
 		// First CheckWhether Internet is Connected:
 		networkConnected = isNetworkConnected();
@@ -108,7 +115,11 @@ public class OnlineLibraryActivity extends Activity {
 		}
 	}
 
-	private void initializeGlobals(){
+	/**
+	 * Initiate instances of the CacheManager and StoryManager for the current
+	 * activity.
+	 */
+	private void initializeGlobals() {
 		cManagerInst = CacheManager.getInstance();
 		cManagerInst.initApplicationContext(this.getApplicationContext());
 		sManagerInst = StoryManager.getInstance();
@@ -161,8 +172,7 @@ public class OnlineLibraryActivity extends Activity {
 	}
 
 	/**
-	 * This function checks whether an Internet connection is available to the
-	 * activity.
+	 * Checks whether an Internet connection is available to the activity.
 	 * 
 	 * Tutorial from:
 	 * http://stackoverflow.com/questions/9570237/android-check-internet
@@ -187,24 +197,23 @@ public class OnlineLibraryActivity extends Activity {
 		startActivity(i);
 		finish();
 	}
-	/** 
-	 * this code fetches data from the server
+
+	/**
+	 * Fetches data from the server.
 	 * 
 	 */
-
 	private void fetchDataFromServer() {
 		onlineStoryLibrary = client.getAllStories();
 		cManagerInst.cacheData(onlineStoryLibrary);
 	}
+
 	/**
-	 * this part will get all the story from the data and display
-	 * to the use
-	 * 
-	 * @author ltong2
+	 * Displays a loading spinner while the application fetches the stories 
+	 * from the server in the background.
 	 * 
 	 */
 	private class getStoriesAndDisplay extends
-	AsyncTask<String, String, String> {
+			AsyncTask<String, String, String> {
 
 		// Display Loading Spinner on the activity.
 		// Tutorial:
@@ -225,10 +234,9 @@ public class OnlineLibraryActivity extends Activity {
 		protected String doInBackground(String... arg0) {
 			if (networkConnected) {
 				fetchDataFromServer();
-			}
-			else{
+			} else {
 				onlineStoryLibrary = cManagerInst.getCacheLibrary();
-			}	
+			}
 			return null;
 		}
 
@@ -245,8 +253,10 @@ public class OnlineLibraryActivity extends Activity {
 		}
 
 	}
+
 	/**
-	 * When Clicked on the list item, we can return a story.
+	 * Populates the list view for the online library and sets the click
+	 * listener for viewing the stories.
 	 */
 	private void populateListView() {
 		final ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
@@ -271,9 +281,12 @@ public class OnlineLibraryActivity extends Activity {
 			}
 		});
 	}
+
 	/**
-	 * Tell the Application that we are viewing this story from Online.
+	 * Starts the ViewStoryActivity for the story that was clicked.
+	 * 
 	 * @param story
+	 *            the story that was clicked.
 	 */
 	private void viewStory(Story story) {
 
@@ -297,8 +310,8 @@ public class OnlineLibraryActivity extends Activity {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Download Story");
-//		(Add this code only if we allow user to delete from online library)
-		//		menu.add("Delete Story");
+		// (Add this code only if we allow user to delete from online library)
+		// menu.add("Delete Story");
 
 	}
 
@@ -306,7 +319,6 @@ public class OnlineLibraryActivity extends Activity {
 	 * This function is a context menu listener. If the user presses publish,
 	 * delete, or edit story, this listener acts accordingly.
 	 */
-
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
@@ -319,41 +331,41 @@ public class OnlineLibraryActivity extends Activity {
 		if (item.getTitle() == "Download Story") {
 			downloadStory(storyClicked);
 		}
-//	(Add this code only if we allow user to delete from online library)
-		
-//		else if (item.getTitle() == "Delete Story") {
-//			if (networkConnected) {
-//				new deleteStoryTask(storyClicked).execute();
-//			}
-//			else{
-//				cManagerInst.deleteCachedStory(storyClicked);
-//			}
-//			new getStoriesAndDisplay().execute();
-//		}
+		// (Add this code only if we allow user to delete from online library)
+
+		// else if (item.getTitle() == "Delete Story") {
+		// if (networkConnected) {
+		// new deleteStoryTask(storyClicked).execute();
+		// }
+		// else{
+		// cManagerInst.deleteCachedStory(storyClicked);
+		// }
+		// new getStoriesAndDisplay().execute();
+		// }
 		return true;
 	}
 
-//	(Add this code only if we allow user to delete from online library)	
-	
-//	private class deleteStoryTask extends AsyncTask<String, String, String> {
-//
-//		Story story;
-//
-//		public deleteStoryTask(Story storyClicked) {
-//			this.story = storyClicked;
-//		}
-//		@Override
-//		protected String doInBackground(String... arg0) {
-//			client.deleteStory(story);
-//			return null;
-//		}
-//
-//		protected void onPostExecute(String result) {
-//			Toast.makeText(OnlineLibraryActivity.this,
-//					"Deleted " + this.story.getTitle(), Toast.LENGTH_SHORT)
-//					.show();
-//		}
-//	}
+	// (Add this code only if we allow user to delete from online library)
+
+	// private class deleteStoryTask extends AsyncTask<String, String, String> {
+	//
+	// Story story;
+	//
+	// public deleteStoryTask(Story storyClicked) {
+	// this.story = storyClicked;
+	// }
+	// @Override
+	// protected String doInBackground(String... arg0) {
+	// client.deleteStory(story);
+	// return null;
+	// }
+	//
+	// protected void onPostExecute(String result) {
+	// Toast.makeText(OnlineLibraryActivity.this,
+	// "Deleted " + this.story.getTitle(), Toast.LENGTH_SHORT)
+	// .show();
+	// }
+	// }
 
 	/**
 	 * This function downloads the online story to the phone's memory.
@@ -362,27 +374,27 @@ public class OnlineLibraryActivity extends Activity {
 	 */
 	private void downloadStory(Story storyClicked) {
 		sManagerInst.saveStory(storyClicked, true);
-		Toast.makeText(this,
-				"Downloaded: " + storyClicked.getTitle(), Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(this, "Downloaded: " + storyClicked.getTitle(),
+				Toast.LENGTH_LONG).show();
 	}
 
 	/**
 	 * This function shows a random story from Online Library.
+	 * 
 	 * @param v
 	 */
-	public void showRandomStory(View v){
+	public void showRandomStory(View v) {
 		Random r = new Random();
-		if(onlineStoryLibrary.size() != 0){
+		if (onlineStoryLibrary.size() != 0) {
 			int choice = r.nextInt(onlineStoryLibrary.size());
 			Story randomStory = onlineStoryLibrary.get(choice);
 			sManagerInst.setCurrentStory(randomStory);
 			Intent intent = new Intent(this, ViewStoryActivity.class);
 			startActivity(intent);
-		}else{
+		} else {
 			Toast.makeText(OnlineLibraryActivity.this,
-					"You should have a story in online library first!", Toast.LENGTH_LONG)
-					.show();
+					"You should have a story in online library first!",
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -398,8 +410,8 @@ public class OnlineLibraryActivity extends Activity {
 
 		// set dialog message
 		alertDialogBuilder
-		.setMessage(
-				"There's no network connection! Library will now be Loaded from Cached Data.")
+				.setMessage(
+						"There's no network connection! Library will now be Loaded from Cached Data.")
 				.setCancelable(false)
 				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {

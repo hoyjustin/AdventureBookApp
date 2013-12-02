@@ -122,6 +122,10 @@ public class ViewPageActivity extends Activity {
 
 	}
 
+	/**
+	 * Create the options menu. It adds the option to return to the offline
+	 * library.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -132,6 +136,9 @@ public class ViewPageActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Handles the options menu selections.
+	 */
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		switch (item.getItemId()) {
@@ -203,14 +210,19 @@ public class ViewPageActivity extends Activity {
 		displayAnnotationsCount();
 	}
 
+	/**
+	 * Displays the annotation count for the current page.
+	 */
 	private void displayAnnotationsCount() {
 
 		TextView annotationsCount = (TextView) findViewById(R.id.annotationsCount);
 		annotationsCount.setText(""
 				+ sManager.getPage().getAnnotations().size());
-
 	}
 
+	/**
+	 * On resume, display the annotations count.
+	 */
 	public void onResume() {
 		super.onResume();
 		displayAnnotationsCount();

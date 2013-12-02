@@ -28,7 +28,9 @@ import android.os.Handler;
 /**
  * This is the first activity that is started when the user first opens the app.
  * It shows a simple splash screen before proceeding to the offline library
- * activity where the user will be able to browse available stories. source:
+ * activity where the user will be able to browse available stories. 
+ * 
+ * Source:
  * http://www.androidhive.info/2013/07/how-to-implement-android-splash-screen-2/
  * 
  * @author Terence Yin Kiu Leung
@@ -45,7 +47,6 @@ public class SplashScreenMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);
 
-		
 		new Handler().postDelayed(new Runnable() {
 
 			@Override

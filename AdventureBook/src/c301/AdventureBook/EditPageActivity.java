@@ -151,11 +151,12 @@ public class EditPageActivity extends Activity implements Serializable {
 			}
 		});
 	}
-
+	/**
+	 * After a pause OR at startup, refresh.
+	 */
 	public void onResume()
-	{  // After a pause OR at startup
+	{  
 		super.onResume();
-		//Refresh your stuff here
 		fillData();
 	}
 

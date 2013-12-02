@@ -15,83 +15,92 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 package c301.AdventureBook.Models;
+
 import java.io.Serializable;
 
 /**
  * This is an annotation class. An annotation is any form of review that a user
- * can post to any particular page of the story. An annotation contains an author,
- * a comment, and/or a list of media items.
+ * can post to any particular page of the story. An annotation contains an
+ * author, a comment, and/or a list of media items.
  * 
- * Current issues: For now, we only have one type of media, and that is the image type.
- * Therefore for now, the list of media items is just imagePaths.
+ * Current issues: For now, we only have one type of media, and that is the
+ * image type. Therefore for now, the list of media items is just imagePaths.
  * 
  * @author Lin Tong
- *
+ * 
  */
-public class Annotation implements Serializable{
+public class Annotation implements Serializable {
 
-		private String author;
-		private String comment;
-		private String imageByte;
-		
-		/**
-		 * This is the constructor for the annotation Object.
-		 * An annotation requires an author and a comment, both
-		 * as string values. In order to add Images, addImage path
-		 * function should be used after.
-		 * 
-		 * @param author is the author for the annotaion
-		 * @param comment is the comment that use can post their feedback
-		 */
-		public Annotation(String author, String comment){
-			this.author = author;
-			this.comment = comment;
-		}
-		
-		public void setIllustration(String ImageByte){
-			this.imageByte = ImageByte;
-		}
+	private String author;
+	private String comment;
+	private String imageByte;
 
-		/**
-		 * Get the imagePaths's postion
-		 * @return imagepath's position
-		 */
-		public String getIllustration(){
-			return this.imageByte;
-			
-		}
+	/**
+	 * This is the constructor for the annotation Object. An annotation requires
+	 * an author and a comment, both as string values. In order to add Images,
+	 * addImage path function should be used after.
+	 * 
+	 * @param author
+	 *            is the author for the annotaion
+	 * @param comment
+	 *            is the comment that use can post their feedback
+	 */
+	public Annotation(String author, String comment) {
+		this.author = author;
+		this.comment = comment;
+	}
 
-		/**
-		 * Set the Author
-		 * @param author the annotation author
-		 */
-		public void setAuthor(String author){
-			this.author = author;
-		}
-		/**
-		 * Get the author
-		 * @return author 
-		 */
-		public String getAuthor(){
-			return this.author;
-		}
-		/**
-		 * Get the  comment
-		 * @return comment
-		 */
-		public String getComment() {
-			return comment;
-		}
-		/**
-		 * Set the Comment
-		 * @param comment the annotation 
-		 */
-		public void setComment(String comment) {
-			this.comment = comment;
-		}
+	public void setIllustration(String ImageByte) {
+		this.imageByte = ImageByte;
+	}
 
-		
-		
+	/**
+	 * Get the imagePaths's postion
+	 * 
+	 * @return imagepath's position
+	 */
+	public String getIllustration() {
+		return this.imageByte;
+
+	}
+
+	/**
+	 * Set the Author
+	 * 
+	 * @param author
+	 *            the annotation author
+	 */
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	/**
+	 * Get the author
+	 * 
+	 * @return author
+	 */
+	public String getAuthor() {
+		return this.author;
+	}
+
+	/**
+	 * Get the comment
+	 * 
+	 * @return comment
+	 */
+	public String getComment() {
+		return comment;
+	}
+
+	/**
+	 * Set the Comment
+	 * 
+	 * @param comment
+	 *            the annotation
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 }

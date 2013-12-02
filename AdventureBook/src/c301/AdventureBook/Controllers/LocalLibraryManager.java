@@ -22,6 +22,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Locale;
+
 import android.content.Context;
 import android.util.Log;
 import c301.AdventureBook.Models.Story;
@@ -40,6 +42,7 @@ public class LocalLibraryManager {
 	Context activityContext;
 	ArrayList<Story> mLibrary;
 
+	// Singleton
 	private static LocalLibraryManager instance = null;
 
 	public static LocalLibraryManager getInstance() {
@@ -49,7 +52,6 @@ public class LocalLibraryManager {
 		return instance;
 	}
 
-	
 	/**
 	 * Initializes the manager to the application's context.
 	 * 
@@ -59,15 +61,13 @@ public class LocalLibraryManager {
 		this.activityContext = activityContext;
 	}
 
-	
 	/**
 	 * @return the activityContext
 	 */
 	public Context getApplicationContext() {
 		return activityContext;
 	}
-	
-	
+
 	/**
 	 * Load all stories from internal storage and set it as the currentLibrary.
 	 * 
@@ -78,7 +78,6 @@ public class LocalLibraryManager {
 		return this.mLibrary;
 	}
 
-	
 	/**
 	 * Set the managers library to be a list of stories
 	 * 
@@ -100,7 +99,6 @@ public class LocalLibraryManager {
 		updateCurrentLibrary();
 	}
 	
-	
 	/**
 	 * Load all stories from internal storage filtered using a given keyword
 	 * 
@@ -112,7 +110,7 @@ public class LocalLibraryManager {
 
 		for (String fileStr:files) {
 			// do something with the file
-			if (fileStr.toLowerCase().contains(".sav")) {
+			if (fileStr.toLowerCase(Locale.getDefault()).contains(".sav")) {
 				try {
 					FileInputStream fis = activityContext.openFileInput(fileStr);
 					ObjectInputStream ois = new ObjectInputStream(fis);
@@ -136,6 +134,5 @@ public class LocalLibraryManager {
 		}
 		this.mLibrary = tempLibrary;
 	}
-	
 	
 }
