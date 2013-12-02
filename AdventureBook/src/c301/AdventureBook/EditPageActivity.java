@@ -166,13 +166,8 @@ public class EditPageActivity extends Activity implements Serializable {
 		//load model here
 		currentPageOptions = sManagerInst.getPage().getOptions();
 		// grey out button to add a random option if there is already one in the page or no options exist
-		boolean randomOptionExists = false;
-		for(Option option:currentPageOptions){
-			if(option instanceof RandomOption){
-				randomOptionExists = true;
-			}
-		}
-		if(currentPageOptions.size() == 0 || randomOptionExists == true){
+
+		if(currentPageOptions.size() == 0 || randomOptionExists() == true){
 			mButtonRandomOption.setEnabled(false);
 			//mButtonRandomOption.setBackgroundColor(Color.parseColor("#808080"));
 		}
@@ -181,6 +176,15 @@ public class EditPageActivity extends Activity implements Serializable {
 		}
 		adpt = new CustomAdapter(this, optionsList, currentPageOptions);
 		optionsList.setAdapter(adpt);
+	}
+
+	private boolean randomOptionExists() {
+		for (Option option : currentPageOptions) {
+			if (option instanceof RandomOption) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private class CustomAdapter extends ArrayAdapter<Option> {

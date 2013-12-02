@@ -90,7 +90,7 @@ public class EditStoryInfoActivity extends Activity {
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");
 		saveChanges.setText("Save Changes");
 		saveChanges.setTypeface(font);
-
+		initManager();
 		setInfo();
 		image.setOnClickListener(new OnClickListener() {
 			@Override
@@ -108,14 +108,19 @@ public class EditStoryInfoActivity extends Activity {
 		});
 	}
 
+	private void initManager() {
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
+		lManagerInst = LocalLibraryManager.getInstance();
+		lManagerInst.initContext(this);
+	}
+	
 	/**
 	 * Display the Story's Previous Info
 	 */
 	@SuppressLint("SimpleDateFormat")
 	private void setInfo() {
 
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
 		currentStory = sManagerInst.getCurrentStory();
 
 		if (currentStory.getImageByte()!= null){
@@ -131,7 +136,7 @@ public class EditStoryInfoActivity extends Activity {
 		mStoryAuthor.setText(currentStory.getAuthor());
 		mDate.setText(currentStory.getDate());
 	}
-
+	
 	/**
 	 * Saves the edited story to file and exits activity.
 	 */
@@ -142,21 +147,14 @@ public class EditStoryInfoActivity extends Activity {
 		if (storyTitle.length() == 0) {
 			Toast.makeText(this, "Story title cannot be blank!",
 					Toast.LENGTH_SHORT).show();
-		} else if (storyAuthor.length() == 0) {
+		}
+		else if (storyAuthor.length() == 0) {
 			Toast.makeText(this, "Story's author cannot be blank!",
 					Toast.LENGTH_SHORT).show();
 
-		} else {
-			lManagerInst = LocalLibraryManager.getInstance();
-			lManagerInst.initContext(this);
-			lManagerInst.deleteStory(currentStory);
-
-			currentStory.setTitle(storyTitle);
-			currentStory.setAuthor(storyAuthor);
-			currentStory.setDescription(storyDescription);
-			if (imageByte != null) {
-				currentStory.setImageByte(imageByte);
-			}
+		}
+		else {
+			writeEditedStory();
 			boolean saveSuccess = sManagerInst.saveStory(currentStory, true);
 
 			if (saveSuccess == true) {
@@ -164,6 +162,16 @@ public class EditStoryInfoActivity extends Activity {
 						Toast.LENGTH_LONG).show();
 				finish();
 			}
+		}
+	}
+
+	private void writeEditedStory() {
+		lManagerInst.deleteStory(currentStory);
+		currentStory.setTitle(storyTitle);
+		currentStory.setAuthor(storyAuthor);
+		currentStory.setDescription(storyDescription);
+		if (imageByte != null) {
+			currentStory.setImageByte(imageByte);
 		}
 	}
 

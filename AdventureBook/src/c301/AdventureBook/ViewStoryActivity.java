@@ -41,7 +41,7 @@ public class ViewStoryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_story);
-		
+		initManager();
 		populateData();
 	}
 	
@@ -78,11 +78,7 @@ public class ViewStoryActivity extends Activity {
 	 * Populates the page with the story data, including the title, author,
 	 * description, and image.
 	 */
-	public void populateData(){
-
-		sManager = StoryManager.getInstance();
-		sManager.initContext(this);
-		
+	public void populateData(){;
 		currentStory = sManager.getCurrentStory();
 		
 		ImageView imageView = (ImageView)findViewById(R.id.storyThumnail);
@@ -108,6 +104,11 @@ public class ViewStoryActivity extends Activity {
 		storyDescription.setKeyListener(null);
 
 	}
+
+	private void initManager() {
+		sManager = StoryManager.getInstance();
+		sManager.initContext(this);
+	}
 	
 	/**
 	 * Start the view page activity when the "Begin Story" button is clicked.
@@ -119,13 +120,17 @@ public class ViewStoryActivity extends Activity {
 		List<Page> pages = currentStory.getPages();
 		// Do nothing if story doesn't contain any pages
 		if (pages.size() > 0) {
-			Page firstPage = pages.get(FIRST_PAGE_INDEX);
-			sManager.setCurrentPage(firstPage);
+			setManagerFirstPage(pages);
 			Intent i = new Intent(this, ViewPageActivity.class);
 			startActivity(i);
 		} else {
 			Toast.makeText(this, "There are no pages to view!", Toast.LENGTH_LONG).show();
 		}
+	}
+
+	private void setManagerFirstPage(List<Page> pages) {
+		Page firstPage = pages.get(FIRST_PAGE_INDEX);
+		sManager.setCurrentPage(firstPage);
 	}
 
 }

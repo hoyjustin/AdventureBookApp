@@ -83,26 +83,22 @@ public class OfflineLibraryActivity extends Activity {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
-		offlineStoryLibrary = new ArrayList<Story>();
-
 		super.onCreate(savedInstanceState);
+		offlineStoryLibrary = new ArrayList<Story>();
+		initManagers();
 		setContentView(R.layout.offline_library);
-
-		// Initiate and Load the Local Library Manager
-		lManagerInst = LocalLibraryManager.getInstance();
-		lManagerInst.initContext(this);
-
-
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
 
 		TextView txt = (TextView) findViewById(R.id.local_lib);  
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
-		txt.setTypeface(font);  
-
-		// Populate the Display
+		txt.setTypeface(font);
 		populateListView();
+	}
+
+	private void initManagers() {
+		lManagerInst = LocalLibraryManager.getInstance();
+		lManagerInst.initContext(this);
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
 	}
 
 	/**
