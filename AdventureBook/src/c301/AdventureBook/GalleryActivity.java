@@ -81,7 +81,7 @@ public class GalleryActivity extends Activity{
 		imageBytes = currentPage.getImageBytes();
 
 		gridview = (GridView) findViewById(R.id.gridview);
-		gridview.setAdapter(new ImageAdapter(this, imageBytes));
+		gridview.setAdapter(new GalleryImageAdapter(this, imageBytes));
 		registerForContextMenu(gridview);
 		mButtonAddPic = (Button) findViewById(R.id.add_pic);
 		mButtonReturn = (Button) findViewById(R.id.return_from_gallery);
@@ -145,7 +145,7 @@ public class GalleryActivity extends Activity{
 		// TODO Auto-generated method stub
 		if (item.getItemId() == MENU_DELETE_ID) {
 			currentPage.removeImageByte(currentId);
-			gridview.setAdapter(new ImageAdapter(this, imageBytes));
+			gridview.setAdapter(new GalleryImageAdapter(this, imageBytes));
 			
 
 		}
@@ -156,14 +156,14 @@ public class GalleryActivity extends Activity{
 		super.onResume();
 		//Refresh your stuff here
 		imageBytes = currentPage.getImageBytes();
-		gridview.setAdapter(new ImageAdapter(this, imageBytes));
+		gridview.setAdapter(new GalleryImageAdapter(this, imageBytes));
 	}
 
-	public class ImageAdapter extends BaseAdapter {
+	public class GalleryImageAdapter extends BaseAdapter {
 		private Context mContext;
 		private Bitmap[] bitmaps;
 
-		public ImageAdapter(Context c, ArrayList<String> imageBytes) {
+		public GalleryImageAdapter(Context c, ArrayList<String> imageBytes) {
 			this.mContext = c;
 			bitmaps = new Bitmap[imageBytes.size()];
 
