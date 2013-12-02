@@ -107,7 +107,6 @@ public class CacheManager {
 					}
 				}
 			}
-
 			this.mCacheLibrary = tempLibrary;
 		}
 	}
