@@ -51,15 +51,21 @@ public class ImageAdapter extends BaseAdapter {
 
 		}
 	}
-
+	/**
+	 * get the length of the bitmap
+	 */
 	public int getCount() {
 		return bitmaps.length;
 	}
-
+	/**
+	 * get the item's position
+	 */
 	public Object getItem(int position) {
 		return position;
 	}
-
+	/** get the item Id
+	 * 
+	 */
 	public long getItemId(int position) {
 		return position;
 	}

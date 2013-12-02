@@ -49,9 +49,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	
 	
 	/**
-	 * Add an item 
+	 * Add an goto page to the mainitem within the tree view
 	 * 
-	 * @param
+	 * @param item The options for a page
+	 * @param groupData The page
 	 *
 	 */
 	public void addItem(Option item, Page groupData){
@@ -65,19 +66,41 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		mModel.get(ind).setOptions(lstItems);
 	}
 	
-	
+	/**
+	 * Gets the data for a child item (goto page) 
+	 * 
+	 * @param groupPosition The parent's position
+	 * @param childPosition The goto page's position
+	 * @return the data of the child
+	 */
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
 		List<Option> item = mModel.get(groupPosition).getOptions();
 		return item.get(childPosition);
 	}
 
+	/**
+	 * Gets the ID for the given gotopage within the given page.
+	 * 
+	 * @param groupPosition the position of the group that contains the child
+	 * @param childPosition the position of the child within the group for which the ID is wanted
+	 * @return the ID associated with the child
+	 * 
+	 */
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
 		return childPosition;
 	}
 
-	
+	/**
+	 * Gets a View that displays the data for the given gotopage within a given page.
+	 * 
+	 * @param groupPosition The position of the group that contains the child
+	 * @param childPosition	 The position of the child (for which the View is returned) within the group
+	 * @param isLastChild Whether the child is the last child within the group
+	 * @param view	The old view to reuse, if possible
+	 * @return The View corresponding to the gotopage at the specified position
+	 */
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View view,
 			ViewGroup parent) {
@@ -99,26 +122,53 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		return view;
 	}
 
+	/**
+	 * Gets the number of children in a specified group.
+	 * 
+	 * @param groupPosition	the position of the group for which the children count should be returned
+	 * @return the children count in the specified group
+	 */
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		return mModel.get(groupPosition).getOptions().size();
 	}
 
+	/**
+	 * Gets the data associated with the given group.
+	 * 
+	 * @param groupPosition	the position of the group
+	 * @return the data gotopage for the specified group
+	 */
 	@Override
 	public Object getGroup(int groupPosition) {
 		return mModel.get(groupPosition);
 	}
 
+	/**
+	 * Gets the number of groups.
+	 * 	 
+	 * @return the number of groups
+	 */
 	@Override
 	public int getGroupCount() {
 		return mModel.size();
 	}
 
+	/**
+	 * Gets the number of groups.
+	 * 	 
+	 * @return the number of groups
+	 */
 	@Override
 	public long getGroupId(int groupPosition) {
 		return groupPosition;
 	}
 
+	/**
+	 * Gets the number of groups.
+	 * 	 
+	 * @return the number of groups
+	 */
 	@Override
 	public View getGroupView(int groupPosition, boolean isLastChild, View view, ViewGroup parent) {
 		Page model =  (Page)getGroup(groupPosition);
@@ -131,13 +181,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		txtStartPage.setText(model.getTitle());
 		return view;
 	}
-
+	
+	/**
+	 * Gets the number of groups.
+	 * 	 
+	 * @return the number of groups
+	 */
 	@Override
 	public boolean hasStableIds() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * Gets the number of groups.
+	 * 	 
+	 * @return the number of groups
+	 */
 	@Override
 	public boolean isChildSelectable(int arg0, int arg1) {
 		// TODO Auto-generated method stub
