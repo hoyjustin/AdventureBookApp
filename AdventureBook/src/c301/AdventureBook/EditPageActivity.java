@@ -91,7 +91,8 @@ public class EditPageActivity extends Activity implements Serializable {
 		mEditPageTitle.setText(currentPage.getTitle());
 		mEditPageDes.setText(currentPage.getPageDescription());
 		
-
+		//(use below code if a cover flow is wanted to display pictures)
+		
 		//coverFlow  = (CoverFlow) findViewById(com.example.adventurebook.R.id.gallery1);
 		//coverFlow.setAdapter(new ImageAdapter(this));
 		//coverImageAdapter =  new ImageAdapter(this);
@@ -191,6 +192,10 @@ public class EditPageActivity extends Activity implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Adapter class that populates the options from the list.
+	 *
+	 */
 	private class CustomAdapter extends ArrayAdapter<Option> {
 
 		public CustomAdapter(EditPageActivity editPageActivity, ListView optionsList, List<Option> options) {
@@ -198,7 +203,9 @@ public class EditPageActivity extends Activity implements Serializable {
 					currentPageOptions);
 		}
 
-
+		/**
+		 * Get the view for the options.
+		 */
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 

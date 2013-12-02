@@ -167,6 +167,7 @@ public class GalleryActivity extends Activity{
 			this.mContext = c;
 			bitmaps = new Bitmap[imageBytes.size()];
 
+			// insert code here if we want show a notification for no pages
 			if (imageBytes.size() == 0) {
 				
 			}

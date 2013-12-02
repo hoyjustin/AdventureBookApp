@@ -103,6 +103,10 @@ public class EditStoryInfoActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Initiate instances of the StoryManager and LocalLibraryManager
+	 * for the current activity.
+	 */
 	private void initManager() {
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
@@ -160,6 +164,9 @@ public class EditStoryInfoActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Writes the edited data to the story.
+	 */
 	private void writeEditedStory() {
 		lManagerInst.deleteStory(currentStory);
 		currentStory.setTitle(storyTitle);
@@ -180,6 +187,10 @@ public class EditStoryInfoActivity extends Activity {
 		storyDescription = mStoryDescription.getText().toString();
 	}
 
+	/**
+	 * Activity result handler that is called after he TakePhotoActivity.
+	 * It retrieves the image that was taken.
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
