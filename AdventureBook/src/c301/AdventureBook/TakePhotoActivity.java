@@ -139,7 +139,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 		});
 	}
-	//
+	//sliding bar 
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
 		tv.setText(String.valueOf(scalePercent));
@@ -159,7 +159,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 	}
 	
-	
+	//save and pass the imagebyte
 	private void saveAndFinish() {
 		Intent intent = new Intent();		
 		intent.putExtra("imagebyte", imageByte);
@@ -167,6 +167,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		finish();
 
 	}
+	//covert image to byte, and resize it.
 	public String imageCovert(String path, double size_scale){
 		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
 		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
@@ -194,7 +195,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, imageReturnIntent);
 			switch(requestCode){			
-
+            //if select photo
 			case SELECT_PHOTO:
 				if(resultCode == RESULT_OK);{
 					if(imageReturnIntent != null){
@@ -230,6 +231,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 					break;
                     
 				}
+			// if take photo
 			case TAKE_PHOTO:
 				If(resultCode == RESULT_OK);{
 					try {
