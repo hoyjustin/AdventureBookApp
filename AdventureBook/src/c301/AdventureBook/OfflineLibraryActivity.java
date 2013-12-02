@@ -86,12 +86,12 @@ public class OfflineLibraryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		offlineStoryLibrary = new ArrayList<Story>();
 		initManagers();
-		populateListView();
 		setContentView(R.layout.offline_library);
 
 		TextView txt = (TextView) findViewById(R.id.local_lib);  
 		font = Typeface.createFromAsset(getAssets(), "fonts/straightline.ttf");  
 		txt.setTypeface(font);
+		populateListView();
 	}
 
 	private void initManagers() {
