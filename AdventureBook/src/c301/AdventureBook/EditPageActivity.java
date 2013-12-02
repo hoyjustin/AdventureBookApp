@@ -178,6 +178,10 @@ public class EditPageActivity extends Activity implements Serializable {
 		optionsList.setAdapter(adpt);
 	}
 
+	/**
+	 * Check all of options for a page and check if there is a random option
+	 * @return boolean true if theres a random option otherwise false
+	 */
 	private boolean randomOptionExists() {
 		for (Option option : currentPageOptions) {
 			if (option instanceof RandomOption) {
