@@ -85,7 +85,6 @@ public class EditOptionActivity extends Activity {
 		pageListView = (ListView) findViewById(R.id.list_of_goto_pages);
 		
 		pages = sManagerInst.getCurrentStory().getPages();
-		Page currentPage = sManagerInst.getPage();
 		
 		this.adapter = new ArrayAdapter<Page>(this, R.layout.list_row, pages);
 
@@ -117,13 +116,10 @@ public class EditOptionActivity extends Activity {
 	public void onClickSaveOption(View v) {
 		// TODO: save the option
 
-		EditText editOptionDes = (EditText) findViewById(R.id.editOptionDescription);
-		String optionDes = editOptionDes.getText().toString();
-
+		createNewOption();
 		gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
 
 		if (goToPage != null) {
-			sManagerInst.createOption(optionDes, goToPage);
 			finish();
 		} else {
 			AlertDialog.Builder builder = new AlertDialog.Builder(
@@ -144,6 +140,14 @@ public class EditOptionActivity extends Activity {
 			// 3. Get the AlertDialog from create()
 			AlertDialog dialog = builder.create();
 			dialog.show();
+		}
+	}
+
+	private void createNewOption() {
+		EditText editOptionDes = (EditText) findViewById(R.id.editOptionDescription);
+		String optionDes = editOptionDes.getText().toString();
+		if (goToPage != null) {
+			sManagerInst.createOption(optionDes, goToPage);
 		}
 	}
 

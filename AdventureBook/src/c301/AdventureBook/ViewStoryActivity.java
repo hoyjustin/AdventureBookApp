@@ -120,13 +120,17 @@ public class ViewStoryActivity extends Activity {
 		List<Page> pages = currentStory.getPages();
 		// Do nothing if story doesn't contain any pages
 		if (pages.size() > 0) {
-			Page firstPage = pages.get(FIRST_PAGE_INDEX);
-			sManager.setCurrentPage(firstPage);
+			setManagerFirstPage(pages);
 			Intent i = new Intent(this, ViewPageActivity.class);
 			startActivity(i);
 		} else {
 			Toast.makeText(this, "There are no pages to view!", Toast.LENGTH_LONG).show();
 		}
+	}
+
+	private void setManagerFirstPage(List<Page> pages) {
+		Page firstPage = pages.get(FIRST_PAGE_INDEX);
+		sManager.setCurrentPage(firstPage);
 	}
 
 }
