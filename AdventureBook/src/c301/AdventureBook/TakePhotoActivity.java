@@ -49,6 +49,7 @@ import com.example.adventurebook.R;
 /**
  * Take Photo Activity allow user to take a photo from camera, or select a photo from phone's gallery.
  * It will pass a path of photo to other class
+ * Add resize to images.
  * @author Zhao Zhang
  *
  */
@@ -74,7 +75,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		Button uploadFromPhone = (Button)findViewById(R.id.fromPhoneButton);
 		Button uploadFromWebCam = (Button)findViewById(R.id.fromWebCamButton);
 		Button uploadConfirm = (Button)findViewById(R.id.confirmButton);
-		
+        //set seekbar and textul status		
 		tv = (TextView)findViewById(R.id.percent);
 		tv.setText("DISABLED");
 		
@@ -88,7 +89,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		sb.setEnabled(false);
 		
 		
-
+        //button for click select images from local
 		uploadFromPhone.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -101,6 +102,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				// TODO Auto-generated method stub
 			}
 		});
+		//button for click camera
 		uploadFromWebCam.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -123,6 +125,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 			}
 		});
+		//button for confirm
 		uploadConfirm.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -136,7 +139,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 		});
 	}
-	
+	//
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
 		tv.setText(String.valueOf(scalePercent));
@@ -229,36 +232,29 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				}
 			case TAKE_PHOTO:
 				If(resultCode == RESULT_OK);{
-					if(imageReturnIntent != null){
-						if(imageReturnIntent.getData() != null){
-							try {
-								ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-								Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
-								test.setImageBitmap(bitmap);
-								imageByte = imageCovert(show_path,1.5);
-								
-								sb.setEnabled(true);
-								resize.setText("Re-size");
-								tv.setText("3");
-								sb.setProgress(3);
-								
-								select_result = 1;
-								break;
-							} catch (FileNotFoundException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
-						}
+					try {
+						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
+						test.setImageBitmap(bitmap);
+						imageByte = imageCovert(show_path,1.5);
+						
+						sb.setEnabled(true);
+						resize.setText("Re-size");
+						tv.setText("3");
+						sb.setProgress(3);
+						
+						select_result = 1;
+						break;
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-					break;
-					
-				}
-			}
 		}
+	}
+}
 
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
