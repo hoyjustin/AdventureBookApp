@@ -3,7 +3,7 @@ package c301.AdventureBook;
 import android.app.Application;
 
 /**
- * Checks whether or not the applicatin is online or offline.
+ * Checks whether or not the application is online or offline.
  *
  */
 public class AdventureBook extends Application{
