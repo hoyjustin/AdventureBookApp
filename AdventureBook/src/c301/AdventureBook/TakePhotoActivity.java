@@ -143,7 +143,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
 		tv.setText(String.valueOf(scalePercent));
-		imageByte = imageCovert(show_path, (1 - scalePercent*0.5) + 2.0);
+		imageByte = processImage(show_path, (1 - scalePercent*0.5) + 2.0);
 
 	}
 
@@ -167,20 +167,10 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		finish();
 
 	}
-	public String imageCovert(String path, double size_scale){
-		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
+	public String processImage(String path, double size_scale){
+		Bitmap bitmapOrg = resizeBitmap(path, size_scale);
 		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
 
-		double width = bitmapOrg.getWidth();
-		double height = bitmapOrg.getHeight();
-		
-		double ratio = 400.00 / width;
-		int newheight = (int) (ratio * height);
-		int newwidth = (int) (400.00/size_scale);
-		int new_height = (int) (newheight/size_scale);
-		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, newwidth, new_height,
-				true);
-		
 		bitmapOrg.compress(Bitmap.CompressFormat.JPEG, 95, imageByte);
 		ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 		test.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -188,6 +178,18 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		byte[] bytefile = imageByte.toByteArray();
 		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
 		return bytefile64;
+	}
+	private Bitmap resizeBitmap(String path, double size_scale) {
+		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
+		double width = bitmapOrg.getWidth();
+		double height = bitmapOrg.getHeight();
+		double ratio = 400.00 / width;
+		int newheight = (int) (ratio * height);
+		int newwidth = (int) (400.00 / size_scale);
+		int new_height = (int) (newheight / size_scale);
+		bitmapOrg = Bitmap.createScaledBitmap(bitmapOrg, newwidth, new_height,
+				true);
+		return bitmapOrg;
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnIntent) {
@@ -212,7 +214,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 							test.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 							test.setImageBitmap(BitmapFactory.decodeFile(filePath));
 							show_path = filePath;
-							imageByte = imageCovert(show_path,1.5);
+							imageByte = processImage(show_path,1.5);
 							
 							sb.setEnabled(true);
 							resize.setText("Re-size");
@@ -236,7 +238,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
 						test.setImageBitmap(bitmap);
-						imageByte = imageCovert(show_path,1.5);
+						imageByte = processImage(show_path,1.5);
 						
 						sb.setEnabled(true);
 						resize.setText("Re-size");

@@ -72,11 +72,16 @@ public class AnnotationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.annotations);
 
-		sManager = StoryManager.getInstance();
-		sManager.initContext(this);
-
 		author = (EditText) findViewById(R.id.editTextAnnotationAuthor);
 		comment = (EditText) findViewById(R.id.editTextAnnotationComment);
+		Button submit = (Button) findViewById(R.id.submit);
+		submit.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				createAnnotation();
+			}
+		});
+		initManagers();
 		ImageButton attachImage = (ImageButton) findViewById(R.id.imageButtonAnnotationAttachImage);
 
 		attachImage.setOnClickListener(new OnClickListener() {
@@ -98,19 +103,15 @@ public class AnnotationActivity extends Activity {
 			}
 		});
 
-		Button submit = (Button) findViewById(R.id.submit);
-
-		submit.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				createAnnotation();
-			}
-		});
 		populateAnnotations();
 		
 		// reset imagebyte
 		imageByte = null;
+	}
+
+	private void initManagers() {
+		sManager = StoryManager.getInstance();
+		sManager.initContext(this);
 	}
 
 	/**
