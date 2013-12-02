@@ -110,7 +110,8 @@ public class OfflineLibraryActivity extends Activity {
 		inflater.inflate(R.menu.library_options_menu, menu);
 
 		// Associate searchable configuration with the SearchView
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		
+		//SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
 				.getActionView();
 
@@ -122,8 +123,6 @@ public class OfflineLibraryActivity extends Activity {
 			 */
 			@Override
 			public boolean onQueryTextChange(String newText) {
-				// Do something
-
 				//String keyword = searchView.getQuery().toString().toLowerCase();
 				//offlineStoryLibrary = fLoader.loadStoryFileWithKeyword(keyword);
 

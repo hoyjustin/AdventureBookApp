@@ -57,7 +57,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	private static final int TAKE_PHOTO = 101;
 	static Uri capturedImageUri=null;
 	private String show_path;
-	private EditText EditSize;
 	private String imageByte;
 	int select_result = 0;
 	SeekBar sb;

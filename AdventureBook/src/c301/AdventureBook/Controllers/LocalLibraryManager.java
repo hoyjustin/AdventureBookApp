@@ -22,8 +22,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Locale;
-
 import android.content.Context;
 import android.util.Log;
 import c301.AdventureBook.Models.Story;

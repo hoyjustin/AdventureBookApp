@@ -85,8 +85,6 @@ public class StoryManager {
 	public boolean createStory(String storyTitle, String storyDescription, String storyAuthor, 
 			String formattedDate, String imageByte, boolean overwrite){
 		
-		UUID generatedUUID = UUID.randomUUID();
-				
 		Story newStory = new Story(storyTitle, storyDescription, storyAuthor,
 				formattedDate, imageByte);
 		

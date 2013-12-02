@@ -110,9 +110,13 @@ public class GalleryActivity extends Activity{
 	}
 	
 	@Override
-	//test image
+	/**
+	 * On return of the TakePhotoActivity, the uploaded image is passed here and
+	 * saved onto the current page.
+	 * @param requestCode, resultCode, data
+	 * 
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
 			data.getStringExtra("path");
@@ -124,7 +128,12 @@ public class GalleryActivity extends Activity{
 		}
 	}
 	@Override
-	//create the keep touching menu for delete 
+
+	/**
+	 * Create a context menu 
+	 * @param requestCode, resultCode, data
+	 * 
+	 */
 	public void onCreateContextMenu(ContextMenu menu, View v,
 				ContextMenuInfo menuInfo) {
 			// TODO Auto-generated method stub

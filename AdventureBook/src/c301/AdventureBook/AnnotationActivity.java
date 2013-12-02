@@ -109,6 +109,9 @@ public class AnnotationActivity extends Activity {
 		imageByte = null;
 	}
 
+	/**
+	 * Initialize managers used by this activity
+	 */
 	private void initManagers() {
 		sManager = StoryManager.getInstance();
 		sManager.initContext(this);

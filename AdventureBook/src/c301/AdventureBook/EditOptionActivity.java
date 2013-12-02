@@ -67,6 +67,9 @@ public class EditOptionActivity extends Activity {
 		registerForClicks();
 	}
 
+	/**
+	 * Initialize managers used by this activity
+	 */
 	private void initManager() {
 		sManagerInst = StoryManager.getInstance();
 		sManagerInst.initContext(this);
