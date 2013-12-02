@@ -196,6 +196,10 @@ public class CreateStoryActivity extends Activity {
 		storyDescription = mStoryDescription.getText().toString();
 	}
 
+	
+	/**
+	 * Retrieve the uploaded image from TakePhotoActivity to be used as a thumbnail in the story associated with this activity
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub

@@ -399,7 +399,7 @@ public class OnlineLibraryActivity extends Activity {
 		// set dialog message
 		alertDialogBuilder
 		.setMessage(
-				"There's no network connection! Library will Loaded from Cached Data.")
+				"There's no network connection! Library will now be Loaded from Cached Data.")
 				.setCancelable(false)
 				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
