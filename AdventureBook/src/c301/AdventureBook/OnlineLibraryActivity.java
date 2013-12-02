@@ -52,6 +52,7 @@ import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.ElasticSearch.ESClient;
 import c301.AdventureBook.Models.Story;
 
+
 import com.example.adventurebook.R;
 
 /**
@@ -186,12 +187,22 @@ public class OnlineLibraryActivity extends Activity {
 		startActivity(i);
 		finish();
 	}
+	/** 
+	 * this code fetches data from the server
+	 * 
+	 */
 
 	private void fetchDataFromServer() {
 		onlineStoryLibrary = client.getAllStories();
 		cManagerInst.cacheData(onlineStoryLibrary);
 	}
-
+	/**
+	 * this part will get all the story from the data and display
+	 * to the use
+	 * 
+	 * @author ltong2
+	 * 
+	 */
 	private class getStoriesAndDisplay extends
 	AsyncTask<String, String, String> {
 
@@ -234,7 +245,9 @@ public class OnlineLibraryActivity extends Activity {
 		}
 
 	}
-
+	/**
+	 * When Clicked on the list item, we can return a story.
+	 */
 	private void populateListView() {
 		final ListView onlineLV = (ListView) findViewById(R.id.online_library_listView);
 		adapter = new CustomStoryAdapter(this, R.layout.library_row,
@@ -246,7 +259,6 @@ public class OnlineLibraryActivity extends Activity {
 		// tutorial used =
 		// http://stackoverflow.com/questions/9097723/adding-a-onclicklistener-to-listview-android
 
-		// When Clicked on the list item, we can return a story.
 		onlineLV.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -259,10 +271,12 @@ public class OnlineLibraryActivity extends Activity {
 			}
 		});
 	}
-
+	/**
+	 * Tell the Application that we are viewing this story from Online.
+	 * @param story
+	 */
 	private void viewStory(Story story) {
 
-		//Tell the Application that we are viewing this story from Online.
 		((AdventureBook) this.getApplication()).setIsOnlineParameter(true);
 
 		sManagerInst.setCurrentStory(story);
