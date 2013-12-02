@@ -30,6 +30,13 @@ import c301.AdventureBook.Models.Page;
 
 import com.example.adventurebook.R;
 
+
+/**
+ * The adapter for displaying story fragments in a tree view. Used in the EditStoryPagesActivity
+ * 
+ * @author Justin Hoy
+ *
+ */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	private Context mContext;

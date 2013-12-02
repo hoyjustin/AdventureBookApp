@@ -46,7 +46,7 @@ import com.example.adventurebook.R;
  * The edit story activity allows the author to edit the contents of a story by
  * adding or removing story fragments.
  * 
- * @author Justin
+ * @author Justin Hoy
  *
  */
 public class EditStoryPagesActivity extends Activity implements OnMenuItemClickListener, Serializable{

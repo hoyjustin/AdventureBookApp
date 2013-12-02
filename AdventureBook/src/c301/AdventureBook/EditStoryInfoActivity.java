@@ -17,13 +17,8 @@
 
 package c301.AdventureBook;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

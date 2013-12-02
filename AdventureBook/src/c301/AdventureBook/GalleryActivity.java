@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) <2013>  <Justin Hoy>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package c301.AdventureBook;
 
 import java.util.ArrayList;
@@ -23,8 +40,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import c301.AdventureBook.Controllers.StoryManager;
 import c301.AdventureBook.Models.Page;
 import c301.AdventureBook.Models.Story;
@@ -32,6 +47,13 @@ import c301.AdventureBook.Models.Story;
 import com.example.adventurebook.R;
 
 
+/**
+ * The gallery activity displays the pictures of a story fragment through a gridview.
+ * Users can delete or add more pictures.
+ * 
+ * @author Justin Hoy
+ *
+ */
 public class GalleryActivity extends Activity{
 
 	private static final int PHOTO_ACTIVITY_REQUEST = 1001;
@@ -47,7 +69,6 @@ public class GalleryActivity extends Activity{
 	Typeface font;
 	ArrayList<String> imageBytes;
 	
-	private String show_path;
 	private String imageByte;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -94,7 +115,7 @@ public class GalleryActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == PHOTO_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
-			show_path = data.getStringExtra("path");
+			data.getStringExtra("path");
 			imageByte = data.getStringExtra("imagebyte");
 			currentPage.addImageByte(imageByte);
 			currentStory.replacePage(currentPage);

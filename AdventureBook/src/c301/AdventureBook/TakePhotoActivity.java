@@ -15,8 +15,6 @@
  */
 
 package c301.AdventureBook;
-//Creator: Zhao Zhang
-//Minor Editor: Justin Hoy
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -48,10 +46,9 @@ import com.example.adventurebook.R;
 
 /**
  * Take Photo Activity allow user to take a photo from camera, or select a photo from phone's gallery.
- * It will pass a path of photo to other class
- * Add resize to images.
+ * It will resize proccess and resize picture to be suitable for the app and then return its byte representation on return.
+ * 
  * @author Zhao Zhang
- *
  */
 public class TakePhotoActivity extends Activity implements OnSeekBarChangeListener{
 	//int REQUEST_CODE = 0;
@@ -65,7 +62,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	SeekBar sb;
 	TextView resize;
 	TextView tv;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 
@@ -75,21 +72,21 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		Button uploadFromPhone = (Button)findViewById(R.id.fromPhoneButton);
 		Button uploadFromWebCam = (Button)findViewById(R.id.fromWebCamButton);
 		Button uploadConfirm = (Button)findViewById(R.id.confirmButton);
-        //set seekbar and textul status		
+		//set seekbar and textul status		
 		tv = (TextView)findViewById(R.id.percent);
 		tv.setText("DISABLED");
-		
+
 		resize = (TextView)findViewById(R.id.resize);
 		resize.setEnabled(false);
-		
+
 		sb = (SeekBar)findViewById(R.id.slider);
 		sb.setMax(5);
 		sb.setProgress(3);
 		sb.setOnSeekBarChangeListener(this);
 		sb.setEnabled(false);
-		
-		
-        //button for click select images from local
+
+
+		//button for click select images from local
 		uploadFromPhone.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -149,16 +146,16 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 
 	}
-	
+
 	//save and pass the imagebyte
 	private void saveAndFinish() {
 		Intent intent = new Intent();		
@@ -167,6 +164,13 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		finish();
 
 	}
+
+	/**
+	 * This function processes an image into bytes by compressing and calling a scaling function upon it
+	 * 
+	 * @param the image's path and desired scaling size
+	 * @return String a image's byte array
+	 */
 	public String processImage(String path, double size_scale){
 		Bitmap bitmapOrg = resizeBitmap(path, size_scale);
 		ByteArrayOutputStream imageByte = new ByteArrayOutputStream();
@@ -179,6 +183,13 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		String bytefile64 = Base64.encodeToString(bytefile, Base64.DEFAULT);
 		return bytefile64;
 	}
+
+	/**
+	 * This function resizes Bitmaps based on the size_scale passed
+	 * 
+	 * @param the image's path and desired scaling size
+	 * @return a resized Bitmap
+	 */
 	private Bitmap resizeBitmap(String path, double size_scale) {
 		Bitmap bitmapOrg = BitmapFactory.decodeFile(path);
 		double width = bitmapOrg.getWidth();
@@ -191,16 +202,21 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				true);
 		return bitmapOrg;
 	}
+
+	/**
+	 * This displays the uploaded picture upon the activity screen on return from the Android webcam or mediaStore.
+	 * 
+	 * @param the requestCode, returnCode, and intent of the returning function
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnIntent) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, imageReturnIntent);
-			switch(requestCode){			
-            //if select photo
-			case SELECT_PHOTO:
-				if(resultCode == RESULT_OK);{
-					if(imageReturnIntent != null){
-
+		switch(requestCode){			
+		//if select photo
+		case SELECT_PHOTO:
+			if(resultCode == RESULT_OK);{
+				if(imageReturnIntent != null){
 					if(imageReturnIntent.getData() != null){
 						try {
 							Uri selectedImage = imageReturnIntent.getData();
@@ -215,12 +231,12 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 							test.setImageBitmap(BitmapFactory.decodeFile(filePath));
 							show_path = filePath;
 							imageByte = processImage(show_path,1.5);
-							
+
 							sb.setEnabled(true);
 							resize.setText("Re-size");
 							tv.setText("3");
 							sb.setProgress(3);
-							
+
 							select_result = 1;
 							break;
 						}
@@ -228,44 +244,39 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 							e.printStackTrace();
 						}
 					}
-					}
-					break;
-                    
 				}
+				break;
+
+			}
 			// if take photo
-			case TAKE_PHOTO:
-				If(resultCode == RESULT_OK);{
-					try {
-						ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
-						Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
-						test.setImageBitmap(bitmap);
-						imageByte = processImage(show_path,1.5);
-						
-						sb.setEnabled(true);
-						resize.setText("Re-size");
-						tv.setText("3");
-						sb.setProgress(3);
-						
-						select_result = 1;
-						break;
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		case TAKE_PHOTO:
+			if(resultCode == RESULT_OK);{
+				try {
+					ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
+					Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
+					test.setImageBitmap(bitmap);
+					imageByte = processImage(show_path,1.5);
+
+					sb.setEnabled(true);
+					resize.setText("Re-size");
+					tv.setText("3");
+					sb.setProgress(3);
+
+					select_result = 1;
+					break;
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
-}
 
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		finish();
-	}
-	private void If(boolean b) {
-		// TODO Auto-generated method stub
-
 	}
 }
 

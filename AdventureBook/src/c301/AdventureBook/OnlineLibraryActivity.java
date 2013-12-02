@@ -297,8 +297,9 @@ public class OnlineLibraryActivity extends Activity {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Download Story");
+//		(Add this code only if we allow user to delete from online library)
 		//		menu.add("Delete Story");
-		//		(Add only if we allow user to delete from online library)
+
 	}
 
 	/**
@@ -318,6 +319,8 @@ public class OnlineLibraryActivity extends Activity {
 		if (item.getTitle() == "Download Story") {
 			downloadStory(storyClicked);
 		}
+//	(Add this code only if we allow user to delete from online library)
+		
 //		else if (item.getTitle() == "Delete Story") {
 //			if (networkConnected) {
 //				new deleteStoryTask(storyClicked).execute();
@@ -330,6 +333,8 @@ public class OnlineLibraryActivity extends Activity {
 		return true;
 	}
 
+//	(Add this code only if we allow user to delete from online library)	
+	
 //	private class deleteStoryTask extends AsyncTask<String, String, String> {
 //
 //		Story story;
