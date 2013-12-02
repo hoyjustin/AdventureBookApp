@@ -41,7 +41,7 @@ public class ViewStoryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_story);
-		
+		initManager();
 		populateData();
 	}
 	
@@ -78,11 +78,7 @@ public class ViewStoryActivity extends Activity {
 	 * Populates the page with the story data, including the title, author,
 	 * description, and image.
 	 */
-	public void populateData(){
-
-		sManager = StoryManager.getInstance();
-		sManager.initContext(this);
-		
+	public void populateData(){;
 		currentStory = sManager.getCurrentStory();
 		
 		ImageView imageView = (ImageView)findViewById(R.id.storyThumnail);
@@ -107,6 +103,11 @@ public class ViewStoryActivity extends Activity {
 		storyDescription.setText(currentStory.getDescription());
 		storyDescription.setKeyListener(null);
 
+	}
+
+	private void initManager() {
+		sManager = StoryManager.getInstance();
+		sManager.initContext(this);
 	}
 	
 	/**

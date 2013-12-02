@@ -63,12 +63,14 @@ public class EditOptionActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_option);
-
-		sManagerInst = StoryManager.getInstance();
-		sManagerInst.initContext(this);
+		initManager();
 		populateListView();
 		registerForClicks();
+	}
 
+	private void initManager() {
+		sManagerInst = StoryManager.getInstance();
+		sManagerInst.initContext(this);
 	}
 
 	@Override
