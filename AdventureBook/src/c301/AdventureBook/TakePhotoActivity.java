@@ -41,6 +41,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adventurebook.R;
 
@@ -215,7 +216,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		switch(requestCode){			
 		//if select photo
 		case SELECT_PHOTO:
-			if(resultCode == RESULT_OK);{
+			if(resultCode == RESULT_OK){
 				if(imageReturnIntent != null){
 					if(imageReturnIntent.getData() != null){
 						try {
@@ -250,7 +251,7 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 			}
 			// if take photo
 		case TAKE_PHOTO:
-			if(resultCode == RESULT_OK);{
+			if(resultCode == RESULT_OK){
 				try {
 					ImageView test = (ImageView) findViewById(R.id.upload_photo_view);
 					Bitmap bitmap = MediaStore.Images.Media.getBitmap( getApplicationContext().getContentResolver(),  capturedImageUri);
@@ -272,6 +273,10 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 					e.printStackTrace();
 				}
 			}
+			else if (resultCode == RESULT_CANCELED){
+                Toast.makeText(this, "Picture Was Not Taken", Toast.LENGTH_SHORT).show();
+            }
+			
 		}
 	}
 
