@@ -75,13 +75,20 @@ public class EditOptionActivity extends Activity {
 		sManagerInst.initContext(this);
 	}
 
-	@Override
+	/**
+	 * Initialize the contents of the Activity's standard options menu
+	 * @param Menu The options menu in which you place your items.
+	 * @return return true for the menu to be displayed
+	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
+	/**
+	 * Populate the options list
+	 */
 	public void populateListView() {
 		// This function will put all the available pages in the listView
 		pageListView = (ListView) findViewById(R.id.list_of_goto_pages);
@@ -92,9 +99,11 @@ public class EditOptionActivity extends Activity {
 
 		pageListView.setAdapter(adapter);
 	}
-
+	
+	/**
+	 * Populate the options list
+	 */
 	private void registerForClicks() {
-
 		pageListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -116,7 +125,6 @@ public class EditOptionActivity extends Activity {
 	 * data and returns user to the edit page activity.
 	 */
 	public void onClickSaveOption(View v) {
-		// TODO: save the option
 
 		createNewOption();
 		gotoPageTV = (TextView) findViewById(R.id.GotoPageTV);
@@ -145,6 +153,9 @@ public class EditOptionActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Retrieve user input for a new option and create it through the controller
+	 */
 	private void createNewOption() {
 		EditText editOptionDes = (EditText) findViewById(R.id.editOptionDescription);
 		String optionDes = editOptionDes.getText().toString();

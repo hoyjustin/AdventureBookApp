@@ -269,7 +269,7 @@ public class AnnotationActivity extends Activity {
 	}
 
 	/**
-	 * this should go back to the view page
+	 * Return to the viewPageActivity associated with this annotation
 	 */
 	private void goBackPage() {
 		finish();
@@ -284,6 +284,9 @@ public class AnnotationActivity extends Activity {
 		commentAnnotation = comment.getText().toString();
 	}
 
+	/**
+	 * Retrieve the uploaded image from TakePhotoActivity to be used in an annotation for this activity
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
