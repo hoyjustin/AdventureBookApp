@@ -136,7 +136,10 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 		});
 	}
-	//sliding bar 
+	
+	/**
+	 * Handles the progress of the sliding bar when resizing an image.
+	 */
 	@Override
 	public void onProgressChanged(SeekBar v, int scalePercent, boolean isUser) {
 		tv.setText(String.valueOf(scalePercent));
@@ -156,7 +159,10 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 
 	}
 
-	//save and pass the imagebyte
+	/**
+	 * Saves the image byte and stores the data in the intent to pass to
+	 * another activity.
+	 */
 	private void saveAndFinish() {
 		Intent intent = new Intent();		
 		intent.putExtra("imagebyte", imageByte);
@@ -279,6 +285,9 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		}
 	}
 
+	/**
+	 * When the back button is pressed, finishes the current activity.
+	 */
 	public void onBackPressed() {
 		finish();
 	}

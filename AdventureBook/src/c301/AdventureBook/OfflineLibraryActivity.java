@@ -94,6 +94,11 @@ public class OfflineLibraryActivity extends Activity {
 		populateListView();
 	}
 
+	/**
+	 * Initiate instances of the StoryManager and LocalLibraryManager
+	 * for the current activity.
+	 * 
+	 */
 	private void initManagers() {
 		lManagerInst = LocalLibraryManager.getInstance();
 		lManagerInst.initContext(this);
@@ -241,6 +246,9 @@ public class OfflineLibraryActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * On resume, populate the list view
+	 */
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -315,6 +323,10 @@ public class OfflineLibraryActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Class that handles publishing the story onto the online server.
+	 *
+	 */
 	private class publishStoryTask extends AsyncTask<String, String, String> {
 		Story story;
 		public publishStoryTask(Story storyClicked) {
@@ -331,6 +343,10 @@ public class OfflineLibraryActivity extends Activity {
 			}
 			return null;
 		}
+		
+		/**
+		 * Toast message appears after the story is published successfully.
+		 */
 		protected void onPostExecute(String result) {
 			Toast.makeText(OfflineLibraryActivity.this,
 					"Published " + this.story.getTitle(), Toast.LENGTH_LONG)
