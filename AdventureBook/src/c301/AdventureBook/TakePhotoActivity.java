@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +37,6 @@ import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -66,13 +66,12 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.upload_media);
 		Button uploadFromPhone = (Button)findViewById(R.id.fromPhoneButton);
 		Button uploadFromWebCam = (Button)findViewById(R.id.fromWebCamButton);
 		Button uploadConfirm = (Button)findViewById(R.id.confirmButton);
-		//set seekbar and textul status		
+		//set seekbar and textview status		
 		tv = (TextView)findViewById(R.id.percent);
 		tv.setText("DISABLED");
 
@@ -85,7 +84,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		sb.setOnSeekBarChangeListener(this);
 		sb.setEnabled(false);
 
-
 		//button for click select images from local
 		uploadFromPhone.setOnClickListener(new OnClickListener(){
 			@Override
@@ -96,14 +94,14 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				//photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
 				startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 				//startActivityForResult(Intent.createChooser(photoPickerIntent,"Select Picture"), SELECT_PHOTO);				
-				// TODO Auto-generated method stub
 			}
 		});
+		
 		//button for click camera
 		uploadFromWebCam.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
 				String curentDateandTime = sdf.format(new Date());
 				String newFilePath = Environment.getExternalStorageDirectory() + "/"+curentDateandTime+".jpg"; 
 				Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -112,14 +110,11 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				try {
 					file.createNewFile();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				capturedImageUri = Uri.fromFile(file);
 				cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, capturedImageUri);
 				startActivityForResult(cameraIntent, TAKE_PHOTO);
-				// TODO Auto-generated method stub
-
 			}
 		});
 		//button for confirm
@@ -150,13 +145,11 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -168,7 +161,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		intent.putExtra("imagebyte", imageByte);
 		setResult(RESULT_OK, intent);
 		finish();
-
 	}
 
 	/**
@@ -219,7 +211,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, imageReturnIntent);
 		switch(requestCode){			
-		//if select photo
 		case SELECT_PHOTO:
 			if(resultCode == RESULT_OK){
 				if(imageReturnIntent != null){
@@ -254,7 +245,6 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 				break;
 
 			}
-			// if take photo
 		case TAKE_PHOTO:
 			if(resultCode == RESULT_OK){
 				try {
@@ -271,10 +261,8 @@ public class TakePhotoActivity extends Activity implements OnSeekBarChangeListen
 					select_result = 1;
 					break;
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

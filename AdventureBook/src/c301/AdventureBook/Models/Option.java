@@ -22,7 +22,6 @@
 package c301.AdventureBook.Models;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * This is the Option model class. It allows the author to set the option
@@ -33,6 +32,7 @@ import java.util.UUID;
  * @author tyleung
  * 
  */
+@SuppressWarnings("serial")
 public class Option implements Serializable {
 	private String description;
 	private String gotoPageid;

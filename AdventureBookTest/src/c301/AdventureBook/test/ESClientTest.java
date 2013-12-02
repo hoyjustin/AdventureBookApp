@@ -3,8 +3,6 @@ package c301.AdventureBook.test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +20,7 @@ import c301.AdventureBook.Models.Story;
  */
 public class ESClientTest extends AndroidTestCase {
 
-	private HttpClient httpclient = new DefaultHttpClient();
+	//private HttpClient httpclient = new DefaultHttpClient();
 	private Story story;
 	private ESClient esClient;
 	public static final String WEBSERVICE_URI = "http://cmput301.softwareprocess.es:8080/cmput301f13t11/";
@@ -49,7 +47,7 @@ public class ESClientTest extends AndroidTestCase {
 		ridePage.addAnnotation(new Annotation("Minhal Syed ",
 				"I love this Page!!"));
 
-		Page goAroundPlay = new Page("", "go around it, then u died.", null);
+		//Page goAroundPlay = new Page("", "go around it, then u died.", null);
 
 		// goEatPage.addOption(new Option("LiveHapilyEverAfter", goPlay));
 

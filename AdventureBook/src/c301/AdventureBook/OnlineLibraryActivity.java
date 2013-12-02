@@ -18,13 +18,11 @@
 
 package c301.AdventureBook;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -135,7 +133,7 @@ public class OnlineLibraryActivity extends Activity {
 		inflater.inflate(R.menu.library_options_menu, menu);
 
 		// Associate searchable configuration with the SearchView
-		SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		//SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 		final SearchView searchView = (SearchView) menu.findItem(R.id.search)
 				.getActionView();
 

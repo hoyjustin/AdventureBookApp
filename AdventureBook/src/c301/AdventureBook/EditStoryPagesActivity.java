@@ -49,6 +49,7 @@ import com.example.adventurebook.R;
  * @author Justin Hoy
  *
  */
+@SuppressWarnings("serial")
 public class EditStoryPagesActivity extends Activity implements OnMenuItemClickListener, Serializable{
 
 	private final static int EDIT_PAGE = 1;

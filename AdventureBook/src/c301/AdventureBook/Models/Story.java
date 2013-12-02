@@ -28,6 +28,7 @@ import java.util.List;
  * @author Minhal Syed
  * 
  */
+@SuppressWarnings("serial")
 public class Story implements Serializable {
 
 	private String title;
@@ -36,7 +37,6 @@ public class Story implements Serializable {
 	private String date;
 	private String imageByte;
 	private List<Page> pages = new ArrayList<Page>();
-	private Page startPage;
 
 	/**
 	 * This is the constructor function for the Story class. It creates a new
@@ -240,15 +240,6 @@ public class Story implements Serializable {
 	public String getCacheFileName(){
 		String filename = getStoryId() + ".cache";
 		return filename;
-	}
-
-	/**
-	 * Set the start page.
-	 * 
-	 * @param startPage the start page
-	 */
-	public void setStartPage(Page startPage) {
-		this.startPage = startPage;
 	}
 
 	/**

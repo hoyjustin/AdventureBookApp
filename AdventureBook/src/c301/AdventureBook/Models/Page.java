@@ -21,7 +21,6 @@ package c301.AdventureBook.Models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * This is the Page Model Class. A page object is part of a story. A page
@@ -29,6 +28,7 @@ import java.util.UUID;
  * option for users to view/add annotations to the page.
  * 
  */
+@SuppressWarnings("serial")
 public class Page implements Serializable {
 
 	private String title;

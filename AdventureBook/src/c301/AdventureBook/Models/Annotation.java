@@ -30,6 +30,7 @@ import java.io.Serializable;
  * @author Lin Tong
  * 
  */
+@SuppressWarnings("serial")
 public class Annotation implements Serializable {
 
 	private String author;

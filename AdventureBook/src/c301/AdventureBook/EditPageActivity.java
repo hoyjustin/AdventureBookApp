@@ -48,6 +48,7 @@ import com.example.adventurebook.R;
  * @author Justin Hoy
  * @author Zhao Zhang
  */
+@SuppressWarnings("serial")
 public class EditPageActivity extends Activity implements Serializable {
 
 	private static final int EDIT_OPTION = 0;

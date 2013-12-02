@@ -5,6 +5,7 @@ package c301.AdventureBook.Models;
  * on a page.
  * 
  */
+@SuppressWarnings("serial")
 public class RandomOption extends Option {
 
 	/**
