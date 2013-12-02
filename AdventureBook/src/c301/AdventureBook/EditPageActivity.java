@@ -178,6 +178,11 @@ public class EditPageActivity extends Activity implements Serializable {
 		optionsList.setAdapter(adpt);
 	}
 
+	/**
+	 * Check if a random option exists
+	 * 
+	 * @return boolean
+	 */
 	private boolean randomOptionExists() {
 		for (Option option : currentPageOptions) {
 			if (option instanceof RandomOption) {
@@ -187,6 +192,10 @@ public class EditPageActivity extends Activity implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Adapter class that populates the options from the list.
+	 *
+	 */
 	private class CustomAdapter extends ArrayAdapter<Option> {
 
 		public CustomAdapter(EditPageActivity editPageActivity, ListView optionsList, List<Option> options) {
@@ -194,7 +203,9 @@ public class EditPageActivity extends Activity implements Serializable {
 					currentPageOptions);
 		}
 
-
+		/**
+		 * Get the view for the options.
+		 */
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 

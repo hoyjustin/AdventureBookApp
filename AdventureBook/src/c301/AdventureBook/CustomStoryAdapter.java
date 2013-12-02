@@ -18,6 +18,7 @@
 package c301.AdventureBook;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -42,7 +43,6 @@ import com.example.adventurebook.R;
  * @author Minhal Syed
  * 
  */
-
 public class CustomStoryAdapter extends ArrayAdapter<Story> {
 	Context context;
 	int layout_row_id;
@@ -69,25 +69,37 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 		this.layout_row_id = layout_row_id;
 		this.library = library;
 		this.storedlibrary = new ArrayList<Story>(library);
-		font = Typeface
-				.createFromAsset(context.getAssets(), "fonts/straightline.ttf");
+		font = Typeface.createFromAsset(context.getAssets(),
+				"fonts/straightline.ttf");
 	}
 
+	/**
+	 * Get the size of the library.
+	 */
 	@Override
 	public int getCount() {
 		return library.size();
 	}
 
+	/**
+	 * Get the Story object at the given position.
+	 */
 	@Override
 	public Story getItem(int position) {
 		return library.get(position);
 	}
 
+	/**
+	 * Get the index of a Story given its position.
+	 */
 	@Override
 	public long getItemId(int position) {
 		return library.indexOf(getItem(position));
 	}
 
+	/**
+	 * Get the view of the library.
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Tutorial used from: https://www.youtube.com/watch?v=WRANgDgM2Zg
@@ -108,15 +120,15 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 
 		if (currentStory.getImageByte() == null) {
 			imageView.setImageResource(R.drawable.default_image);
-		} else{
-			
+		} else {
+
 			byte[] decodedString = Base64.decode(currentStory.getImageByte(),
 					Base64.DEFAULT);
 			Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
 					0, decodedString.length);
 			imageView.setImageBitmap(decodedByte);
-		} 
-		
+		}
+
 		TextView titleText = (TextView) itemView.findViewById(R.id.titleTV);
 		titleText.setText(currentStory.getTitle());
 		titleText.setTypeface(font);
@@ -140,7 +152,6 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 	 */
 	// Tutorial used from:
 	// http://stackoverflow.com/questions/17962675/android-custom-listview-adapter-filter-not-going-back-to-original-list
-
 	@Override
 	public Filter getFilter() {
 		return new Filter() {
@@ -169,15 +180,15 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 
 					ArrayList<Story> filteredStories = new ArrayList<Story>();
 
-					String query = constraint.toString().toLowerCase();
+					String query = constraint.toString().toLowerCase(Locale.CANADA);
 					library = storedlibrary;
 					for (Story story : library) {
 
-						String story_title = story.getTitle().toLowerCase();
-						String story_author = story.getAuthor().toLowerCase();
+						String story_title = story.getTitle().toLowerCase(Locale.CANADA);
+						String story_author = story.getAuthor().toLowerCase(Locale.CANADA);
 						String story_description = story.getDescription()
-								.toLowerCase();
-						
+								.toLowerCase(Locale.CANADA);
+
 						if ((story_title.contains(query))
 								|| (story_author.contains(query))
 								|| (story_description.contains(query))) {
