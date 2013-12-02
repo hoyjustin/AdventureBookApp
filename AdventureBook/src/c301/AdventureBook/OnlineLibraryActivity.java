@@ -284,7 +284,8 @@ public class OnlineLibraryActivity extends Activity {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.add("Download Story");
-		menu.add("Delete Story");
+		//		menu.add("Delete Story");
+		//		(Add only if we allow user to delete from online library)
 	}
 
 	/**
@@ -304,38 +305,37 @@ public class OnlineLibraryActivity extends Activity {
 		if (item.getTitle() == "Download Story") {
 			downloadStory(storyClicked);
 		}
-		else if (item.getTitle() == "Delete Story") {
-			
-			if (networkConnected) {
-				new deleteStoryTask(storyClicked).execute();
-			}
-			else{
-				cManagerInst.deleteCachedStory(storyClicked);
-			}
-			new getStoriesAndDisplay().execute();
-		}
+//		else if (item.getTitle() == "Delete Story") {
+//			if (networkConnected) {
+//				new deleteStoryTask(storyClicked).execute();
+//			}
+//			else{
+//				cManagerInst.deleteCachedStory(storyClicked);
+//			}
+//			new getStoriesAndDisplay().execute();
+//		}
 		return true;
 	}
 
-	private class deleteStoryTask extends AsyncTask<String, String, String> {
-
-		Story story;
-
-		public deleteStoryTask(Story storyClicked) {
-			this.story = storyClicked;
-		}
-		@Override
-		protected String doInBackground(String... arg0) {
-			client.deleteStory(story);
-			return null;
-		}
-
-		protected void onPostExecute(String result) {
-			Toast.makeText(OnlineLibraryActivity.this,
-					"Deleted " + this.story.getTitle(), Toast.LENGTH_SHORT)
-					.show();
-		}
-	}
+//	private class deleteStoryTask extends AsyncTask<String, String, String> {
+//
+//		Story story;
+//
+//		public deleteStoryTask(Story storyClicked) {
+//			this.story = storyClicked;
+//		}
+//		@Override
+//		protected String doInBackground(String... arg0) {
+//			client.deleteStory(story);
+//			return null;
+//		}
+//
+//		protected void onPostExecute(String result) {
+//			Toast.makeText(OnlineLibraryActivity.this,
+//					"Deleted " + this.story.getTitle(), Toast.LENGTH_SHORT)
+//					.show();
+//		}
+//	}
 
 	/**
 	 * This function downloads the online story to the phone's memory.
