@@ -180,14 +180,13 @@ public class CustomStoryAdapter extends ArrayAdapter<Story> {
 
 					ArrayList<Story> filteredStories = new ArrayList<Story>();
 
-					String query = constraint.toString().toLowerCase(Locale.CANADA);
+					String query = constraint.toString().toLowerCase(Locale.getDefault());
 					library = storedlibrary;
 					for (Story story : library) {
 
-						String story_title = story.getTitle().toLowerCase(Locale.CANADA);
-						String story_author = story.getAuthor().toLowerCase(Locale.CANADA);
-						String story_description = story.getDescription()
-								.toLowerCase(Locale.CANADA);
+						String story_title = story.getTitle().toLowerCase(Locale.getDefault());
+						String story_author = story.getAuthor().toLowerCase(Locale.getDefault());
+						String story_description = story.getDescription().toLowerCase(Locale.getDefault());
 
 						if ((story_title.contains(query))
 								|| (story_author.contains(query))
