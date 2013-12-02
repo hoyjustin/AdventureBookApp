@@ -1,2 +1,0 @@
-Cannot press "X" on Camera.
-Cannot press back button on TakePhotoActivity/gallery activity
