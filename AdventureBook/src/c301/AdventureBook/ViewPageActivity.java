@@ -171,7 +171,7 @@ public class ViewPageActivity extends Activity {
 
 		coverFlow.setAdapter(coverImageAdapter);
 
-		coverFlow.setSpacing(25);
+		coverFlow.setSpacing(10);
 		coverFlow.setSelection(0, true);
 		coverFlow.setAnimationDuration(1000);
 
